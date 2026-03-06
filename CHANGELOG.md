@@ -1,10 +1,15 @@
 # Changelog
 
-## 1.3.2
+## 1.4.0
 
+- **Classic bird logo** — toggle to replace the X logo with the original Twitter bird
+- **Eye health note** — welcome page highlights reduced halation for users with astigmatism
+- Redesigned email and engagement popups in the extension popup
 - Share link in popup footer
-- Improved email capture on welcome page
-- Translation fixes
+- Email capture prompt (after 7 days)
+- Engagement prompt — share/review (after 14 days)
+- Improved welcome page email capture
+- Translation updates
 
 ## 1.3.1
 

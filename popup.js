@@ -1,4 +1,5 @@
 const toggle = document.getElementById("toggle");
+const birdToggle = document.getElementById("birdToggle");
 const dot = document.getElementById("dot");
 const hueSlider = document.getElementById("hueSlider");
 const hueWrap = document.getElementById("hueWrap");
@@ -22,6 +23,7 @@ const RATE_URL = "https://chromewebstore.google.com/detail/x-dim-mode/cplloghlcg
 // i18n
 document.getElementById("title").textContent = chrome.i18n.getMessage("extName");
 document.getElementById("enableLabel").textContent = chrome.i18n.getMessage("enableDim");
+document.getElementById("birdLabel").textContent = chrome.i18n.getMessage("birdLogo");
 document.getElementById("hint").textContent = chrome.i18n.getMessage("settingsHint");
 document.getElementById("credit").textContent = chrome.i18n.getMessage("credit");
 
@@ -48,9 +50,10 @@ function setActiveTheme(themeName) {
 }
 
 // Load initial state
-chrome.storage.local.get(["enabled", "theme", "customHue"], ({ enabled, theme, customHue }) => {
+chrome.storage.local.get(["enabled", "theme", "customHue", "birdLogo"], ({ enabled, theme, customHue, birdLogo }) => {
   toggle.checked = !!enabled;
   dot.classList.toggle("active", !!enabled);
+  birdToggle.checked = !!birdLogo;
 
   if (customHue !== undefined) {
     hueSlider.value = customHue;
@@ -59,11 +62,15 @@ chrome.storage.local.get(["enabled", "theme", "customHue"], ({ enabled, theme, c
   setActiveTheme(theme || "dim");
 });
 
-// Toggle handler
+// Toggle handlers
 toggle.addEventListener("change", () => {
   const enabled = toggle.checked;
   chrome.storage.local.set({ enabled });
   dot.classList.toggle("active", enabled);
+});
+
+birdToggle.addEventListener("change", () => {
+  chrome.storage.local.set({ birdLogo: birdToggle.checked });
 });
 
 // Preset theme clicks
@@ -180,3 +187,15 @@ chrome.storage.local.get(
     }
   }
 );
+
+// ── Dev buttons ───────────────────────────────────────────────────
+document.getElementById("devEmail").addEventListener("click", () => {
+  document.getElementById("emailPrompt").style.display = "none";
+  document.getElementById("engagePrompt").style.display = "none";
+  showEmailPrompt();
+});
+document.getElementById("devEngage").addEventListener("click", () => {
+  document.getElementById("emailPrompt").style.display = "none";
+  document.getElementById("engagePrompt").style.display = "none";
+  showEngagePrompt();
+});

@@ -39,6 +39,7 @@ const items = isUpdate
       msg("installFeature3"),
       msg("installFeature4"),
       msg("installFeature5"),
+      msg("installFeature6"),
     ];
 
 const list = document.getElementById("features");

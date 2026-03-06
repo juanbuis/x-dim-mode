@@ -97,5 +97,11 @@
   },
   "engageRate": {
     "message": "Review"
+  },
+  "birdLogo": {
+    "message": "Classic bird logo"
+  },
+  "installFeature6": {
+    "message": "Easier on the eyes \u2014 dim backgrounds reduce halation for users with astigmatism"
   }
 }

@@ -2,6 +2,10 @@ const DIM_BASE_ID = "x-dim-base-ext";
 const DIM_BTN_ID = "x-dim-option-btn";
 const DIM_CLASS = "x-dim-active";
 
+// ── Bird Logo ─────────────────────────────────────────────────────
+const BIRD_PATH = "M23.643 4.937c-.835.37-1.732.62-2.675.733.962-.576 1.7-1.49 2.048-2.578-.9.534-1.897.922-2.958 1.13-.85-.904-2.06-1.47-3.4-1.47-2.572 0-4.658 2.086-4.658 4.66 0 .364.042.718.12 1.06-3.873-.195-7.304-2.05-9.602-4.868-.4.69-.63 1.49-.63 2.342 0 1.616.823 3.043 2.072 3.878-.764-.025-1.482-.234-2.11-.583v.06c0 2.257 1.605 4.14 3.737 4.568-.392.106-.803.162-1.227.162-.3 0-.593-.028-.877-.082.593 1.85 2.313 3.198 4.352 3.234-1.595 1.25-3.604 1.995-5.786 1.995-.376 0-.747-.022-1.112-.065 2.062 1.323 4.51 2.093 7.14 2.093 8.57 0 13.255-7.098 13.255-13.254 0-.2-.005-.402-.014-.602.91-.658 1.7-1.477 2.323-2.41z";
+let _birdLogo = false;
+
 // ── Theme Definitions ──────────────────────────────────────────────
 
 const THEMES = {
@@ -208,6 +212,13 @@ const STATIC_CSS = `
     border-color: var(--xdm-border) !important;
   }
 
+  /* Media editor crop selection — the crop rectangle has .r-1niwhzg (black bg)
+     but other classes override it to transparent. Our !important rule defeats
+     that override, causing a solid blue block over the image. */
+  html.${DIM_CLASS} .r-1niwhzg.r-633pao {
+    background-color: transparent !important;
+  }
+
 `;
 
 function buildFullCSS() {
@@ -290,6 +301,35 @@ function restoreThemeColor() {
   const meta = document.querySelector('meta[name="theme-color"]');
   if (meta) meta.setAttribute("content", _originalThemeColor);
   _originalThemeColor = null;
+}
+
+// ── Bird Logo Swap ────────────────────────────────────────────────
+
+function isXLogoPath(d) {
+  return d && d.startsWith("M18.244");
+}
+
+function swapBirdLogos(root) {
+  if (!_birdLogo) return;
+  const paths = (root || document).querySelectorAll("svg path");
+  for (const p of paths) {
+    const d = p.getAttribute("d");
+    if (isXLogoPath(d)) {
+      p.setAttribute("data-xdm-original-d", d);
+      p.setAttribute("d", BIRD_PATH);
+      const svg = p.closest("svg");
+      if (svg) svg.style.fill = "#1D9BF0";
+    }
+  }
+}
+
+function restoreBirdLogos() {
+  for (const p of document.querySelectorAll("svg path[data-xdm-original-d]")) {
+    p.setAttribute("d", p.getAttribute("data-xdm-original-d"));
+    p.removeAttribute("data-xdm-original-d");
+    const svg = p.closest("svg");
+    if (svg) svg.style.fill = "";
+  }
 }
 
 function applyDim() {
@@ -546,6 +586,14 @@ function startObserver() {
           if (m.addedNodes.length) queueScan(m.addedNodes);
         }
       }
+      // Swap bird logos on newly added nodes
+      if (_birdLogo) {
+        for (const m of mutations) {
+          for (const n of m.addedNodes) {
+            if (n.nodeType === 1) swapBirdLogos(n);
+          }
+        }
+      }
       // Try to inject the Dim button on the display settings page
       tryInjectDimOption();
       // Start body observer once body is available
@@ -569,9 +617,10 @@ function fullRescan() {
 }
 
 // Init — single storage read, then use cached state
-chrome.storage.local.get(["enabled", "theme", "customHue"], ({ enabled, theme, customHue }) => {
+chrome.storage.local.get(["enabled", "theme", "customHue", "birdLogo"], ({ enabled, theme, customHue, birdLogo }) => {
   _theme = theme ?? "dim";
   _customHue = customHue ?? 210;
+  _birdLogo = !!birdLogo;
 
   if (enabled === undefined) {
     _enabled = true;
@@ -604,6 +653,13 @@ chrome.storage.local.get(["enabled", "theme", "customHue"], ({ enabled, theme, c
   // Start body observer if body is already available
   if (_enabled && document.body) {
     startBodyObserver();
+  }
+
+  // Apply bird logo swap if enabled
+  if (_birdLogo) {
+    swapBirdLogos();
+    // Re-run after page settles (logo may load later)
+    for (const ms of [500, 1500, 3000]) setTimeout(() => swapBirdLogos(), ms);
   }
 });
 
@@ -657,5 +713,13 @@ chrome.storage.onChanged.addListener((changes) => {
     ensureBaseCSS();
     syncThemeColor();
     updateSettingsButtonColor();
+  }
+  if (changes.birdLogo) {
+    _birdLogo = !!changes.birdLogo.newValue;
+    if (_birdLogo) {
+      swapBirdLogos();
+    } else {
+      restoreBirdLogos();
+    }
   }
 });
