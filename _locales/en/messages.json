@@ -98,6 +98,9 @@
   "engageRate": {
     "message": "Review"
   },
+  "moreOptions": {
+    "message": "More"
+  },
   "birdLogo": {
     "message": "Classic bird logo"
   },

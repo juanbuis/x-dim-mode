@@ -1,10 +1,15 @@
 # Changelog
 
-## 1.4.0
+## 1.4.0 (unreleased)
 
 - **Classic bird logo** — toggle to replace the X logo with the original Twitter bird
 - **Eye health note** — welcome page highlights reduced halation for users with astigmatism
-- Redesigned email and engagement popups in the extension popup
+- New "More" section in popup for extra options
+- Redesigned email and engagement popups
+- Fixed bird logo persistence across React re-renders and page navigation
+
+## 1.3.2
+
 - Share link in popup footer
 - Email capture prompt (after 7 days)
 - Engagement prompt — share/review (after 14 days)

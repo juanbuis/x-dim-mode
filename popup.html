@@ -332,6 +332,37 @@
       transition: color 0.2s;
     }
     .share-link:hover { color: #1D9BF0; }
+
+    /* ── More section ── */
+    .more-toggle {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      background: none;
+      border: none;
+      color: #536471;
+      font-size: 12px;
+      cursor: pointer;
+      padding: 8px 0 2px;
+      transition: color 0.2s;
+    }
+    .more-toggle:hover { color: #8B98A5; }
+    .more-chevron {
+      display: inline-block;
+      transition: transform 0.2s ease;
+      font-size: 10px;
+    }
+    .more-toggle.open .more-chevron { transform: rotate(90deg); }
+    .more-body {
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+      transition: max-height 0.2s ease, opacity 0.15s ease;
+    }
+    .more-body.open {
+      max-height: 60px;
+      opacity: 1;
+    }
   </style>
 </head>
 <body>
@@ -343,12 +374,17 @@
       <span class="slider"></span>
     </label>
   </div>
-  <div class="toggle-row" style="padding-top: 0;">
-    <span class="label" id="birdLabel"></span>
-    <label class="toggle">
-      <input type="checkbox" id="birdToggle">
-      <span class="slider"></span>
-    </label>
+  <button class="more-toggle" id="moreToggle">
+    <span class="more-chevron">&#9654;</span> <span id="moreLabel"></span>
+  </button>
+  <div class="more-body" id="moreBody">
+    <div class="toggle-row" style="padding: 6px 0;">
+      <span class="label" id="birdLabel"></span>
+      <label class="toggle">
+        <input type="checkbox" id="birdToggle">
+        <span class="slider"></span>
+      </label>
+    </div>
   </div>
   <div class="themes">
     <button class="theme-dot" data-theme="dim" style="background: hsl(210, 34%, 28%)" title="Dim"></button>

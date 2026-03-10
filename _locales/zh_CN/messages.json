@@ -97,5 +97,8 @@
   },
   "engageRate": {
     "message": "评价"
+  },
+  "moreOptions": {
+    "message": "更多"
   }
 }

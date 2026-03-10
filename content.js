@@ -305,31 +305,74 @@ function restoreThemeColor() {
 
 // ── Bird Logo Swap ────────────────────────────────────────────────
 
+const BIRD_CSS_ID = "x-dim-bird-css";
+
 function isXLogoPath(d) {
-  return d && d.startsWith("M18.244");
+  return d && (d.startsWith("M18.244") || d.startsWith("M21.742"));
+}
+
+function swapSinglePath(p) {
+  const d = p.getAttribute("d");
+  if (!isXLogoPath(d)) return false;
+  if (!p.getAttribute("data-xdm-original-d")) {
+    p.setAttribute("data-xdm-original-d", d);
+  }
+  p.setAttribute("d", BIRD_PATH);
+  p.setAttribute("data-xdm-bird", "1");
+  return true;
 }
 
 function swapBirdLogos(root) {
   if (!_birdLogo) return;
-  const paths = (root || document).querySelectorAll("svg path");
-  for (const p of paths) {
-    const d = p.getAttribute("d");
-    if (isXLogoPath(d)) {
-      p.setAttribute("data-xdm-original-d", d);
-      p.setAttribute("d", BIRD_PATH);
-      const svg = p.closest("svg");
-      if (svg) svg.style.fill = "#1D9BF0";
+  const el = root || document;
+  // querySelectorAll("svg path") misses paths when root IS the svg.
+  // Query all paths, plus check root itself if it's a path element.
+  const paths = el.querySelectorAll ? el.querySelectorAll("path") : [];
+  for (const p of paths) swapSinglePath(p);
+  if (el instanceof SVGPathElement) swapSinglePath(el);
+}
+
+function ensureBirdCSS() {
+  if (document.getElementById(BIRD_CSS_ID)) return;
+  const style = document.createElement("style");
+  style.id = BIRD_CSS_ID;
+  // Dark/dim mode: inherit UI color (white). Light mode: classic Twitter blue.
+  style.textContent = `
+    path[data-xdm-bird] { fill: currentColor !important; }
+    @media (prefers-color-scheme: light) {
+      path[data-xdm-bird] { fill: #1D9BF0 !important; }
     }
-  }
+  `;
+  (document.head || document.documentElement).appendChild(style);
+}
+
+function removeBirdCSS() {
+  document.getElementById(BIRD_CSS_ID)?.remove();
 }
 
 function restoreBirdLogos() {
-  for (const p of document.querySelectorAll("svg path[data-xdm-original-d]")) {
+  for (const p of document.querySelectorAll("path[data-xdm-original-d]")) {
     p.setAttribute("d", p.getAttribute("data-xdm-original-d"));
     p.removeAttribute("data-xdm-original-d");
-    const svg = p.closest("svg");
-    if (svg) svg.style.fill = "";
+    p.removeAttribute("data-xdm-bird");
   }
+  removeBirdCSS();
+}
+
+// Periodic re-check: catches React re-renders that update the d attribute
+// in-place (not caught by childList mutation observer).
+let _birdInterval = 0;
+
+function startBirdInterval() {
+  if (_birdInterval) return;
+  _birdInterval = setInterval(() => {
+    if (!_birdLogo) { stopBirdInterval(); return; }
+    swapBirdLogos();
+  }, 2000);
+}
+
+function stopBirdInterval() {
+  if (_birdInterval) { clearInterval(_birdInterval); _birdInterval = 0; }
 }
 
 function applyDim() {
@@ -657,9 +700,11 @@ chrome.storage.local.get(["enabled", "theme", "customHue", "birdLogo"], ({ enabl
 
   // Apply bird logo swap if enabled
   if (_birdLogo) {
+    ensureBirdCSS();
     swapBirdLogos();
     // Re-run after page settles (logo may load later)
     for (const ms of [500, 1500, 3000]) setTimeout(() => swapBirdLogos(), ms);
+    startBirdInterval();
   }
 });
 
@@ -717,8 +762,11 @@ chrome.storage.onChanged.addListener((changes) => {
   if (changes.birdLogo) {
     _birdLogo = !!changes.birdLogo.newValue;
     if (_birdLogo) {
+      ensureBirdCSS();
       swapBirdLogos();
+      startBirdInterval();
     } else {
+      stopBirdInterval();
       restoreBirdLogos();
     }
   }

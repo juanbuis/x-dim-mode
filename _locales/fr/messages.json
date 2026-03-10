@@ -97,5 +97,8 @@
   },
   "engageRate": {
     "message": "Avis"
+  },
+  "moreOptions": {
+    "message": "Plus"
   }
 }

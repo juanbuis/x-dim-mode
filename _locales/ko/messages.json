@@ -97,5 +97,8 @@
   },
   "engageRate": {
     "message": "리뷰"
+  },
+  "moreOptions": {
+    "message": "더보기"
   }
 }

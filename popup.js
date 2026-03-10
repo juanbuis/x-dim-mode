@@ -5,6 +5,8 @@ const hueSlider = document.getElementById("hueSlider");
 const hueWrap = document.getElementById("hueWrap");
 const themeDots = document.querySelectorAll(".theme-dot");
 const customDot = document.querySelector(".custom-dot");
+const moreToggleBtn = document.getElementById("moreToggle");
+const moreBody = document.getElementById("moreBody");
 
 const RAINBOW = `conic-gradient(
   hsl(0, 45%, 32%), hsl(45, 45%, 32%), hsl(90, 45%, 32%),
@@ -23,6 +25,7 @@ const RATE_URL = "https://chromewebstore.google.com/detail/x-dim-mode/cplloghlcg
 // i18n
 document.getElementById("title").textContent = chrome.i18n.getMessage("extName");
 document.getElementById("enableLabel").textContent = chrome.i18n.getMessage("enableDim");
+document.getElementById("moreLabel").textContent = chrome.i18n.getMessage("moreOptions");
 document.getElementById("birdLabel").textContent = chrome.i18n.getMessage("birdLogo");
 document.getElementById("hint").textContent = chrome.i18n.getMessage("settingsHint");
 document.getElementById("credit").textContent = chrome.i18n.getMessage("credit");
@@ -71,6 +74,12 @@ toggle.addEventListener("change", () => {
 
 birdToggle.addEventListener("change", () => {
   chrome.storage.local.set({ birdLogo: birdToggle.checked });
+});
+
+// More section toggle
+moreToggleBtn.addEventListener("click", () => {
+  const open = moreBody.classList.toggle("open");
+  moreToggleBtn.classList.toggle("open", open);
 });
 
 // Preset theme clicks
