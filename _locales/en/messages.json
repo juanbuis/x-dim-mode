@@ -106,5 +106,11 @@
   },
   "installFeature6": {
     "message": "Easier on the eyes \u2014 dim backgrounds reduce halation for users with astigmatism"
+  },
+  "donate": {
+    "message": "Support X Dim Mode"
+  },
+  "extras": {
+    "message": "Extras"
   }
 }

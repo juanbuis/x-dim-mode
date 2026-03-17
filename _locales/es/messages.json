@@ -100,5 +100,11 @@
   },
   "moreOptions": {
     "message": "Más"
+  },
+  "donate": {
+    "message": "Apoya X Dim Mode"
+  },
+  "extras": {
+    "message": "Extras"
   }
 }

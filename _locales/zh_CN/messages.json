@@ -100,5 +100,11 @@
   },
   "moreOptions": {
     "message": "更多"
+  },
+  "donate": {
+    "message": "支持 X Dim Mode"
+  },
+  "extras": {
+    "message": "更多功能"
   }
 }

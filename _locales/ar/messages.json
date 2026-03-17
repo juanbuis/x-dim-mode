@@ -100,5 +100,11 @@
   },
   "moreOptions": {
     "message": "المزيد"
+  },
+  "donate": {
+    "message": "ادعم X Dim Mode"
+  },
+  "extras": {
+    "message": "إضافات"
   }
 }

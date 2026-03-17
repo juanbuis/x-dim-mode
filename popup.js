@@ -1,12 +1,9 @@
 const toggle = document.getElementById("toggle");
-const birdToggle = document.getElementById("birdToggle");
 const dot = document.getElementById("dot");
 const hueSlider = document.getElementById("hueSlider");
 const hueWrap = document.getElementById("hueWrap");
 const themeDots = document.querySelectorAll(".theme-dot");
 const customDot = document.querySelector(".custom-dot");
-const moreToggleBtn = document.getElementById("moreToggle");
-const moreBody = document.getElementById("moreBody");
 
 const RAINBOW = `conic-gradient(
   hsl(0, 45%, 32%), hsl(45, 45%, 32%), hsl(90, 45%, 32%),
@@ -25,15 +22,15 @@ const RATE_URL = "https://chromewebstore.google.com/detail/x-dim-mode/cplloghlcg
 // i18n
 document.getElementById("title").textContent = chrome.i18n.getMessage("extName");
 document.getElementById("enableLabel").textContent = chrome.i18n.getMessage("enableDim");
-document.getElementById("moreLabel").textContent = chrome.i18n.getMessage("moreOptions");
-document.getElementById("birdLabel").textContent = chrome.i18n.getMessage("birdLogo");
-document.getElementById("hint").textContent = chrome.i18n.getMessage("settingsHint");
 document.getElementById("credit").textContent = chrome.i18n.getMessage("credit");
 
 // Share link in footer
 const shareLink = document.getElementById("shareLink");
 shareLink.textContent = chrome.i18n.getMessage("popupShareLink");
 shareLink.href = SHARE_URL;
+
+// Donate CTA
+document.getElementById("donateLink").textContent = chrome.i18n.getMessage("donate");
 
 // ── Theme selection ────────────────────────────────────────────────
 
@@ -53,10 +50,9 @@ function setActiveTheme(themeName) {
 }
 
 // Load initial state
-chrome.storage.local.get(["enabled", "theme", "customHue", "birdLogo"], ({ enabled, theme, customHue, birdLogo }) => {
+chrome.storage.local.get(["enabled", "theme", "customHue"], ({ enabled, theme, customHue }) => {
   toggle.checked = !!enabled;
   dot.classList.toggle("active", !!enabled);
-  birdToggle.checked = !!birdLogo;
 
   if (customHue !== undefined) {
     hueSlider.value = customHue;
@@ -65,21 +61,11 @@ chrome.storage.local.get(["enabled", "theme", "customHue", "birdLogo"], ({ enabl
   setActiveTheme(theme || "dim");
 });
 
-// Toggle handlers
+// Toggle handler
 toggle.addEventListener("change", () => {
   const enabled = toggle.checked;
   chrome.storage.local.set({ enabled });
   dot.classList.toggle("active", enabled);
-});
-
-birdToggle.addEventListener("change", () => {
-  chrome.storage.local.set({ birdLogo: birdToggle.checked });
-});
-
-// More section toggle
-moreToggleBtn.addEventListener("click", () => {
-  const open = moreBody.classList.toggle("open");
-  moreToggleBtn.classList.toggle("open", open);
 });
 
 // Preset theme clicks
@@ -207,4 +193,12 @@ document.getElementById("devEngage").addEventListener("click", () => {
   document.getElementById("emailPrompt").style.display = "none";
   document.getElementById("engagePrompt").style.display = "none";
   showEngagePrompt();
+});
+document.getElementById("devWelcome").addEventListener("click", () => {
+  const v = chrome.runtime.getManifest().version;
+  window.open(chrome.runtime.getURL(`welcome.html?v=${v}&reason=install`));
+});
+document.getElementById("devUpdate").addEventListener("click", () => {
+  const v = chrome.runtime.getManifest().version;
+  window.open(chrome.runtime.getURL(`welcome.html?v=${v}&reason=update`));
 });

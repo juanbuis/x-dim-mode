@@ -19,6 +19,22 @@
       align-items: center;
       gap: 8px;
     }
+    .extras-btn {
+      margin-left: auto;
+      background: none;
+      border: none;
+      color: #536471;
+      cursor: pointer;
+      padding: 2px;
+      line-height: 1;
+      transition: color 0.2s;
+    }
+    .extras-btn:hover { color: #8B98A5; }
+    .extras-btn svg {
+      width: 14px;
+      height: 14px;
+      fill: currentColor;
+    }
     .dot {
       width: 8px;
       height: 8px;
@@ -306,85 +322,60 @@
     }
     .engage-btn:hover { opacity: 0.85; }
 
-    .hint {
+    /* ── Donate ── */
+    .donate-btn {
+      display: block;
+      width: 100%;
+      text-align: center;
+      margin-top: 12px;
+      padding: 8px 0;
       font-size: 12px;
-      color: #536471;
-      margin-top: 8px;
-      line-height: 1.4;
+      font-weight: 600;
+      color: #E7E9EA;
+      text-decoration: none;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid #38444D;
+      border-radius: 10px;
+      transition: background 0.2s, border-color 0.2s;
     }
+    .donate-btn:hover {
+      background: rgba(255, 255, 255, 0.10);
+      border-color: #536471;
+    }
+
+    /* ── Footer ── */
     .footer {
       display: flex;
       align-items: center;
+      justify-content: center;
       gap: 6px;
-      margin-top: 12px;
+      margin-top: 10px;
       font-size: 12px;
     }
-    .footer-sep { color: #536471; }
-    .credit {
-      color: #1D9BF0;
-      text-decoration: none;
-      transition: opacity 0.2s;
-    }
-    .credit:hover { opacity: 0.8; }
-    .share-link {
+    .footer-sep { color: #38444D; }
+    .footer a {
       color: #536471;
       text-decoration: none;
       transition: color 0.2s;
     }
-    .share-link:hover { color: #1D9BF0; }
+    .footer a:hover { color: #8B98A5; }
 
-    /* ── More section ── */
-    .more-toggle {
-      display: flex;
-      align-items: center;
-      gap: 4px;
-      background: none;
-      border: none;
-      color: #536471;
-      font-size: 12px;
-      cursor: pointer;
-      padding: 8px 0 2px;
-      transition: color 0.2s;
-    }
-    .more-toggle:hover { color: #8B98A5; }
-    .more-chevron {
-      display: inline-block;
-      transition: transform 0.2s ease;
-      font-size: 10px;
-    }
-    .more-toggle.open .more-chevron { transform: rotate(90deg); }
-    .more-body {
-      max-height: 0;
-      overflow: hidden;
-      opacity: 0;
-      transition: max-height 0.2s ease, opacity 0.15s ease;
-    }
-    .more-body.open {
-      max-height: 60px;
-      opacity: 1;
-    }
   </style>
 </head>
 <body>
-  <h1><span class="dot" id="dot"></span> <span id="title"></span></h1>
+  <h1>
+    <span class="dot" id="dot"></span>
+    <span id="title"></span>
+    <a class="extras-btn" href="extras.html" title="Extras">
+      <svg viewBox="0 0 24 24"><path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58a.49.49 0 00.12-.61l-1.92-3.32a.49.49 0 00-.59-.22l-2.39.96c-.5-.38-1.03-.69-1.62-.94l-.36-2.54a.48.48 0 00-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.25-1.13.57-1.62.94l-2.39-.96a.49.49 0 00-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.07.63-.07.94s.02.64.07.94l-2.03 1.58a.49.49 0 00-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.69 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.25 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6A3.6 3.6 0 1112 8.4a3.6 3.6 0 010 7.2z"/></svg>
+    </a>
+  </h1>
   <div class="toggle-row">
     <span class="label" id="enableLabel"></span>
     <label class="toggle">
       <input type="checkbox" id="toggle">
       <span class="slider"></span>
     </label>
-  </div>
-  <button class="more-toggle" id="moreToggle">
-    <span class="more-chevron">&#9654;</span> <span id="moreLabel"></span>
-  </button>
-  <div class="more-body" id="moreBody">
-    <div class="toggle-row" style="padding: 6px 0;">
-      <span class="label" id="birdLabel"></span>
-      <label class="toggle">
-        <input type="checkbox" id="birdToggle">
-        <span class="slider"></span>
-      </label>
-    </div>
   </div>
   <div class="themes">
     <button class="theme-dot" data-theme="dim" style="background: hsl(210, 34%, 28%)" title="Dim"></button>
@@ -422,15 +413,17 @@
       <a class="engage-btn" id="engageRate" target="_blank"></a>
     </div>
   </div>
-  <p class="hint" id="hint"></p>
   <div style="display:flex;gap:6px;margin-top:8px;">
-    <button id="devEmail" style="flex:1;padding:4px;font-size:11px;background:#222;color:#888;border:1px solid #333;border-radius:6px;cursor:pointer;">Test Email</button>
-    <button id="devEngage" style="flex:1;padding:4px;font-size:11px;background:#222;color:#888;border:1px solid #333;border-radius:6px;cursor:pointer;">Test Engage</button>
+    <button id="devEmail" style="flex:1;padding:4px;font-size:11px;background:#222;color:#888;border:1px solid #333;border-radius:6px;cursor:pointer;">Email</button>
+    <button id="devEngage" style="flex:1;padding:4px;font-size:11px;background:#222;color:#888;border:1px solid #333;border-radius:6px;cursor:pointer;">Engage</button>
+    <button id="devWelcome" style="flex:1;padding:4px;font-size:11px;background:#222;color:#888;border:1px solid #333;border-radius:6px;cursor:pointer;">Welcome</button>
+    <button id="devUpdate" style="flex:1;padding:4px;font-size:11px;background:#222;color:#888;border:1px solid #333;border-radius:6px;cursor:pointer;">Update</button>
   </div>
+  <a class="donate-btn" href="https://buymeacoffee.com/juan" target="_blank" id="donateLink"></a>
   <div class="footer">
-    <a class="credit" href="https://x.com/juanbuis" target="_blank" id="credit"></a>
+    <a href="https://x.com/juanbuis" target="_blank" id="credit"></a>
     <span class="footer-sep">&middot;</span>
-    <a class="share-link" id="shareLink" target="_blank"></a>
+    <a id="shareLink" target="_blank"></a>
   </div>
   <script src="popup.js"></script>
 </body>

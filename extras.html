@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      width: 240px;
+      padding: 16px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: #15202B;
+      color: #E7E9EA;
+    }
+    .back {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 12px;
+      color: #536471;
+      text-decoration: none;
+      margin-bottom: 12px;
+      transition: color 0.2s;
+    }
+    .back:hover { color: #8B98A5; }
+    h2 {
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+    .toggle-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 0;
+    }
+    .label {
+      font-size: 14px;
+      color: #8B98A5;
+    }
+    .toggle {
+      position: relative;
+      width: 44px;
+      height: 24px;
+    }
+    .toggle input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      inset: 0;
+      background: #38444D;
+      border-radius: 24px;
+      transition: 0.2s;
+    }
+    .slider::before {
+      content: "";
+      position: absolute;
+      height: 18px;
+      width: 18px;
+      left: 3px;
+      bottom: 3px;
+      background: #E7E9EA;
+      border-radius: 50%;
+      transition: 0.2s;
+    }
+    input:checked + .slider { background: #1D9BF0; }
+    input:checked + .slider::before { transform: translateX(20px); }
+  </style>
+</head>
+<body>
+  <a class="back" href="popup.html">&larr; <span id="backLabel"></span></a>
+  <h2 id="extrasTitle"></h2>
+  <div class="toggle-row">
+    <span class="label" id="birdLabel"></span>
+    <label class="toggle">
+      <input type="checkbox" id="birdToggle">
+      <span class="slider"></span>
+    </label>
+  </div>
+  <script src="extras.js"></script>
+</body>
+</html>

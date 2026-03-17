@@ -1,3 +1,6 @@
+// Uninstall survey
+chrome.runtime.setUninstallURL("https://docs.google.com/forms/d/e/1FAIpQLSewJf4DzNQpDiemgLskxtiTr8v8jGsRnf2TElorW2gLvkuagg/viewform");
+
 // Open welcome/update page
 chrome.runtime.onInstalled.addListener(({ reason, previousVersion }) => {
   const v = chrome.runtime.getManifest().version;

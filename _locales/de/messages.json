@@ -100,5 +100,11 @@
   },
   "moreOptions": {
     "message": "Mehr"
+  },
+  "donate": {
+    "message": "X Dim Mode unterstützen"
+  },
+  "extras": {
+    "message": "Extras"
   }
 }

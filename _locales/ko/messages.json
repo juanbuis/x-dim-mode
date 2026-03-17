@@ -100,5 +100,11 @@
   },
   "moreOptions": {
     "message": "더보기"
+  },
+  "donate": {
+    "message": "X Dim Mode 후원하기"
+  },
+  "extras": {
+    "message": "추가 기능"
   }
 }
