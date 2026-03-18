@@ -59,15 +59,6 @@ tryBtn.className = "btn-primary";
 tryBtn.textContent = msg("tryNow");
 actions.appendChild(tryBtn);
 
-const shareBtn = document.createElement("a");
-const shareText = encodeURIComponent("I've been using X Dim Mode \u2014 it brings back the dark blue theme on X and adds color themes. Check it out:");
-const shareUrl = encodeURIComponent("https://xdim.app");
-shareBtn.href = `https://x.com/intent/tweet?text=${shareText}&url=${shareUrl}`;
-shareBtn.target = "_blank";
-shareBtn.className = "btn-secondary";
-shareBtn.textContent = msg("shareOnX");
-actions.appendChild(shareBtn);
-
 const donateBtn = document.createElement("a");
 donateBtn.href = "https://buymeacoffee.com/juan";
 donateBtn.target = "_blank";

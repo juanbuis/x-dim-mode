@@ -1,15 +1,11 @@
 # Changelog
 
-## 1.4.0 (unreleased)
+## 1.4.0
 
-- **Classic bird logo** — toggle in Extras to replace the X logo with the original Twitter bird
-- **Eye health note** — welcome page highlights reduced halation for users with astigmatism
-- New Extras page for additional options
-- Support/donate button in popup
+- **Bird logo toggle** — bring back the classic Twitter bird (in Extras)
+- Support/donate button in popup and welcome page
 - Uninstall survey
-- Redesigned email and engagement popups
-- Redesigned popup footer
-- Fixed bird logo persistence across React re-renders and page navigation
+- Redesigned popup
 
 ## 1.3.2
 

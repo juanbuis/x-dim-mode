@@ -5,8 +5,8 @@
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       width: 240px;
-      min-height: 238px;
-      padding: 16px;
+      min-height: 0;
+      padding: 16px 16px 12px;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       background: #15202B;
       color: #E7E9EA;
@@ -327,7 +327,7 @@
       display: block;
       width: 100%;
       text-align: center;
-      margin-top: 12px;
+      margin-top: 6px;
       padding: 8px 0;
       font-size: 12px;
       font-weight: 600;
@@ -349,7 +349,7 @@
       align-items: center;
       justify-content: center;
       gap: 6px;
-      margin-top: 10px;
+      margin-top: 8px;
       font-size: 12px;
     }
     .footer-sep { color: #38444D; }
@@ -367,7 +367,7 @@
     <span class="dot" id="dot"></span>
     <span id="title"></span>
     <a class="extras-btn" href="extras.html" title="Extras">
-      <svg viewBox="0 0 24 24"><path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58a.49.49 0 00.12-.61l-1.92-3.32a.49.49 0 00-.59-.22l-2.39.96c-.5-.38-1.03-.69-1.62-.94l-.36-2.54a.48.48 0 00-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.25-1.13.57-1.62.94l-2.39-.96a.49.49 0 00-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.07.63-.07.94s.02.64.07.94l-2.03 1.58a.49.49 0 00-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.69 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.25 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6A3.6 3.6 0 1112 8.4a3.6 3.6 0 010 7.2z"/></svg>
+      <svg viewBox="0 0 24 24"><path d="M12 1l2.4 7.2L22 12l-7.6 3.8L12 23l-2.4-7.2L2 12l7.6-3.8z"/></svg>
     </a>
   </h1>
   <div class="toggle-row">
@@ -413,7 +413,7 @@
       <a class="engage-btn" id="engageRate" target="_blank"></a>
     </div>
   </div>
-  <div style="display:flex;gap:6px;margin-top:8px;">
+  <div id="devButtons" style="display:none;gap:6px;margin-top:8px;">
     <button id="devEmail" style="flex:1;padding:4px;font-size:11px;background:#222;color:#888;border:1px solid #333;border-radius:6px;cursor:pointer;">Email</button>
     <button id="devEngage" style="flex:1;padding:4px;font-size:11px;background:#222;color:#888;border:1px solid #333;border-radius:6px;cursor:pointer;">Engage</button>
     <button id="devWelcome" style="flex:1;padding:4px;font-size:11px;background:#222;color:#888;border:1px solid #333;border-radius:6px;cursor:pointer;">Welcome</button>

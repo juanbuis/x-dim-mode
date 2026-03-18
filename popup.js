@@ -183,7 +183,10 @@ chrome.storage.local.get(
   }
 );
 
-// ── Dev buttons ───────────────────────────────────────────────────
+// ── Dev buttons (only visible for unpacked/local installs) ────────
+if (!chrome.runtime.getManifest().update_url) {
+  document.getElementById("devButtons").style.display = "flex";
+}
 document.getElementById("devEmail").addEventListener("click", () => {
   document.getElementById("emailPrompt").style.display = "none";
   document.getElementById("engagePrompt").style.display = "none";
