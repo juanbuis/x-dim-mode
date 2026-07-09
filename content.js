@@ -116,6 +116,15 @@ const STATIC_CSS = `
   html.${DIM_CLASS} .r-cl2sl0 {
     background-color: var(--xdm-bg) !important;
   }
+  /* Premium/promo media cards: a black card (.r-kemksi) topped by a full-bleed
+     hero image whose dark background is baked into the PNG (designed to sit on
+     X's black card). Recoloring the body to navy leaves a two-tone seam where
+     the black image meets the navy body, so keep these cards dark to blend.
+     Scoped with r-rs99b7 + :has(img) so the huge timeline scroll container —
+     also .r-kemksi and full of images — is NOT forced black. */
+  html.${DIM_CLASS} .r-kemksi.r-rs99b7:has(img) {
+    background-color: #000 !important;
+  }
   /* Search bar — the input's opaque bg covers the pill's right border curve.
      Make it transparent so the pill's border and bg show through. */
   html.${DIM_CLASS} form[role="search"] input {
