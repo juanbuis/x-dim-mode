@@ -205,10 +205,10 @@ const STATIC_CSS = `
   html.${DIM_CLASS} .xdm-dimmed-elevated {
     background-color: var(--xdm-bg-hover) !important;
   }
-  /* Creator Studio icon containers (jf-element framework) */
-  html.${DIM_CLASS} .jf-element:has(> span:only-child > svg:only-child) {
-    background-color: var(--xdm-bg-elevated) !important;
-  }
+  /* Creator Studio icon containers (jf-element framework) are now transparent
+     natively — X no longer gives them a dark bg, so we must not force one
+     (doing so paints stray gray squares behind each icon). Genuinely-dark
+     jf containers are still handled by the scanner (dimElement). */
   /* Creator Studio dividers inside elevated section cards */
   html.${DIM_CLASS} .xdm-dimmed-elevated .jf-element:empty {
     background-color: var(--xdm-border) !important;
