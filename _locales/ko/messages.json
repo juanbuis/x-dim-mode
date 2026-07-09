@@ -45,13 +45,13 @@
     "message": "팝업 아이콘 또는 설정 → 디스플레이에서 전환"
   },
   "updateFeature1": {
-    "message": "신규: 6가지 색상 테마 — 마찬가지로 눈에 편안"
+    "message": "답글·새 글 작성 창이 다시 어둡게 표시됩니다 (X가 검은색으로 되돌렸던 문제)"
   },
   "updateFeature2": {
-    "message": "신규: 맞춤 색상 선택기 — 원하는 색조를 선택"
+    "message": "크리에이터 스튜디오 아이콘 뒤 회색 상자가 더 이상 보이지 않습니다"
   },
   "updateFeature3": {
-    "message": "신규: X Pro 지원"
+    "message": "프리미엄 홍보 카드가 두 가지 색으로 나뉘지 않고 깔끔하게 어우러집니다"
   },
   "updateFeature4": {
     "message": "개선: DM 및 X의 더 많은 페이지 지원"
@@ -90,13 +90,13 @@
     "message": "공유"
   },
   "emailPromptHeading": {
-    "message": "다음에 구축할 것을 보세요"
+    "message": "다음에 만들 것을 가장 먼저 사용해 보세요"
   },
   "engageQuestion": {
     "message": "X Dim Mode 마음에 드시나요?"
   },
   "engageRate": {
-    "message": "리뷰"
+    "message": "리뷰 남기기"
   },
   "moreOptions": {
     "message": "더보기"

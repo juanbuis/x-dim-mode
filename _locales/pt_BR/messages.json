@@ -45,13 +45,13 @@
     "message": "Ative pelo ícone do popup ou em Configurações → Tela"
   },
   "updateFeature1": {
-    "message": "Novo: 6 temas de cores — igualmente agradáveis aos olhos"
+    "message": "As janelas de responder e escrever voltaram a ficar escurecidas — o X as tinha redefinido para preto"
   },
   "updateFeature2": {
-    "message": "Novo: Seletor de cores personalizado — escolha qualquer tom que quiser"
+    "message": "O Creator Studio não mostra mais caixas cinzas atrás dos ícones"
   },
   "updateFeature3": {
-    "message": "Novo: Suporte ao X Pro"
+    "message": "Os cards promocionais do Premium se integram bem, sem borda de dois tons"
   },
   "updateFeature4": {
     "message": "Melhorado: Agora cobre DMs e mais páginas no X"
@@ -90,13 +90,13 @@
     "message": "Compartilhar"
   },
   "emailPromptHeading": {
-    "message": "Veja o que vou construir depois"
+    "message": "Seja o primeiro a testar o que eu criar"
   },
   "engageQuestion": {
     "message": "Curtindo o X Dim Mode?"
   },
   "engageRate": {
-    "message": "Avaliar"
+    "message": "Deixar uma avaliação"
   },
   "moreOptions": {
     "message": "Mais"

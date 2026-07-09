@@ -24,14 +24,11 @@ if (isUpdate) {
 }
 
 // Features
-const items = isUpdate
+const items = (isUpdate
   ? [
       msg("updateFeature1"),
       msg("updateFeature2"),
       msg("updateFeature3"),
-      msg("updateFeature4"),
-      msg("updateFeature5"),
-      msg("updateFeature6"),
     ]
   : [
       msg("installFeature1"),
@@ -40,7 +37,8 @@ const items = isUpdate
       msg("installFeature4"),
       msg("installFeature5"),
       msg("installFeature6"),
-    ];
+    ]
+).filter(Boolean);
 
 const list = document.getElementById("features");
 for (const text of items) {

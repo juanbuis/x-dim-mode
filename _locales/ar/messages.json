@@ -45,13 +45,13 @@
     "message": "فعّله من أيقونة الإضافة أو من الإعدادات ← العرض"
   },
   "updateFeature1": {
-    "message": "جديد: 6 سمات ألوان — مريحة للعين بنفس القدر"
+    "message": "عادت نافذتا الرد والكتابة إلى الوضع المعتم — كان X قد أعادهما إلى الأسود"
   },
   "updateFeature2": {
-    "message": "جديد: منتقي ألوان مخصص — اختر أي درجة لون تريدها"
+    "message": "لم يعد Creator Studio يعرض مربعات رمادية خلف أيقوناته"
   },
   "updateFeature3": {
-    "message": "جديد: دعم X Pro"
+    "message": "تندمج بطاقات Premium الترويجية بسلاسة دون حافة ثنائية اللون"
   },
   "updateFeature4": {
     "message": "محسّن: يشمل الآن الرسائل المباشرة والمزيد من صفحات X"
@@ -90,13 +90,13 @@
     "message": "مشاركة"
   },
   "emailPromptHeading": {
-    "message": "شاهد ما سأبنيه بعد ذلك"
+    "message": "كن أول من يجرّب ما أبنيه لاحقًا"
   },
   "engageQuestion": {
     "message": "هل تستمتع بـ X Dim Mode؟"
   },
   "engageRate": {
-    "message": "مراجعة"
+    "message": "اكتب مراجعة"
   },
   "moreOptions": {
     "message": "المزيد"

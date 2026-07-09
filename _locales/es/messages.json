@@ -45,13 +45,13 @@
     "message": "Actívalo desde el icono del popup o en Configuración → Pantalla"
   },
   "updateFeature1": {
-    "message": "Nuevo: 6 temas de color — igual de agradables a la vista"
+    "message": "Las ventanas de responder y redactar vuelven a estar atenuadas — X las había puesto en negro"
   },
   "updateFeature2": {
-    "message": "Nuevo: Selector de color personalizado — elige el tono que quieras"
+    "message": "Creator Studio ya no muestra recuadros grises detrás de sus iconos"
   },
   "updateFeature3": {
-    "message": "Nuevo: Compatibilidad con X Pro"
+    "message": "Las tarjetas promocionales de Premium se integran bien, sin bordes de dos tonos"
   },
   "updateFeature4": {
     "message": "Mejorado: Ahora cubre los DMs y más páginas en X"
@@ -90,13 +90,13 @@
     "message": "Compartir"
   },
   "emailPromptHeading": {
-    "message": "Mira lo que construyo después"
+    "message": "Sé el primero en probar lo que construya"
   },
   "engageQuestion": {
     "message": "¿Te gusta X Dim Mode?"
   },
   "engageRate": {
-    "message": "Reseña"
+    "message": "Dejar una reseña"
   },
   "moreOptions": {
     "message": "Más"

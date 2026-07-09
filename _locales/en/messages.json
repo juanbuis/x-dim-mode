@@ -45,13 +45,13 @@
     "message": "Toggle it from the popup icon or from Settings → Display"
   },
   "updateFeature1": {
-    "message": "New: 6 color themes — all just as easy on the eyes"
+    "message": "Reply and compose windows are dimmed again — X had reset them to black"
   },
   "updateFeature2": {
-    "message": "New: Custom color picker — choose any hue you want"
+    "message": "Creator Studio no longer shows grey boxes behind its icons"
   },
   "updateFeature3": {
-    "message": "New: X Pro support"
+    "message": "Premium promo cards blend in cleanly, with no two-tone edge"
   },
   "updateFeature4": {
     "message": "Improved: Now covers DMs and more pages across X"
@@ -90,13 +90,13 @@
     "message": "Share"
   },
   "emailPromptHeading": {
-    "message": "See what I'm building next"
+    "message": "Be first to try what I build next"
   },
   "engageQuestion": {
     "message": "Enjoying X Dim Mode?"
   },
   "engageRate": {
-    "message": "Review"
+    "message": "Leave a review"
   },
   "moreOptions": {
     "message": "More"

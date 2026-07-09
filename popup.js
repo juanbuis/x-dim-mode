@@ -144,10 +144,6 @@ function showEngagePrompt() {
 
   document.getElementById("engageText").textContent = chrome.i18n.getMessage("engageQuestion");
 
-  const engageShare = document.getElementById("engageShare");
-  engageShare.textContent = chrome.i18n.getMessage("shareOnX");
-  engageShare.href = SHARE_URL;
-
   const engageRate = document.getElementById("engageRate");
   engageRate.textContent = chrome.i18n.getMessage("engageRate");
   engageRate.href = RATE_URL;
@@ -158,7 +154,6 @@ function showEngagePrompt() {
   }
 
   document.getElementById("engageClose").addEventListener("click", dismiss);
-  engageShare.addEventListener("click", dismiss);
   engageRate.addEventListener("click", dismiss);
 }
 

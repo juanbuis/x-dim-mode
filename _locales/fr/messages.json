@@ -45,13 +45,13 @@
     "message": "Activez depuis l'icône du popup ou dans Paramètres → Affichage"
   },
   "updateFeature1": {
-    "message": "Nouveau : 6 thèmes de couleur — tout aussi agréables pour les yeux"
+    "message": "Les fenêtres de réponse et de rédaction sont de nouveau assombries — X les avait remises en noir"
   },
   "updateFeature2": {
-    "message": "Nouveau : Sélecteur de couleur personnalisé — choisissez la teinte que vous voulez"
+    "message": "Creator Studio n'affiche plus de carrés gris derrière ses icônes"
   },
   "updateFeature3": {
-    "message": "Nouveau : Support de X Pro"
+    "message": "Les cartes promo Premium s'intègrent proprement, sans bord bicolore"
   },
   "updateFeature4": {
     "message": "Amélioré : Couvre maintenant les DMs et plus de pages sur X"
@@ -90,13 +90,13 @@
     "message": "Partager"
   },
   "emailPromptHeading": {
-    "message": "Découvrez ce que je crée ensuite"
+    "message": "Testez en avant-première ce que je construis"
   },
   "engageQuestion": {
     "message": "Vous aimez X Dim Mode ?"
   },
   "engageRate": {
-    "message": "Avis"
+    "message": "Laisser un avis"
   },
   "moreOptions": {
     "message": "Plus"

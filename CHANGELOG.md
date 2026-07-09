@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.4.1
+
+- **Fixed:** reply and compose windows are dimmed again — X had reset them to black
+- **Fixed:** Creator Studio no longer shows grey boxes behind its icons
+- **Fixed:** Premium promo cards blend in cleanly, with no two-tone edge
+
 ## 1.4.0
 
 - **Bird logo toggle** — bring back the classic Twitter bird (in Extras)

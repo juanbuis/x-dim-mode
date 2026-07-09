@@ -15,12 +15,13 @@ chrome.runtime.onInstalled.addListener(({ reason, previousVersion }) => {
       if (!installTimestamp) chrome.storage.local.set({ installTimestamp: Date.now() });
     });
 
-    // Only show update page for major versions (2.0, 3.0, etc.) or 1.3.0
+    // Show update page for major versions (2.0, 3.0, etc.) or specific releases
+    // with notes worth surfacing.
     const major = v.split(".")[0];
     const isMajorBump = previousVersion && major !== previousVersion.split(".")[0];
-    const is130 = v === "1.3.0";
+    const SHOW_UPDATE_PAGE_FOR = ["1.3.0", "1.4.1"];
 
-    if (isMajorBump || is130) {
+    if (isMajorBump || SHOW_UPDATE_PAGE_FOR.includes(v)) {
       const params = new URLSearchParams({ v, reason });
       params.set("from", previousVersion);
       chrome.tabs.create({ url: chrome.runtime.getURL(`welcome.html?${params}`) });

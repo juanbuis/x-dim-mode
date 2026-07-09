@@ -45,13 +45,13 @@
     "message": "Schalte es über das Popup-Symbol oder unter Einstellungen → Anzeige um"
   },
   "updateFeature1": {
-    "message": "Neu: 6 Farbdesigns — genauso angenehm für die Augen"
+    "message": "Antwort- und Verfassen-Fenster sind wieder abgedunkelt — X hatte sie auf Schwarz zurückgesetzt"
   },
   "updateFeature2": {
-    "message": "Neu: Benutzerdefinierte Farbauswahl — wähle jeden Farbton, den du möchtest"
+    "message": "Creator Studio zeigt keine grauen Kästchen mehr hinter den Symbolen"
   },
   "updateFeature3": {
-    "message": "Neu: X Pro-Unterstützung"
+    "message": "Premium-Werbekarten fügen sich sauber ein, ohne zweifarbigen Rand"
   },
   "updateFeature4": {
     "message": "Verbessert: Deckt jetzt DMs und mehr Seiten auf X ab"
@@ -90,13 +90,13 @@
     "message": "Teilen"
   },
   "emailPromptHeading": {
-    "message": "Entdecke, was ich als Nächstes baue"
+    "message": "Teste als Erster, was ich als Nächstes baue"
   },
   "engageQuestion": {
     "message": "Gefällt dir X Dim Mode?"
   },
   "engageRate": {
-    "message": "Bewerten"
+    "message": "Bewertung abgeben"
   },
   "moreOptions": {
     "message": "Mehr"

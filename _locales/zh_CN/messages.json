@@ -45,13 +45,13 @@
     "message": "通过弹出图标或在设置 → 显示中切换"
   },
   "updateFeature1": {
-    "message": "新增：6 种配色主题 — 同样护眼舒适"
+    "message": "回复和撰写窗口重新变暗——此前 X 将其改回了纯黑"
   },
   "updateFeature2": {
-    "message": "新增：自定义取色器 — 选择任意色调"
+    "message": "创作者工作室的图标后不再出现灰色方块"
   },
   "updateFeature3": {
-    "message": "新增：支持 X Pro"
+    "message": "Premium 推广卡片过渡自然，不再出现双色断层"
   },
   "updateFeature4": {
     "message": "改进：现已覆盖私信及 X 上的更多页面"
@@ -90,13 +90,13 @@
     "message": "分享"
   },
   "emailPromptHeading": {
-    "message": "看看我接下来要构建的东西"
+    "message": "抢先体验我接下来做的东西"
   },
   "engageQuestion": {
     "message": "喜欢 X Dim Mode 吗？"
   },
   "engageRate": {
-    "message": "评价"
+    "message": "撰写评价"
   },
   "moreOptions": {
     "message": "更多"
