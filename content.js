@@ -94,7 +94,8 @@ const STATIC_CSS = `
 
   /* Inline styles (covers body, divs, modals, dropdowns, etc.) */
   html.${DIM_CLASS} [style*="background-color: rgb(0, 0, 0)"],
-  html.${DIM_CLASS} [style*="background-color: rgba(0, 0, 0, 1)"] {
+  html.${DIM_CLASS} [style*="background-color: rgba(0, 0, 0, 1)"],
+  html.${DIM_CLASS} [style*="background-color: rgb(20, 20, 20)"] {
     background-color: var(--xdm-bg) !important;
   }
   /* Elevated section cards (rgb(24,24,27) in dark mode → slightly lighter in dim) */
@@ -106,11 +107,13 @@ const STATIC_CSS = `
     background-color: var(--xdm-bg-elevated) !important;
   }
 
-  /* X utility classes for black backgrounds */
+  /* X utility classes for black backgrounds.
+     r-cl2sl0 = modal/compose surface (rgb(20,20,20), class-based not inline). */
   html.${DIM_CLASS} .r-kemksi,
   html.${DIM_CLASS} .r-1niwhzg,
   html.${DIM_CLASS} .r-yfoy6g,
-  html.${DIM_CLASS} .r-14lw9ot {
+  html.${DIM_CLASS} .r-14lw9ot,
+  html.${DIM_CLASS} .r-cl2sl0 {
     background-color: var(--xdm-bg) !important;
   }
   /* Search bar — the input's opaque bg covers the pill's right border curve.
@@ -489,7 +492,7 @@ function dimElement(el) {
   const bg = el.classList.contains("jf-element")
     ? (() => { try { return getComputedStyle(el).backgroundColor; } catch { return ""; } })()
     : el.style.backgroundColor;
-  if (bg === "rgb(0, 0, 0)" || bg === "rgba(0, 0, 0, 1)") {
+  if (bg === "rgb(0, 0, 0)" || bg === "rgba(0, 0, 0, 1)" || bg === "rgb(20, 20, 20)") {
     el.classList.add("xdm-dimmed");
   } else if (bg === "rgb(24, 24, 27)") {
     el.classList.add("xdm-dimmed-elevated");
