@@ -426,6 +426,7 @@ function removeDim() {
     cancelAnimationFrame(_scanFrame);
     _scanFrame = 0;
     _pending.clear();
+    _pendingShallow.clear();
   }
   // Remove scanner-applied classes (non-destructive — doesn't touch original styles)
   for (const el of document.querySelectorAll(".xdm-dimmed, .xdm-dimmed-elevated")) {
@@ -489,26 +490,44 @@ function stopBodyObserver() {
 // Uses a CSS class (not inline styles) so toggling is instant and non-destructive.
 
 let _scanFrame = 0;
-const _pending = new Set();
+const _pending = new Set();        // deep: scan element + descendants (newly added nodes)
+const _pendingShallow = new Set(); // shallow: re-check one element (late class/style change)
+
+function kickScan() {
+  if ((_pending.size || _pendingShallow.size) && !_scanFrame) {
+    _scanFrame = requestAnimationFrame(flushScan);
+  }
+}
 
 function queueScan(nodes) {
   for (const n of nodes) {
     if (n && n.nodeType === 1) _pending.add(n);
   }
-  if (_pending.size && !_scanFrame) {
-    _scanFrame = requestAnimationFrame(flushScan);
-  }
+  kickScan();
+}
+
+// For class/style attribute mutations: X sometimes applies a dark background
+// AFTER inserting the element (e.g. the jetfuel "Today's News" card), which a
+// childList-only observer never sees. Re-check just the mutated element —
+// dimElement is cheap (inline-style read; computed style only for jf-elements).
+function queueShallow(node) {
+  if (node && node.nodeType === 1) _pendingShallow.add(node);
+  kickScan();
 }
 
 function flushScan() {
   _scanFrame = 0;
   if (!document.documentElement.classList.contains(DIM_CLASS)) {
     _pending.clear();
+    _pendingShallow.clear();
     return;
   }
   const batch = [..._pending];
   _pending.clear();
+  const shallow = [..._pendingShallow];
+  _pendingShallow.clear();
   for (const node of batch) dimSubtree(node);
+  for (const node of shallow) dimElement(node);
 }
 
 function dimSubtree(root) {
@@ -657,10 +676,15 @@ function startObserver() {
       if (_enabled && !_suspendedForLight && !document.documentElement.classList.contains(DIM_CLASS)) {
         applyDim();
       }
-      // Scan newly added nodes for black backgrounds
+      // Scan newly added nodes for black backgrounds; re-check elements whose
+      // class/style changed after insertion (late-applied dark backgrounds)
       if (_enabled && document.documentElement.classList.contains(DIM_CLASS)) {
         for (const m of mutations) {
-          if (m.addedNodes.length) queueScan(m.addedNodes);
+          if (m.type === "attributes") {
+            queueShallow(m.target);
+          } else if (m.addedNodes.length) {
+            queueScan(m.addedNodes);
+          }
         }
       }
       // Swap bird logos on newly added nodes
@@ -685,6 +709,8 @@ function startObserver() {
   observer.observe(document.documentElement, {
     childList: true,
     subtree: true,
+    attributes: true,
+    attributeFilter: ["class", "style"],
   });
 }
 
