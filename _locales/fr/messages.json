@@ -69,7 +69,7 @@
     "message": "Partager sur X"
   },
   "emailHeading": {
-    "message": "Accédez en avant-première à ce que je crée ensuite"
+    "message": "Recevez un e-mail quand X casse quelque chose"
   },
   "emailNoSpam": {
     "message": "Jamais de spam."
@@ -90,7 +90,7 @@
     "message": "Partager"
   },
   "emailPromptHeading": {
-    "message": "Testez en avant-première ce que je construis"
+    "message": "Recevez un e-mail à chaque correctif — et un accès anticipé à mes prochains projets."
   },
   "engageQuestion": {
     "message": "Vous aimez X Dim Mode ?"
@@ -109,5 +109,8 @@
   },
   "reportProblem": {
     "message": "Signaler un problème"
+  },
+  "emailCtaButton": {
+    "message": "Recevez un e-mail quand X casse quelque chose"
   }
 }

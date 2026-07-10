@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <meta charset="utf-8">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
@@ -67,6 +68,25 @@
     }
     input:checked + .slider { background: #1D9BF0; }
     input:checked + .slider::before { transform: translateX(20px); }
+    .donate-btn {
+      display: block;
+      width: 100%;
+      text-align: center;
+      margin-top: 12px;
+      padding: 8px 0;
+      font-size: 12px;
+      font-weight: 600;
+      color: #E7E9EA;
+      text-decoration: none;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid #38444D;
+      border-radius: 10px;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .donate-btn:hover {
+      background: rgba(255, 255, 255, 0.10);
+      border-color: #536471;
+    }
     .report {
       display: block;
       margin-top: 12px;
@@ -88,6 +108,7 @@
       <span class="slider"></span>
     </label>
   </div>
+  <a class="donate-btn" href="https://buymeacoffee.com/juan" target="_blank" id="donateLink"></a>
   <a class="report" id="reportLink"></a>
   <script src="extras.js"></script>
 </body>

@@ -4,6 +4,7 @@ const birdToggle = document.getElementById("birdToggle");
 document.getElementById("backLabel").textContent = chrome.i18n.getMessage("extName");
 document.getElementById("extrasTitle").textContent = chrome.i18n.getMessage("extras");
 document.getElementById("birdLabel").textContent = chrome.i18n.getMessage("birdLogo");
+document.getElementById("donateLink").textContent = chrome.i18n.getMessage("donate");
 
 // Report-a-problem link (same prefilled mailto as the popup footer)
 const reportLink = document.getElementById("reportLink");

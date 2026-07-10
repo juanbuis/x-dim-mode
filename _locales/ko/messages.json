@@ -69,7 +69,7 @@
     "message": "X에서 공유"
   },
   "emailHeading": {
-    "message": "다음에 만드는 것에 먼저 액세스하세요"
+    "message": "X에 문제가 생기면 이메일로 받아보세요"
   },
   "emailNoSpam": {
     "message": "스팸은 절대 보내지 않습니다."
@@ -90,7 +90,7 @@
     "message": "공유"
   },
   "emailPromptHeading": {
-    "message": "다음에 만들 것을 가장 먼저 사용해 보세요"
+    "message": "수정 사항이 나오면 이메일로 알려드리고, 다음 프로젝트를 먼저 체험할 수 있어요."
   },
   "engageQuestion": {
     "message": "X Dim Mode 마음에 드시나요?"
@@ -109,5 +109,8 @@
   },
   "reportProblem": {
     "message": "문제 신고"
+  },
+  "emailCtaButton": {
+    "message": "X에 문제가 생기면 이메일로 받아보세요"
   }
 }

@@ -69,7 +69,7 @@
     "message": "分享到 X"
   },
   "emailHeading": {
-    "message": "抢先访问我接下来的构建内容"
+    "message": "X 出问题时收到邮件提醒"
   },
   "emailNoSpam": {
     "message": "绝不发送垃圾邮件。"
@@ -90,7 +90,7 @@
     "message": "分享"
   },
   "emailPromptHeading": {
-    "message": "抢先体验我接下来做的东西"
+    "message": "修复上线时邮件通知你，还能抢先体验我的新作品。"
   },
   "engageQuestion": {
     "message": "喜欢 X Dim Mode 吗？"
@@ -109,5 +109,8 @@
   },
   "reportProblem": {
     "message": "报告问题"
+  },
+  "emailCtaButton": {
+    "message": "X 出问题时收到邮件提醒"
   }
 }

@@ -20,6 +20,14 @@ chrome.runtime.onInstalled.addListener(({ reason, previousVersion }) => {
     });
   });
 
+  // Legacy email-prompt dismissal (boolean, pre-1.4.1) → timestamped, so the
+  // 90-day re-prompt clock starts at this update rather than immediately.
+  chrome.storage.local.get(["emailPromptDismissed", "emailPromptDismissedAt"], (d) => {
+    if (d.emailPromptDismissed && !d.emailPromptDismissedAt) {
+      chrome.storage.local.set({ emailPromptDismissedAt: Date.now() });
+    }
+  });
+
   if (reason === "install") {
     chrome.storage.local.set({ installTimestamp: Date.now() });
     const params = new URLSearchParams({ v, reason });

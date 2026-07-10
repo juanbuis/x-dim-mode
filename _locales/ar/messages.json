@@ -69,7 +69,7 @@
     "message": "شارك على X"
   },
   "emailHeading": {
-    "message": "احصل على وصول مبكر إلى ما سأبنيه لاحقًا"
+    "message": "احصل على بريد عندما يعطّل X شيئًا"
   },
   "emailNoSpam": {
     "message": "بدون رسائل مزعجة، أبدًا."
@@ -90,7 +90,7 @@
     "message": "مشاركة"
   },
   "emailPromptHeading": {
-    "message": "كن أول من يجرّب ما أبنيه لاحقًا"
+    "message": "احصل على بريد عند صدور الإصلاحات — ووصول مبكر إلى ما أبنيه لاحقًا."
   },
   "engageQuestion": {
     "message": "هل تستمتع بـ X Dim Mode؟"
@@ -109,5 +109,8 @@
   },
   "reportProblem": {
     "message": "الإبلاغ عن مشكلة"
+  },
+  "emailCtaButton": {
+    "message": "احصل على بريد عندما يعطّل X شيئًا"
   }
 }

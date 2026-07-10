@@ -62,9 +62,6 @@ const shareLink = document.getElementById("shareLink");
 shareLink.textContent = chrome.i18n.getMessage("popupShareLink");
 shareLink.href = SHARE_URL;
 
-// Donate CTA
-document.getElementById("donateLink").textContent = chrome.i18n.getMessage("donate");
-
 // Report-a-problem link in footer
 const reportLink = document.getElementById("reportLink");
 reportLink.textContent = chrome.i18n.getMessage("reportProblem");
@@ -139,51 +136,75 @@ hueSlider.addEventListener("change", () => {
   setSettings({ theme: "custom", customHue: +hueSlider.value });
 });
 
-// ── Email prompt (one-time, after ~7 days) ──────────────────────────
+// ── Email CTA (permanent button → expandable capture form) ──────────
+// The list is the product's most valuable owned channel, so it gets the
+// popup's permanent slot (donate moved to Extras). Collapsed by default;
+// auto-expands once after 7 days, and again 90 days after a dismissal.
+// Gone for good once subscribed.
 
 const SEVEN_DAYS = 7 * 24 * 60 * 60 * 1000;
 const FOURTEEN_DAYS = 14 * 24 * 60 * 60 * 1000;
+const NINETY_DAYS = 90 * 24 * 60 * 60 * 1000;
 
 const MAILERLITE_URL = "https://assets.mailerlite.com/jsonp/1436119/forms/179598724460184835/subscribe";
 
-function showEmailPrompt() {
-  const prompt = document.getElementById("emailPrompt");
-  prompt.style.display = "block";
+const emailCtaBtn = document.getElementById("emailCtaBtn");
+const emailPrompt = document.getElementById("emailPrompt");
+let _autoExpanded = false;
 
-  document.getElementById("emailPromptText").textContent = chrome.i18n.getMessage("emailPromptHeading");
-  document.getElementById("emailPromptBtn").textContent = chrome.i18n.getMessage("subscribe");
-  document.getElementById("emailPromptSpam").textContent = chrome.i18n.getMessage("emailNoSpam");
-  document.getElementById("emailPromptSuccess").textContent = chrome.i18n.getMessage("emailSuccess");
+emailCtaBtn.textContent = chrome.i18n.getMessage("emailCtaButton");
+document.getElementById("emailPromptText").textContent = chrome.i18n.getMessage("emailPromptHeading");
+document.getElementById("emailPromptBtn").textContent = chrome.i18n.getMessage("subscribe");
+document.getElementById("emailPromptSpam").textContent = chrome.i18n.getMessage("emailNoSpam");
+document.getElementById("emailPromptSuccess").textContent = chrome.i18n.getMessage("emailSuccess");
 
-  document.getElementById("emailPromptClose").addEventListener("click", () => {
-    chrome.storage.local.set({ emailPromptDismissed: true });
-    prompt.style.display = "none";
-  });
-
-  document.getElementById("emailPromptForm").addEventListener("submit", async (e) => {
-    e.preventDefault();
-    const btn = document.getElementById("emailPromptBtn");
-    const input = document.getElementById("emailPromptInput");
-    btn.disabled = true;
-    btn.textContent = "...";
-
-    const body = new FormData();
-    body.append("fields[email]", input.value);
-    body.append("ml-submit", "1");
-    body.append("anticsrf", "true");
-
-    try {
-      await fetch(MAILERLITE_URL, { method: "POST", body, mode: "no-cors" });
-      document.getElementById("emailPromptForm").style.display = "none";
-      document.getElementById("emailPromptSpam").style.display = "none";
-      document.getElementById("emailPromptSuccess").style.display = "block";
-      chrome.storage.local.set({ emailPromptDismissed: true });
-    } catch {
-      btn.disabled = false;
-      btn.textContent = chrome.i18n.getMessage("subscribe");
-    }
-  });
+function expandEmailPanel() {
+  emailCtaBtn.style.display = "none";
+  emailPrompt.style.display = "block";
 }
+
+function collapseEmailPanel() {
+  emailPrompt.style.display = "none";
+  emailCtaBtn.style.display = "block";
+}
+
+emailCtaBtn.addEventListener("click", expandEmailPanel);
+
+document.getElementById("emailPromptClose").addEventListener("click", () => {
+  // Only an auto-expanded panel counts as a dismissal (starts the 90-day
+  // snooze); closing a panel the user opened themselves just collapses it.
+  if (_autoExpanded) {
+    chrome.storage.local.set({ emailPromptDismissedAt: Date.now() });
+    _autoExpanded = false;
+  }
+  collapseEmailPanel();
+});
+
+document.getElementById("emailPromptForm").addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const btn = document.getElementById("emailPromptBtn");
+  const input = document.getElementById("emailPromptInput");
+  btn.disabled = true;
+  btn.textContent = "...";
+
+  const body = new FormData();
+  body.append("fields[email]", input.value);
+  body.append("ml-submit", "1");
+  body.append("anticsrf", "true");
+
+  try {
+    await fetch(MAILERLITE_URL, { method: "POST", body, mode: "no-cors" });
+    document.getElementById("emailPromptForm").style.display = "none";
+    document.getElementById("emailPromptSpam").style.display = "none";
+    document.getElementById("emailPromptSuccess").style.display = "block";
+    // Subscribed state syncs so other devices don't re-ask
+    chrome.storage.local.set({ emailSubscribed: true });
+    chrome.storage.sync.set({ emailSubscribed: true }, () => void chrome.runtime.lastError);
+  } catch {
+    btn.disabled = false;
+    btn.textContent = chrome.i18n.getMessage("subscribe");
+  }
+});
 
 // ── Engagement prompt (one-time, after ~14 days) ────────────────────
 
@@ -206,39 +227,49 @@ function showEngagePrompt() {
   engageRate.addEventListener("click", dismiss);
 }
 
-// ── Prompt logic: email at 7 days, engagement at 14 days ────────────
+// ── CTA & prompt logic ───────────────────────────────────────────────
+// Email CTA: always visible (collapsed) until subscribed; auto-expands at
+// 7 days, re-expands 90 days after a dismissal. Engagement prompt: at 14
+// days once the email ask is settled — never alongside an expanded panel.
 
-chrome.storage.local.get(
-  ["installTimestamp", "emailPromptDismissed", "engageDismissed"],
-  ({ installTimestamp, emailPromptDismissed, engageDismissed }) => {
-    if (!installTimestamp) return;
-    const elapsed = Date.now() - installTimestamp;
+chrome.storage.sync.get(["emailSubscribed"], (syncVals) => {
+  chrome.storage.local.get(
+    ["emailSubscribed", "installTimestamp", "emailPromptDismissed", "emailPromptDismissedAt", "engageDismissed"],
+    (d) => {
+      const now = Date.now();
+      const subscribed = syncVals.emailSubscribed !== undefined ? syncVals.emailSubscribed : d.emailSubscribed;
+      // Legacy boolean (pre-1.4.1) without a timestamp → treat as freshly
+      // dismissed so nobody gets an instant re-prompt on update.
+      const dismissedAt = d.emailPromptDismissedAt ?? (d.emailPromptDismissed ? now : undefined);
+      const installedFor = d.installTimestamp ? now - d.installTimestamp : 0;
 
-    // Email prompt first (7+ days)
-    if (!emailPromptDismissed && elapsed >= SEVEN_DAYS) {
-      showEmailPrompt();
-      return;
+      if (!subscribed) {
+        emailCtaBtn.style.display = "block";
+        const snoozed = dismissedAt !== undefined && now - dismissedAt < NINETY_DAYS;
+        if (installedFor >= SEVEN_DAYS && !snoozed) {
+          _autoExpanded = true;
+          expandEmailPanel();
+        }
+      }
+
+      const emailSettled = !!subscribed || dismissedAt !== undefined;
+      if (!_autoExpanded && emailSettled && !d.engageDismissed && installedFor >= FOURTEEN_DAYS) {
+        showEngagePrompt();
+      }
     }
-
-    // Engagement prompt second (14+ days, only if email was already dismissed)
-    if (emailPromptDismissed && !engageDismissed && elapsed >= FOURTEEN_DAYS) {
-      showEngagePrompt();
-    }
-  }
-);
+  );
+});
 
 // ── Dev buttons (only visible for unpacked/local installs) ────────
 if (!chrome.runtime.getManifest().update_url) {
   document.getElementById("devButtons").style.display = "flex";
 }
 document.getElementById("devEmail").addEventListener("click", () => {
-  document.getElementById("emailPrompt").style.display = "none";
   document.getElementById("engagePrompt").style.display = "none";
-  showEmailPrompt();
+  expandEmailPanel();
 });
 document.getElementById("devEngage").addEventListener("click", () => {
-  document.getElementById("emailPrompt").style.display = "none";
-  document.getElementById("engagePrompt").style.display = "none";
+  collapseEmailPanel();
   showEngagePrompt();
 });
 document.getElementById("devWelcome").addEventListener("click", () => {

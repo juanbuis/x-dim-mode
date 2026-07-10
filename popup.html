@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <meta charset="utf-8">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
@@ -315,8 +316,8 @@
     }
     .engage-btn:hover { opacity: 0.85; }
 
-    /* ── Donate ── */
-    .donate-btn {
+    /* ── Email CTA (permanent; expands into the capture form) ── */
+    .email-cta {
       display: block;
       width: 100%;
       text-align: center;
@@ -324,14 +325,15 @@
       padding: 8px 0;
       font-size: 12px;
       font-weight: 600;
+      font-family: inherit;
       color: #E7E9EA;
-      text-decoration: none;
+      cursor: pointer;
       background: rgba(255, 255, 255, 0.06);
       border: 1px solid #38444D;
       border-radius: 10px;
       transition: background 0.2s, border-color 0.2s;
     }
-    .donate-btn:hover {
+    .email-cta:hover {
       background: rgba(255, 255, 255, 0.10);
       border-color: #536471;
     }
@@ -383,19 +385,6 @@
   <div class="hue-wrap" id="hueWrap">
     <input type="range" class="hue-slider" id="hueSlider" min="0" max="360" value="210">
   </div>
-  <!-- Email prompt (shown once after 7 days, before engagement prompt) -->
-  <div class="email-prompt" id="emailPrompt" style="display: none;">
-    <div class="email-prompt-header">
-      <span class="email-prompt-text" id="emailPromptText"></span>
-      <button class="email-prompt-close" id="emailPromptClose">&times;</button>
-    </div>
-    <form class="email-prompt-row" id="emailPromptForm">
-      <input class="email-prompt-input" type="email" placeholder="you@email.com" required id="emailPromptInput">
-      <button class="email-prompt-btn" type="submit" id="emailPromptBtn"></button>
-    </form>
-    <p class="email-prompt-spam" id="emailPromptSpam"></p>
-    <p class="email-prompt-success" id="emailPromptSuccess" style="display: none;"></p>
-  </div>
   <!-- Engagement prompt (shown once after 14 days) -->
   <div class="engage" id="engagePrompt" style="display: none;">
     <div class="engage-header">
@@ -412,7 +401,22 @@
     <button id="devWelcome" style="flex:1;padding:4px;font-size:11px;background:#222;color:#888;border:1px solid #333;border-radius:6px;cursor:pointer;">Welcome</button>
     <button id="devUpdate" style="flex:1;padding:4px;font-size:11px;background:#222;color:#888;border:1px solid #333;border-radius:6px;cursor:pointer;">Update</button>
   </div>
-  <a class="donate-btn" href="https://buymeacoffee.com/juan" target="_blank" id="donateLink"></a>
+  <!-- Email CTA: permanent collapsed button; expands into the capture form.
+       Auto-expands once after 7 days, and again 90 days after a dismissal.
+       Hidden entirely once subscribed. -->
+  <button class="email-cta" id="emailCtaBtn" style="display: none;"></button>
+  <div class="email-prompt" id="emailPrompt" style="display: none;">
+    <div class="email-prompt-header">
+      <span class="email-prompt-text" id="emailPromptText"></span>
+      <button class="email-prompt-close" id="emailPromptClose">&times;</button>
+    </div>
+    <form class="email-prompt-row" id="emailPromptForm">
+      <input class="email-prompt-input" type="email" placeholder="you@email.com" required id="emailPromptInput">
+      <button class="email-prompt-btn" type="submit" id="emailPromptBtn"></button>
+    </form>
+    <p class="email-prompt-spam" id="emailPromptSpam"></p>
+    <p class="email-prompt-success" id="emailPromptSuccess" style="display: none;"></p>
+  </div>
   <div class="footer">
     <a href="https://x.com/juanbuis" target="_blank" id="credit"></a>
     <span class="footer-sep">&middot;</span>

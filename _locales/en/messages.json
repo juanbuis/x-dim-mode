@@ -69,7 +69,7 @@
     "message": "Share on X"
   },
   "emailHeading": {
-    "message": "Get early access to what I'm building next"
+    "message": "Get an email when X breaks things"
   },
   "emailNoSpam": {
     "message": "No spam, ever."
@@ -90,7 +90,7 @@
     "message": "Share"
   },
   "emailPromptHeading": {
-    "message": "Be first to try what I build next"
+    "message": "Get an email when fixes ship — plus early access to what I build next."
   },
   "engageQuestion": {
     "message": "Enjoying X Dim Mode?"
@@ -115,5 +115,8 @@
   },
   "reportProblem": {
     "message": "Report a problem"
+  },
+  "emailCtaButton": {
+    "message": "Get an email when X breaks things"
   }
 }

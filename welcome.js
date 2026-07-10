@@ -82,6 +82,15 @@ const form = document.getElementById("emailForm");
 const success = document.getElementById("emailSuccess");
 const error = document.getElementById("emailError");
 
+// Hide the email box if this user already subscribed (from the popup or a
+// previous welcome page — state roams via storage.sync)
+chrome.storage.sync.get(["emailSubscribed"], (syncVals) => {
+  chrome.storage.local.get(["emailSubscribed"], (localVals) => {
+    const subscribed = syncVals.emailSubscribed !== undefined ? syncVals.emailSubscribed : localVals.emailSubscribed;
+    if (subscribed) document.querySelector(".email-section").style.display = "none";
+  });
+});
+
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
 
@@ -98,6 +107,8 @@ form.addEventListener("submit", async (e) => {
     });
     form.style.display = "none";
     success.style.display = "block";
+    chrome.storage.local.set({ emailSubscribed: true });
+    chrome.storage.sync.set({ emailSubscribed: true }, () => void chrome.runtime.lastError);
   } catch (err) {
     error.textContent = msg("emailNetworkError");
     error.style.display = "block";
