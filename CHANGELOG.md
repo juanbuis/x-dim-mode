@@ -5,6 +5,7 @@
 - **Fixed:** reply and compose windows are dimmed again — X had reset them to black
 - **Fixed:** Creator Studio no longer shows grey boxes behind its icons
 - **Fixed:** Premium promo cards blend in cleanly, with no two-tone edge
+- **Fixed:** the "Today's News" sidebar block is dimmed instead of pure black
 
 ## 1.4.0
 
