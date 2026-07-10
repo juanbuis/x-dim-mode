@@ -1,6 +1,6 @@
 # Changelog
 
-## 1.4.1
+## 1.5.0
 
 - **New:** your theme and settings now sync across devices
 - **New:** "Report a problem" link in the popup and Extras

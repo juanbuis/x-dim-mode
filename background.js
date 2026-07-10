@@ -20,8 +20,8 @@ chrome.runtime.onInstalled.addListener(({ reason, previousVersion }) => {
     });
   });
 
-  // Legacy email-prompt dismissal (boolean, pre-1.4.1) → timestamped, so the
-  // 90-day re-prompt clock starts at this update rather than immediately.
+  // Legacy email-prompt dismissal (boolean, pre-1.5.0) → timestamped, so the
+  // 60-day re-prompt clock starts at this update rather than immediately.
   chrome.storage.local.get(["emailPromptDismissed", "emailPromptDismissedAt"], (d) => {
     if (d.emailPromptDismissed && !d.emailPromptDismissedAt) {
       chrome.storage.local.set({ emailPromptDismissedAt: Date.now() });
@@ -42,7 +42,7 @@ chrome.runtime.onInstalled.addListener(({ reason, previousVersion }) => {
     // with notes worth surfacing.
     const major = v.split(".")[0];
     const isMajorBump = previousVersion && major !== previousVersion.split(".")[0];
-    const SHOW_UPDATE_PAGE_FOR = ["1.3.0", "1.4.1"];
+    const SHOW_UPDATE_PAGE_FOR = ["1.3.0", "1.5.0"];
 
     if (isMajorBump || SHOW_UPDATE_PAGE_FOR.includes(v)) {
       const params = new URLSearchParams({ v, reason });

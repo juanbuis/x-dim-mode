@@ -139,12 +139,12 @@ hueSlider.addEventListener("change", () => {
 // ── Email CTA (permanent button → expandable capture form) ──────────
 // The list is the product's most valuable owned channel, so it gets the
 // popup's permanent slot (donate moved to Extras). Collapsed by default;
-// auto-expands once after 7 days, and again 90 days after a dismissal.
+// auto-expands once after 7 days, and again 60 days after a dismissal.
 // Gone for good once subscribed.
 
 const SEVEN_DAYS = 7 * 24 * 60 * 60 * 1000;
 const FOURTEEN_DAYS = 14 * 24 * 60 * 60 * 1000;
-const NINETY_DAYS = 90 * 24 * 60 * 60 * 1000;
+const SIXTY_DAYS = 60 * 24 * 60 * 60 * 1000;
 
 const MAILERLITE_URL = "https://assets.mailerlite.com/jsonp/1436119/forms/179598724460184835/subscribe";
 
@@ -171,7 +171,7 @@ function collapseEmailPanel() {
 emailCtaBtn.addEventListener("click", expandEmailPanel);
 
 document.getElementById("emailPromptClose").addEventListener("click", () => {
-  // Only an auto-expanded panel counts as a dismissal (starts the 90-day
+  // Only an auto-expanded panel counts as a dismissal (starts the 60-day
   // snooze); closing a panel the user opened themselves just collapses it.
   if (_autoExpanded) {
     chrome.storage.local.set({ emailPromptDismissedAt: Date.now() });
@@ -229,7 +229,7 @@ function showEngagePrompt() {
 
 // ── CTA & prompt logic ───────────────────────────────────────────────
 // Email CTA: always visible (collapsed) until subscribed; auto-expands at
-// 7 days, re-expands 90 days after a dismissal. Engagement prompt: at 14
+// 7 days, re-expands 60 days after a dismissal. Engagement prompt: at 14
 // days once the email ask is settled — never alongside an expanded panel.
 
 chrome.storage.sync.get(["emailSubscribed"], (syncVals) => {
@@ -238,14 +238,14 @@ chrome.storage.sync.get(["emailSubscribed"], (syncVals) => {
     (d) => {
       const now = Date.now();
       const subscribed = syncVals.emailSubscribed !== undefined ? syncVals.emailSubscribed : d.emailSubscribed;
-      // Legacy boolean (pre-1.4.1) without a timestamp → treat as freshly
+      // Legacy boolean (pre-1.5.0) without a timestamp → treat as freshly
       // dismissed so nobody gets an instant re-prompt on update.
       const dismissedAt = d.emailPromptDismissedAt ?? (d.emailPromptDismissed ? now : undefined);
       const installedFor = d.installTimestamp ? now - d.installTimestamp : 0;
 
       if (!subscribed) {
         emailCtaBtn.style.display = "block";
-        const snoozed = dismissedAt !== undefined && now - dismissedAt < NINETY_DAYS;
+        const snoozed = dismissedAt !== undefined && now - dismissedAt < SIXTY_DAYS;
         if (installedFor >= SEVEN_DAYS && !snoozed) {
           _autoExpanded = true;
           expandEmailPanel();
