@@ -5,7 +5,7 @@
 - **New:** your theme and settings now sync across devices
 - **New:** "Report a problem" link in the popup and Extras
 - **New:** subscribe from the popup — get an email when X breaks things and fixes ship
-- **Changed:** the support/donate button moved to Extras
+- **Removed:** the support/donate button
 - **Improved:** the theming engine now catches styles applied after page load — more resilient to X updates
 - **Fixed:** reply and compose windows are dimmed again — X had reset them to black
 - **Fixed:** Creator Studio no longer shows grey boxes behind its icons

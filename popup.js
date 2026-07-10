@@ -138,7 +138,7 @@ hueSlider.addEventListener("change", () => {
 
 // ── Email CTA (permanent button → expandable capture form) ──────────
 // The list is the product's most valuable owned channel, so it gets the
-// popup's permanent slot (donate moved to Extras). Collapsed by default;
+// popup's permanent slot (donate is gone — it never converted). Collapsed;
 // auto-expands once after 7 days, and again 60 days after a dismissal.
 // Gone for good once subscribed.
 

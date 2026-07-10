@@ -54,7 +54,7 @@ for (const text of items) {
 const actions = document.getElementById("actions");
 
 // Single action — the email box below is this page's real ask
-// (donate lives in Extras)
+
 const tryBtn = document.createElement("a");
 tryBtn.href = "https://x.com";
 tryBtn.target = "_blank";
