@@ -57,10 +57,10 @@
     "message": "Votre thème et vos réglages se synchronisent désormais entre vos appareils"
   },
   "updateFeature5": {
-    "message": "Amélioré : Basculement automatique clair/sombre selon le thème système"
+    "message": "Un problème d'affichage ? Signalez-le directement depuis le popup"
   },
   "updateFeature6": {
-    "message": "Corrigé : Barre de recherche, scrollbar et divers bugs d'affichage"
+    "message": "Sous le capot : un thème plus intelligent qui suit les changements de design de X"
   },
   "tryNow": {
     "message": "Essayer maintenant"

@@ -57,10 +57,10 @@
     "message": "Your theme and settings now sync across devices"
   },
   "updateFeature5": {
-    "message": "Improved: Auto light/dark switching with your system theme"
+    "message": "Spotted something broken? Report it right from the popup"
   },
   "updateFeature6": {
-    "message": "Fixed: Search bar, scrollbar, and various display bugs"
+    "message": "Under the hood: smarter theming that keeps up when X changes its design"
   },
   "tryNow": {
     "message": "Try it now"

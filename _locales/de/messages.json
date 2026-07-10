@@ -57,10 +57,10 @@
     "message": "Dein Theme und deine Einstellungen werden jetzt geräteübergreifend synchronisiert"
   },
   "updateFeature5": {
-    "message": "Verbessert: Automatischer Hell/Dunkel-Wechsel mit deinem System-Design"
+    "message": "Etwas kaputt entdeckt? Melde es direkt im Popup"
   },
   "updateFeature6": {
-    "message": "Behoben: Suchleiste, Scrollbar und verschiedene Anzeigefehler"
+    "message": "Unter der Haube: intelligenteres Theming, das mit Designänderungen von X Schritt hält"
   },
   "tryNow": {
     "message": "Jetzt ausprobieren"

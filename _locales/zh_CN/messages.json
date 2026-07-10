@@ -57,10 +57,10 @@
     "message": "主题和设置现在可在设备间同步"
   },
   "updateFeature5": {
-    "message": "改进：跟随系统主题自动切换明暗模式"
+    "message": "发现显示问题？可直接从弹窗中报告"
   },
   "updateFeature6": {
-    "message": "修复：搜索栏、滚动条及多项显示问题"
+    "message": "底层改进：主题引擎更智能，能跟上 X 的设计变化"
   },
   "tryNow": {
     "message": "立即体验"

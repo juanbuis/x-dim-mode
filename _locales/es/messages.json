@@ -57,10 +57,10 @@
     "message": "Tu tema y ajustes ahora se sincronizan entre dispositivos"
   },
   "updateFeature5": {
-    "message": "Mejorado: Cambio automático claro/oscuro según el tema del sistema"
+    "message": "¿Ves algo roto? Infórmalo directamente desde el popup"
   },
   "updateFeature6": {
-    "message": "Corregido: Barra de búsqueda, scrollbar y varios errores de visualización"
+    "message": "Bajo el capó: un tematizado más inteligente que se adapta cuando X cambia su diseño"
   },
   "tryNow": {
     "message": "Pruébalo ahora"
