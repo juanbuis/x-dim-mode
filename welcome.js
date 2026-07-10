@@ -29,6 +29,7 @@ const items = (isUpdate
       msg("updateFeature1"),
       msg("updateFeature2"),
       msg("updateFeature3"),
+      msg("updateFeature4"),
     ]
   : [
       msg("installFeature1"),

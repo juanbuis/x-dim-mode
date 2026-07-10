@@ -54,7 +54,7 @@
     "message": "Premium のプロモカードが二色に分かれず、きれいに馴染みます"
   },
   "updateFeature4": {
-    "message": "改善：DMやXのより多くのページに対応"
+    "message": "テーマと設定がデバイス間で同期されるようになりました"
   },
   "updateFeature5": {
     "message": "改善：システムテーマに合わせた自動ライト/ダーク切り替え"
@@ -106,5 +106,8 @@
   },
   "extras": {
     "message": "その他の機能"
+  },
+  "reportProblem": {
+    "message": "問題を報告"
   }
 }

@@ -67,6 +67,15 @@
     }
     input:checked + .slider { background: #1D9BF0; }
     input:checked + .slider::before { transform: translateX(20px); }
+    .report {
+      display: block;
+      margin-top: 12px;
+      font-size: 12px;
+      color: #536471;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .report:hover { color: #8B98A5; }
   </style>
 </head>
 <body>
@@ -79,6 +88,7 @@
       <span class="slider"></span>
     </label>
   </div>
+  <a class="report" id="reportLink"></a>
   <script src="extras.js"></script>
 </body>
 </html>

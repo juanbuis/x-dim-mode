@@ -54,7 +54,7 @@
     "message": "Premium-Werbekarten fügen sich sauber ein, ohne zweifarbigen Rand"
   },
   "updateFeature4": {
-    "message": "Verbessert: Deckt jetzt DMs und mehr Seiten auf X ab"
+    "message": "Dein Theme und deine Einstellungen werden jetzt geräteübergreifend synchronisiert"
   },
   "updateFeature5": {
     "message": "Verbessert: Automatischer Hell/Dunkel-Wechsel mit deinem System-Design"
@@ -106,5 +106,8 @@
   },
   "extras": {
     "message": "Extras"
+  },
+  "reportProblem": {
+    "message": "Problem melden"
   }
 }

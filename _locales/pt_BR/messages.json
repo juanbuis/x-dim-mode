@@ -54,7 +54,7 @@
     "message": "Os cards promocionais do Premium se integram bem, sem borda de dois tons"
   },
   "updateFeature4": {
-    "message": "Melhorado: Agora cobre DMs e mais páginas no X"
+    "message": "Seu tema e configurações agora sincronizam entre dispositivos"
   },
   "updateFeature5": {
     "message": "Melhorado: Alternância automática claro/escuro com o tema do sistema"
@@ -106,5 +106,8 @@
   },
   "extras": {
     "message": "Extras"
+  },
+  "reportProblem": {
+    "message": "Relatar um problema"
   }
 }

@@ -54,7 +54,7 @@
     "message": "Premium 推广卡片过渡自然，不再出现双色断层"
   },
   "updateFeature4": {
-    "message": "改进：现已覆盖私信及 X 上的更多页面"
+    "message": "主题和设置现在可在设备间同步"
   },
   "updateFeature5": {
     "message": "改进：跟随系统主题自动切换明暗模式"
@@ -106,5 +106,8 @@
   },
   "extras": {
     "message": "更多功能"
+  },
+  "reportProblem": {
+    "message": "报告问题"
   }
 }

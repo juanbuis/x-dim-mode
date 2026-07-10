@@ -54,7 +54,7 @@
     "message": "Las tarjetas promocionales de Premium se integran bien, sin bordes de dos tonos"
   },
   "updateFeature4": {
-    "message": "Mejorado: Ahora cubre los DMs y más páginas en X"
+    "message": "Tu tema y ajustes ahora se sincronizan entre dispositivos"
   },
   "updateFeature5": {
     "message": "Mejorado: Cambio automático claro/oscuro según el tema del sistema"
@@ -106,5 +106,8 @@
   },
   "extras": {
     "message": "Extras"
+  },
+  "reportProblem": {
+    "message": "Informar de un problema"
   }
 }

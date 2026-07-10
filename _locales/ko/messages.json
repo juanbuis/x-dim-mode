@@ -54,7 +54,7 @@
     "message": "프리미엄 홍보 카드가 두 가지 색으로 나뉘지 않고 깔끔하게 어우러집니다"
   },
   "updateFeature4": {
-    "message": "개선: DM 및 X의 더 많은 페이지 지원"
+    "message": "테마와 설정이 이제 기기 간에 동기화됩니다"
   },
   "updateFeature5": {
     "message": "개선: 시스템 테마에 따른 자동 라이트/다크 전환"
@@ -106,5 +106,8 @@
   },
   "extras": {
     "message": "추가 기능"
+  },
+  "reportProblem": {
+    "message": "문제 신고"
   }
 }

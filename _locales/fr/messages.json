@@ -54,7 +54,7 @@
     "message": "Les cartes promo Premium s'intègrent proprement, sans bord bicolore"
   },
   "updateFeature4": {
-    "message": "Amélioré : Couvre maintenant les DMs et plus de pages sur X"
+    "message": "Votre thème et vos réglages se synchronisent désormais entre vos appareils"
   },
   "updateFeature5": {
     "message": "Amélioré : Basculement automatique clair/sombre selon le thème système"
@@ -106,5 +106,8 @@
   },
   "extras": {
     "message": "Extras"
+  },
+  "reportProblem": {
+    "message": "Signaler un problème"
   }
 }

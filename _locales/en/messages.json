@@ -54,7 +54,7 @@
     "message": "Premium promo cards blend in cleanly, with no two-tone edge"
   },
   "updateFeature4": {
-    "message": "Improved: Now covers DMs and more pages across X"
+    "message": "Your theme and settings now sync across devices"
   },
   "updateFeature5": {
     "message": "Improved: Auto light/dark switching with your system theme"
@@ -112,5 +112,8 @@
   },
   "extras": {
     "message": "Extras"
+  },
+  "reportProblem": {
+    "message": "Report a problem"
   }
 }

@@ -19,6 +19,17 @@ const SHARE_URL = (() => {
 
 const RATE_URL = "https://chromewebstore.google.com/detail/x-dim-mode/cplloghlcgkjkogmbehmkhlleopnfogc/reviews";
 
+// Prefilled problem report — turns broken-theming moments into reports
+// instead of uninstalls. mailto works for everyone (no GitHub account needed).
+const REPORT_URL = (() => {
+  const v = chrome.runtime.getManifest().version;
+  const subject = encodeURIComponent(`X Dim Mode ${v} — problem report`);
+  const body = encodeURIComponent(
+    `What looks wrong?\n\n\nWhere on X (page or section):\n\n\n---\nVersion: ${v}\nBrowser: ${navigator.userAgent}`
+  );
+  return `mailto:yo@juanbuis.com?subject=${subject}&body=${body}`;
+})();
+
 // ── Settings storage (sync across devices, local as fallback/mirror) ─
 // Keep in sync with the identical helpers in content.js.
 
@@ -53,6 +64,11 @@ shareLink.href = SHARE_URL;
 
 // Donate CTA
 document.getElementById("donateLink").textContent = chrome.i18n.getMessage("donate");
+
+// Report-a-problem link in footer
+const reportLink = document.getElementById("reportLink");
+reportLink.textContent = chrome.i18n.getMessage("reportProblem");
+reportLink.href = REPORT_URL;
 
 // ── Theme selection ────────────────────────────────────────────────
 
