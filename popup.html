@@ -35,6 +35,20 @@
       width: 14px;
       height: 14px;
       fill: currentColor;
+      transform-origin: center;
+      /* Twinkle shortly after the popup opens, then every ~7s — a hint that
+         there's fun stuff behind the sparkle. Animates transform/filter only,
+         so the hover color still applies. */
+      animation: xdm-twinkle 7s ease-in-out 0.8s infinite;
+    }
+    @keyframes xdm-twinkle {
+      0%, 16%, 100% { transform: scale(1) rotate(0deg); filter: none; }
+      4%  { transform: scale(1.3) rotate(18deg);  filter: drop-shadow(0 0 4px rgba(29, 155, 240, 0.9)) brightness(2.2); }
+      8%  { transform: scale(0.92) rotate(-10deg); filter: brightness(1.2); }
+      12% { transform: scale(1.18) rotate(8deg);  filter: drop-shadow(0 0 3px rgba(29, 155, 240, 0.6)) brightness(1.8); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .extras-btn svg { animation: none; }
     }
     .dot {
       width: 8px;
