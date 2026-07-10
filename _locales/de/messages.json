@@ -112,5 +112,11 @@
   },
   "emailCtaButton": {
     "message": "Bekomm das Beste zuerst"
+  },
+  "birdLogo": {
+    "message": "Klassisches Vogel-Logo"
+  },
+  "installFeature6": {
+    "message": "Angenehmer für die Augen — gedimmte Hintergründe reduzieren Lichthöfe bei Astigmatismus"
   }
 }

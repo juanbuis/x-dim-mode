@@ -112,5 +112,11 @@
   },
   "emailCtaButton": {
     "message": "새로운 소식을 가장 먼저"
+  },
+  "birdLogo": {
+    "message": "클래식 새 로고"
+  },
+  "installFeature6": {
+    "message": "눈이 편안해요 — 어두운 배경은 난시가 있는 분들의 빛 번짐을 줄여줍니다"
   }
 }

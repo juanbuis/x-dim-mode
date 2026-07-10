@@ -112,5 +112,11 @@
   },
   "emailCtaButton": {
     "message": "Receba as novidades primeiro"
+  },
+  "birdLogo": {
+    "message": "Logo clássico do passarinho"
+  },
+  "installFeature6": {
+    "message": "Mais confortável para os olhos — fundos atenuados reduzem o halo para quem tem astigmatismo"
   }
 }

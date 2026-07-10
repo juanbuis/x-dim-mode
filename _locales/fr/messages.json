@@ -112,5 +112,11 @@
   },
   "emailCtaButton": {
     "message": "Recevez le meilleur en premier"
+  },
+  "birdLogo": {
+    "message": "Logo oiseau classique"
+  },
+  "installFeature6": {
+    "message": "Plus doux pour les yeux — les fonds atténués réduisent le halo pour les personnes astigmates"
   }
 }
