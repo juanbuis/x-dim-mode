@@ -19,6 +19,28 @@ const SHARE_URL = (() => {
 
 const RATE_URL = "https://chromewebstore.google.com/detail/x-dim-mode/cplloghlcgkjkogmbehmkhlleopnfogc/reviews";
 
+// ── Settings storage (sync across devices, local as fallback/mirror) ─
+// Keep in sync with the identical helpers in content.js.
+
+const SETTING_KEYS = ["enabled", "theme", "customHue", "birdLogo"];
+
+function getSettings(cb) {
+  chrome.storage.sync.get(SETTING_KEYS, (syncVals) => {
+    chrome.storage.local.get(SETTING_KEYS, (localVals) => {
+      const merged = {};
+      for (const k of SETTING_KEYS) {
+        merged[k] = syncVals[k] !== undefined ? syncVals[k] : localVals[k];
+      }
+      cb(merged);
+    });
+  });
+}
+
+function setSettings(obj) {
+  chrome.storage.sync.set(obj, () => void chrome.runtime.lastError);
+  chrome.storage.local.set(obj);
+}
+
 // i18n
 document.getElementById("title").textContent = chrome.i18n.getMessage("extName");
 document.getElementById("enableLabel").textContent = chrome.i18n.getMessage("enableDim");
@@ -50,7 +72,7 @@ function setActiveTheme(themeName) {
 }
 
 // Load initial state
-chrome.storage.local.get(["enabled", "theme", "customHue"], ({ enabled, theme, customHue }) => {
+getSettings(({ enabled, theme, customHue }) => {
   toggle.checked = !!enabled;
   dot.classList.toggle("active", !!enabled);
 
@@ -64,7 +86,7 @@ chrome.storage.local.get(["enabled", "theme", "customHue"], ({ enabled, theme, c
 // Toggle handler
 toggle.addEventListener("change", () => {
   const enabled = toggle.checked;
-  chrome.storage.local.set({ enabled });
+  setSettings({ enabled });
   dot.classList.toggle("active", enabled);
 });
 
@@ -72,22 +94,33 @@ toggle.addEventListener("change", () => {
 themeDots.forEach(d => {
   if (d.dataset.theme === "custom") return;
   d.addEventListener("click", () => {
-    chrome.storage.local.set({ theme: d.dataset.theme });
+    setSettings({ theme: d.dataset.theme });
     setActiveTheme(d.dataset.theme);
   });
 });
 
 // Custom dot click — activate custom mode
 customDot.addEventListener("click", () => {
-  chrome.storage.local.set({ theme: "custom", customHue: +hueSlider.value });
+  setSettings({ theme: "custom", customHue: +hueSlider.value });
   setActiveTheme("custom");
 });
 
-// Hue slider — dragging auto-switches to custom mode
+// Hue slider — dragging auto-switches to custom mode.
+// "input" fires continuously while dragging; writing every tick to sync would
+// blow through its write quota (~120/min), so live ticks go to local only
+// (the content script listens to both areas, so preview stays instant) and
+// sync gets a debounced write plus a final commit on release ("change").
+let _hueSyncTimer = 0;
 hueSlider.addEventListener("input", () => {
   const hue = +hueSlider.value;
   chrome.storage.local.set({ theme: "custom", customHue: hue });
+  clearTimeout(_hueSyncTimer);
+  _hueSyncTimer = setTimeout(() => setSettings({ theme: "custom", customHue: +hueSlider.value }), 400);
   setActiveTheme("custom");
+});
+hueSlider.addEventListener("change", () => {
+  clearTimeout(_hueSyncTimer);
+  setSettings({ theme: "custom", customHue: +hueSlider.value });
 });
 
 // ── Email prompt (one-time, after ~7 days) ──────────────────────────

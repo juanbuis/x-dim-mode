@@ -5,11 +5,16 @@ document.getElementById("backLabel").textContent = chrome.i18n.getMessage("extNa
 document.getElementById("extrasTitle").textContent = chrome.i18n.getMessage("extras");
 document.getElementById("birdLabel").textContent = chrome.i18n.getMessage("birdLogo");
 
-// Load state
-chrome.storage.local.get(["birdLogo"], ({ birdLogo }) => {
-  birdToggle.checked = !!birdLogo;
+// Load state (sync preferred, local fallback — mirrors helpers in popup.js)
+chrome.storage.sync.get(["birdLogo"], (syncVals) => {
+  chrome.storage.local.get(["birdLogo"], (localVals) => {
+    const birdLogo = syncVals.birdLogo !== undefined ? syncVals.birdLogo : localVals.birdLogo;
+    birdToggle.checked = !!birdLogo;
+  });
 });
 
 birdToggle.addEventListener("change", () => {
-  chrome.storage.local.set({ birdLogo: birdToggle.checked });
+  const obj = { birdLogo: birdToggle.checked };
+  chrome.storage.sync.set(obj, () => void chrome.runtime.lastError);
+  chrome.storage.local.set(obj);
 });

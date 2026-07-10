@@ -20,6 +20,31 @@ const THEMES = {
 let _theme = "dim";
 let _customHue = 210;
 
+// ── Settings Storage ───────────────────────────────────────────────
+// User settings live in chrome.storage.sync so they roam across devices,
+// mirrored to local as a warm fallback (sync can be empty on first run after
+// migration, and hue-slider drags write local-only to stay inside sync's
+// write quota). Reads prefer sync; local fills any missing keys.
+
+const SETTING_KEYS = ["enabled", "theme", "customHue", "birdLogo"];
+
+function getSettings(cb) {
+  chrome.storage.sync.get(SETTING_KEYS, (syncVals) => {
+    chrome.storage.local.get(SETTING_KEYS, (localVals) => {
+      const merged = {};
+      for (const k of SETTING_KEYS) {
+        merged[k] = syncVals[k] !== undefined ? syncVals[k] : localVals[k];
+      }
+      cb(merged);
+    });
+  });
+}
+
+function setSettings(obj) {
+  chrome.storage.sync.set(obj, () => void chrome.runtime.lastError);
+  chrome.storage.local.set(obj);
+}
+
 function paletteFromHue(h, s) {
   const bSat = Math.round(s * 0.47);
   return {
@@ -617,14 +642,14 @@ function tryInjectDimOption() {
   radiogroup.insertBefore(dimBtn, lightsOutBtn);
 
   // Set initial visual state based on whether dim is enabled
-  chrome.storage.local.get("enabled", ({ enabled }) => {
+  getSettings(({ enabled }) => {
     syncSettingsButtons(!!enabled);
   });
 
   // ── Click handlers ──
 
   dimBtn.addEventListener("click", () => {
-    chrome.storage.local.set({ enabled: true });
+    setSettings({ enabled: true });
     syncSettingsButtons(true);
     activateLightsOut();
   });
@@ -633,7 +658,7 @@ function tryInjectDimOption() {
   for (const nativeBtn of [defaultBtn, lightsOutBtn]) {
     nativeBtn.addEventListener("click", () => {
       if (_switchingToDim) return; // Ignore clicks triggered by dim switch
-      chrome.storage.local.set({ enabled: false });
+      setSettings({ enabled: false });
       setUnselected(dimBtn);
     });
   }
@@ -719,15 +744,15 @@ function fullRescan() {
   if (_enabled && document.body) queueScan([document.body]);
 }
 
-// Init — single storage read, then use cached state
-chrome.storage.local.get(["enabled", "theme", "customHue", "birdLogo"], ({ enabled, theme, customHue, birdLogo }) => {
+// Init — single merged storage read (sync preferred, local fallback)
+getSettings(({ enabled, theme, customHue, birdLogo }) => {
   _theme = theme ?? "dim";
   _customHue = customHue ?? 210;
   _birdLogo = !!birdLogo;
 
   if (enabled === undefined) {
     _enabled = true;
-    chrome.storage.local.set({ enabled: true });
+    setSettings({ enabled: true });
   } else {
     _enabled = !!enabled;
   }
@@ -796,8 +821,13 @@ function updateSettingsButtonColor() {
   dimBtn.style.backgroundColor = `hsl(${hue}, ${sat}%, 13%)`;
 }
 
-// Listen for toggle — updates cached state synchronously
-chrome.storage.onChanged.addListener((changes) => {
+// Listen for toggle — updates cached state synchronously.
+// Settings are written to both areas (and arrive from other devices via sync),
+// so handle changes from either. Chrome only fires onChanged when a value
+// actually differs, and all handlers below are idempotent, so the mirrored
+// double-event per write is harmless.
+chrome.storage.onChanged.addListener((changes, area) => {
+  if (area !== "sync" && area !== "local") return;
   if (changes.enabled) {
     _enabled = !!changes.enabled.newValue;
     try { localStorage.setItem("__xdm_enabled", _enabled ? "1" : "0"); } catch (e) {}

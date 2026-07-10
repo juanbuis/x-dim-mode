@@ -5,6 +5,21 @@ chrome.runtime.setUninstallURL("https://docs.google.com/forms/d/e/1FAIpQLSewJf4D
 chrome.runtime.onInstalled.addListener(({ reason, previousVersion }) => {
   const v = chrome.runtime.getManifest().version;
 
+  // One-time settings migration: local → sync (existing sync values win).
+  // Idempotent — safe to run on every install/update event.
+  const SETTING_KEYS = ["enabled", "theme", "customHue", "birdLogo"];
+  chrome.storage.sync.get(SETTING_KEYS, (syncVals) => {
+    chrome.storage.local.get(SETTING_KEYS, (localVals) => {
+      const toSync = {};
+      for (const k of SETTING_KEYS) {
+        if (syncVals[k] === undefined && localVals[k] !== undefined) toSync[k] = localVals[k];
+      }
+      if (Object.keys(toSync).length) {
+        chrome.storage.sync.set(toSync, () => void chrome.runtime.lastError);
+      }
+    });
+  });
+
   if (reason === "install") {
     chrome.storage.local.set({ installTimestamp: Date.now() });
     const params = new URLSearchParams({ v, reason });
