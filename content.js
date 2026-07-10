@@ -173,6 +173,14 @@ const STATIC_CSS = `
   html.${DIM_CLASS} .r-1bnu78o {
     background-color: var(--xdm-border) !important;
   }
+  /* Trailing hairline at the bottom of dropdown menus / modals (.r-cl2sl0 surface):
+     X renders a divider as the last element with nothing below it. Natively its
+     neutral grey blends into the near-black menu, but --xdm-border reads as a
+     light line against navy. Only the trailing (:last-child) one is hidden, so
+     dividers between menu items are untouched. */
+  html.${DIM_CLASS} .r-cl2sl0 .r-gu4em3:last-child {
+    background-color: transparent !important;
+  }
 
   /* Search bar icon, tweet character counter */
   html.${DIM_CLASS} .r-1bwzh9t {
