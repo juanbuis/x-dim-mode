@@ -67,6 +67,20 @@ const reportLink = document.getElementById("reportLink");
 reportLink.textContent = chrome.i18n.getMessage("reportProblem");
 reportLink.href = REPORT_URL;
 
+// ── Extras sparkle (one gentle twinkle, first popup open ever) ──────
+// Persisted so it truly happens once per user, not once per popup open.
+const extrasBtn = document.querySelector(".extras-btn");
+chrome.storage.sync.get(["sparkleShown"], (syncVals) => {
+  chrome.storage.local.get(["sparkleShown"], (localVals) => {
+    const shown = syncVals.sparkleShown !== undefined ? syncVals.sparkleShown : localVals.sparkleShown;
+    if (!shown && extrasBtn) {
+      extrasBtn.classList.add("sparkle");
+      chrome.storage.local.set({ sparkleShown: true });
+      chrome.storage.sync.set({ sparkleShown: true }, () => void chrome.runtime.lastError);
+    }
+  });
+});
+
 // ── Theme selection ────────────────────────────────────────────────
 
 function setActiveTheme(themeName) {
