@@ -4,7 +4,7 @@
 
 - **New:** your theme and settings now sync across devices
 - **New:** "Report a problem" link in the popup and Extras
-- **New:** subscribe from the popup — get an email when X breaks things and fixes ship
+- **New:** join the newsletter right from the popup — new features and experiments, first
 - **Removed:** the support/donate button
 - **Fun:** the ✨ in the popup twinkles now and then — there's good stuff behind it
 - **Improved:** the theming engine now catches styles applied after page load — more resilient to X updates
