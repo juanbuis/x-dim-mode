@@ -116,6 +116,15 @@
   "birdLogo": {
     "message": "شعار الطائر الكلاسيكي"
   },
+  "tweetWording": {
+    "message": "«تغريدة» بدل «منشور»"
+  },
+  "classicFavicon": {
+    "message": "أيقونة الموقع الكلاسيكية"
+  },
+  "oldFont": {
+    "message": "الخط الكلاسيكي"
+  },
   "installFeature6": {
     "message": "أريح للعين — الخلفيات المعتمة تقلّل التوهّج لمن لديهم اللابؤرية"
   }

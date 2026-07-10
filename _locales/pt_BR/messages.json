@@ -116,6 +116,15 @@
   "birdLogo": {
     "message": "Logo clássico do passarinho"
   },
+  "tweetWording": {
+    "message": "Tweet, não Post"
+  },
+  "classicFavicon": {
+    "message": "Favicon clássico"
+  },
+  "oldFont": {
+    "message": "Fonte clássica"
+  },
   "installFeature6": {
     "message": "Mais confortável para os olhos — fundos atenuados reduzem o halo para quem tem astigmatismo"
   }

@@ -116,6 +116,15 @@
   "birdLogo": {
     "message": "经典小鸟标志"
   },
+  "tweetWording": {
+    "message": "用 Tweet 替代 Post"
+  },
+  "classicFavicon": {
+    "message": "经典网站图标"
+  },
+  "oldFont": {
+    "message": "经典字体"
+  },
   "installFeature6": {
     "message": "更护眼 — 柔和的深色背景可减少散光用户看到的光晕"
   }

@@ -116,6 +116,15 @@
   "birdLogo": {
     "message": "クラシックな鳥のロゴ"
   },
+  "tweetWording": {
+    "message": "「ポスト」を「ツイート」に"
+  },
+  "classicFavicon": {
+    "message": "クラシックなファビコン"
+  },
+  "oldFont": {
+    "message": "クラシックなフォント"
+  },
   "installFeature6": {
     "message": "目にやさしい — 薄暗い背景は乱視の方のにじみを軽減します"
   }

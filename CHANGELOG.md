@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.6.0
+
+- **New:** three more nostalgia toggles in Extras
+- **New:** "Tweet, not Post" — renames Post back to Tweet and Repost back to Retweet
+- **New:** classic favicon — the blue bird returns to your tab, which reads "Twitter" again
+- **New:** classic font — swaps Chirp back to the old Helvetica Neue look
+
 ## 1.5.0
 
 - **New:** your theme and settings now sync across devices

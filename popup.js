@@ -33,7 +33,7 @@ const REPORT_URL = (() => {
 // ── Settings storage (sync across devices, local as fallback/mirror) ─
 // Keep in sync with the identical helpers in content.js.
 
-const SETTING_KEYS = ["enabled", "theme", "customHue", "birdLogo"];
+const SETTING_KEYS = ["enabled", "theme", "customHue", "birdLogo", "oldFont", "classicFavicon", "tweetWording"];
 
 function getSettings(cb) {
   chrome.storage.sync.get(SETTING_KEYS, (syncVals) => {

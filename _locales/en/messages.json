@@ -104,6 +104,15 @@
   "birdLogo": {
     "message": "Classic bird logo"
   },
+  "tweetWording": {
+    "message": "Tweet, not Post"
+  },
+  "classicFavicon": {
+    "message": "Classic favicon"
+  },
+  "oldFont": {
+    "message": "Classic font"
+  },
   "installFeature6": {
     "message": "Easier on the eyes \u2014 dim backgrounds reduce halation for users with astigmatism"
   },

@@ -116,6 +116,15 @@
   "birdLogo": {
     "message": "Klassisches Vogel-Logo"
   },
+  "tweetWording": {
+    "message": "Tweet statt Post"
+  },
+  "classicFavicon": {
+    "message": "Klassisches Favicon"
+  },
+  "oldFont": {
+    "message": "Klassische Schriftart"
+  },
   "installFeature6": {
     "message": "Angenehmer für die Augen — gedimmte Hintergründe reduzieren Lichthöfe bei Astigmatismus"
   }

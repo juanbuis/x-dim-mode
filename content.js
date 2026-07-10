@@ -5,6 +5,9 @@ const DIM_CLASS = "x-dim-active";
 // ── Bird Logo ─────────────────────────────────────────────────────
 const BIRD_PATH = "M23.643 4.937c-.835.37-1.732.62-2.675.733.962-.576 1.7-1.49 2.048-2.578-.9.534-1.897.922-2.958 1.13-.85-.904-2.06-1.47-3.4-1.47-2.572 0-4.658 2.086-4.658 4.66 0 .364.042.718.12 1.06-3.873-.195-7.304-2.05-9.602-4.868-.4.69-.63 1.49-.63 2.342 0 1.616.823 3.043 2.072 3.878-.764-.025-1.482-.234-2.11-.583v.06c0 2.257 1.605 4.14 3.737 4.568-.392.106-.803.162-1.227.162-.3 0-.593-.028-.877-.082.593 1.85 2.313 3.198 4.352 3.234-1.595 1.25-3.604 1.995-5.786 1.995-.376 0-.747-.022-1.112-.065 2.062 1.323 4.51 2.093 7.14 2.093 8.57 0 13.255-7.098 13.255-13.254 0-.2-.005-.402-.014-.602.91-.658 1.7-1.477 2.323-2.41z";
 let _birdLogo = false;
+let _oldFont = false;
+let _classicFavicon = false;
+let _tweetWording = false;
 
 // ── Theme Definitions ──────────────────────────────────────────────
 
@@ -26,7 +29,7 @@ let _customHue = 210;
 // migration, and hue-slider drags write local-only to stay inside sync's
 // write quota). Reads prefer sync; local fills any missing keys.
 
-const SETTING_KEYS = ["enabled", "theme", "customHue", "birdLogo"];
+const SETTING_KEYS = ["enabled", "theme", "customHue", "birdLogo", "oldFont", "classicFavicon", "tweetWording"];
 
 function getSettings(cb) {
   chrome.storage.sync.get(SETTING_KEYS, (syncVals) => {
@@ -434,6 +437,228 @@ function stopBirdInterval() {
   if (_birdInterval) { clearInterval(_birdInterval); _birdInterval = 0; }
 }
 
+// ── Classic Font ──────────────────────────────────────────────────
+// Swaps X's Chirp typeface back to the Helvetica Neue stack Twitter used for
+// years. A single !important rule on the root and its descendants; gated by a
+// class so toggling is instant. Icons are SVG and emoji are images, so nothing
+// but the text typeface is affected.
+
+const FONT_CSS_ID = "x-dim-font-css";
+const OLDFONT_CLASS = "x-dim-oldfont";
+
+function ensureFontCSS() {
+  if (document.getElementById(FONT_CSS_ID)) return;
+  const style = document.createElement("style");
+  style.id = FONT_CSS_ID;
+  style.textContent = `
+    html.${OLDFONT_CLASS},
+    html.${OLDFONT_CLASS} * {
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+    }
+  `;
+  (document.head || document.documentElement).appendChild(style);
+}
+
+function applyOldFont() {
+  ensureFontCSS();
+  document.documentElement.classList.add(OLDFONT_CLASS);
+}
+
+function removeOldFont() {
+  document.documentElement.classList.remove(OLDFONT_CLASS);
+}
+
+// ── Classic Favicon & Tab Title ───────────────────────────────────
+// Restores the blue bird favicon and renames the tab from "X" to "Twitter".
+// X rewrites both (favicon for unread counts, title on every navigation), so a
+// head observer re-applies whenever they change back.
+
+const BIRD_FAVICON = "data:image/svg+xml," + encodeURIComponent(
+  `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="#1DA1F2" d="${BIRD_PATH}"/></svg>`
+);
+
+let _classicObserver = null;
+
+function setBirdFavicon() {
+  const links = document.querySelectorAll('link[rel~="icon"]');
+  let found = false;
+  for (const l of links) {
+    found = true;
+    if (l.getAttribute("href") === BIRD_FAVICON) continue;
+    if (!l.hasAttribute("data-xdm-fav-orig")) {
+      l.setAttribute("data-xdm-fav-orig", l.getAttribute("href") || "");
+    }
+    l.setAttribute("href", BIRD_FAVICON);
+  }
+  if (!found) {
+    const link = document.createElement("link");
+    link.rel = "icon";
+    link.type = "image/svg+xml";
+    link.href = BIRD_FAVICON;
+    link.setAttribute("data-xdm-fav-added", "1");
+    (document.head || document.documentElement).appendChild(link);
+  }
+}
+
+function restoreFavicon() {
+  for (const l of document.querySelectorAll("link[data-xdm-fav-orig]")) {
+    l.setAttribute("href", l.getAttribute("data-xdm-fav-orig"));
+    l.removeAttribute("data-xdm-fav-orig");
+  }
+  for (const l of document.querySelectorAll("link[data-xdm-fav-added]")) l.remove();
+}
+
+function applyClassicTitle() {
+  const t = document.title;
+  // Titles are "<page> / X", or just "X" on some routes.
+  const nt = t === "X" ? "Twitter" : t.replace(/ \/ X$/, " / Twitter");
+  if (nt !== t) document.title = nt;
+}
+
+function restoreClassicTitle() {
+  // Reverse the current title rather than a stored one, so it's correct even
+  // if the user navigated to another page while the feature was on.
+  const t = document.title;
+  const nt = t === "Twitter" ? "X" : t.replace(/ \/ Twitter$/, " / X");
+  if (nt !== t) document.title = nt;
+}
+
+function applyClassic() {
+  setBirdFavicon();
+  applyClassicTitle();
+}
+
+function startClassicObserver() {
+  if (_classicObserver || !document.head) return;
+  _classicObserver = new MutationObserver(() => {
+    if (_classicFavicon) applyClassic();
+  });
+  // childList/characterData catch <title> text swaps; href catches favicon changes.
+  _classicObserver.observe(document.head, {
+    childList: true,
+    subtree: true,
+    characterData: true,
+    attributes: true,
+    attributeFilter: ["href"],
+  });
+}
+
+function stopClassicObserver() {
+  if (_classicObserver) {
+    _classicObserver.disconnect();
+    _classicObserver = null;
+  }
+}
+
+function removeClassic() {
+  stopClassicObserver();
+  restoreFavicon();
+  restoreClassicTitle();
+}
+
+// ── "Tweet", not "Post" wording ───────────────────────────────────
+// Renames X's rebranded verbs (Post→Tweet, Repost→Retweet) back to Twitter's.
+// Scoped to known UI chrome only — compose buttons, tabs, the retweet menu, and
+// the retweet button's aria-label — so it never touches user-written content.
+// Repost rules run before Post rules; word boundaries keep "Repost" out of the
+// Post rules and leave names like "Postman" untouched.
+
+const WORDING_FORWARD = [
+  [/\bReposts\b/g, "Retweets"],
+  [/\bRepost\b/g, "Retweet"],
+  [/\breposts\b/g, "retweets"],
+  [/\brepost\b/g, "retweet"],
+  [/\bReposted\b/g, "Retweeted"],
+  [/\breposted\b/g, "retweeted"],
+  [/\bPosts\b/g, "Tweets"],
+  [/\bPost\b/g, "Tweet"],
+  [/\bposts\b/g, "tweets"],
+  [/\bpost\b/g, "tweet"],
+];
+
+const WORDING_REVERSE = [
+  [/\bRetweets\b/g, "Reposts"],
+  [/\bRetweet\b/g, "Repost"],
+  [/\bretweets\b/g, "reposts"],
+  [/\bretweet\b/g, "repost"],
+  [/\bRetweeted\b/g, "Reposted"],
+  [/\bretweeted\b/g, "reposted"],
+  [/\bTweets\b/g, "Posts"],
+  [/\bTweet\b/g, "Post"],
+  [/\btweets\b/g, "posts"],
+  [/\btweet\b/g, "post"],
+];
+
+// Visible text lives in these UI containers; all are chrome, never user content.
+const WORDING_TEXT_SELECTOR = [
+  '[data-testid="tweetButton"]',
+  '[data-testid="tweetButtonInline"]',
+  '[role="tab"]',
+  '[data-testid="Dropdown"] [role="menuitem"]',
+].join(",");
+
+// aria-labels safe to rewrite (interactive controls, never tweet bodies).
+const WORDING_ARIA_SELECTOR = [
+  '[data-testid="retweet"]',
+  '[data-testid="unretweet"]',
+  '[data-testid="tweetButton"]',
+  '[data-testid="tweetButtonInline"]',
+].join(",");
+
+function xdmWordSwap(s, reverse) {
+  const map = reverse ? WORDING_REVERSE : WORDING_FORWARD;
+  let out = s;
+  for (const [re, rep] of map) out = out.replace(re, rep);
+  return out;
+}
+
+function swapWordingText(el, reverse) {
+  const walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT);
+  let n;
+  while ((n = walker.nextNode())) {
+    const v = n.nodeValue;
+    if (!v || !v.trim()) continue;
+    const nv = xdmWordSwap(v, reverse);
+    if (nv !== v) n.nodeValue = nv;
+  }
+}
+
+function swapWordingAria(el, reverse) {
+  const label = el.getAttribute("aria-label");
+  if (!label) return;
+  const nv = xdmWordSwap(label, reverse);
+  if (nv !== label) el.setAttribute("aria-label", nv);
+}
+
+function applyTweetWording(root, reverse) {
+  const scope = root && root.querySelectorAll ? root : document;
+  const textEls = scope.querySelectorAll(WORDING_TEXT_SELECTOR);
+  for (const el of textEls) swapWordingText(el, reverse);
+  const ariaEls = scope.querySelectorAll(WORDING_ARIA_SELECTOR);
+  for (const el of ariaEls) swapWordingAria(el, reverse);
+  // A freshly-added node may itself be a target rather than a container.
+  if (scope !== document && scope.matches) {
+    if (scope.matches(WORDING_TEXT_SELECTOR)) swapWordingText(scope, reverse);
+    if (scope.matches(WORDING_ARIA_SELECTOR)) swapWordingAria(scope, reverse);
+  }
+}
+
+// React can rewrite a button's text in place (no node insertion), so re-run
+// periodically the way the bird swap does.
+let _wordingInterval = 0;
+
+function startWordingInterval() {
+  if (_wordingInterval) return;
+  _wordingInterval = setInterval(() => {
+    if (!_tweetWording) { stopWordingInterval(); return; }
+    applyTweetWording(document, false);
+  }, 2000);
+}
+
+function stopWordingInterval() {
+  if (_wordingInterval) { clearInterval(_wordingInterval); _wordingInterval = 0; }
+}
+
 function applyDim() {
   ensureBaseCSS();
   document.documentElement.classList.add(DIM_CLASS);
@@ -720,6 +945,14 @@ function startObserver() {
           }
         }
       }
+      // Rename Post→Tweet on newly added nodes
+      if (_tweetWording) {
+        for (const m of mutations) {
+          for (const n of m.addedNodes) {
+            if (n.nodeType === 1) applyTweetWording(n, false);
+          }
+        }
+      }
       // Try to inject the Dim button on the display settings page
       tryInjectDimOption();
       // Start body observer once body is available
@@ -745,10 +978,13 @@ function fullRescan() {
 }
 
 // Init — single merged storage read (sync preferred, local fallback)
-getSettings(({ enabled, theme, customHue, birdLogo }) => {
+getSettings(({ enabled, theme, customHue, birdLogo, oldFont, classicFavicon, tweetWording }) => {
   _theme = theme ?? "dim";
   _customHue = customHue ?? 210;
   _birdLogo = !!birdLogo;
+  _oldFont = !!oldFont;
+  _classicFavicon = !!classicFavicon;
+  _tweetWording = !!tweetWording;
 
   if (enabled === undefined) {
     _enabled = true;
@@ -790,6 +1026,27 @@ getSettings(({ enabled, theme, customHue, birdLogo }) => {
     // Re-run after page settles (logo may load later)
     for (const ms of [500, 1500, 3000]) setTimeout(() => swapBirdLogos(), ms);
     startBirdInterval();
+  }
+
+  // Apply classic font if enabled
+  if (_oldFont) applyOldFont();
+
+  // Apply classic favicon + tab title if enabled
+  if (_classicFavicon) {
+    applyClassic();
+    startClassicObserver();
+    // Favicon/title may not exist yet at document_start; re-run as head fills in
+    // (and start the observer if head wasn't ready above).
+    for (const ms of [500, 1500, 3000]) setTimeout(() => {
+      if (_classicFavicon) { applyClassic(); startClassicObserver(); }
+    }, ms);
+  }
+
+  // Apply Post→Tweet wording if enabled
+  if (_tweetWording) {
+    applyTweetWording(document, false);
+    for (const ms of [500, 1500, 3000]) setTimeout(() => { if (_tweetWording) applyTweetWording(document, false); }, ms);
+    startWordingInterval();
   }
 });
 
@@ -858,6 +1115,30 @@ chrome.storage.onChanged.addListener((changes, area) => {
     } else {
       stopBirdInterval();
       restoreBirdLogos();
+    }
+  }
+  if (changes.oldFont) {
+    _oldFont = !!changes.oldFont.newValue;
+    if (_oldFont) applyOldFont();
+    else removeOldFont();
+  }
+  if (changes.classicFavicon) {
+    _classicFavicon = !!changes.classicFavicon.newValue;
+    if (_classicFavicon) {
+      applyClassic();
+      startClassicObserver();
+    } else {
+      removeClassic();
+    }
+  }
+  if (changes.tweetWording) {
+    _tweetWording = !!changes.tweetWording.newValue;
+    if (_tweetWording) {
+      applyTweetWording(document, false);
+      startWordingInterval();
+    } else {
+      stopWordingInterval();
+      applyTweetWording(document, true);
     }
   }
 });
