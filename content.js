@@ -116,13 +116,15 @@ const STATIC_CSS = `
   html.${DIM_CLASS} .r-cl2sl0 {
     background-color: var(--xdm-bg) !important;
   }
-  /* Premium/promo media cards: a black card (.r-kemksi) topped by a full-bleed
-     hero image whose dark background is baked into the PNG (designed to sit on
-     X's black card). Recoloring the body to navy leaves a two-tone seam where
-     the black image meets the navy body, so keep these cards dark to blend.
-     Scoped with r-rs99b7 + :has(img) so the huge timeline scroll container —
-     also .r-kemksi and full of images — is NOT forced black. */
-  html.${DIM_CLASS} .r-kemksi.r-rs99b7:has(img) {
+  /* Premium/promo media cards: a black card topped by a full-bleed hero image
+     whose dark background is baked into the PNG (designed to sit on X's black
+     card). Recoloring the body to navy leaves a two-tone seam where the black
+     image meets the navy body, so keep these cards dark to blend.
+     r-16cnnyw is the distinguishing class on these hero cards — it is NOT on the
+     sidebar content cards (Today's News, Who to follow) which also happen to be
+     .r-kemksi.r-rs99b7 and contain small images (thumbnails, avatars) but must
+     stay navy. Without r-16cnnyw the selector wrongly blacks out those modules. */
+  html.${DIM_CLASS} .r-kemksi.r-16cnnyw.r-rs99b7:has(img) {
     background-color: #000 !important;
   }
   /* Search bar — the input's opaque bg covers the pill's right border curve.
@@ -222,6 +224,18 @@ const STATIC_CSS = `
   html.${DIM_CLASS} .xdm-dimmed-elevated .jf-element:empty {
     background-color: var(--xdm-border) !important;
     border-color: var(--xdm-border) !important;
+  }
+
+  /* "Today's News" sidebar module (jetfuel framework). X hard-codes a black bg
+     on the card via [data-theme="dark"] .jetfuel-style-root .<hash>, and the
+     scanner misses it because that class is applied after insertion (the
+     childList observer doesn't watch attribute changes). Scope to the sidebar
+     column (data-testid is stable and not localized) so Creator Studio's
+     jetfuel UI in the primary column is untouched. --xdm-bg matches the page,
+     so if this ever catches a natively-transparent sidebar card it stays
+     invisible rather than painting a visible block. */
+  html.${DIM_CLASS} [data-testid="sidebarColumn"] .jetfuel-style-root > .jf-element {
+    background-color: var(--xdm-bg) !important;
   }
 
   /* Media editor crop selection — the crop rectangle has .r-1niwhzg (black bg)
