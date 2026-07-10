@@ -1,19 +1,15 @@
 # Changelog
 
-## 1.6.0
-
-- **New:** three more nostalgia toggles in Extras
-- **New:** "Tweet, not Post" — renames Post back to Tweet and Repost back to Retweet
-- **New:** classic favicon — the blue bird returns to your tab, which reads "Twitter" again
-- **New:** classic font — swaps Chirp back to the old Helvetica Neue look
-
 ## 1.5.0
 
 - **New:** your theme and settings now sync across devices
 - **New:** "Report a problem" link in the popup and Extras
 - **New:** join the newsletter right from the popup — new features and experiments, first
+- **New:** "Tweet, not Post" (Extras) — renames Post back to Tweet, Repost back to Retweet
+- **New:** classic favicon (Extras) — the blue bird returns to your tab, which reads "Twitter" again
+- **New:** classic font (Extras) — swaps Chirp back to the old Helvetica Neue look
 - **Removed:** the support/donate button
-- **Fun:** the ✨ in the popup twinkles now and then — there's good stuff behind it
+- **Fun:** the ✨ in the popup gives one gentle twinkle the first time you open it — there's good stuff behind it
 - **Improved:** the theming engine now catches styles applied after page load — more resilient to X updates
 - **Fixed:** reply and compose windows are dimmed again — X had reset them to black
 - **Fixed:** Creator Studio no longer shows grey boxes behind its icons
