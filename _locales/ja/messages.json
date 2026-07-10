@@ -69,7 +69,7 @@
     "message": "Xでシェア"
   },
   "emailHeading": {
-    "message": "Xの表示が壊れたらメールでお知らせ"
+    "message": "新しいものをいち早く"
   },
   "emailNoSpam": {
     "message": "スパムは一切送りません。"
@@ -90,7 +90,7 @@
     "message": "共有"
   },
   "emailPromptHeading": {
-    "message": "修正をリリースしたらメールでお知らせ。次に作るものへの早期アクセスも。"
+    "message": "新機能や実験的なプロジェクトを、いち早くお届けします。"
   },
   "engageQuestion": {
     "message": "X Dim Modeはいかがですか？"
@@ -111,6 +111,6 @@
     "message": "問題を報告"
   },
   "emailCtaButton": {
-    "message": "Xの表示が壊れたらメールでお知らせ"
+    "message": "新しいものをいち早く"
   }
 }

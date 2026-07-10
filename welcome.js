@@ -53,19 +53,14 @@ for (const text of items) {
 // Action buttons
 const actions = document.getElementById("actions");
 
+// Single action — the email box below is this page's real ask
+// (donate lives in Extras)
 const tryBtn = document.createElement("a");
 tryBtn.href = "https://x.com";
 tryBtn.target = "_blank";
 tryBtn.className = "btn-primary";
 tryBtn.textContent = msg("tryNow");
 actions.appendChild(tryBtn);
-
-const donateBtn = document.createElement("a");
-donateBtn.href = "https://buymeacoffee.com/juan";
-donateBtn.target = "_blank";
-donateBtn.className = "btn-donate";
-donateBtn.textContent = msg("donate");
-actions.appendChild(donateBtn);
 
 
 // Email section copy
