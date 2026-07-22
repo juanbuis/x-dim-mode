@@ -16,6 +16,9 @@
 - **Fixed:** Premium promo cards blend in cleanly, with no two-tone edge
 - **Fixed:** the "Today's News" sidebar block is dimmed instead of pure black
 - **Fixed:** stray hairline at the bottom of dropdown menus
+- **Fixed:** the "Share via Chat" modal is dimmed instead of near-black
+- **Fixed:** avatar loading placeholders are navy-tinted instead of flashing grey
+- **Fixed:** the modal backdrop is classic Twitter's blue-grey scrim again instead of black
 
 ## 1.4.0
 

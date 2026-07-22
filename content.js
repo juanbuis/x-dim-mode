@@ -57,6 +57,8 @@ function paletteFromHue(h, s) {
     backdrop:   `hsla(${h}, ${s}%, 13%, 0.85)`,
     text:       `hsl(${h}, ${Math.round(s * 0.32)}%, 60%)`,
     border:     `hsl(${h}, ${bSat}%, 26%)`,
+    // Modal scrim — classic Twitter's #5B7083 at 40% for hue 210, hue-adaptive
+    scrim:      `hsla(${h}, 18%, 44%, 0.4)`,
     // Raw HSL components for X's CSS variable format (space-separated, no wrapper)
     bgRaw:      `${h} ${s}% 13%`,
     borderRaw:  `${h} ${bSat}% 26%`,
@@ -84,6 +86,7 @@ function buildThemeCSS() {
     --xdm-backdrop: ${p.backdrop};
     --xdm-text: ${p.text};
     --xdm-border: ${p.border};
+    --xdm-scrim: ${p.scrim};
   }
 
   /* Override X's own Lights Out theme variables */
@@ -107,6 +110,20 @@ function buildThemeCSS() {
     --color-gray-100: ${p.borderRaw};
     --color-gray-700: ${p.grayRaw60};
     --color-gray-800: ${p.grayRaw50};
+    /* Avatar loading placeholder circles (bg-gray-300, rgb(61,64,67)) — neutral
+       grey flash on navy while images load; borderRaw matches its lightness. */
+    --color-gray-300: ${p.borderRaw};
+    /* Share-via-Chat modal & friends: X paints these surfaces near-black
+       (hsl 0 0% 8% / #141414) via dedicated variables, so remap them to the
+       dim bg like every other modal surface (r-cl2sl0, rgb(20,20,20)). */
+    --color-modal-background: ${p.bgRaw};
+    --x-bg-modal: ${p.bg};
+    /* shadcn popover surfaces (dropdown/context menus in the chat UI) are
+       pure black natively — map to dim bg for consistency. */
+    --popover: ${p.bgRaw};
+    /* Chat UI's modal scrim is already classic blue-grey rgba(91,112,131,0.4);
+       re-derive it from the active hue so non-blue themes stay cohesive. */
+    --color-modal-overlay: ${p.scrim};
   }`;
 }
 
@@ -129,6 +146,18 @@ const STATIC_CSS = `
   /* Elevated section cards (rgb(24,24,27) in dark mode → slightly lighter in dim) */
   html.${DIM_CLASS} [style*="background-color: rgb(24, 24, 27)"] {
     background-color: var(--xdm-bg-hover) !important;
+  }
+  /* Modal scrim — X's legacy UI paints it black (inline rgba(0,0,0,0.5));
+     classic Twitter used blue-grey #5B7083 at 40%, which X's own chat UI
+     still uses. Scoped to the mask testid so no other overlay is touched. */
+  html.${DIM_CLASS} [data-testid="mask"] {
+    background-color: var(--xdm-scrim) !important;
+  }
+  /* Avatar loading placeholders (legacy UI): inline rgb(62,65,68) behind every
+     avatar, visible as a neutral-grey flash until the image loads. --xdm-border
+     is the closest tone in the palette (same lightness, navy-tinted). */
+  html.${DIM_CLASS} [style*="background-color: rgb(62, 65, 68)"] {
+    background-color: var(--xdm-border) !important;
   }
   /* Icon containers in menu rows (Premium, etc.) */
   html.${DIM_CLASS} [role="link"] > div > div:first-child div:has(> svg:only-child) {
