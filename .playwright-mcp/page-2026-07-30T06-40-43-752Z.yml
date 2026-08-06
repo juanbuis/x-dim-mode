@@ -1,0 +1,58 @@
+- generic [active] [ref=f1e1]:
+  - main [ref=f1e2]:
+    - generic [ref=f1e3]:
+      - region "Add a recipe" [ref=f1e4]:
+        - generic [ref=f1e6]:
+          - generic [ref=f1e7]: Recipe text or URL
+          - textbox "Recipe text or URL" [ref=f1e8]:
+            - /placeholder: Paste a recipe or URL
+        - generic [ref=f1e9]:
+          - generic [ref=f1e10] [cursor=pointer]:
+            - button "Add images" [ref=f1e11]
+            - generic [ref=f1e16]: Add images
+          - button "Make chart" [ref=f1e17] [cursor=pointer]
+      - region "Editable recipe chart" [ref=f1e22]:
+        - generic [ref=f1e23]:
+          - generic [ref=f1e24]:
+            - textbox "Recipe name" [ref=f1e25]: Espresso Brownies
+            - generic [ref=f1e26]:
+              - button "Copy recipe chart for Google Sheets" [ref=f1e27] [cursor=pointer]:
+                - generic [ref=f1e36]: Copy
+              - button "Export Google Sheet" [ref=f1e37] [cursor=pointer]:
+                - generic [ref=f1e41]: Sheet
+              - button "Export PNG image" [ref=f1e42] [cursor=pointer]:
+                - generic [ref=f1e45]: PNG
+          - generic [ref=f1e47]:
+            - textbox "Setup step 1" [ref=f1e48]: Butter and flour an 8 × 8 in pan
+            - textbox "Setup step 2" [ref=f1e49]: Preheat oven to 350°F / 170°C
+            - textbox "Ingredient 1" [ref=f1e50]: 4 oz / 115 g unsalted butter
+            - textbox "Ingredient 2" [ref=f1e51]: 1 cup / 200 g sugar
+            - textbox "Ingredient 3" [ref=f1e52]: ¼ tsp / 2.5 ml vanilla extract
+            - textbox "Ingredient 4" [ref=f1e53]: 1 shot / 60 ml fresh espresso or very strong coffee
+            - textbox "Ingredient 5" [ref=f1e54]: 2 large / 100 g eggs
+            - textbox "Ingredient 6" [ref=f1e55]: ½ cup / 80 g all-purpose flour
+            - textbox "Ingredient 7" [ref=f1e56]: ⅓ cup / 80 g cocoa powder
+            - textbox "Ingredient 8" [ref=f1e57]: ¼ tsp / 1.3 g baking soda
+            - textbox "Ingredient 9" [ref=f1e58]: ¼ tsp / 1.5 g table salt
+            - textbox "Operation 1" [ref=f1e59]: Melt
+            - textbox "Operation 2" [ref=f1e60]: Mix
+            - textbox "Operation 3" [ref=f1e61]: Mix
+            - textbox "Operation 4" [ref=f1e62]: Fold in
+            - textbox "Operation 5" [ref=f1e63]: Bake 350°F / 170°C 30–40 min
+    - generic [ref=f1e68]:
+      - paragraph [ref=f1e69]: Do you like the tool? Help me keep it free.
+      - link "Leave a tip ❤️" [ref=f1e70] [cursor=pointer]:
+        - /url: https://buy.stripe.com/cNi14gbJa61CduT6gEfMA01
+      - generic [ref=f1e71]: Or
+      - paragraph [ref=f1e72]: Follow me on socials :D
+      - generic [ref=f1e73]:
+        - link "Follow RealNic0le on Instagram" [ref=f1e74] [cursor=pointer]:
+          - /url: https://www.instagram.com/realnic0le/
+          - generic [ref=f1e79]: "@RealNic0le"
+        - link "Follow RealNic0le on TikTok" [ref=f1e80] [cursor=pointer]:
+          - /url: https://www.tiktok.com/@realnic0le
+          - generic [ref=f1e87]: "@RealNic0le"
+        - link "Follow nicole_clash on X" [ref=f1e88] [cursor=pointer]:
+          - /url: https://x.com/nicole_clash
+          - generic [ref=f1e91]: "@nicole_clash"
+  - alert [ref=f1e92]

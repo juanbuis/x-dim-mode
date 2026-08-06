@@ -1,0 +1,68 @@
+- generic [active] [ref=f5e1]:
+  - main [ref=f5e2]:
+    - generic [ref=f5e3]:
+      - link "Recipe Table." [ref=f5e4] [cursor=pointer]:
+        - /url: /
+      - link "Make your own table" [ref=f5e15] [cursor=pointer]:
+        - /url: /
+    - generic [ref=f5e16]:
+      - generic [ref=f5e17]:
+        - paragraph [ref=f5e18]: Shared table
+        - generic [ref=f5e19]:
+          - button "Copy link" [ref=f5e20]
+          - button "Copy as image" [ref=f5e21]
+          - button "Sheet" [ref=f5e22]
+          - button "Print / PDF" [ref=f5e23]
+          - link "Share on 𝕏" [ref=f5e24] [cursor=pointer]:
+            - /url: https://x.com/intent/post?text=Classic%20Guacamole%20%E2%80%94%20the%20whole%20recipe%2C%20one%20glance%0A%0Ahttps%3A%2F%2Frecipetables.com%2Fr%2Fea382273e2
+      - generic [ref=f5e25]:
+        - generic [ref=f5e26]:
+          - generic [ref=f5e27]: Scale
+          - button "½×" [ref=f5e28]
+          - button "1×" [ref=f5e29]
+          - button "2×" [ref=f5e30]
+          - button "3×" [ref=f5e31]
+        - generic [ref=f5e32]:
+          - generic [ref=f5e33]: Units
+          - button "Both" [ref=f5e34]
+          - button "Cups" [ref=f5e35]
+          - button "Grams" [ref=f5e36]
+      - generic [ref=f5e38]:
+        - generic [ref=f5e39]:
+          - heading "Classic Guacamole" [level=2] [ref=f5e40]
+          - paragraph [ref=f5e41]: Serves 4
+        - table [ref=f5e43]:
+          - rowgroup [ref=f5e44]:
+            - row [ref=f5e45]:
+              - cell "3 ripe avocados" [ref=f5e46]
+              - cell "mash together" [ref=f5e47]
+              - cell "chill 30 min" [ref=f5e48]
+            - row [ref=f5e49]:
+              - cell "1 lime, juiced" [ref=f5e50]
+            - row [ref=f5e51]:
+              - cell "1/2 tsp salt" [ref=f5e52]
+            - row [ref=f5e53]:
+              - cell "1/2 onion, diced" [ref=f5e54]
+              - cell "stir in" [ref=f5e55]
+            - row [ref=f5e56]:
+              - cell "2 roma tomatoes, diced" [ref=f5e57]
+            - row [ref=f5e58]:
+              - cell "1 tbsp chopped cilantro" [ref=f5e59]
+            - row [ref=f5e60]:
+              - cell "1 clove garlic, minced" [ref=f5e61]
+        - paragraph [ref=f5e62]: Read left to right — each column combines what's behind it.
+      - button "Something wrong with this table? Report it →" [ref=f5e64]
+    - generic [ref=f5e65]:
+      - paragraph [ref=f5e66]: Any recipe can look like this.
+      - paragraph [ref=f5e67]: Paste a recipe, a link, or a photo of a cookbook page — get back the whole thing in one look.
+      - link "Try it — it's free" [ref=f5e68] [cursor=pointer]:
+        - /url: /
+    - paragraph [ref=f5e70]:
+      - text: Table format invented by Michael Chu at
+      - link "cookingforengineers.com" [ref=f5e71] [cursor=pointer]:
+        - /url: https://www.cookingforengineers.com
+      - text: . Made by
+      - link "@juanbuis" [ref=f5e72] [cursor=pointer]:
+        - /url: https://x.com/juanbuis
+      - text: .
+  - alert [ref=f5e73]

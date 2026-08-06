@@ -1,0 +1,69 @@
+- generic [active] [ref=e1]:
+  - main [ref=e2]:
+    - generic [ref=e3]:
+      - paragraph [ref=e4]: Cooking, tabulated
+      - heading "Recipe Table." [level=1] [ref=e5]
+      - paragraph [ref=e6]: Paste any recipe and get it back as a nested prep table — ingredients as rows, steps as merged columns. The whole recipe readable at a glance, no scrolling through a life story.
+    - generic [ref=e7]:
+      - textbox "Paste a recipe, or a link to one…" [ref=e8]
+      - button "Build the table" [disabled] [ref=e10]
+    - generic [ref=e11]:
+      - generic [ref=e12]:
+        - paragraph [ref=e13]: Sample — banana bread
+        - generic [ref=e14]:
+          - button "Copy as image" [ref=e15]
+          - button "Print / PDF" [ref=e16]
+          - button "Share on 𝕏" [ref=e17]
+      - generic [ref=e19]:
+        - generic [ref=e20]:
+          - heading "Banana Bread" [level=2] [ref=e21]
+          - paragraph [ref=e22]: Makes one 9×5 loaf
+        - table [ref=e24]:
+          - rowgroup [ref=e25]:
+            - row [ref=e26]:
+              - cell "prepPreheat oven to 350°F (175°C)" [ref=e27]
+            - row [ref=e28]:
+              - cell "prepGrease a 9×5 inch loaf pan" [ref=e29]
+            - row [ref=e30]:
+              - cell "1/2 cup butter, softened" [ref=e31]
+              - cell "cream" [ref=e32]
+              - cell "beat in" [ref=e33]
+              - cell "combine" [ref=e34]
+              - cell "fold in" [ref=e35]
+              - cell "bake 60 min" [ref=e36]
+            - row [ref=e37]:
+              - cell "1 cup sugar" [ref=e38]
+            - row [ref=e39]:
+              - cell "2 eggs" [ref=e40]
+              - cell [ref=e41]
+            - row [ref=e42]:
+              - cell "3 ripe bananas" [ref=e43]
+              - cell "mash" [ref=e44]
+              - cell "stir together" [ref=e45]
+            - row [ref=e46]:
+              - cell "1 tsp vanilla extract" [ref=e47]
+              - cell [ref=e48]
+            - row [ref=e49]:
+              - cell "2 cups flour" [ref=e50]
+              - cell "whisk" [ref=e51]
+              - cell [ref=e52]
+              - cell [ref=e53]
+            - row [ref=e54]:
+              - cell "1 tsp baking soda" [ref=e55]
+            - row [ref=e56]:
+              - cell "1/2 tsp salt" [ref=e57]
+        - paragraph [ref=e58]: Read left to right — each column combines what's behind it.
+    - generic [ref=e59]:
+      - paragraph [ref=e60]:
+        - text: Made by
+        - link "@juanbuis" [ref=e61] [cursor=pointer]:
+          - /url: https://x.com/juanbuis
+        - text: — follow along for more little tools.
+      - paragraph [ref=e62]:
+        - text: Table format invented by Michael Chu at
+        - link "cookingforengineers.com" [ref=e63] [cursor=pointer]:
+          - /url: https://www.cookingforengineers.com
+        - text: . This tool borrows the system, not the style.
+      - paragraph [ref=e64]: Recipes are converted in memory and never stored.
+  - button "Open Next.js Dev Tools" [ref=e70] [cursor=pointer]
+  - alert [ref=e74]

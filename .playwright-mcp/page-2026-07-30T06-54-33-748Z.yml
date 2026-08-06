@@ -1,0 +1,80 @@
+- generic [active] [ref=f2e1]:
+  - main [ref=f2e2]:
+    - generic [ref=f2e3]:
+      - generic [ref=f2e14]:
+        - heading "Recipe Table." [level=1] [ref=f2e15]
+        - paragraph [ref=f2e16]: Cooking, tabulated
+      - paragraph [ref=f2e17]: Any recipe, rebuilt as a nested prep table — ingredients as rows, steps as merged columns. The whole thing readable at a glance, no scrolling through a life story.
+    - generic [ref=f2e18]:
+      - generic [ref=f2e19]:
+        - paragraph [ref=f2e20]: Start with any of these
+        - paragraph [ref=f2e21]: recipe text · a link · a photo
+      - 'textbox "Paste the full recipe here… or drop in a link: allrecipes.com/banana-bread or add a photo of a cookbook page →" [ref=f2e22]':
+        - /placeholder: "Paste the full recipe here…\n\nor drop in a link: allrecipes.com/banana-bread\n\nor add a photo of a cookbook page →"
+      - generic [ref=f2e23]:
+        - button "Build the table" [disabled] [ref=f2e24]
+        - button "Add a photo" [ref=f2e25]
+    - generic [ref=f2e26]:
+      - generic [ref=f2e27]:
+        - paragraph [ref=f2e28]: Sample — banana bread
+        - generic [ref=f2e29]:
+          - button "Copy as image" [ref=f2e30]
+          - button "Sheet" [ref=f2e31]
+          - button "Print / PDF" [ref=f2e32]
+          - button "Share on 𝕏" [ref=f2e33]
+      - generic [ref=f2e35]:
+        - generic [ref=f2e36]:
+          - heading "Banana Bread" [level=2] [ref=f2e37]
+          - paragraph [ref=f2e38]: Makes one 9×5 loaf
+        - table [ref=f2e40]:
+          - rowgroup [ref=f2e41]:
+            - row [ref=f2e42]:
+              - cell "prepPreheat oven to 350°F (175°C)" [ref=f2e43]
+            - row [ref=f2e44]:
+              - cell "prepGrease a 9×5 inch loaf pan" [ref=f2e45]
+            - row [ref=f2e46]:
+              - cell "1/2 cup butter, softened" [ref=f2e47]
+              - cell "cream" [ref=f2e48]
+              - cell "beat in" [ref=f2e49]
+              - cell "combine" [ref=f2e50]
+              - cell "fold in" [ref=f2e51]
+              - cell "bake 60 min" [ref=f2e52]
+            - row [ref=f2e53]:
+              - cell "1 cup sugar" [ref=f2e54]
+            - row [ref=f2e55]:
+              - cell "2 eggs" [ref=f2e56]
+              - cell [ref=f2e57]
+            - row [ref=f2e58]:
+              - cell "3 ripe bananas" [ref=f2e59]
+              - cell "mash" [ref=f2e60]
+              - cell "stir together" [ref=f2e61]
+            - row [ref=f2e62]:
+              - cell "1 tsp vanilla extract" [ref=f2e63]
+              - cell [ref=f2e64]
+            - row [ref=f2e65]:
+              - cell "2 cups flour" [ref=f2e66]
+              - cell "whisk" [ref=f2e67]
+              - cell [ref=f2e68]
+              - cell [ref=f2e69]
+            - row [ref=f2e70]:
+              - cell "1 tsp baking soda" [ref=f2e71]
+            - row [ref=f2e72]:
+              - cell "1/2 tsp salt" [ref=f2e73]
+        - paragraph [ref=f2e74]: Read left to right — each column combines what's behind it.
+    - generic [ref=f2e75]:
+      - paragraph [ref=f2e76]: Built by Juan Buis
+      - paragraph [ref=f2e77]: I make small tools like this one. Follow along — the next one is usually a week away.
+      - generic [ref=f2e78]:
+        - link "𝕏 Follow @juanbuis" [ref=f2e79] [cursor=pointer]:
+          - /url: https://x.com/juanbuis
+        - link "juanbuis.com" [ref=f2e80] [cursor=pointer]:
+          - /url: https://juanbuis.com
+    - generic [ref=f2e81]:
+      - paragraph [ref=f2e82]:
+        - text: Table format invented by Michael Chu at
+        - link "cookingforengineers.com" [ref=f2e83] [cursor=pointer]:
+          - /url: https://www.cookingforengineers.com
+        - text: . This tool borrows the system, not the style.
+      - paragraph [ref=f2e84]: Recipes are converted in memory and never stored.
+  - button "Open Next.js Dev Tools" [ref=f2e90] [cursor=pointer]
+  - alert [ref=f2e94]

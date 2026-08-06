@@ -1,0 +1,94 @@
+- generic [active] [ref=f9e1]:
+  - main [ref=f9e2]:
+    - generic [ref=f9e3]:
+      - generic [ref=f9e15]:
+        - heading "RecipeTables." [level=1] [ref=f9e16]
+        - paragraph [ref=f9e17]: The recipe, without the story
+      - paragraph [ref=f9e18]: Paste a recipe, a link, or a photo of a cookbook page. Get back a nested prep table — ingredients as rows, steps as merged columns, the whole thing in one look.
+    - generic [ref=f9e19]:
+      - textbox "Paste a recipe, or a link to one…" [ref=f9e20]
+      - generic [ref=f9e21]:
+        - generic [ref=f9e22]: No recipe handy?
+        - button "🍪 Try a recipe URL" [ref=f9e23]
+        - button "🥑 Try pasted text" [ref=f9e24]
+      - generic [ref=f9e25]:
+        - button "Photo" [ref=f9e26]
+        - paragraph [ref=f9e31]: or drop / paste an image
+        - button "Build the table" [disabled] [ref=f9e33]
+    - generic [ref=f9e34]:
+      - generic [ref=f9e35]:
+        - paragraph [ref=f9e36]: Sample — banana bread
+        - generic [ref=f9e37]:
+          - button "Copy as image" [ref=f9e38]
+          - button "Sheet" [ref=f9e39]
+          - button "Print / PDF" [ref=f9e40]
+          - link "Share on 𝕏" [ref=f9e41] [cursor=pointer]:
+            - /url: https://x.com/intent/post?text=Banana%20Bread%20%E2%80%94%20the%20whole%20recipe%2C%20one%20glance%0A%0Ahttps%3A%2F%2Frecipetables.com
+      - generic [ref=f9e42]:
+        - generic [ref=f9e43]:
+          - generic [ref=f9e44]: Scale
+          - button "½×" [ref=f9e45]
+          - button "1×" [ref=f9e46]
+          - button "2×" [ref=f9e47]
+          - button "3×" [ref=f9e48]
+        - generic [ref=f9e49]:
+          - generic [ref=f9e50]: Units
+          - button "Both" [ref=f9e51]
+          - button "Cups" [ref=f9e52]
+          - button "Grams" [ref=f9e53]
+      - generic [ref=f9e55]:
+        - generic [ref=f9e56]:
+          - heading "Banana Bread" [level=2] [ref=f9e57]
+          - paragraph [ref=f9e58]: Makes one 9×5 loaf
+        - table [ref=f9e60]:
+          - rowgroup [ref=f9e61]:
+            - row [ref=f9e62]:
+              - cell "prepPreheat oven to 350°F / 175°C" [ref=f9e63]
+            - row [ref=f9e64]:
+              - cell "prepGrease a 9×5 inch loaf pan" [ref=f9e65]
+            - row [ref=f9e66]:
+              - cell "1/2 cup / 115 g butter, softened" [ref=f9e67]
+              - cell "cream" [ref=f9e68]
+              - cell "beat in" [ref=f9e69]
+              - cell "combine" [ref=f9e70]
+              - cell "fold in" [ref=f9e71]
+              - cell "bake 350°F / 175°C, 60 min" [ref=f9e72]
+            - row [ref=f9e73]:
+              - cell "1 cup / 200 g sugar" [ref=f9e74]
+            - row [ref=f9e75]:
+              - cell "2 eggs" [ref=f9e76]
+              - cell [ref=f9e77]
+            - row [ref=f9e78]:
+              - cell "3 ripe bananas" [ref=f9e79]
+              - cell "mash" [ref=f9e80]
+              - cell "stir together" [ref=f9e81]
+            - row [ref=f9e82]:
+              - cell "1 tsp vanilla extract" [ref=f9e83]
+              - cell [ref=f9e84]
+            - row [ref=f9e85]:
+              - cell "2 cups / 250 g flour" [ref=f9e86]
+              - cell "whisk" [ref=f9e87]
+              - cell [ref=f9e88]
+              - cell [ref=f9e89]
+            - row [ref=f9e90]:
+              - cell "1 tsp baking soda" [ref=f9e91]
+            - row [ref=f9e92]:
+              - cell "1/2 tsp salt" [ref=f9e93]
+        - paragraph [ref=f9e94]: Read left to right — each column combines what's behind it.
+      - button "Something wrong with this table? Report it →" [ref=f9e96]
+    - generic [ref=f9e97]:
+      - paragraph [ref=f9e98]: Follow the build
+      - paragraph [ref=f9e99]: recipetables is being built in public — accounts, favorites, and a recipe box are next. Watch it happen.
+      - generic [ref=f9e100]:
+        - link "𝕏 Follow @juanbuis" [ref=f9e101] [cursor=pointer]:
+          - /url: https://x.com/intent/follow?screen_name=juanbuis
+        - link "juanbuis.com" [ref=f9e102] [cursor=pointer]:
+          - /url: https://juanbuis.com
+    - generic [ref=f9e103]:
+      - paragraph [ref=f9e104]:
+        - text: Table format invented by Michael Chu at
+        - link "cookingforengineers.com" [ref=f9e105] [cursor=pointer]:
+          - /url: https://www.cookingforengineers.com
+        - text: . This tool borrows the system, not the style.
+      - paragraph [ref=f9e106]: Conversions aren't stored. Creating a share link saves that one table at a public URL — nothing else.
+  - alert [ref=f9e107]

@@ -332,10 +332,13 @@ function ensureBaseCSS() {
 // Rules are gated by html.x-dim-active so they're inert until the class is added.
 ensureBaseCSS();
 
-// Optimistically apply dim before async storage read using localStorage as sync cache.
-// First install: cache is null → default to dim. Disabled users: cache is "0" → skip.
-// Gate on system dark to match preload.css — avoids dim CSS leaking onto a light-mode page.
+// Optimistically apply dim before the async storage read, using localStorage as a
+// sync cache. First install: cache is null → default to dim. Disabled users: "0" → skip.
+// X usually hasn't set data-theme this early, so the system preference is the best
+// available guess; syncDimWithTheme corrects it the moment X commits a theme. If X
+// *has* already declared light, honour that instead of guessing.
 if (localStorage.getItem("__xdm_enabled") !== "0" &&
+    document.documentElement.getAttribute("data-theme") !== "light" &&
     (!window.matchMedia || window.matchMedia("(prefers-color-scheme: dark)").matches)) {
   document.documentElement.classList.add(DIM_CLASS);
 }
@@ -713,48 +716,67 @@ function removeDim() {
   }
 }
 
-// ── System Theme Sync ─────────────────────────────────────────────
-// Follows OS preference: dark → Dim, light → Default.
-// Watches body.LightsOut (X's dark mode class) to detect theme state.
+// ── X Theme Sync ──────────────────────────────────────────────────
+// Dim must only paint over X's own dark theme. If X is in light mode, our
+// backgrounds land under X's dark text and the page becomes unreadable.
+//
+// X signals its active theme with data-theme="light|dark" on <html>. It used to
+// use a LightsOut class on <body>; that class is gone from current X, but it is
+// still honoured below so older/cached builds keep working.
 
 let _bodyObserver;
 let _suspendedForLight = false;
 
+// true = X is dark, false = X is light, null = X hasn't committed a theme yet.
+// The null case matters: at document_start we must not tear down the optimistic
+// dim (that would flash black), and we must not force it on either.
+function isXDark() {
+  const dataTheme = document.documentElement.getAttribute("data-theme");
+  if (dataTheme === "dark") return true;
+  if (dataTheme === "light") return false;
+  if (document.body && document.body.classList.contains("LightsOut")) return true;
+  // color-scheme on the root is X's other tell, set alongside data-theme.
+  const scheme = document.documentElement.style.colorScheme;
+  if (scheme === "dark") return true;
+  if (scheme === "light") return false;
+  return null;
+}
+
 function syncDimWithTheme() {
-  if (!_enabled || !document.body) return;
-  const hasLightsOut = document.body.classList.contains("LightsOut");
+  if (!_enabled) return;
+  const xDark = isXDark();
+  if (xDark === null) return; // X still initialising — leave current state alone
   const dimActive = document.documentElement.classList.contains(DIM_CLASS);
-  if (hasLightsOut) {
-    // X is in dark mode → activate dim
+  if (xDark) {
     _suspendedForLight = false;
-    // Always call applyDim — the class may be present from optimistic add
+    // Always call applyDim — the class may be present from the optimistic add
     // without proper init (scan, theme-color). applyDim is idempotent.
     applyDim();
     if (!dimActive) {
       for (const ms of [500, 1500, 3000, 5000]) setTimeout(fullRescan, ms);
     }
-  } else if (dimActive && _seenLightsOut) {
-    // X switched to light mode (LightsOut was present, now removed) → suspend dim
+  } else if (dimActive) {
+    // X is in light mode → suspend dim so we never tint a light page
     _suspendedForLight = true;
     removeDim();
   }
 }
 
-// Track whether X has ever been in dark mode this session.
-// Prevents removing dim before X has finished initializing.
-let _seenLightsOut = false;
-
 function startBodyObserver() {
-  if (_bodyObserver || !document.body) return;
-  if (document.body.classList.contains("LightsOut")) _seenLightsOut = true;
-  _bodyObserver = new MutationObserver(() => {
-    if (document.body.classList.contains("LightsOut")) _seenLightsOut = true;
-    syncDimWithTheme();
-  });
-  _bodyObserver.observe(document.body, {
+  if (_bodyObserver) return;
+  _bodyObserver = new MutationObserver(syncDimWithTheme);
+  // data-theme/style live on <html>; the legacy LightsOut class lives on <body>.
+  _bodyObserver.observe(document.documentElement, {
     attributes: true,
-    attributeFilter: ["class"],
+    attributeFilter: ["data-theme", "style"],
   });
+  if (document.body) {
+    _bodyObserver.observe(document.body, {
+      attributes: true,
+      attributeFilter: ["class"],
+    });
+  }
+  syncDimWithTheme();
 }
 
 function stopBodyObserver() {
@@ -951,8 +973,12 @@ function startObserver() {
   if (observer) return;
   observer = new MutationObserver((mutations) => {
     try {
-      // Re-apply dim if class was removed by X (unless suspended for light mode)
-      if (_enabled && !_suspendedForLight && !document.documentElement.classList.contains(DIM_CLASS)) {
+      // Re-apply dim if X stripped our class — but only when X is actually in
+      // dark mode. Re-applying unconditionally is what used to paint dim over
+      // a light-mode page and leave X's dark text unreadable on navy.
+      if (_enabled && !_suspendedForLight &&
+          !document.documentElement.classList.contains(DIM_CLASS) &&
+          isXDark() !== false) {
         applyDim();
       }
       // Scan newly added nodes for black backgrounds; re-check elements whose
@@ -1028,12 +1054,17 @@ getSettings(({ enabled, theme, customHue, birdLogo, oldFont, classicFavicon, twe
   ensureBaseCSS();
 
   if (_enabled) {
-    // Apply dim immediately if system is dark (avoids flash of black).
-    // If system is light, body observer will handle it once X sets its theme.
+    // If X has already declared its theme, obey it. Otherwise fall back to the
+    // system preference to avoid a flash of black, and let the theme observer
+    // correct us as soon as X commits one.
+    const xDark = isXDark();
     const systemDark = !window.matchMedia || window.matchMedia("(prefers-color-scheme: dark)").matches;
-    if (systemDark) {
+    if (xDark === true || (xDark === null && systemDark)) {
       applyDim();
       for (const ms of [500, 1500, 3000, 5000]) setTimeout(fullRescan, ms);
+    } else if (xDark === false) {
+      _suspendedForLight = true;
+      removeDim();
     }
   } else {
     // User has dim disabled — remove the optimistic early class
@@ -1120,8 +1151,11 @@ chrome.storage.onChanged.addListener((changes, area) => {
     if (_enabled) {
       _suspendedForLight = false;
       startBodyObserver();
-      applyDim();
+      // Switch X to its dark base first (only possible with Settings open), then
+      // let the theme check decide. On a light-mode X we stay off rather than
+      // tinting a light page — Dim is a dark theme.
       activateLightsOut();
+      syncDimWithTheme();
     } else {
       stopBodyObserver();
       removeDim();
