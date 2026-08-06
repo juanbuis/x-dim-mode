@@ -125,6 +125,10 @@
   "oldFont": {
     "message": "クラシックなフォント"
   },
+  "followingTab": {
+    "message": "「フォロー中」から開く",
+    "description": "Extras toggle: open the Following timeline by default"
+  },
   "installFeature6": {
     "message": "目にやさしい — 薄暗い背景は乱視の方のにじみを軽減します"
   }

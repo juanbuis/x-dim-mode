@@ -29,7 +29,7 @@ let _customHue = 210;
 // migration, and hue-slider drags write local-only to stay inside sync's
 // write quota). Reads prefer sync; local fills any missing keys.
 
-const SETTING_KEYS = ["enabled", "theme", "customHue", "birdLogo", "oldFont", "classicFavicon", "tweetWording"];
+const SETTING_KEYS = ["enabled", "theme", "customHue", "birdLogo", "oldFont", "classicFavicon", "tweetWording", "followingTab"];
 
 function getSettings(cb) {
   chrome.storage.sync.get(SETTING_KEYS, (syncVals) => {
@@ -691,6 +691,38 @@ function stopWordingInterval() {
   if (_wordingInterval) { clearInterval(_wordingInterval); _wordingInterval = 0; }
 }
 
+// ── Default to the Following tab ──────────────────────────────────
+// X drops you back on the algorithmic "For you" timeline every time you land on
+// /home. When enabled, nudge it over to Following once per arrival — a single
+// click, latched, so switching back to For you sticks and we never fight the user.
+
+let _followingTab = false;
+let _followingDone = false; // latched per arrival at /home
+let _lastPath = location.pathname;
+
+function tryDefaultFollowing() {
+  if (!_followingTab || _followingDone || location.pathname !== "/home") return;
+  const primary = document.querySelector('[data-testid="primaryColumn"]');
+  if (!primary) return;
+  // The tabs are localized and carry no test id, so match on position: X always
+  // renders "For you" first and "Following" second, with pinned lists after.
+  // (A second, empty tablist also exists in the column — skip it.)
+  const tablist = [...primary.querySelectorAll('[role="tablist"]')]
+    .find((tl) => tl.querySelectorAll('[role="tab"]').length >= 2);
+  if (!tablist) return;
+  const following = tablist.querySelectorAll('[role="tab"]')[1];
+  if (!following) return;
+  _followingDone = true; // latch before clicking — one nudge per arrival
+  if (following.getAttribute("aria-selected") !== "true") following.click();
+}
+
+// Re-arm the nudge whenever the SPA navigates to a different route.
+function trackRouteForFollowing() {
+  if (location.pathname === _lastPath) return;
+  _lastPath = location.pathname;
+  _followingDone = false;
+}
+
 function applyDim() {
   ensureBaseCSS();
   document.documentElement.classList.add(DIM_CLASS);
@@ -1008,6 +1040,9 @@ function startObserver() {
           }
         }
       }
+      // Re-arm + apply the Following-tab nudge on SPA route changes
+      trackRouteForFollowing();
+      tryDefaultFollowing();
       // Try to inject the Dim button on the display settings page
       tryInjectDimOption();
       // Start body observer once body is available
@@ -1033,13 +1068,14 @@ function fullRescan() {
 }
 
 // Init — single merged storage read (sync preferred, local fallback)
-getSettings(({ enabled, theme, customHue, birdLogo, oldFont, classicFavicon, tweetWording }) => {
+getSettings(({ enabled, theme, customHue, birdLogo, oldFont, classicFavicon, tweetWording, followingTab }) => {
   _theme = theme ?? "dim";
   _customHue = customHue ?? 210;
   _birdLogo = !!birdLogo;
   _oldFont = !!oldFont;
   _classicFavicon = !!classicFavicon;
   _tweetWording = !!tweetWording;
+  _followingTab = !!followingTab;
 
   if (enabled === undefined) {
     _enabled = true;
@@ -1100,6 +1136,12 @@ getSettings(({ enabled, theme, customHue, birdLogo, oldFont, classicFavicon, twe
     for (const ms of [500, 1500, 3000]) setTimeout(() => {
       if (_classicFavicon) { applyClassic(); startClassicObserver(); }
     }, ms);
+  }
+
+  // Nudge to the Following tab if enabled (timeline may render late)
+  if (_followingTab) {
+    tryDefaultFollowing();
+    for (const ms of [500, 1500, 3000]) setTimeout(tryDefaultFollowing, ms);
   }
 
   // Apply Post→Tweet wording if enabled
@@ -1193,6 +1235,11 @@ chrome.storage.onChanged.addListener((changes, area) => {
     } else {
       removeClassic();
     }
+  }
+  if (changes.followingTab) {
+    _followingTab = !!changes.followingTab.newValue;
+    // Turning it on should take effect immediately, not on the next navigation.
+    if (_followingTab) { _followingDone = false; tryDefaultFollowing(); }
   }
   if (changes.tweetWording) {
     _tweetWording = !!changes.tweetWording.newValue;

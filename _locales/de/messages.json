@@ -125,6 +125,10 @@
   "oldFont": {
     "message": "Klassische Schriftart"
   },
+  "followingTab": {
+    "message": "Mit „Folge ich“ starten",
+    "description": "Extras toggle: open the Following timeline by default"
+  },
   "installFeature6": {
     "message": "Angenehmer für die Augen — gedimmte Hintergründe reduzieren Lichthöfe bei Astigmatismus"
   }

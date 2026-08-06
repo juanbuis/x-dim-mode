@@ -125,6 +125,10 @@
   "oldFont": {
     "message": "الخط الكلاسيكي"
   },
+  "followingTab": {
+    "message": "ابدأ من «المتابَعون»",
+    "description": "Extras toggle: open the Following timeline by default"
+  },
   "installFeature6": {
     "message": "أريح للعين — الخلفيات المعتمة تقلّل التوهّج لمن لديهم اللابؤرية"
   }

@@ -125,6 +125,10 @@
   "oldFont": {
     "message": "클래식 폰트"
   },
+  "followingTab": {
+    "message": "팔로우 중 탭으로 시작",
+    "description": "Extras toggle: open the Following timeline by default"
+  },
   "installFeature6": {
     "message": "눈이 편안해요 — 어두운 배경은 난시가 있는 분들의 빛 번짐을 줄여줍니다"
   }

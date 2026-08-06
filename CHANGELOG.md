@@ -1,7 +1,8 @@
 # Changelog
 
-## 1.5.2
+## 1.6.0
 
+- **New:** "Start on Following" (Extras) — land on the Following timeline instead of For you, every time you open X
 - **Fixed:** Dim no longer paints over X's Light theme. X replaced the theme signal the extension was watching, so Dim could switch itself on over a light page — leaving dark text on a dark background. It now follows X's current theme and stays out of the way in Light mode.
 
 ## 1.5.1

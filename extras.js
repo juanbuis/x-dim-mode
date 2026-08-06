@@ -2,6 +2,7 @@ const birdToggle = document.getElementById("birdToggle");
 const tweetWordingToggle = document.getElementById("tweetWordingToggle");
 const faviconToggle = document.getElementById("faviconToggle");
 const oldFontToggle = document.getElementById("oldFontToggle");
+const followingTabToggle = document.getElementById("followingTabToggle");
 
 // i18n
 document.getElementById("backLabel").textContent = chrome.i18n.getMessage("extName");
@@ -10,6 +11,7 @@ document.getElementById("birdLabel").textContent = chrome.i18n.getMessage("birdL
 document.getElementById("tweetWordingLabel").textContent = chrome.i18n.getMessage("tweetWording");
 document.getElementById("faviconLabel").textContent = chrome.i18n.getMessage("classicFavicon");
 document.getElementById("oldFontLabel").textContent = chrome.i18n.getMessage("oldFont");
+document.getElementById("followingTabLabel").textContent = chrome.i18n.getMessage("followingTab");
 
 // Report-a-problem link (same prefilled mailto as the popup footer)
 const reportLink = document.getElementById("reportLink");
@@ -24,12 +26,13 @@ reportLink.textContent = chrome.i18n.getMessage("reportProblem");
 }
 
 // Load state (sync preferred, local fallback — mirrors helpers in popup.js)
-const EXTRA_KEYS = ["birdLogo", "tweetWording", "classicFavicon", "oldFont"];
+const EXTRA_KEYS = ["birdLogo", "tweetWording", "classicFavicon", "oldFont", "followingTab"];
 const TOGGLES = {
   birdLogo: birdToggle,
   tweetWording: tweetWordingToggle,
   classicFavicon: faviconToggle,
   oldFont: oldFontToggle,
+  followingTab: followingTabToggle,
 };
 
 chrome.storage.sync.get(EXTRA_KEYS, (syncVals) => {

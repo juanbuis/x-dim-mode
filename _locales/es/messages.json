@@ -125,6 +125,10 @@
   "oldFont": {
     "message": "Fuente clásica"
   },
+  "followingTab": {
+    "message": "Empezar en Siguiendo",
+    "description": "Extras toggle: open the Following timeline by default"
+  },
   "installFeature6": {
     "message": "Más suave para la vista — los fondos atenuados reducen el halo para personas con astigmatismo"
   }

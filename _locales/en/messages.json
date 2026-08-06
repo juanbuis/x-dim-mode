@@ -113,8 +113,12 @@
   "oldFont": {
     "message": "Classic font"
   },
+  "followingTab": {
+    "message": "Start on Following",
+    "description": "Extras toggle: open the Following timeline by default"
+  },
   "installFeature6": {
-    "message": "Easier on the eyes \u2014 dim backgrounds reduce halation for users with astigmatism"
+    "message": "Easier on the eyes — dim backgrounds reduce halation for users with astigmatism"
   },
   "donate": {
     "message": "Support X Dim Mode"

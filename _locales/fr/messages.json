@@ -125,6 +125,10 @@
   "oldFont": {
     "message": "Police classique"
   },
+  "followingTab": {
+    "message": "Démarrer sur Abonnements",
+    "description": "Extras toggle: open the Following timeline by default"
+  },
   "installFeature6": {
     "message": "Plus doux pour les yeux — les fonds atténués réduisent le halo pour les personnes astigmates"
   }

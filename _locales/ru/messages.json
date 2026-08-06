@@ -125,6 +125,10 @@
   "oldFont": {
     "message": "Классический шрифт"
   },
+  "followingTab": {
+    "message": "Открывать «Отслеживаемые»",
+    "description": "Extras toggle: open the Following timeline by default"
+  },
   "installFeature6": {
     "message": "Комфортнее для глаз — приглушённый фон уменьшает ореолы при астигматизме"
   }

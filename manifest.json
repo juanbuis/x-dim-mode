@@ -1,15 +1,25 @@
 {
   "manifest_version": 3,
   "name": "__MSG_extName__",
-  "version": "1.5.2",
+  "version": "1.6.0",
   "description": "__MSG_extDescription__",
   "default_locale": "en",
-  "permissions": ["storage"],
+  "permissions": [
+    "storage"
+  ],
   "content_scripts": [
     {
-      "matches": ["https://x.com/*", "https://twitter.com/*", "https://pro.x.com/*"],
-      "css": ["preload.css"],
-      "js": ["content.js"],
+      "matches": [
+        "https://x.com/*",
+        "https://twitter.com/*",
+        "https://pro.x.com/*"
+      ],
+      "css": [
+        "preload.css"
+      ],
+      "js": [
+        "content.js"
+      ],
       "run_at": "document_start"
     }
   ],
