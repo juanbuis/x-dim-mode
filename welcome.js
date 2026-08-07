@@ -53,15 +53,20 @@ for (const text of items) {
 // Action buttons
 const actions = document.getElementById("actions");
 
-// Single action — the email box below is this page's real ask
-
+// Secondary action. This used to be a primary button directly under the
+// subtitle — it won the click, sent people to x.com, and they never came back
+// to the email box further down. It now sits below the ask, styled quietly.
 const tryBtn = document.createElement("a");
 tryBtn.href = "https://x.com";
 tryBtn.target = "_blank";
-tryBtn.className = "btn-primary";
+tryBtn.className = "btn-secondary";
 tryBtn.textContent = msg("tryNow");
 actions.appendChild(tryBtn);
 
+
+// Tag which surface the signup came from, so MailerLite can tell the install
+// welcome apart from the post-update screen (all touchpoints share one form).
+document.getElementById("emailSource").value = isUpdate ? "extension-update" : "extension-welcome";
 
 // Email section copy
 const emailLabel = document.getElementById("emailLabel");

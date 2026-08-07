@@ -203,6 +203,7 @@ document.getElementById("emailPromptForm").addEventListener("submit", async (e) 
 
   const body = new FormData();
   body.append("fields[email]", input.value);
+  body.append("fields[source]", "extension-popup");
   body.append("ml-submit", "1");
   body.append("anticsrf", "true");
 

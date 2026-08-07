@@ -122,7 +122,8 @@
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
-      margin-bottom: 32px;
+      margin-top: 24px;
+      margin-bottom: 8px;
     }
     .btn-primary {
       display: inline-flex;
@@ -167,7 +168,7 @@
       border: 1px solid rgba(29, 155, 240, 0.30);
       border-radius: 12px;
       padding: 24px;
-      margin-top: 28px;
+      margin-top: 8px;
       text-align: center;
     }
     .email-label {
@@ -262,10 +263,10 @@
     <h2 class="heading" id="heading"></h2>
     <p class="subtitle" id="subtitle"></p>
 
-    <div class="actions" id="actions"></div>
-
-    <ul class="features" id="features"></ul>
-
+    <!-- The email ask sits directly under the subtitle: it used to live below
+         six bullets and a "Try it now" button that navigates to x.com, which
+         put it ~160px below the fold on a 1280x800 laptop. Almost nobody
+         scrolled back to it. -->
     <div class="email-section">
       <p class="email-label" id="emailLabel"></p>
       <form class="email-row" id="emailForm"
@@ -273,12 +274,17 @@
             method="POST">
         <input type="hidden" name="ml-submit" value="1">
         <input type="hidden" name="anticsrf" value="true">
+        <input type="hidden" name="fields[source]" id="emailSource" value="">
         <input class="email-input" type="email" name="fields[email]" placeholder="you@email.com" required id="emailInput">
         <button class="email-btn" type="submit" id="subscribeBtn"></button>
       </form>
       <p class="email-success" id="emailSuccess"></p>
       <p class="email-error" id="emailError"></p>
     </div>
+
+    <div class="actions" id="actions"></div>
+
+    <ul class="features" id="features"></ul>
 
   </div>
   <p class="footer">A project by <a href="https://juanbuis.com" target="_blank">Juan Buis</a> — <a href="https://x.com/juanbuis" target="_blank">follow me on X for updates</a> :)</p>
