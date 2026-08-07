@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.6.1
+
+- **Improved:** the welcome and update screens show the newsletter signup where you can actually see it
+
 ## 1.6.0
 
 - **New:** "Start on Following" (Extras) — land on the Following timeline instead of For you, every time you open X
