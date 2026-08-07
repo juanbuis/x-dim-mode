@@ -622,7 +622,11 @@ const WORDING_REVERSE = [
 ];
 
 // Visible text lives in these UI containers; all are chrome, never user content.
+// SideNav_NewTweet_Button is the big compose button in the left sidebar — the
+// most prominent "Post" on the whole site, and the one people mean when they
+// ask for this.
 const WORDING_TEXT_SELECTOR = [
+  '[data-testid="SideNav_NewTweet_Button"]',
   '[data-testid="tweetButton"]',
   '[data-testid="tweetButtonInline"]',
   '[role="tab"]',
@@ -633,6 +637,7 @@ const WORDING_TEXT_SELECTOR = [
 const WORDING_ARIA_SELECTOR = [
   '[data-testid="retweet"]',
   '[data-testid="unretweet"]',
+  '[data-testid="SideNav_NewTweet_Button"]',
   '[data-testid="tweetButton"]',
   '[data-testid="tweetButtonInline"]',
 ].join(",");

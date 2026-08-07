@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.6.2
+
+- **Fixed:** "Tweet, not Post" now also renames the big compose button in the sidebar — the most visible "Post" on the page, which it used to miss
+
 ## 1.6.1
 
 - **Improved:** the welcome and update screens show the newsletter signup where you can actually see it
