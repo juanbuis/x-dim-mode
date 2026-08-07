@@ -45,22 +45,22 @@
     "message": "Schalte es über das Popup-Symbol oder unter Einstellungen → Anzeige um"
   },
   "updateFeature1": {
-    "message": "Antwort- und Verfassen-Fenster sind wieder abgedunkelt — X hatte sie auf Schwarz zurückgesetzt"
+    "message": "Neu: Mit „Folge ich“ starten — X öffnet die Folge-ich-Timeline statt „Für dich“"
   },
   "updateFeature2": {
-    "message": "Creator Studio zeigt keine grauen Kästchen mehr hinter den Symbolen"
+    "message": "Behoben: Dim überlagert nicht mehr das helle Design von X"
   },
   "updateFeature3": {
-    "message": "Premium-Werbekarten fügen sich sauber ein, ohne zweifarbigen Rand"
+    "message": "Behoben: das Fenster „Über Chat teilen“ wird korrekt abgedunkelt"
   },
   "updateFeature4": {
-    "message": "Dein Theme und deine Einstellungen werden jetzt geräteübergreifend synchronisiert"
+    "message": "Behoben: Profilbilder blitzen beim Laden nicht mehr grau auf"
   },
   "updateFeature5": {
-    "message": "Etwas kaputt entdeckt? Melde es direkt im Popup"
+    "message": "Behoben: der Hintergrund hinter Dialogen ist wieder das klassische Blaugrau"
   },
   "updateFeature6": {
-    "message": "Unter der Haube: intelligenteres Theming, das mit Designänderungen von X Schritt hält"
+    "message": "Alle Extras – Vogel-Logo, klassische Schrift, „Tweet“ statt „Post“ – findest du unter Extras"
   },
   "tryNow": {
     "message": "Jetzt ausprobieren"

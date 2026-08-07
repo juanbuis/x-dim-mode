@@ -45,22 +45,22 @@
     "message": "Toggle it from the popup icon or from Settings → Display"
   },
   "updateFeature1": {
-    "message": "Reply and compose windows are dimmed again — X had reset them to black"
+    "message": "New: Start on Following — X opens on the Following timeline instead of For you"
   },
   "updateFeature2": {
-    "message": "Creator Studio no longer shows grey boxes behind its icons"
+    "message": "Fixed: Dim no longer takes over when X is set to its Light theme"
   },
   "updateFeature3": {
-    "message": "Premium promo cards blend in cleanly, with no two-tone edge"
+    "message": "Fixed: the “Share via Chat” window is properly dimmed"
   },
   "updateFeature4": {
-    "message": "Your theme and settings now sync across devices"
+    "message": "Fixed: profile pictures no longer flash grey while they load"
   },
   "updateFeature5": {
-    "message": "Spotted something broken? Report it right from the popup"
+    "message": "Fixed: the backdrop behind pop-ups is the classic blue-grey again"
   },
   "updateFeature6": {
-    "message": "Under the hood: smarter theming that keeps up when X changes its design"
+    "message": "All the extras — bird logo, classic font, “Tweet” not “Post” — live under Extras in the popup"
   },
   "tryNow": {
     "message": "Try it now"

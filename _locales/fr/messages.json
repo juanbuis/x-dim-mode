@@ -45,22 +45,22 @@
     "message": "Activez depuis l'icône du popup ou dans Paramètres → Affichage"
   },
   "updateFeature1": {
-    "message": "Les fenêtres de réponse et de rédaction sont de nouveau assombries — X les avait remises en noir"
+    "message": "Nouveau : Démarrer sur Abonnements — X s’ouvre sur le fil Abonnements au lieu de Pour vous"
   },
   "updateFeature2": {
-    "message": "Creator Studio n'affiche plus de carrés gris derrière ses icônes"
+    "message": "Corrigé : Dim ne s’active plus quand X est en thème Clair"
   },
   "updateFeature3": {
-    "message": "Les cartes promo Premium s'intègrent proprement, sans bord bicolore"
+    "message": "Corrigé : la fenêtre « Partager via Chat » est correctement assombrie"
   },
   "updateFeature4": {
-    "message": "Votre thème et vos réglages se synchronisent désormais entre vos appareils"
+    "message": "Corrigé : les photos de profil ne clignotent plus en gris pendant le chargement"
   },
   "updateFeature5": {
-    "message": "Un problème d'affichage ? Signalez-le directement depuis le popup"
+    "message": "Corrigé : l’arrière-plan des fenêtres est de nouveau le gris-bleu classique"
   },
   "updateFeature6": {
-    "message": "Sous le capot : un thème plus intelligent qui suit les changements de design de X"
+    "message": "Tous les extras — logo oiseau, police classique, « Tweet » au lieu de « Post » — sont dans Extras"
   },
   "tryNow": {
     "message": "Essayer maintenant"

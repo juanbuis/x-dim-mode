@@ -45,22 +45,22 @@
     "message": "Ative pelo ícone do popup ou em Configurações → Tela"
   },
   "updateFeature1": {
-    "message": "As janelas de responder e escrever voltaram a ficar escurecidas — o X as tinha redefinido para preto"
+    "message": "Novo: Começar em Seguindo — o X abre na linha do tempo Seguindo em vez de Para você"
   },
   "updateFeature2": {
-    "message": "O Creator Studio não mostra mais caixas cinzas atrás dos ícones"
+    "message": "Corrigido: o Dim não assume mais quando o X está no tema Claro"
   },
   "updateFeature3": {
-    "message": "Os cards promocionais do Premium se integram bem, sem borda de dois tons"
+    "message": "Corrigido: a janela “Compartilhar via Chat” fica escurecida corretamente"
   },
   "updateFeature4": {
-    "message": "Seu tema e configurações agora sincronizam entre dispositivos"
+    "message": "Corrigido: as fotos de perfil não piscam mais em cinza ao carregar"
   },
   "updateFeature5": {
-    "message": "Viu algo quebrado? Relate direto do popup"
+    "message": "Corrigido: o fundo atrás das janelas voltou a ser o cinza-azulado clássico"
   },
   "updateFeature6": {
-    "message": "Nos bastidores: tematização mais inteligente que acompanha as mudanças de design do X"
+    "message": "Todos os extras — logo do pássaro, fonte clássica, “Tweet” em vez de “Post” — estão em Extras"
   },
   "tryNow": {
     "message": "Experimente agora"

@@ -42,7 +42,7 @@ chrome.runtime.onInstalled.addListener(({ reason, previousVersion }) => {
     // with notes worth surfacing.
     const major = v.split(".")[0];
     const isMajorBump = previousVersion && major !== previousVersion.split(".")[0];
-    const SHOW_UPDATE_PAGE_FOR = ["1.3.0", "1.5.0"];
+    const SHOW_UPDATE_PAGE_FOR = ["1.3.0", "1.5.0", "1.6.0"];
 
     if (isMajorBump || SHOW_UPDATE_PAGE_FOR.includes(v)) {
       const params = new URLSearchParams({ v, reason });

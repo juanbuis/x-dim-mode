@@ -45,22 +45,22 @@
     "message": "Actívalo desde el icono del popup o en Configuración → Pantalla"
   },
   "updateFeature1": {
-    "message": "Las ventanas de responder y redactar vuelven a estar atenuadas — X las había puesto en negro"
+    "message": "Nuevo: Empezar en Siguiendo — X se abre en la cronología de Siguiendo en vez de Para ti"
   },
   "updateFeature2": {
-    "message": "Creator Studio ya no muestra recuadros grises detrás de sus iconos"
+    "message": "Corregido: Dim ya no se activa cuando X usa el tema Claro"
   },
   "updateFeature3": {
-    "message": "Las tarjetas promocionales de Premium se integran bien, sin bordes de dos tonos"
+    "message": "Corregido: la ventana «Compartir por chat» se ve atenuada correctamente"
   },
   "updateFeature4": {
-    "message": "Tu tema y ajustes ahora se sincronizan entre dispositivos"
+    "message": "Corregido: las fotos de perfil ya no parpadean en gris mientras cargan"
   },
   "updateFeature5": {
-    "message": "¿Ves algo roto? Infórmalo directamente desde el popup"
+    "message": "Corregido: el fondo detrás de las ventanas vuelve a ser el gris azulado clásico"
   },
   "updateFeature6": {
-    "message": "Bajo el capó: un tematizado más inteligente que se adapta cuando X cambia su diseño"
+    "message": "Todos los extras —logo del pájaro, fuente clásica, «Tweet» en vez de «Post»— están en Extras"
   },
   "tryNow": {
     "message": "Pruébalo ahora"
