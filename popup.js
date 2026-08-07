@@ -152,11 +152,16 @@ hueSlider.addEventListener("change", () => {
 
 // ── Email CTA (permanent button → expandable capture form) ──────────
 // The list is the product's most valuable owned channel, so it gets the
-// popup's permanent slot (donate is gone — it never converted). Collapsed;
-// auto-expands once after 7 days, and again 60 days after a dismissal.
-// Gone for good once subscribed.
+// popup's permanent slot (donate is gone — it never converted). The button is
+// visible to every non-subscriber from day one; it auto-expands once after two
+// days, and again 60 days after a dismissal. Gone for good once subscribed.
+//
+// Two days rather than seven: the welcome screen already asks on install, so
+// day 0 is covered and expanding immediately would be a second ask minutes
+// after the first. Waiting a week, though, missed most people entirely —
+// churn on a daily-use extension happens well before day seven.
 
-const SEVEN_DAYS = 7 * 24 * 60 * 60 * 1000;
+const TWO_DAYS = 2 * 24 * 60 * 60 * 1000;
 const FOURTEEN_DAYS = 14 * 24 * 60 * 60 * 1000;
 const SIXTY_DAYS = 60 * 24 * 60 * 60 * 1000;
 
@@ -244,7 +249,7 @@ function showEngagePrompt() {
 
 // ── CTA & prompt logic ───────────────────────────────────────────────
 // Email CTA: always visible (collapsed) until subscribed; auto-expands at
-// 7 days, re-expands 60 days after a dismissal. Engagement prompt: at 14
+// 2 days, re-expands 60 days after a dismissal. Engagement prompt: at 14
 // days once the email ask is settled — never alongside an expanded panel.
 
 chrome.storage.sync.get(["emailSubscribed"], (syncVals) => {
@@ -261,7 +266,7 @@ chrome.storage.sync.get(["emailSubscribed"], (syncVals) => {
       if (!subscribed) {
         emailCtaBtn.style.display = "block";
         const snoozed = dismissedAt !== undefined && now - dismissedAt < SIXTY_DAYS;
-        if (installedFor >= SEVEN_DAYS && !snoozed) {
+        if (installedFor >= TWO_DAYS && !snoozed) {
           _autoExpanded = true;
           expandEmailPanel();
         }
