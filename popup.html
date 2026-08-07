@@ -20,38 +20,6 @@
       align-items: center;
       gap: 8px;
     }
-    .extras-btn {
-      margin-left: auto;
-      background: none;
-      border: none;
-      color: #536471;
-      cursor: pointer;
-      padding: 2px;
-      line-height: 1;
-      transition: color 0.2s;
-    }
-    .extras-btn:hover { color: #8B98A5; }
-    .extras-btn svg {
-      width: 14px;
-      height: 14px;
-      fill: currentColor;
-      transform-origin: center;
-    }
-    /* One gentle twinkle the first time the popup is ever opened — a subtle
-       hint that there's fun stuff behind the sparkle. JS adds .sparkle only
-       once (see popup.js), so it never repeats. Animates transform/filter
-       only, so the hover color still applies. */
-    .extras-btn.sparkle svg {
-      animation: xdm-twinkle 3.2s ease-in-out 0.6s 1;
-    }
-    @keyframes xdm-twinkle {
-      0%, 100% { transform: scale(1) rotate(0deg); filter: none; }
-      45% { transform: scale(1.1) rotate(6deg);  filter: drop-shadow(0 0 2px rgba(29, 155, 240, 0.45)) brightness(1.35); }
-      70% { transform: scale(0.99) rotate(-2deg); filter: brightness(1.08); }
-    }
-    @media (prefers-reduced-motion: reduce) {
-      .extras-btn.sparkle svg { animation: none; }
-    }
     .dot {
       width: 8px;
       height: 8px;
@@ -354,6 +322,51 @@
       border-color: #536471;
     }
 
+    /* ── Extras row ── */
+    .extras-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      width: 100%;
+      margin-top: 10px;
+      padding: 9px 10px;
+      border-radius: 10px;
+      border: 1px solid #2F3336;
+      background: rgba(255, 255, 255, 0.03);
+      color: #E7E9EA;
+      text-decoration: none;
+      font-size: 13px;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .extras-row:hover {
+      background: rgba(255, 255, 255, 0.07);
+      border-color: #536471;
+    }
+    .extras-row-icon {
+      width: 15px;
+      height: 15px;
+      fill: #1D9BF0;
+      flex-shrink: 0;
+    }
+    .extras-row-label { flex: 1; }
+    .extras-row-chevron {
+      width: 15px;
+      height: 15px;
+      color: #536471;
+      flex-shrink: 0;
+    }
+    .extras-new {
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+      color: #fff;
+      background: #1D9BF0;
+      border-radius: 999px;
+      padding: 2px 7px;
+      flex-shrink: 0;
+    }
+
     /* ── Footer ── */
     .footer {
       display: flex;
@@ -378,9 +391,6 @@
   <h1>
     <span class="dot" id="dot"></span>
     <span id="title"></span>
-    <a class="extras-btn" href="extras.html" title="Extras">
-      <svg viewBox="0 0 24 24"><path d="M12 1l2.4 7.2L22 12l-7.6 3.8L12 23l-2.4-7.2L2 12l7.6-3.8z"/></svg>
-    </a>
   </h1>
   <div class="toggle-row">
     <span class="label" id="enableLabel"></span>
@@ -401,6 +411,17 @@
   <div class="hue-wrap" id="hueWrap">
     <input type="range" class="hue-slider" id="hueSlider" min="0" max="360" value="210">
   </div>
+  <!-- Extras entry point. Was an unlabelled sparkle in the header that only
+       hinted at itself with a one-time twinkle, so almost nobody found the
+       five features behind it. Now a labelled row, with a dot when an extra
+       has shipped that this user hasn't seen (see EXTRAS_REVISION). -->
+  <a class="extras-row" id="extrasRow" href="extras.html">
+    <svg class="extras-row-icon" viewBox="0 0 24 24"><path d="M12 1l2.4 7.2L22 12l-7.6 3.8L12 23l-2.4-7.2L2 12l7.6-3.8z"/></svg>
+    <span class="extras-row-label" id="extrasRowLabel"></span>
+    <span class="extras-new" id="extrasNew" style="display:none;"></span>
+    <svg class="extras-row-chevron" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </a>
+
   <!-- Engagement prompt (shown once after 14 days) -->
   <div class="engage" id="engagePrompt" style="display: none;">
     <div class="engage-header">

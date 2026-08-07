@@ -131,5 +131,9 @@
   },
   "installFeature6": {
     "message": "Комфортнее для глаз — приглушённый фон уменьшает ореолы при астигматизме"
+  },
+  "newBadge": {
+    "message": "Новое",
+    "description": "Badge on the Extras row when a new extra has shipped"
   }
 }

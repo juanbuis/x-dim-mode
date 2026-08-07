@@ -131,5 +131,9 @@
   },
   "installFeature6": {
     "message": "目にやさしい — 薄暗い背景は乱視の方のにじみを軽減します"
+  },
+  "newBadge": {
+    "message": "新着",
+    "description": "Badge on the Extras row when a new extra has shipped"
   }
 }

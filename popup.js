@@ -67,18 +67,29 @@ const reportLink = document.getElementById("reportLink");
 reportLink.textContent = chrome.i18n.getMessage("reportProblem");
 reportLink.href = REPORT_URL;
 
-// ── Extras sparkle (one gentle twinkle, first popup open ever) ──────
-// Persisted so it truly happens once per user, not once per popup open.
-const extrasBtn = document.querySelector(".extras-btn");
-chrome.storage.sync.get(["sparkleShown"], (syncVals) => {
-  chrome.storage.local.get(["sparkleShown"], (localVals) => {
-    const shown = syncVals.sparkleShown !== undefined ? syncVals.sparkleShown : localVals.sparkleShown;
-    if (!shown && extrasBtn) {
-      extrasBtn.classList.add("sparkle");
-      chrome.storage.local.set({ sparkleShown: true });
-      chrome.storage.sync.set({ sparkleShown: true }, () => void chrome.runtime.lastError);
-    }
+// ── Extras row ──────────────────────────────────────────────────────
+// Bump EXTRAS_REVISION whenever an extra is added. Anyone whose stored
+// revision is behind gets a "New" badge on the row until they open Extras,
+// which is the only signal they'd otherwise have that something was added.
+const EXTRAS_REVISION = 2; // 1 = bird/font/favicon/wording, 2 = Start on Following
+
+document.getElementById("extrasRowLabel").textContent = chrome.i18n.getMessage("extras");
+const extrasNew = document.getElementById("extrasNew");
+extrasNew.textContent = chrome.i18n.getMessage("newBadge");
+
+chrome.storage.sync.get(["extrasSeenRevision"], (syncVals) => {
+  chrome.storage.local.get(["extrasSeenRevision"], (localVals) => {
+    const seen = syncVals.extrasSeenRevision !== undefined
+      ? syncVals.extrasSeenRevision
+      : localVals.extrasSeenRevision;
+    if ((seen ?? 0) < EXTRAS_REVISION) extrasNew.style.display = "inline-block";
   });
+});
+
+document.getElementById("extrasRow").addEventListener("click", () => {
+  const v = { extrasSeenRevision: EXTRAS_REVISION };
+  chrome.storage.local.set(v);
+  chrome.storage.sync.set(v, () => void chrome.runtime.lastError);
 });
 
 // ── Theme selection ────────────────────────────────────────────────

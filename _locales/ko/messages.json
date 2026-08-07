@@ -131,5 +131,9 @@
   },
   "installFeature6": {
     "message": "눈이 편안해요 — 어두운 배경은 난시가 있는 분들의 빛 번짐을 줄여줍니다"
+  },
+  "newBadge": {
+    "message": "신규",
+    "description": "Badge on the Extras row when a new extra has shipped"
   }
 }

@@ -131,5 +131,9 @@
   },
   "installFeature6": {
     "message": "Más suave para la vista — los fondos atenuados reducen el halo para personas con astigmatismo"
+  },
+  "newBadge": {
+    "message": "Nuevo",
+    "description": "Badge on the Extras row when a new extra has shipped"
   }
 }
