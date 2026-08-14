@@ -66,7 +66,7 @@
     "message": "More of old Twitter"
   },
   "emailNoSpam": {
-    "message": "A few emails a year."
+    "message": "A few emails a year."
   },
   "subscribe": {
     "message": "Subscribe"
@@ -134,7 +134,7 @@
     "description": "Extras section heading for timeline/layout toggles"
   },
   "emailSubInstall": {
-    "message": "New Extras and fixes when X changes things. A few emails a year.",
+    "message": "New Extras and fixes when X changes things. A few emails a year.",
     "description": "Install-screen sub-line under the email heading"
   },
   "emailHeadingUpdate": {
@@ -142,7 +142,7 @@
     "description": "Update-screen email heading"
   },
   "emailSubUpdate": {
-    "message": "You'll hear about new Extras and fixes. A few emails a year.",
+    "message": "You'll hear about new Extras and fixes. A few emails a year.",
     "description": "Update-screen sub-line under the email heading"
   },
   "emailInvalid": {
