@@ -69,13 +69,12 @@ X changes its layout often, and when it does something here occasionally breaks.
 
 ## Category & fields
 
-- **Category:** Accessibility (not Themes — this is an extension, and the
-  halation/astigmatism case is the honest fit)
-- **Language:** English (with the 10 locales supplied by the manifest)
-- **Single purpose:** "Restores the Dim dark blue theme and related legacy
-  Twitter UI options to X."
-- **Permission justification — `storage`:** "Stores the user's chosen theme,
-  custom color, and Extras toggles so they persist between sessions and sync
-  across the user's own devices. No data leaves the browser."
-- **Remote code:** No
-- **Data usage:** Nothing collected. Tick none of the categories.
+- **Category:** leave whatever is already set. Changing an established listing's
+  category resets discovery signals for no clear gain — an earlier draft of this
+  file recommended switching to Accessibility, which was not worth the risk.
+- **Language:** English (the 10 locales come from the manifest)
+- **Localized descriptions:** see `cws-descriptions/`, one paste-ready file per
+  locale, selected from the language dropdown on the Store listing tab
+- **Privacy practices tab:** every field is written out paste-ready in
+  `cws-privacy-practices.txt` — including the host-permission justification,
+  which is easy to miss and blocks submission.

@@ -23,12 +23,17 @@ so this half cannot be automated from here. Everything to paste is ready:
 - [ ] Leave the short description alone — it comes from the manifest
       (`_locales/*/messages.json` → `extDescription`), already rewritten in all
       10 locales, and typing it into the dashboard would override the translations
-- [ ] Data usage: tick **"Personally identifiable information"** and give the
-      privacy policy URL `https://xdim.app/privacy`. Corrected — an earlier
-      version of this list said "tick nothing", which was wrong: the optional
-      newsletter field does send an email address to MailerLite, and the
-      privacy policy already says so. Nothing else on that list applies.
-- [ ] Permission justification for `storage` is in `store/chrome-listing.md`
+- [ ] Work the **Privacy practices** tab from `store/cws-privacy-practices.txt`
+      — every field paste-ready, including the **host-permission justification**
+      (x.com / twitter.com / pro.x.com), which is easy to miss and blocks
+      submission on its own
+- [ ] Data usage there: tick **only** "Personally identifiable information",
+      policy URL `https://xdim.app/privacy`. Corrected — an earlier version of
+      this list said "tick nothing", which was wrong.
+- [ ] Paste the 10 localized descriptions from `store/cws-descriptions/`
+      (language dropdown at the top of the Store listing tab)
+- [ ] Optional: screenshots predate this release — the classic image grid and
+      the grouped Extras menu are the two worth showing
 
 ## Firefox follow-up — data disclosure
 

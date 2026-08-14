@@ -1,0 +1,90 @@
+CHROME WEB STORE — "Privacy practices" tab, paste-ready
+========================================================
+This is the tab that blocks submission when something is missing. Each block
+below is the exact text for one field. Copy between the dashed lines.
+
+
+1. SINGLE PURPOSE
+------------------------------------------------------------------------------
+X Dim Mode restores the "Dim" dark blue theme that X (formerly Twitter) removed
+from its display settings, along with related legacy Twitter interface options.
+It injects CSS into x.com, twitter.com and pro.x.com to recolour the interface,
+and adds Dim back as a selectable option inside X's own display settings. Every
+feature serves that single purpose: changing how X looks.
+------------------------------------------------------------------------------
+
+
+2. PERMISSION JUSTIFICATION — "storage"
+------------------------------------------------------------------------------
+Stores the user's chosen theme, their custom colour, and which optional Extras
+they have switched on, so those settings persist between browser sessions and
+sync across the user's own devices through their browser account. This is the
+only permission the extension requests, and the stored values never leave the
+browser.
+------------------------------------------------------------------------------
+
+
+3. HOST PERMISSION JUSTIFICATION
+   (for the content-script matches x.com, twitter.com, pro.x.com — this field is
+   easy to overlook and submission will not go through without it)
+------------------------------------------------------------------------------
+The extension's entire purpose is to restyle X. It needs to run on x.com,
+twitter.com and pro.x.com in order to inject the CSS that recolours the
+interface and to add the Dim option back into X's own display settings. It
+requests no other hosts, reads no page content, and sends nothing from these
+pages anywhere.
+------------------------------------------------------------------------------
+
+
+4. ARE YOU USING REMOTE CODE?
+------------------------------------------------------------------------------
+No, I am not using remote code.
+------------------------------------------------------------------------------
+(Everything executable ships inside the package. No CDN scripts, no eval.)
+
+
+5. DATA USAGE
+------------------------------------------------------------------------------
+Tick ONLY: Personally identifiable information
+
+Do NOT tick: health, financial, authentication, personal communications,
+location, web history, user activity, website content.
+
+Why PII: the welcome/update page and the popup contain an optional newsletter
+field. If — and only if — a user types an email address and presses subscribe,
+that address is sent to MailerLite. Nothing else is ever transmitted. The
+privacy policy at https://xdim.app/privacy already says exactly this.
+------------------------------------------------------------------------------
+
+
+6. CERTIFICATIONS — tick all three
+------------------------------------------------------------------------------
+[x] I do not sell or transfer user data to third parties, outside of the
+    approved use cases
+[x] I do not use or transfer user data for purposes that are unrelated to my
+    item's single purpose
+[x] I do not use or transfer user data to determine creditworthiness or for
+    lending purposes
+
+All three are true. MailerLite is a service provider delivering a newsletter the
+user explicitly opted into; the address is used only to send updates about this
+extension; nothing touches creditworthiness or lending.
+------------------------------------------------------------------------------
+
+
+7. PRIVACY POLICY URL
+------------------------------------------------------------------------------
+https://xdim.app/privacy
+------------------------------------------------------------------------------
+
+
+ALSO WORTH CHECKING ON THE STORE LISTING TAB
+============================================
+- Screenshots: existing ones are fine, but they predate this release. The
+  classic image grid and the grouped Extras menu are the two things worth
+  showing and neither is in the current set.
+- Support / website URL: should be https://xdim.app
+- Short description: DO NOT type anything here. It comes from
+  _locales/*/messages.json and typing in the dashboard overrides all 10
+  translations.
+- Category: leave as-is.
