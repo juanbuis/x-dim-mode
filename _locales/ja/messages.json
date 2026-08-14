@@ -69,16 +69,16 @@
     "message": "Xでシェア"
   },
   "emailHeading": {
-    "message": "新しいものをいち早く"
+    "message": "もっと昔のTwitterを"
   },
   "emailNoSpam": {
-    "message": "スパムは一切送りません。"
+    "message": "メールは年に数回だけ。"
   },
   "subscribe": {
     "message": "登録する"
   },
   "emailSuccess": {
-    "message": "登録完了！最新情報をお届けします。"
+    "message": "登録できました。お伝えする価値があるときにご連絡します。"
   },
   "emailError": {
     "message": "エラーが発生しました。もう一度お試しください。"
@@ -90,7 +90,7 @@
     "message": "共有"
   },
   "emailPromptHeading": {
-    "message": "新機能や実験的なプロジェクトを、いち早くお届けします。"
+    "message": "Xが変わるたびに、新しいExtrasと修正を。"
   },
   "engageQuestion": {
     "message": "X Dim Modeはいかがですか？"
@@ -111,7 +111,7 @@
     "message": "問題を報告"
   },
   "emailCtaButton": {
-    "message": "新しいものをいち早く"
+    "message": "もっと昔のTwitterを"
   },
   "birdLogo": {
     "message": "クラシックな鳥のロゴ"
@@ -147,5 +147,17 @@
   "groupTimeline": {
     "message": "タイムライン",
     "description": "Extras section heading for timeline/layout toggles"
+  },
+  "emailSubInstall": {
+    "message": "Xが変わるたびに、新しいExtrasと修正を。メールは年に数回だけ。",
+    "description": "Install-screen sub-line under the email heading"
+  },
+  "emailHeadingUpdate": {
+    "message": "Xは変わる。こちらも追いつく。",
+    "description": "Update-screen email heading"
+  },
+  "emailSubUpdate": {
+    "message": "壊れたときと、直したときにお知らせします。それ以外はめったに送りません。",
+    "description": "Update-screen sub-line under the email heading"
   }
 }

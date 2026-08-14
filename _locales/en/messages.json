@@ -69,16 +69,16 @@
     "message": "Share on X"
   },
   "emailHeading": {
-    "message": "Get the good stuff first"
+    "message": "More of old Twitter"
   },
   "emailNoSpam": {
-    "message": "No spam, ever."
+    "message": "A few emails a year."
   },
   "subscribe": {
     "message": "Subscribe"
   },
   "emailSuccess": {
-    "message": "You're in! I'll keep you posted."
+    "message": "You're in. We'll write when there's something worth sending."
   },
   "emailError": {
     "message": "Something went wrong. Please try again."
@@ -90,7 +90,7 @@
     "message": "Share"
   },
   "emailPromptHeading": {
-    "message": "New features and experiments, straight to your inbox."
+    "message": "New Extras and fixes when X changes things."
   },
   "engageQuestion": {
     "message": "Enjoying X Dim Mode?"
@@ -130,7 +130,7 @@
     "message": "Report a problem"
   },
   "emailCtaButton": {
-    "message": "Get the good stuff first"
+    "message": "More of old Twitter"
   },
   "newBadge": {
     "message": "New",
@@ -147,5 +147,17 @@
   "groupTimeline": {
     "message": "Timeline",
     "description": "Extras section heading for timeline/layout toggles"
+  },
+  "emailSubInstall": {
+    "message": "New Extras and fixes when X changes things. A few emails a year.",
+    "description": "Install-screen sub-line under the email heading"
+  },
+  "emailHeadingUpdate": {
+    "message": "X changes things. We keep up.",
+    "description": "Update-screen email heading"
+  },
+  "emailSubUpdate": {
+    "message": "We'll email when something breaks and when it's fixed. Rarely otherwise.",
+    "description": "Update-screen sub-line under the email heading"
   }
 }

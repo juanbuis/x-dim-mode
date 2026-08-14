@@ -71,7 +71,12 @@ document.getElementById("emailSource").value = isUpdate ? "extension-update" : "
 // Email section copy
 const emailLabel = document.getElementById("emailLabel");
 
-emailLabel.innerHTML = `<strong>${msg("emailHeading")}</strong> ${msg("emailNoSpam")}`;
+// Install and update are different moments: a new user needs to know what
+// they'd be signing up for; an existing user already has it working and
+// cares that it keeps working when X moves things.
+emailLabel.innerHTML = isUpdate
+  ? `<strong>${msg("emailHeadingUpdate")}</strong> ${msg("emailSubUpdate")}`
+  : `<strong>${msg("emailHeading")}</strong> ${msg("emailSubInstall")}`;
 
 // Subscribe button & success message
 document.getElementById("subscribeBtn").textContent = msg("subscribe");

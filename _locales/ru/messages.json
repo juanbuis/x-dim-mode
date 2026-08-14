@@ -69,16 +69,16 @@
     "message": "Поделиться в X"
   },
   "emailHeading": {
-    "message": "Узнавайте первыми"
+    "message": "Больше старого Twitter"
   },
   "emailNoSpam": {
-    "message": "Никакого спама, никогда."
+    "message": "Несколько писем в год."
   },
   "subscribe": {
     "message": "Подписаться"
   },
   "emailSuccess": {
-    "message": "Готово! Я буду держать вас в курсе."
+    "message": "Готово. Напишем, когда будет что рассказать."
   },
   "emailError": {
     "message": "Что-то пошло не так. Попробуйте ещё раз."
@@ -90,7 +90,7 @@
     "message": "Поделиться"
   },
   "emailPromptHeading": {
-    "message": "Новые функции и эксперименты — прямо на почту."
+    "message": "Новые дополнения и исправления, когда X что-то меняет."
   },
   "engageQuestion": {
     "message": "Нравится X Dim Mode?"
@@ -111,7 +111,7 @@
     "message": "Сообщить о проблеме"
   },
   "emailCtaButton": {
-    "message": "Узнавайте первыми"
+    "message": "Больше старого Twitter"
   },
   "birdLogo": {
     "message": "Классический логотип с птицей"
@@ -147,5 +147,17 @@
   "groupTimeline": {
     "message": "Лента",
     "description": "Extras section heading for timeline/layout toggles"
+  },
+  "emailSubInstall": {
+    "message": "Новые дополнения и исправления, когда X что-то меняет. Несколько писем в год.",
+    "description": "Install-screen sub-line under the email heading"
+  },
+  "emailHeadingUpdate": {
+    "message": "X меняется. Мы не отстаём.",
+    "description": "Update-screen email heading"
+  },
+  "emailSubUpdate": {
+    "message": "Напишем, когда что-то сломается и когда починим. В остальном — редко.",
+    "description": "Update-screen sub-line under the email heading"
   }
 }

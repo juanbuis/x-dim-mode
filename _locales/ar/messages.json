@@ -69,16 +69,16 @@
     "message": "شارك على X"
   },
   "emailHeading": {
-    "message": "احصل على الجديد أولًا"
+    "message": "المزيد من تويتر القديم"
   },
   "emailNoSpam": {
-    "message": "بدون رسائل مزعجة، أبدًا."
+    "message": "بضع رسائل في السنة."
   },
   "subscribe": {
     "message": "اشترك"
   },
   "emailSuccess": {
-    "message": "تم التسجيل! سأبقيك على اطلاع."
+    "message": "تم. سنكتب عندما يكون هناك ما يستحق."
   },
   "emailError": {
     "message": "حدث خطأ ما. يرجى المحاولة مرة أخرى."
@@ -90,7 +90,7 @@
     "message": "مشاركة"
   },
   "emailPromptHeading": {
-    "message": "ميزات وتجارب جديدة، مباشرة إلى بريدك."
+    "message": "إضافات جديدة وإصلاحات كلما غيّر X شيئًا."
   },
   "engageQuestion": {
     "message": "هل تستمتع بـ X Dim Mode؟"
@@ -111,7 +111,7 @@
     "message": "الإبلاغ عن مشكلة"
   },
   "emailCtaButton": {
-    "message": "احصل على الجديد أولًا"
+    "message": "المزيد من تويتر القديم"
   },
   "birdLogo": {
     "message": "شعار الطائر الكلاسيكي"
@@ -147,5 +147,17 @@
   "groupTimeline": {
     "message": "الجدول الزمني",
     "description": "Extras section heading for timeline/layout toggles"
+  },
+  "emailSubInstall": {
+    "message": "إضافات جديدة وإصلاحات كلما غيّر X شيئًا. بضع رسائل في السنة.",
+    "description": "Install-screen sub-line under the email heading"
+  },
+  "emailHeadingUpdate": {
+    "message": "X يتغيّر. ونحن نواكبه.",
+    "description": "Update-screen email heading"
+  },
+  "emailSubUpdate": {
+    "message": "سنراسلك عند حدوث خلل وعند إصلاحه، ونادرًا فيما عدا ذلك.",
+    "description": "Update-screen sub-line under the email heading"
   }
 }

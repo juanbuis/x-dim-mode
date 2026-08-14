@@ -69,16 +69,16 @@
     "message": "X에서 공유"
   },
   "emailHeading": {
-    "message": "새로운 소식을 가장 먼저"
+    "message": "옛 트위터를 더 많이"
   },
   "emailNoSpam": {
-    "message": "스팸은 절대 보내지 않습니다."
+    "message": "메일은 1년에 몇 번뿐."
   },
   "subscribe": {
     "message": "구독하기"
   },
   "emailSuccess": {
-    "message": "등록 완료! 최신 소식을 알려드리겠습니다."
+    "message": "완료됐습니다. 전할 가치가 있을 때 연락드릴게요."
   },
   "emailError": {
     "message": "오류가 발생했습니다. 다시 시도해 주세요."
@@ -90,7 +90,7 @@
     "message": "공유"
   },
   "emailPromptHeading": {
-    "message": "새 기능과 실험적인 프로젝트를 메일로 가장 먼저 받아보세요."
+    "message": "X가 바뀔 때마다 새로운 Extras와 수정 사항을."
   },
   "engageQuestion": {
     "message": "X Dim Mode 마음에 드시나요?"
@@ -111,7 +111,7 @@
     "message": "문제 신고"
   },
   "emailCtaButton": {
-    "message": "새로운 소식을 가장 먼저"
+    "message": "옛 트위터를 더 많이"
   },
   "birdLogo": {
     "message": "클래식 새 로고"
@@ -147,5 +147,17 @@
   "groupTimeline": {
     "message": "타임라인",
     "description": "Extras section heading for timeline/layout toggles"
+  },
+  "emailSubInstall": {
+    "message": "X가 바뀔 때마다 새로운 Extras와 수정 사항을. 메일은 1년에 몇 번뿐.",
+    "description": "Install-screen sub-line under the email heading"
+  },
+  "emailHeadingUpdate": {
+    "message": "X는 바뀝니다. 우리는 따라갑니다.",
+    "description": "Update-screen email heading"
+  },
+  "emailSubUpdate": {
+    "message": "무언가 고장 났을 때, 그리고 고쳤을 때 메일을 보냅니다. 그 외에는 거의 없습니다.",
+    "description": "Update-screen sub-line under the email heading"
   }
 }

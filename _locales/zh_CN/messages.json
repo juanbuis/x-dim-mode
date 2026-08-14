@@ -69,16 +69,16 @@
     "message": "分享到 X"
   },
   "emailHeading": {
-    "message": "抢先获取新内容"
+    "message": "找回更多老 Twitter"
   },
   "emailNoSpam": {
-    "message": "绝不发送垃圾邮件。"
+    "message": "一年只发几封邮件。"
   },
   "subscribe": {
     "message": "订阅"
   },
   "emailSuccess": {
-    "message": "订阅成功！我会及时通知你。"
+    "message": "已订阅。有值得说的事我们再写信。"
   },
   "emailError": {
     "message": "出了点问题，请重试。"
@@ -90,7 +90,7 @@
     "message": "分享"
   },
   "emailPromptHeading": {
-    "message": "新功能和新实验，第一时间送达你的邮箱。"
+    "message": "X 一变，我们就更新 Extras 和修复。"
   },
   "engageQuestion": {
     "message": "喜欢 X Dim Mode 吗？"
@@ -111,7 +111,7 @@
     "message": "报告问题"
   },
   "emailCtaButton": {
-    "message": "抢先获取新内容"
+    "message": "找回更多老 Twitter"
   },
   "birdLogo": {
     "message": "经典小鸟标志"
@@ -147,5 +147,17 @@
   "groupTimeline": {
     "message": "时间线",
     "description": "Extras section heading for timeline/layout toggles"
+  },
+  "emailSubInstall": {
+    "message": "X 一变，我们就更新 Extras 和修复。一年只发几封邮件。",
+    "description": "Install-screen sub-line under the email heading"
+  },
+  "emailHeadingUpdate": {
+    "message": "X 在变，我们跟得上。",
+    "description": "Update-screen email heading"
+  },
+  "emailSubUpdate": {
+    "message": "出问题时和修好时会通知你，其余时候很少打扰。",
+    "description": "Update-screen sub-line under the email heading"
   }
 }

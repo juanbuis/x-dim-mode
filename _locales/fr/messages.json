@@ -69,16 +69,16 @@
     "message": "Partager sur X"
   },
   "emailHeading": {
-    "message": "Recevez le meilleur en premier"
+    "message": "Plus du Twitter d’avant"
   },
   "emailNoSpam": {
-    "message": "Jamais de spam."
+    "message": "Quelques e-mails par an."
   },
   "subscribe": {
     "message": "S'abonner"
   },
   "emailSuccess": {
-    "message": "C'est fait ! Je vous tiens au courant."
+    "message": "C’est fait. On vous écrira quand ça en vaudra la peine."
   },
   "emailError": {
     "message": "Une erreur est survenue. Veuillez réessayer."
@@ -90,7 +90,7 @@
     "message": "Partager"
   },
   "emailPromptHeading": {
-    "message": "Nouvelles fonctionnalités et expérimentations, directement dans votre boîte mail."
+    "message": "De nouveaux extras et des correctifs quand X change les choses."
   },
   "engageQuestion": {
     "message": "Vous aimez X Dim Mode ?"
@@ -111,7 +111,7 @@
     "message": "Signaler un problème"
   },
   "emailCtaButton": {
-    "message": "Recevez le meilleur en premier"
+    "message": "Plus du Twitter d’avant"
   },
   "birdLogo": {
     "message": "Logo oiseau classique"
@@ -147,5 +147,17 @@
   "groupTimeline": {
     "message": "Fil",
     "description": "Extras section heading for timeline/layout toggles"
+  },
+  "emailSubInstall": {
+    "message": "De nouveaux extras et des correctifs quand X change les choses. Quelques e-mails par an.",
+    "description": "Install-screen sub-line under the email heading"
+  },
+  "emailHeadingUpdate": {
+    "message": "X change les choses. On suit.",
+    "description": "Update-screen email heading"
+  },
+  "emailSubUpdate": {
+    "message": "On vous écrit quand quelque chose casse et quand c’est réparé. Rarement autrement.",
+    "description": "Update-screen sub-line under the email heading"
   }
 }
