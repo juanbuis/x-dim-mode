@@ -46,7 +46,7 @@ chrome.runtime.onInstalled.addListener(({ reason, previousVersion }) => {
 
     if (isMajorBump || SHOW_UPDATE_PAGE_FOR.includes(v)) {
       const params = new URLSearchParams({ v, reason });
-      params.set("from", previousVersion);
+      if (previousVersion && /^\d+\.\d+/.test(previousVersion)) params.set("from", previousVersion);
       chrome.tabs.create({ url: chrome.runtime.getURL(`welcome.html?${params}`) });
     }
   }
