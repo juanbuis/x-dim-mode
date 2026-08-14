@@ -1,7 +1,7 @@
 # addons.mozilla.org listing — X Dim Mode
 
-Same product, but AMO has its own fields and allows a little HTML in the
-description. Firefox for Android is served from this one listing: the
+Same product, but AMO has its own fields and its own markup rules.
+Firefox for Android is served from this one listing: the
 `gecko_android` key in the packaged manifest is what makes it installable
 there, so there is no second submission.
 
@@ -15,56 +15,50 @@ X removed Dim — the dark blue background between Lights Out and Default. This 
 
 ## Description
 
-AMO permits `<b>`, `<i>`, `<a>`, `<ul>`, `<li>`, `<blockquote>`, `<code>`.
-Plain text renders fine too — this uses light markup only.
+AMO's description field is **Markdown**, not HTML — the editor links to
+"Some Markdown supported". `**bold**` works; use plain `•` bullets rather than
+list syntax, which renders inconsistently. This is what is currently live.
 
-```html
-<p>X removed Dim — the dark blue background that used to sit between Lights Out and Default — and left you with pure black or pure white. X Dim Mode puts it back.</p>
+```
+X removed Dim — the dark blue background that used to sit between Lights Out and Default — and left you with pure black or pure white. X Dim Mode puts it back.
 
-<p>Dim returns as a fourth option inside X's own display settings, exactly where it always was. Pick it once and it stays.</p>
+Dim returns as a fourth option inside X's own display settings, exactly where it always was. Pick it once and it stays.
 
-<b>Themes</b>
-<ul>
-  <li>Dim — the original dark blue background, restored</li>
-  <li>Five more to choose from: Slate, Jade, Plum, Dusk, and Ember</li>
-  <li>Custom — dial in any color you want with the hue slider</li>
-  <li>Applies everywhere: timeline, DMs, modals, the new chat UI, and X Pro</li>
-</ul>
+**Themes**
+• Dim — the original dark blue background, restored
+• Five more to choose from: Slate, Jade, Plum, Dusk, and Ember
+• Custom — dial in any color you want with the hue slider
+• Applies everywhere: timeline, DMs, modals, the new chat UI, and X Pro
 
-<b>Extras — optional pieces of old Twitter</b>
-<p>All off by default. Turn on only the ones you want.</p>
-<ul>
-  <li>Classic bird logo — the bird instead of the X</li>
-  <li>Classic font — Helvetica Neue, the typeface X used before Chirp</li>
-  <li>Classic favicon — the Twitter bird back in your tab</li>
-  <li>"Tweet, not Post" — the old wording, compose button included</li>
-  <li>Start on Following — open on Following instead of For You</li>
-  <li>Classic image grid — multi-image posts get the old grid, with nothing cropped off-screen</li>
-</ul>
+**Extras — optional pieces of old Twitter**
+All off by default. Turn on only the ones you want.
+• Classic bird logo — the bird instead of the X
+• Classic font — Helvetica Neue, the typeface X used before Chirp
+• Classic favicon — the Twitter bird back in your tab
+• "Tweet, not Post" — the old wording, compose button included
+• Start on Following — open on Following instead of For You
+• Classic image grid — multi-image posts get the old grid, with nothing cropped off-screen
 
-<b>Easier on the eyes</b>
-<p>Dark blue backgrounds cut halation: the glow that white text throws against pure black, which makes reading harder if you have astigmatism. That is why a lot of people used Dim in the first place, and why its removal was so unwelcome.</p>
+**Easier on the eyes**
+Dark blue backgrounds cut halation: the glow that white text throws against pure black, which makes reading harder if you have astigmatism. That is why a lot of people used Dim in the first place, and why its removal was so unwelcome.
 
-<b>Privacy</b>
-<p>No account. No tracking. No analytics. No data collection of any kind. The extension asks for exactly one permission — <code>storage</code> — which it uses to remember your settings. Those settings sync across your own devices through your Firefox account and go nowhere else.</p>
+**Privacy**
+No account. No tracking. No analytics. No data collection of any kind. The extension asks for exactly one permission — storage — which it uses to remember your settings. Those settings sync across your own devices through your Firefox account and go nowhere else.
 
-<b>Also worth knowing</b>
-<ul>
-  <li>Works on x.com, twitter.com, and X Pro</li>
-  <li>Runs on Firefox for Android as well as desktop</li>
-  <li>Available in English, Spanish, Portuguese, French, German, Russian, Japanese, Korean, Chinese, and Arabic</li>
-  <li>Open source: <a href="https://github.com/juanbuis/x-dim-mode">github.com/juanbuis/x-dim-mode</a></li>
-</ul>
+**Also worth knowing**
+• Works on x.com, twitter.com, and X Pro
+• Runs on Firefox for Android as well as desktop
+• Available in English, Spanish, Portuguese, French, German, Russian, Japanese, Korean, Chinese, and Arabic
+• Open source: https://github.com/juanbuis/x-dim-mode
 
-<p>X changes its layout often, and when it does something here occasionally breaks. There is a "Report a problem" link in the popup — reports get read, and fixes usually ship within a few days.</p>
+X changes its layout often, and when it does something here occasionally breaks. There is a "Report a problem" link in the popup — reports get read, and fixes usually ship within a few days.
 ```
 
 ---
 
 ## Fields
 
-- **Categories:** Appearance, Photos/Music/Videos → use **Appearance** (primary)
-  and **Other**. On Android, Appearance as well.
+- **Categories:** Appearance + Social & Communication (both now set).
 - **Tags:** dark mode, dim, twitter, theme, accessibility
 - **License:** MIT (matches the repo)
 - **Source code:** not required — no build step, no minification, no bundler.
@@ -88,3 +82,12 @@ optional newsletter field and presses subscribe: a POST to
 https://xdim.app/api/subscribe. Nothing is sent otherwise, and there is no
 telemetry anywhere in the codebase.
 ```
+
+---
+
+## Gotcha for next time
+
+On the "Describe Version" step, the two textareas are mislabelled in the
+accessibility tree: the one reported as "Release Notes:" is actually **Notes to
+Reviewer**. Check the rendered page before submitting rather than trusting the
+label, or the release notes go to reviewers and the reviewer notes go public.
