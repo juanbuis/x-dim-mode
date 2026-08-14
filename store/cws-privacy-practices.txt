@@ -7,20 +7,26 @@ below is the exact text for one field. Copy between the dashed lines.
 1. SINGLE PURPOSE
 ------------------------------------------------------------------------------
 X Dim Mode restores the "Dim" dark blue theme that X (formerly Twitter) removed
-from its display settings, along with related legacy Twitter interface options.
-It injects CSS into x.com, twitter.com and pro.x.com to recolour the interface,
-and adds Dim back as a selectable option inside X's own display settings. Every
-feature serves that single purpose: changing how X looks.
+from its display settings, and optionally restores other parts of X's earlier
+interface. It adds Dim back as a choice inside X's own display settings, offers
+six themes plus a custom colour, and includes optional toggles that bring back
+the classic bird logo, the pre-Chirp font, the Twitter favicon, the word "Tweet"
+instead of "Post", opening on the Following timeline, and the classic
+multi-image grid. Every feature serves one purpose: making X look and read the
+way it used to.
 ------------------------------------------------------------------------------
 
 
 2. PERMISSION JUSTIFICATION — "storage"
 ------------------------------------------------------------------------------
-Stores the user's chosen theme, their custom colour, and which optional Extras
-they have switched on, so those settings persist between browser sessions and
-sync across the user's own devices through their browser account. This is the
-only permission the extension requests, and the stored values never leave the
-browser.
+Stores the user's settings so they persist between browser sessions and sync
+across the user's own devices through their browser account: whether the
+extension is enabled, the chosen theme, a custom colour value, and which of the
+six optional Extras are switched on (classic bird logo, classic font, classic
+favicon, "Tweet" wording, Start on Following, classic image grid). It also
+stores a first-install timestamp and flags recording whether the user has
+already dismissed or accepted the newsletter prompt, so those prompts are not
+shown repeatedly. No browsing data is stored.
 ------------------------------------------------------------------------------
 
 
@@ -28,11 +34,13 @@ browser.
    (for the content-script matches x.com, twitter.com, pro.x.com — this field is
    easy to overlook and submission will not go through without it)
 ------------------------------------------------------------------------------
-The extension's entire purpose is to restyle X. It needs to run on x.com,
-twitter.com and pro.x.com in order to inject the CSS that recolours the
-interface and to add the Dim option back into X's own display settings. It
-requests no other hosts, reads no page content, and sends nothing from these
-pages anywhere.
+The extension's only purpose is to restyle X, so it has to run on the sites
+where X is served: x.com, twitter.com and pro.x.com (X Pro). On those pages it
+injects CSS to recolour the interface and adds the Dim option back into X's own
+display settings. It also reads page structure to locate the elements it
+restyles — for example the display-settings dialog, and the timeline tabs when
+the optional "Start on Following" setting is enabled. It requests no other
+hosts, and no page content is collected or transmitted anywhere.
 ------------------------------------------------------------------------------
 
 
