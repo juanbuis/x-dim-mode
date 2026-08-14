@@ -54,6 +54,24 @@ for (const text of items) {
   list.appendChild(li);
 }
 
+// Layout order.
+//
+// The update screen reads "Here's what's new:" and then, before any news,
+// showed the email box and a stray "Try it now" — the page promised a list and
+// delivered an ask. On update the subtitle now sits directly above the bullets
+// it introduces, and the action button moves to the end as the closing step,
+// so nothing floats mid-page. The email box keeps its slot under the heading.
+// Install is untouched: there the subtitle describes the product, not a list.
+{
+  const featuresEl = document.getElementById("features");
+  const actionsEl = document.getElementById("actions");
+  if (isUpdate) {
+    featuresEl.before(subtitle);
+    subtitle.classList.add("leads-list");
+  }
+  featuresEl.after(actionsEl);
+}
+
 // Action buttons
 const actions = document.getElementById("actions");
 
