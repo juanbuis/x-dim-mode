@@ -9,7 +9,7 @@ below is the exact text for one field. Copy between the dashed lines.
 X Dim Mode restores the "Dim" dark blue theme that X (formerly Twitter) removed
 from its display settings, and optionally restores other parts of X's earlier
 interface. It adds Dim back as a choice inside X's own display settings, offers
-six themes plus a custom colour, and includes optional toggles that bring back
+six themes plus a custom color, and includes optional toggles that bring back
 the classic bird logo, the pre-Chirp font, the Twitter favicon, the word "Tweet"
 instead of "Post", opening on the Following timeline, and the classic
 multi-image grid. Every feature serves one purpose: making X look and read the
@@ -21,7 +21,7 @@ way it used to.
 ------------------------------------------------------------------------------
 Stores the user's settings so they persist between browser sessions and sync
 across the user's own devices through their browser account: whether the
-extension is enabled, the chosen theme, a custom colour value, and which of the
+extension is enabled, the chosen theme, a custom color value, and which of the
 six optional Extras are switched on (classic bird logo, classic font, classic
 favicon, "Tweet" wording, Start on Following, classic image grid). It also
 stores a first-install timestamp and flags recording whether the user has
@@ -36,7 +36,7 @@ shown repeatedly. No browsing data is stored.
 ------------------------------------------------------------------------------
 The extension's only purpose is to restyle X, so it has to run on the sites
 where X is served: x.com, twitter.com and pro.x.com (X Pro). On those pages it
-injects CSS to recolour the interface and adds the Dim option back into X's own
+injects CSS to recolor the interface and adds the Dim option back into X's own
 display settings. It also reads page structure to locate the elements it
 restyles — for example the display-settings dialog, and the timeline tabs when
 the optional "Start on Following" setting is enabled. It requests no other
