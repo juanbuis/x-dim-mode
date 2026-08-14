@@ -422,6 +422,19 @@
     <button class="theme-dot" data-theme="ember" style="background: hsl(25, 34%, 28%)" title="Ember"></button>
     <button class="theme-dot custom-dot" data-theme="custom" title="Custom"></button>
   </div>
+
+  <!-- Follow prompt: the third and last rung of the ladder (email day 2,
+       review day 14, follow day 30). Each fires once and only after the
+       previous ask is settled, so they never stack. -->
+  <div class="engage" id="followPrompt" style="display: none;">
+    <div class="engage-header">
+      <span class="engage-text" id="followText"></span>
+      <button class="engage-close" id="followClose">&times;</button>
+    </div>
+    <div class="engage-actions">
+      <a class="engage-btn" id="followBtn" href="https://x.com/juanbuis" target="_blank"></a>
+    </div>
+  </div>
   <div class="hue-wrap" id="hueWrap">
     <input type="range" class="hue-slider" id="hueSlider" min="0" max="360" value="210">
   </div>

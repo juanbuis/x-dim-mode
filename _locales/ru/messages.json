@@ -52,12 +52,9 @@
     "message": "Исправлено: «Твит» вместо «Пост» теперь и на большой кнопке в боковом меню"
   },
   "updateFeature4": {
-    "message": "В Extras: логотип птицы, классический шрифт и фавикон «Twitter»"
+    "message": "Больше старого Twitter в разделе Extras: логотип птицы, классический шрифт, старый фавикон и лента подписок"
   },
   "updateFeature5": {
-    "message": "Ещё в Extras: открывать ленту «Отслеживаемые», а не «Для вас»"
-  },
-  "updateFeature6": {
     "message": "Что-то выглядит не так? Сообщите прямо из окна расширения"
   },
   "tryNow": {
@@ -153,5 +150,9 @@
   "followCta": {
     "message": "Подписывайтесь на @juanbuis в X →",
     "description": "Shown after a successful newsletter signup"
+  },
+  "followQuestion": {
+    "message": "Что дальше",
+    "description": "Heading of the popup follow prompt"
   }
 }

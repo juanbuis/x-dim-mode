@@ -52,12 +52,9 @@
     "message": "Behoben: „Tweet statt Post“ benennt auch den großen Schreiben-Button um"
   },
   "updateFeature4": {
-    "message": "In den Extras: Vogel-Logo, klassische Schrift und das „Twitter“-Favicon"
+    "message": "Hol dir mehr vom alten Twitter in den Extras: Vogel-Logo, klassische Schrift, altes Favicon und „Folge ich“ als Start"
   },
   "updateFeature5": {
-    "message": "Ebenfalls in den Extras: Mit „Folge ich“ starten statt „Für dich“"
-  },
-  "updateFeature6": {
     "message": "Etwas sieht falsch aus? Melde es direkt aus dem Popup"
   },
   "tryNow": {
@@ -153,5 +150,9 @@
   "followCta": {
     "message": "Folge @juanbuis auf X →",
     "description": "Shown after a successful newsletter signup"
+  },
+  "followQuestion": {
+    "message": "Sieh, was als Nächstes kommt",
+    "description": "Heading of the popup follow prompt"
   }
 }

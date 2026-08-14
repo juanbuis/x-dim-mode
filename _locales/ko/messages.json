@@ -52,12 +52,9 @@
     "message": "수정: '포스트 대신 트윗'이 사이드바의 큰 작성 버튼에도 적용됩니다"
   },
   "updateFeature4": {
-    "message": "Extras에는: 새 로고, 클래식 폰트, 'Twitter' 파비콘"
+    "message": "Extras에서 옛 트위터를 더 많이: 새 로고, 클래식 폰트, 예전 파비콘, 팔로우 중 탭으로 시작"
   },
   "updateFeature5": {
-    "message": "Extras에 또: 팔로우 중 탭으로 시작하기"
-  },
-  "updateFeature6": {
     "message": "이상한 부분이 보이나요? 팝업에서 바로 알려주세요"
   },
   "tryNow": {
@@ -153,5 +150,9 @@
   "followCta": {
     "message": "X에서 @juanbuis 팔로우 →",
     "description": "Shown after a successful newsletter signup"
+  },
+  "followQuestion": {
+    "message": "다음 작업 보기",
+    "description": "Heading of the popup follow prompt"
   }
 }

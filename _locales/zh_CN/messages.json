@@ -52,12 +52,9 @@
     "message": "修复：“Tweet 替代 Post”现在也会重命名侧边栏的大发布按钮"
   },
   "updateFeature4": {
-    "message": "Extras 里有：小鸟图标、经典字体和 “Twitter” 网站图标"
+    "message": "在 Extras 里找回更多老 Twitter：小鸟图标、经典字体、旧网站图标，以及默认打开“正在关注”"
   },
   "updateFeature5": {
-    "message": "Extras 里还有：默认打开“正在关注”，而不是“为你推荐”"
-  },
-  "updateFeature6": {
     "message": "发现显示异常？可直接从弹窗反馈"
   },
   "tryNow": {
@@ -153,5 +150,9 @@
   "followCta": {
     "message": "在 X 上关注 @juanbuis →",
     "description": "Shown after a successful newsletter signup"
+  },
+  "followQuestion": {
+    "message": "看看接下来做什么",
+    "description": "Heading of the popup follow prompt"
   }
 }

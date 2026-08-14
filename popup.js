@@ -178,6 +178,7 @@ hueSlider.addEventListener("change", () => {
 
 const TWO_DAYS = 2 * 24 * 60 * 60 * 1000;
 const FOURTEEN_DAYS = 14 * 24 * 60 * 60 * 1000;
+const THIRTY_DAYS = 30 * 24 * 60 * 60 * 1000;
 const SIXTY_DAYS = 60 * 24 * 60 * 60 * 1000;
 
 const MAILERLITE_URL = "https://assets.mailerlite.com/jsonp/1436119/forms/179598724460184835/subscribe";
@@ -272,6 +273,21 @@ document.getElementById("emailPromptForm").addEventListener("submit", async (e) 
 
 // ── Engagement prompt (one-time, after ~14 days) ────────────────────
 
+function showFollowPrompt() {
+  const prompt = document.getElementById("followPrompt");
+  prompt.style.display = "block";
+  document.getElementById("followText").textContent = chrome.i18n.getMessage("followQuestion");
+  const btn = document.getElementById("followBtn");
+  btn.textContent = chrome.i18n.getMessage("credit");   // "Follow @juanbuis"
+
+  function dismiss() {
+    chrome.storage.local.set({ followDismissed: true });
+    prompt.style.display = "none";
+  }
+  document.getElementById("followClose").addEventListener("click", dismiss);
+  btn.addEventListener("click", dismiss);
+}
+
 function showEngagePrompt() {
   const prompt = document.getElementById("engagePrompt");
   prompt.style.display = "block";
@@ -298,7 +314,7 @@ function showEngagePrompt() {
 
 chrome.storage.sync.get(["emailSubscribed"], (syncVals) => {
   chrome.storage.local.get(
-    ["emailSubscribed", "installTimestamp", "emailPromptDismissed", "emailPromptDismissedAt", "engageDismissed"],
+    ["emailSubscribed", "installTimestamp", "emailPromptDismissed", "emailPromptDismissedAt", "engageDismissed", "followDismissed"],
     (d) => {
       const now = Date.now();
       const subscribed = syncVals.emailSubscribed !== undefined ? syncVals.emailSubscribed : d.emailSubscribed;
@@ -316,9 +332,16 @@ chrome.storage.sync.get(["emailSubscribed"], (syncVals) => {
         }
       }
 
+      // One ask at a time, in order: email (day 2), review (day 14), follow
+      // (day 30). Each waits for the previous to be settled, so the popup
+      // never shows two at once.
       const emailSettled = !!subscribed || dismissedAt !== undefined;
-      if (!_autoExpanded && emailSettled && !d.engageDismissed && installedFor >= FOURTEEN_DAYS) {
+      const engageSettled = !!d.engageDismissed;
+      if (!_autoExpanded && emailSettled && !engageSettled && installedFor >= FOURTEEN_DAYS) {
         showEngagePrompt();
+      } else if (!_autoExpanded && emailSettled && engageSettled &&
+                 !d.followDismissed && installedFor >= THIRTY_DAYS) {
+        showFollowPrompt();
       }
     }
   );

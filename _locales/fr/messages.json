@@ -52,12 +52,9 @@
     "message": "Corrigé : « Tweet, pas Post » renomme aussi le grand bouton de rédaction"
   },
   "updateFeature4": {
-    "message": "Dans Extras : le logo oiseau, la police classique et le favicon « Twitter »"
+    "message": "Retrouvez plus du Twitter d’avant dans Extras : le logo oiseau, la police classique, l’ancien favicon et Démarrer sur Abonnements"
   },
   "updateFeature5": {
-    "message": "Aussi dans Extras : Démarrer sur Abonnements plutôt que Pour vous"
-  },
-  "updateFeature6": {
     "message": "Un problème d’affichage ? Signalez-le depuis la fenêtre de l’extension"
   },
   "tryNow": {
@@ -153,5 +150,9 @@
   "followCta": {
     "message": "Suivez @juanbuis sur X →",
     "description": "Shown after a successful newsletter signup"
+  },
+  "followQuestion": {
+    "message": "Voir la suite",
+    "description": "Heading of the popup follow prompt"
   }
 }

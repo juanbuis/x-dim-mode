@@ -52,12 +52,9 @@
     "message": "Fixed: “Tweet, not Post” also renames the big compose button in the sidebar"
   },
   "updateFeature4": {
-    "message": "In Extras: the classic bird logo, the old font, and the “Twitter” favicon"
+    "message": "Get more of old Twitter in Extras: the bird logo, the classic font, the “Twitter” favicon, and Start on Following"
   },
   "updateFeature5": {
-    "message": "Also in Extras: Start on Following — open X on the Following timeline, not For you"
-  },
-  "updateFeature6": {
     "message": "Spotted something broken? Report it right from the popup"
   },
   "tryNow": {
@@ -153,5 +150,9 @@
   "followCta": {
     "message": "Follow @juanbuis on X →",
     "description": "Shown after a successful newsletter signup"
+  },
+  "followQuestion": {
+    "message": "See what's next",
+    "description": "Heading of the popup follow prompt"
   }
 }

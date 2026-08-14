@@ -52,12 +52,9 @@
     "message": "إصلاح: «تغريدة بدل منشور» تشمل الآن زر النشر الكبير في الشريط الجانبي"
   },
   "updateFeature4": {
-    "message": "في Extras: شعار الطائر والخط الكلاسيكي وأيقونة «Twitter»"
+    "message": "احصل على المزيد من تويتر القديم في Extras: شعار الطائر، الخط الكلاسيكي، الأيقونة القديمة، والبدء من «المتابَعون»"
   },
   "updateFeature5": {
-    "message": "وأيضًا في Extras: ابدأ من «المتابَعون» بدل «لك»"
-  },
-  "updateFeature6": {
     "message": "لاحظت خللاً؟ أبلغ عنه مباشرة من النافذة المنبثقة"
   },
   "tryNow": {
@@ -153,5 +150,9 @@
   "followCta": {
     "message": "تابع ‎@juanbuis على X ←",
     "description": "Shown after a successful newsletter signup"
+  },
+  "followQuestion": {
+    "message": "شاهد ما هو قادم",
+    "description": "Heading of the popup follow prompt"
   }
 }

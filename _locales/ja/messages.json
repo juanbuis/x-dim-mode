@@ -52,12 +52,9 @@
     "message": "修正：「ツイート」表記がサイドバーの投稿ボタンにも適用されます"
   },
   "updateFeature4": {
-    "message": "Extras には：鳥のロゴ、クラシックフォント、「Twitter」のファビコン"
+    "message": "「Extras」でもっと昔のTwitterを：鳥のロゴ、クラシックフォント、旧ファビコン、「フォロー中」から開く設定"
   },
   "updateFeature5": {
-    "message": "Extras にはさらに：「フォロー中」から開く設定"
-  },
-  "updateFeature6": {
     "message": "表示がおかしいときは、ポップアップからそのまま報告できます"
   },
   "tryNow": {
@@ -153,5 +150,9 @@
   "followCta": {
     "message": "Xで @juanbuis をフォロー →",
     "description": "Shown after a successful newsletter signup"
+  },
+  "followQuestion": {
+    "message": "次に作るものを見る",
+    "description": "Heading of the popup follow prompt"
   }
 }

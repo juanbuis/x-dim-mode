@@ -52,12 +52,9 @@
     "message": "Corrigido: “Tweet, não Post” também renomeia o botão grande de publicar"
   },
   "updateFeature4": {
-    "message": "Em Extras: o logo do pássaro, a fonte clássica e o favicon do “Twitter”"
+    "message": "Tenha mais do Twitter antigo em Extras: o logo do pássaro, a fonte clássica, o favicon antigo e Começar em Seguindo"
   },
   "updateFeature5": {
-    "message": "Também em Extras: Começar em Seguindo, em vez de Para você"
-  },
-  "updateFeature6": {
     "message": "Viu algo errado? Relate direto pelo menu da extensão"
   },
   "tryNow": {
@@ -153,5 +150,9 @@
   "followCta": {
     "message": "Siga @juanbuis no X →",
     "description": "Shown after a successful newsletter signup"
+  },
+  "followQuestion": {
+    "message": "Veja o que vem por aí",
+    "description": "Heading of the popup follow prompt"
   }
 }

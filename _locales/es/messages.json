@@ -52,12 +52,9 @@
     "message": "Corregido: «Tweet, no Post» también renombra el botón grande de redactar"
   },
   "updateFeature4": {
-    "message": "En Extras: el logo del pájaro, la fuente clásica y el favicon de «Twitter»"
+    "message": "Consigue más del Twitter de antes en Extras: el logo del pájaro, la fuente clásica, el favicon antiguo y Empezar en Siguiendo"
   },
   "updateFeature5": {
-    "message": "También en Extras: Empezar en Siguiendo — abre X en Siguiendo en vez de Para ti"
-  },
-  "updateFeature6": {
     "message": "¿Algo se ve mal? Repórtalo desde el menú de la extensión"
   },
   "tryNow": {
@@ -153,5 +150,9 @@
   "followCta": {
     "message": "Sigue a @juanbuis en X →",
     "description": "Shown after a successful newsletter signup"
+  },
+  "followQuestion": {
+    "message": "Mira lo que viene",
+    "description": "Heading of the popup follow prompt"
   }
 }
