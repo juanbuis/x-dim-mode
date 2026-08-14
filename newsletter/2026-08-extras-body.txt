@@ -1,0 +1,38 @@
+You signed up for the occasional X Dim Mode email. Here's one.
+
+Most people install X Dim Mode for the dark blue background and never find the rest.
+
+Click the X Dim Mode icon in your toolbar and there's a row called Extras.
+Six optional toggles, all off by default:
+
+• Classic bird logo — the bird instead of the X
+• Classic font — Helvetica Neue, what X used before Chirp
+• Classic favicon — the Twitter bird back in your tab
+• "Tweet", not "Post" — the old wording, compose button included
+• Start on Following — open on Following instead of For You
+• Classic image grid — brand new, and the best one
+
+Turn on what you want, ignore the rest.
+
+About that image grid
+
+X moved multi-image posts to a side-scrolling carousel that pushes pictures
+off-screen. The classic grid puts all of them back on one screen, the way it
+used to work.
+
+Also in this update
+
+Turning Dim off now actually turns it off — the toggle used to leave the page
+dimmed until you reloaded. And X Dim Mode now runs on Firefox too, including
+Firefox for Android.
+
+If something looks broken
+
+X changes its layout constantly, and when it does, something here occasionally
+breaks. There's a "Report a problem" link in the popup. Reports get read, and
+fixes usually ship within a few days.
+
+— X Dim Mode
+xdim.app
+
+P.S. Updates also go out on X: @juanbuis
