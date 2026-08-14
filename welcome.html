@@ -252,6 +252,45 @@
       margin: 0;
     }
 
+    /* Pin hint (install only) */
+    .pin-hint {
+      display: none;
+      position: fixed;
+      top: 14px;
+      right: 28px;
+      z-index: 2;
+      max-width: 260px;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 13px;
+      line-height: 1.45;
+      color: #8B98A5;
+      text-align: left;
+    }
+    .pin-hint.show { display: flex; }
+    .pin-copy strong {
+      display: block;
+      color: #E7E9EA;
+      font-size: 14px;
+      margin-bottom: 2px;
+    }
+    .pin-arrow {
+      font-size: 20px;
+      line-height: 1;
+      color: #1D9BF0;
+      animation: pin-bob 1.6s ease-in-out infinite;
+    }
+    @keyframes pin-bob {
+      0%, 100% { transform: translateY(0); }
+      50%      { transform: translateY(-6px); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .pin-arrow { animation: none; }
+    }
+    @media (max-width: 900px) {
+      .pin-hint.show { display: none; }
+    }
+
     /* Footer */
     .footer {
       margin-top: 20px;
@@ -268,6 +307,17 @@
   </style>
 </head>
 <body>
+  <!-- Install-only: points at the toolbar puzzle icon so people can pin the
+       extension. Hidden under 900px, where the card and the hint would fight
+       for the same space and the toolbar position is less predictable. -->
+  <div class="pin-hint" id="pinHint">
+    <span class="pin-arrow" aria-hidden="true">&uarr;</span>
+    <span class="pin-copy">
+      <strong id="pinHintTitle"></strong>
+      <span id="pinHintText"></span>
+    </span>
+  </div>
+
   <div class="container">
     <button class="close-btn" id="closeBtn" title="Close">&times;</button>
     <img class="icon" src="icons/icon128.png" alt="">

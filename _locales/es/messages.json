@@ -154,5 +154,13 @@
   "followQuestion": {
     "message": "Mira lo que viene",
     "description": "Heading of the popup follow prompt"
+  },
+  "pinHintTitle": {
+    "message": "Ánclalo aquí arriba",
+    "description": "Install-only hint pointing at the toolbar puzzle icon"
+  },
+  "pinHintText": {
+    "message": "Haz clic en el icono del puzle y luego en el pin junto a X Dim Mode",
+    "description": "Install-only hint body"
   }
 }

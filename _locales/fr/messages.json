@@ -154,5 +154,13 @@
   "followQuestion": {
     "message": "Voir la suite",
     "description": "Heading of the popup follow prompt"
+  },
+  "pinHintTitle": {
+    "message": "Épinglez-le ici",
+    "description": "Install-only hint pointing at the toolbar puzzle icon"
+  },
+  "pinHintText": {
+    "message": "Cliquez sur l’icône puzzle, puis sur l’épingle à côté de X Dim Mode",
+    "description": "Install-only hint body"
   }
 }

@@ -154,5 +154,13 @@
   "followQuestion": {
     "message": "次に作るものを見る",
     "description": "Heading of the popup follow prompt"
+  },
+  "pinHintTitle": {
+    "message": "ここにピン留め",
+    "description": "Install-only hint pointing at the toolbar puzzle icon"
+  },
+  "pinHintText": {
+    "message": "パズルのアイコンをクリックし、X Dim Mode の横のピンを押します",
+    "description": "Install-only hint body"
   }
 }

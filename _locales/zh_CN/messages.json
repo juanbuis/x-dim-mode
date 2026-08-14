@@ -154,5 +154,13 @@
   "followQuestion": {
     "message": "看看接下来做什么",
     "description": "Heading of the popup follow prompt"
+  },
+  "pinHintTitle": {
+    "message": "固定到这里",
+    "description": "Install-only hint pointing at the toolbar puzzle icon"
+  },
+  "pinHintText": {
+    "message": "点击拼图图标，然后点击 X Dim Mode 旁边的图钉",
+    "description": "Install-only hint body"
   }
 }

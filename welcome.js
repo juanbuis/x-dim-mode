@@ -27,6 +27,14 @@ if (isUpdate) {
   subtitle.textContent = msg("welcomeSubtitleInstall");
 }
 
+// Pin hint — install only. On an update the extension is already there, and
+// most people have long since decided whether to pin it.
+if (!isUpdate) {
+  document.getElementById("pinHintTitle").textContent = msg("pinHintTitle");
+  document.getElementById("pinHintText").textContent = msg("pinHintText");
+  document.getElementById("pinHint").classList.add("show");
+}
+
 // Features
 const items = (isUpdate
   ? [

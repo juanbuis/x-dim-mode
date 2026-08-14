@@ -154,5 +154,13 @@
   "followQuestion": {
     "message": "다음 작업 보기",
     "description": "Heading of the popup follow prompt"
+  },
+  "pinHintTitle": {
+    "message": "여기에 고정하세요",
+    "description": "Install-only hint pointing at the toolbar puzzle icon"
+  },
+  "pinHintText": {
+    "message": "퍼즐 아이콘을 클릭한 다음 X Dim Mode 옆의 핀을 누르세요",
+    "description": "Install-only hint body"
   }
 }

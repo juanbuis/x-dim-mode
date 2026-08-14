@@ -154,5 +154,13 @@
   "followQuestion": {
     "message": "Veja o que vem por aí",
     "description": "Heading of the popup follow prompt"
+  },
+  "pinHintTitle": {
+    "message": "Fixe aqui em cima",
+    "description": "Install-only hint pointing at the toolbar puzzle icon"
+  },
+  "pinHintText": {
+    "message": "Clique no ícone de quebra-cabeça e depois no alfinete ao lado de X Dim Mode",
+    "description": "Install-only hint body"
   }
 }
