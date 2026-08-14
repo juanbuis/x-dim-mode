@@ -78,7 +78,7 @@
     "message": "S'abonner"
   },
   "emailSuccess": {
-    "message": "C’est fait. On vous écrira quand ça en vaudra la peine."
+    "message": "C’est fait."
   },
   "emailError": {
     "message": "Une erreur est survenue. Veuillez réessayer."
@@ -157,7 +157,7 @@
     "description": "Update-screen email heading"
   },
   "emailSubUpdate": {
-    "message": "On vous écrit quand quelque chose casse et quand c’est réparé. Rarement autrement.",
+    "message": "Vous serez au courant des nouveaux extras et des correctifs. Quelques e-mails par an.",
     "description": "Update-screen sub-line under the email heading"
   }
 }

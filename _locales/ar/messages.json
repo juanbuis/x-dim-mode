@@ -78,7 +78,7 @@
     "message": "اشترك"
   },
   "emailSuccess": {
-    "message": "تم. سنكتب عندما يكون هناك ما يستحق."
+    "message": "تم الاشتراك."
   },
   "emailError": {
     "message": "حدث خطأ ما. يرجى المحاولة مرة أخرى."
@@ -157,7 +157,7 @@
     "description": "Update-screen email heading"
   },
   "emailSubUpdate": {
-    "message": "سنراسلك عند حدوث خلل وعند إصلاحه، ونادرًا فيما عدا ذلك.",
+    "message": "ستصلك أخبار الإضافات الجديدة والإصلاحات. بضع رسائل في السنة.",
     "description": "Update-screen sub-line under the email heading"
   }
 }

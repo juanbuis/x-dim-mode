@@ -78,7 +78,7 @@
     "message": "Inscrever-se"
   },
   "emailSuccess": {
-    "message": "Pronto. Escrevemos quando tiver algo que valha a pena."
+    "message": "Pronto."
   },
   "emailError": {
     "message": "Algo deu errado. Tente novamente."
@@ -157,7 +157,7 @@
     "description": "Update-screen email heading"
   },
   "emailSubUpdate": {
-    "message": "Escrevemos quando algo quebra e quando é corrigido. Raramente além disso.",
+    "message": "Você fica sabendo dos novos extras e das correções. Alguns e-mails por ano.",
     "description": "Update-screen sub-line under the email heading"
   }
 }

@@ -78,7 +78,7 @@
     "message": "订阅"
   },
   "emailSuccess": {
-    "message": "已订阅。有值得说的事我们再写信。"
+    "message": "已订阅。"
   },
   "emailError": {
     "message": "出了点问题，请重试。"
@@ -157,7 +157,7 @@
     "description": "Update-screen email heading"
   },
   "emailSubUpdate": {
-    "message": "出问题时和修好时会通知你，其余时候很少打扰。",
+    "message": "新的 Extras 和修复都会通知你。一年只发几封邮件。",
     "description": "Update-screen sub-line under the email heading"
   }
 }

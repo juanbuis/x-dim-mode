@@ -78,7 +78,7 @@
     "message": "Подписаться"
   },
   "emailSuccess": {
-    "message": "Готово. Напишем, когда будет что рассказать."
+    "message": "Готово."
   },
   "emailError": {
     "message": "Что-то пошло не так. Попробуйте ещё раз."
@@ -157,7 +157,7 @@
     "description": "Update-screen email heading"
   },
   "emailSubUpdate": {
-    "message": "Напишем, когда что-то сломается и когда починим. В остальном — редко.",
+    "message": "Расскажем о новых дополнениях и исправлениях. Несколько писем в год.",
     "description": "Update-screen sub-line under the email heading"
   }
 }

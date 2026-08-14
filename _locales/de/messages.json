@@ -78,7 +78,7 @@
     "message": "Abonnieren"
   },
   "emailSuccess": {
-    "message": "Erledigt. Wir schreiben, wenn es etwas zu sagen gibt."
+    "message": "Du bist dabei."
   },
   "emailError": {
     "message": "Etwas ist schiefgelaufen. Bitte versuche es erneut."
@@ -157,7 +157,7 @@
     "description": "Update-screen email heading"
   },
   "emailSubUpdate": {
-    "message": "Wir melden uns, wenn etwas kaputtgeht – und wenn es behoben ist. Sonst selten.",
+    "message": "Du erfährst von neuen Extras und Fixes. Ein paar E-Mails im Jahr.",
     "description": "Update-screen sub-line under the email heading"
   }
 }

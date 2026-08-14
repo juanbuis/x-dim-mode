@@ -78,7 +78,7 @@
     "message": "Subscribe"
   },
   "emailSuccess": {
-    "message": "You're in. We'll write when there's something worth sending."
+    "message": "You're in."
   },
   "emailError": {
     "message": "Something went wrong. Please try again."
@@ -157,7 +157,7 @@
     "description": "Update-screen email heading"
   },
   "emailSubUpdate": {
-    "message": "We'll email when something breaks and when it's fixed. Rarely otherwise.",
+    "message": "You'll hear about new Extras and fixes. A few emails a year.",
     "description": "Update-screen sub-line under the email heading"
   }
 }

@@ -78,7 +78,7 @@
     "message": "登録する"
   },
   "emailSuccess": {
-    "message": "登録できました。お伝えする価値があるときにご連絡します。"
+    "message": "登録できました。"
   },
   "emailError": {
     "message": "エラーが発生しました。もう一度お試しください。"
@@ -157,7 +157,7 @@
     "description": "Update-screen email heading"
   },
   "emailSubUpdate": {
-    "message": "壊れたときと、直したときにお知らせします。それ以外はめったに送りません。",
+    "message": "新しいExtrasと修正をお知らせします。メールは年に数回だけ。",
     "description": "Update-screen sub-line under the email heading"
   }
 }
