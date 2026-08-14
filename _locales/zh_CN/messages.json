@@ -8,9 +8,6 @@
   "enableDim": {
     "message": "启用暗蓝模式"
   },
-  "settingsHint": {
-    "message": "你也可以在设置 → 显示中切换此选项。"
-  },
   "credit": {
     "message": "由 @juanbuis 开发"
   },
@@ -65,9 +62,6 @@
   "tryNow": {
     "message": "立即体验"
   },
-  "shareOnX": {
-    "message": "分享到 X"
-  },
   "emailHeading": {
     "message": "找回更多老 Twitter"
   },
@@ -79,9 +73,6 @@
   },
   "emailSuccess": {
     "message": "已订阅。"
-  },
-  "emailError": {
-    "message": "出了点问题，请重试。"
   },
   "emailNetworkError": {
     "message": "网络错误，请重试。"
@@ -97,12 +88,6 @@
   },
   "engageRate": {
     "message": "撰写评价"
-  },
-  "moreOptions": {
-    "message": "更多"
-  },
-  "donate": {
-    "message": "支持 X Dim Mode"
   },
   "extras": {
     "message": "更多功能"

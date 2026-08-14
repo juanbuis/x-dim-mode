@@ -8,9 +8,6 @@
   "enableDim": {
     "message": "Activar Tenue"
   },
-  "settingsHint": {
-    "message": "También puedes activarlo en Configuración → Pantalla."
-  },
   "credit": {
     "message": "Hecho por @juanbuis"
   },
@@ -65,9 +62,6 @@
   "tryNow": {
     "message": "Pruébalo ahora"
   },
-  "shareOnX": {
-    "message": "Compartir en X"
-  },
   "emailHeading": {
     "message": "Más del Twitter de antes"
   },
@@ -79,9 +73,6 @@
   },
   "emailSuccess": {
     "message": "Ya estás dentro."
-  },
-  "emailError": {
-    "message": "Algo salió mal. Inténtalo de nuevo."
   },
   "emailNetworkError": {
     "message": "Error de red. Inténtalo de nuevo."
@@ -97,12 +88,6 @@
   },
   "engageRate": {
     "message": "Dejar una reseña"
-  },
-  "moreOptions": {
-    "message": "Más"
-  },
-  "donate": {
-    "message": "Apoya X Dim Mode"
   },
   "extras": {
     "message": "Extras"

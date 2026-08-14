@@ -8,9 +8,6 @@
   "enableDim": {
     "message": "Enable Dim"
   },
-  "settingsHint": {
-    "message": "You can also toggle this from Settings → Display."
-  },
   "credit": {
     "message": "Made by @juanbuis"
   },
@@ -65,9 +62,6 @@
   "tryNow": {
     "message": "Try it now"
   },
-  "shareOnX": {
-    "message": "Share on X"
-  },
   "emailHeading": {
     "message": "More of old Twitter"
   },
@@ -79,9 +73,6 @@
   },
   "emailSuccess": {
     "message": "You're in."
-  },
-  "emailError": {
-    "message": "Something went wrong. Please try again."
   },
   "emailNetworkError": {
     "message": "Network error. Please try again."
@@ -97,9 +88,6 @@
   },
   "engageRate": {
     "message": "Leave a review"
-  },
-  "moreOptions": {
-    "message": "More"
   },
   "birdLogo": {
     "message": "Classic bird logo"
@@ -119,9 +107,6 @@
   },
   "installFeature6": {
     "message": "Easier on the eyes — dim backgrounds reduce halation for users with astigmatism"
-  },
-  "donate": {
-    "message": "Support X Dim Mode"
   },
   "extras": {
     "message": "Extras"

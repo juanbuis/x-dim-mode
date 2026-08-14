@@ -8,9 +8,6 @@
   "enableDim": {
     "message": "Gedimmt aktivieren"
   },
-  "settingsHint": {
-    "message": "Du kannst dies auch unter Einstellungen → Anzeige umschalten."
-  },
   "credit": {
     "message": "Erstellt von @juanbuis"
   },
@@ -65,9 +62,6 @@
   "tryNow": {
     "message": "Jetzt ausprobieren"
   },
-  "shareOnX": {
-    "message": "Auf X teilen"
-  },
   "emailHeading": {
     "message": "Mehr vom alten Twitter"
   },
@@ -79,9 +73,6 @@
   },
   "emailSuccess": {
     "message": "Du bist dabei."
-  },
-  "emailError": {
-    "message": "Etwas ist schiefgelaufen. Bitte versuche es erneut."
   },
   "emailNetworkError": {
     "message": "Netzwerkfehler. Bitte versuche es erneut."
@@ -97,12 +88,6 @@
   },
   "engageRate": {
     "message": "Bewertung abgeben"
-  },
-  "moreOptions": {
-    "message": "Mehr"
-  },
-  "donate": {
-    "message": "X Dim Mode unterstützen"
   },
   "extras": {
     "message": "Extras"

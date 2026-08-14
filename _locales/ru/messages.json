@@ -8,9 +8,6 @@
   "enableDim": {
     "message": "Включить затемнение"
   },
-  "settingsHint": {
-    "message": "Также можно переключить в Настройки → Дисплей."
-  },
   "credit": {
     "message": "Сделано @juanbuis"
   },
@@ -65,9 +62,6 @@
   "tryNow": {
     "message": "Попробовать"
   },
-  "shareOnX": {
-    "message": "Поделиться в X"
-  },
   "emailHeading": {
     "message": "Больше старого Twitter"
   },
@@ -79,9 +73,6 @@
   },
   "emailSuccess": {
     "message": "Готово."
-  },
-  "emailError": {
-    "message": "Что-то пошло не так. Попробуйте ещё раз."
   },
   "emailNetworkError": {
     "message": "Ошибка сети. Попробуйте ещё раз."
@@ -97,12 +88,6 @@
   },
   "engageRate": {
     "message": "Оставить отзыв"
-  },
-  "moreOptions": {
-    "message": "Ещё"
-  },
-  "donate": {
-    "message": "Поддержать X Dim Mode"
   },
   "extras": {
     "message": "Дополнительно"

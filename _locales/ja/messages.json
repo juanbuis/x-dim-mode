@@ -8,9 +8,6 @@
   "enableDim": {
     "message": "ダークブルーを有効にする"
   },
-  "settingsHint": {
-    "message": "設定 → 表示からも切り替えられます。"
-  },
   "credit": {
     "message": "作成者: @juanbuis"
   },
@@ -65,9 +62,6 @@
   "tryNow": {
     "message": "今すぐ試す"
   },
-  "shareOnX": {
-    "message": "Xでシェア"
-  },
   "emailHeading": {
     "message": "もっと昔のTwitterを"
   },
@@ -79,9 +73,6 @@
   },
   "emailSuccess": {
     "message": "登録できました。"
-  },
-  "emailError": {
-    "message": "エラーが発生しました。もう一度お試しください。"
   },
   "emailNetworkError": {
     "message": "ネットワークエラー。もう一度お試しください。"
@@ -97,12 +88,6 @@
   },
   "engageRate": {
     "message": "レビューを書く"
-  },
-  "moreOptions": {
-    "message": "その他"
-  },
-  "donate": {
-    "message": "X Dim Modeを応援する"
   },
   "extras": {
     "message": "その他の機能"

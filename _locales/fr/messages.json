@@ -8,9 +8,6 @@
   "enableDim": {
     "message": "Activer Sombre"
   },
-  "settingsHint": {
-    "message": "Vous pouvez aussi basculer depuis Paramètres → Affichage."
-  },
   "credit": {
     "message": "Créé par @juanbuis"
   },
@@ -65,9 +62,6 @@
   "tryNow": {
     "message": "Essayer maintenant"
   },
-  "shareOnX": {
-    "message": "Partager sur X"
-  },
   "emailHeading": {
     "message": "Plus du Twitter d’avant"
   },
@@ -79,9 +73,6 @@
   },
   "emailSuccess": {
     "message": "C’est fait."
-  },
-  "emailError": {
-    "message": "Une erreur est survenue. Veuillez réessayer."
   },
   "emailNetworkError": {
     "message": "Erreur réseau. Veuillez réessayer."
@@ -97,12 +88,6 @@
   },
   "engageRate": {
     "message": "Laisser un avis"
-  },
-  "moreOptions": {
-    "message": "Plus"
-  },
-  "donate": {
-    "message": "Soutenir X Dim Mode"
   },
   "extras": {
     "message": "Extras"

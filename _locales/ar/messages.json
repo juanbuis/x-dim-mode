@@ -8,9 +8,6 @@
   "enableDim": {
     "message": "تفعيل الوضع الخافت"
   },
-  "settingsHint": {
-    "message": "يمكنك أيضًا التبديل من الإعدادات ← العرض."
-  },
   "credit": {
     "message": "من تطوير @juanbuis"
   },
@@ -65,9 +62,6 @@
   "tryNow": {
     "message": "جرّبه الآن"
   },
-  "shareOnX": {
-    "message": "شارك على X"
-  },
   "emailHeading": {
     "message": "المزيد من تويتر القديم"
   },
@@ -79,9 +73,6 @@
   },
   "emailSuccess": {
     "message": "تم الاشتراك."
-  },
-  "emailError": {
-    "message": "حدث خطأ ما. يرجى المحاولة مرة أخرى."
   },
   "emailNetworkError": {
     "message": "خطأ في الشبكة. يرجى المحاولة مرة أخرى."
@@ -97,12 +88,6 @@
   },
   "engageRate": {
     "message": "اكتب مراجعة"
-  },
-  "moreOptions": {
-    "message": "المزيد"
-  },
-  "donate": {
-    "message": "ادعم X Dim Mode"
   },
   "extras": {
     "message": "إضافات"

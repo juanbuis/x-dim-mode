@@ -8,9 +8,6 @@
   "enableDim": {
     "message": "Ativar Escurecido"
   },
-  "settingsHint": {
-    "message": "Você também pode alternar em Configurações → Tela."
-  },
   "credit": {
     "message": "Feito por @juanbuis"
   },
@@ -65,9 +62,6 @@
   "tryNow": {
     "message": "Experimente agora"
   },
-  "shareOnX": {
-    "message": "Compartilhar no X"
-  },
   "emailHeading": {
     "message": "Mais do Twitter antigo"
   },
@@ -79,9 +73,6 @@
   },
   "emailSuccess": {
     "message": "Pronto."
-  },
-  "emailError": {
-    "message": "Algo deu errado. Tente novamente."
   },
   "emailNetworkError": {
     "message": "Erro de rede. Tente novamente."
@@ -97,12 +88,6 @@
   },
   "engageRate": {
     "message": "Deixar uma avaliação"
-  },
-  "moreOptions": {
-    "message": "Mais"
-  },
-  "donate": {
-    "message": "Apoie o X Dim Mode"
   },
   "extras": {
     "message": "Extras"

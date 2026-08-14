@@ -8,9 +8,6 @@
   "enableDim": {
     "message": "다크 블루 활성화"
   },
-  "settingsHint": {
-    "message": "설정 → 디스플레이에서도 전환할 수 있습니다."
-  },
   "credit": {
     "message": "만든이: @juanbuis"
   },
@@ -65,9 +62,6 @@
   "tryNow": {
     "message": "지금 사용해 보기"
   },
-  "shareOnX": {
-    "message": "X에서 공유"
-  },
   "emailHeading": {
     "message": "옛 트위터를 더 많이"
   },
@@ -79,9 +73,6 @@
   },
   "emailSuccess": {
     "message": "구독 완료."
-  },
-  "emailError": {
-    "message": "오류가 발생했습니다. 다시 시도해 주세요."
   },
   "emailNetworkError": {
     "message": "네트워크 오류. 다시 시도해 주세요."
@@ -97,12 +88,6 @@
   },
   "engageRate": {
     "message": "리뷰 남기기"
-  },
-  "moreOptions": {
-    "message": "더보기"
-  },
-  "donate": {
-    "message": "X Dim Mode 후원하기"
   },
   "extras": {
     "message": "추가 기능"
