@@ -25,10 +25,10 @@ let _theme = "dim";
 let _customHue = 210;
 
 // ── Settings Storage ───────────────────────────────────────────────
-// User settings live in chrome.storage.sync so they roam across devices,
-// mirrored to local as a warm fallback (sync can be empty on first run after
-// migration, and hue-slider drags write local-only to stay inside sync's
-// write quota). Reads prefer sync; local fills any missing keys.
+// User settings are written to both areas: sync so they roam across devices,
+// local as this device's record of what the user last chose. Reads prefer
+// local and fall back to sync — see getSettings for why that order matters.
+// Remote changes arrive via onChanged and are mirrored back into local.
 
 const SETTING_KEYS = ["enabled", "theme", "customHue", "birdLogo", "oldFont", "classicFavicon", "tweetWording", "followingTab", "imageGrid"];
 
@@ -37,7 +37,13 @@ function getSettings(cb) {
     chrome.storage.local.get(SETTING_KEYS, (localVals) => {
       const merged = {};
       for (const k of SETTING_KEYS) {
-        merged[k] = syncVals[k] !== undefined ? syncVals[k] : localVals[k];
+        // Local wins when both are set: it records this device's most recent
+        // explicit action. Sync can hold a stale value (its writes are
+        // throttled and can fail silently), and letting it win meant a toggle
+        // could be resurrected on the next read — turn Dim off, reload, and
+        // it was back on. Sync still seeds a fresh device, and remote changes
+        // arrive through onChanged, which mirrors them into local below.
+        merged[k] = localVals[k] !== undefined ? localVals[k] : syncVals[k];
       }
       cb(merged);
     });
@@ -783,6 +789,10 @@ function trackRouteForFollowing() {
 }
 
 function applyDim() {
+  // Hard invariant rather than trusting every call site: while Dim is off,
+  // nothing may paint it. The observer, the theme sync and the init path all
+  // route through here.
+  if (!_enabled) return;
   ensureBaseCSS();
   document.documentElement.classList.add(DIM_CLASS);
   syncThemeColor();
@@ -1138,8 +1148,11 @@ getSettings(({ enabled, theme, customHue, birdLogo, oldFont, classicFavicon, twe
   _imageGrid = !!imageGrid;
 
   if (enabled === undefined) {
-    _enabled = true;
-    setSettings({ enabled: true });
+    // Genuinely first run — unless this device already recorded "off", in
+    // which case respect it rather than silently switching Dim back on.
+    const cached = (() => { try { return localStorage.getItem("__xdm_enabled"); } catch { return null; } })();
+    _enabled = cached !== "0";
+    setSettings({ enabled: _enabled });
   } else {
     _enabled = !!enabled;
   }
@@ -1250,6 +1263,15 @@ function updateSettingsButtonColor() {
 // double-event per write is harmless.
 chrome.storage.onChanged.addListener((changes, area) => {
   if (area !== "sync" && area !== "local") return;
+  // Now that local wins reads, a change arriving from another device has to be
+  // written through to local, otherwise the next read would undo it.
+  if (area === "sync") {
+    const mirror = {};
+    for (const k of SETTING_KEYS) {
+      if (changes[k] && changes[k].newValue !== undefined) mirror[k] = changes[k].newValue;
+    }
+    if (Object.keys(mirror).length) chrome.storage.local.set(mirror);
+  }
   if (changes.enabled) {
     _enabled = !!changes.enabled.newValue;
     try { localStorage.setItem("__xdm_enabled", _enabled ? "1" : "0"); } catch (e) {}
