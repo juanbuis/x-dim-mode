@@ -1,0 +1,20 @@
+X Dim Mode 1.7.0 — release notes
+Paste into the CWS "What's new" field and AMO's "Release notes" field.
+
+────────────────────────────────────────────────────────
+NEW
+• Classic image grid (Extras) — multi-image posts go back to a grid instead of
+  X's side-scrolling carousel, so nothing is hidden off-screen.
+• Extras is easier to find: a labelled row in the popup instead of a small
+  sparkle icon, now grouped into Look and Timeline.
+• On Firefox: X Dim Mode now runs on Firefox for Android too.
+
+FIXED
+• Turning Dim off actually turns it off. The toggle used to leave the page
+  dimmed until a reload, and the setting could switch itself back on.
+• "Tweet, not Post" now also renames the big compose button in the sidebar —
+  the most visible "Post" on the page, which it used to miss.
+• The interface lays out right-to-left in Arabic.
+
+Something broken? There's a "Report a problem" link in the popup.
+────────────────────────────────────────────────────────

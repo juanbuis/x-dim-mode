@@ -5,6 +5,9 @@
 - **New:** "Classic image grid" (Extras) — multi-image posts go back to a grid instead of X's side-scrolling carousel, so nothing is hidden off-screen
 - **New:** Extras is now grouped into sections, and a labelled row in the popup instead of a small sparkle icon — with a "New" badge when something's been added
 - **Fixed:** "Tweet, not Post" now also renames the big compose button in the sidebar — the most visible "Post" on the page, which it used to miss
+- **Fixed:** turning Dim off now actually turns it off. Switching the toggle left the page dimmed until a reload, and the setting could come back on by itself — two storage areas disagreed about which one won, and the stale one did.
+- **New:** available on Firefox for Android, from the same add-on listing
+- **Improved:** the interface lays out right-to-left in Arabic
 
 ## 1.6.1
 
