@@ -1,0 +1,31 @@
+X a supprimé Sombre (Dim), l'arrière-plan bleu foncé situé entre Extinction des feux et Par défaut, et ne vous laisse que du noir pur ou du blanc pur. X Dim Mode le remet en place.
+
+Sombre revient comme quatrième option dans les paramètres d'affichage de X, exactement là où il a toujours été. Choisissez-le une fois, il reste.
+
+THÈMES
+• Sombre : l'arrière-plan bleu foncé d'origine, restauré
+• Cinq autres au choix : Slate, Jade, Plum, Dusk et Ember
+• Personnalisé : choisissez la couleur que vous voulez avec le curseur de teinte
+• S'applique partout : fil, messages privés, fenêtres, la nouvelle interface de chat et X Pro
+
+EXTRAS – DES MORCEAUX OPTIONNELS DE L'ANCIEN TWITTER
+Tous désactivés par défaut. N'activez que ce que vous voulez.
+• Logo oiseau classique : l'oiseau à la place du X
+• Police classique : Helvetica Neue, la typographie utilisée avant Chirp
+• Favicon classique : l'oiseau Twitter de retour dans votre onglet
+• « Tweet, pas Post » : l'ancienne formulation, bouton de rédaction compris
+• Démarrer sur Abonnements : ouvrir sur Abonnements plutôt que Pour vous
+• Grille d'images classique : les publications à plusieurs images retrouvent l'ancienne grille, sans rien de coupé hors écran
+
+PLUS DOUX POUR LES YEUX
+Les fonds bleu foncé réduisent le halo : cette lueur que le texte blanc projette sur du noir pur et qui gêne la lecture en cas d'astigmatisme. C'est pour cela que beaucoup utilisaient Sombre, et pour cela que sa suppression a tant déplu.
+
+CONFIDENTIALITÉ
+Pas de compte. Pas de suivi. Pas d'analyse. Aucune collecte de données. L'extension demande exactement une autorisation, « storage », qui sert à mémoriser vos réglages. Ceux-ci se synchronisent entre vos propres appareils via votre compte navigateur et ne vont nulle part ailleurs.
+
+BON À SAVOIR ÉGALEMENT
+• Fonctionne sur x.com, twitter.com et X Pro
+• Disponible en français, anglais, espagnol, portugais, allemand, russe, japonais, coréen, chinois et arabe
+• Open source : https://github.com/juanbuis/x-dim-mode
+
+X change souvent sa mise en page et, quand c'est le cas, quelque chose casse parfois ici. Un lien « Signaler un problème » se trouve dans la fenêtre de l'extension : les signalements sont lus et les correctifs arrivent généralement en quelques jours.

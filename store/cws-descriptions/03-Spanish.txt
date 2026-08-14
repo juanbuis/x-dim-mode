@@ -1,0 +1,31 @@
+X eliminó Tenue (Dim), el fondo azul oscuro que estaba entre Apagar luces y Predeterminado, y te dejó con negro puro o blanco puro. X Dim Mode lo devuelve.
+
+Tenue vuelve como una cuarta opción dentro de la propia configuración de pantalla de X, exactamente donde siempre estuvo. Elígelo una vez y se queda.
+
+TEMAS
+• Tenue: el fondo azul oscuro original, restaurado
+• Cinco más para elegir: Slate, Jade, Plum, Dusk y Ember
+• Personalizado: ajusta el color que quieras con el control de tono
+• Se aplica en todas partes: cronología, mensajes, ventanas, la nueva interfaz de chat y X Pro
+
+EXTRAS: PIEZAS OPCIONALES DEL ANTIGUO TWITTER
+Todos desactivados por defecto. Activa solo los que quieras.
+• Logo clásico del pájaro: el pájaro en lugar de la X
+• Fuente clásica: Helvetica Neue, la tipografía que X usaba antes de Chirp
+• Favicon clásico: el pájaro de Twitter de vuelta en tu pestaña
+• «Tweet, no Post»: la terminología antigua, incluido el botón de redactar
+• Empezar en Siguiendo: abre en Siguiendo en lugar de Para ti
+• Cuadrícula de imágenes clásica: las publicaciones con varias imágenes recuperan la cuadrícula antigua, sin nada recortado fuera de pantalla
+
+MÁS CÓMODO PARA LA VISTA
+Los fondos azul oscuro reducen la halación: el resplandor que produce el texto blanco sobre negro puro y que dificulta la lectura si tienes astigmatismo. Por eso mucha gente usaba Tenue, y por eso su retirada sentó tan mal.
+
+PRIVACIDAD
+Sin cuenta. Sin rastreo. Sin analíticas. Sin recopilación de datos de ningún tipo. La extensión pide exactamente un permiso, «storage», que usa para recordar tus ajustes. Esos ajustes se sincronizan entre tus propios dispositivos a través de tu cuenta del navegador y no van a ningún otro sitio.
+
+TAMBIÉN CONVIENE SABER
+• Funciona en x.com, twitter.com y X Pro
+• Disponible en español, inglés, portugués, francés, alemán, ruso, japonés, coreano, chino y árabe
+• Código abierto: https://github.com/juanbuis/x-dim-mode
+
+X cambia su diseño a menudo y, cuando lo hace, algo de esto se rompe de vez en cuando. Hay un enlace «Informar de un problema» en el popup: los informes se leen y las correcciones suelen llegar en pocos días.

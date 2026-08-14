@@ -1,0 +1,31 @@
+X hat „Dim" entfernt – den dunkelblauen Hintergrund, der zwischen „Lights Out" und „Standard" lag – und lässt Ihnen nur noch reines Schwarz oder reines Weiß. X Dim Mode holt ihn zurück.
+
+Dim erscheint wieder als vierte Option in den Anzeige-Einstellungen von X, genau dort, wo sie immer war. Einmal auswählen, und sie bleibt.
+
+DESIGNS
+• Dim – der originale dunkelblaue Hintergrund, wiederhergestellt
+• Fünf weitere zur Auswahl: Slate, Jade, Plum, Dusk und Ember
+• Benutzerdefiniert – stellen Sie mit dem Farbregler jede gewünschte Farbe ein
+• Wirkt überall: Timeline, DMs, Dialoge, die neue Chat-Oberfläche und X Pro
+
+EXTRAS – OPTIONALE STÜCKE VOM ALTEN TWITTER
+Standardmäßig alle aus. Schalten Sie nur ein, was Sie möchten.
+• Klassisches Vogel-Logo – der Vogel statt des X
+• Klassische Schrift – Helvetica Neue, die Schrift vor Chirp
+• Klassisches Favicon – der Twitter-Vogel zurück in Ihrem Tab
+• „Tweet statt Post" – die alte Bezeichnung, inklusive Schreiben-Schaltfläche
+• Mit „Folge ich" starten – statt mit „Für dich"
+• Klassisches Bildraster – Beiträge mit mehreren Bildern im alten Raster, ohne dass etwas außerhalb des Bildschirms verschwindet
+
+SCHONENDER FÜR DIE AUGEN
+Dunkelblaue Hintergründe verringern die Halation: das Leuchten, das weißer Text auf reinem Schwarz erzeugt und das Lesen bei Astigmatismus erschwert. Genau deshalb haben viele Dim benutzt – und deshalb war das Entfernen so unwillkommen.
+
+DATENSCHUTZ
+Kein Konto. Kein Tracking. Keine Analyse. Keinerlei Datenerhebung. Die Erweiterung fordert genau eine Berechtigung an – „storage" – und merkt sich damit Ihre Einstellungen. Diese werden über Ihr Browser-Konto zwischen Ihren eigenen Geräten synchronisiert und gehen nirgendwo sonst hin.
+
+AUSSERDEM GUT ZU WISSEN
+• Funktioniert auf x.com, twitter.com und X Pro
+• Verfügbar auf Deutsch, Englisch, Spanisch, Portugiesisch, Französisch, Russisch, Japanisch, Koreanisch, Chinesisch und Arabisch
+• Open Source: https://github.com/juanbuis/x-dim-mode
+
+X ändert sein Layout häufig, und dabei geht hier gelegentlich etwas kaputt. Im Popup gibt es einen Link „Problem melden" – Meldungen werden gelesen, und Korrekturen erscheinen meist innerhalb weniger Tage.

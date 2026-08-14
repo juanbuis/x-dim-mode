@@ -1,0 +1,31 @@
+O X removeu o Escurecido (Dim) — o fundo azul escuro que ficava entre Luzes Apagadas e Padrão — e deixou você apenas com preto puro ou branco puro. O X Dim Mode traz ele de volta.
+
+O Escurecido volta como uma quarta opção dentro das próprias configurações de exibição do X, exatamente onde sempre esteve. Escolha uma vez e ele fica.
+
+TEMAS
+• Escurecido — o fundo azul escuro original, restaurado
+• Mais cinco para escolher: Slate, Jade, Plum, Dusk e Ember
+• Personalizado — defina a cor que quiser com o controle de matiz
+• Vale para tudo: linha do tempo, mensagens, janelas, a nova interface de chat e o X Pro
+
+EXTRAS — PEDAÇOS OPCIONAIS DO ANTIGO TWITTER
+Todos desligados por padrão. Ligue só o que você quiser.
+• Logo clássico do passarinho — o pássaro no lugar do X
+• Fonte clássica — Helvetica Neue, a tipografia que o X usava antes da Chirp
+• Favicon clássico — o passarinho do Twitter de volta na sua aba
+• "Tweet, não Post" — a nomenclatura antiga, incluindo o botão de publicar
+• Começar em Seguindo — abrir em Seguindo em vez de Para você
+• Grade de imagens clássica — posts com várias imagens voltam à grade antiga, sem nada cortado fora da tela
+
+MAIS CONFORTÁVEL PARA OS OLHOS
+Fundos azul escuro reduzem a halação: o brilho que o texto branco provoca sobre o preto puro e que dificulta a leitura para quem tem astigmatismo. É por isso que muita gente usava o Escurecido, e por isso a remoção foi tão mal recebida.
+
+PRIVACIDADE
+Sem conta. Sem rastreamento. Sem análise. Sem coleta de dados de qualquer tipo. A extensão pede exatamente uma permissão — "storage" — usada para lembrar suas configurações. Elas sincronizam entre os seus próprios dispositivos pela conta do navegador e não vão para nenhum outro lugar.
+
+VALE SABER TAMBÉM
+• Funciona em x.com, twitter.com e X Pro
+• Disponível em português, inglês, espanhol, francês, alemão, russo, japonês, coreano, chinês e árabe
+• Código aberto: https://github.com/juanbuis/x-dim-mode
+
+O X muda o layout com frequência e, quando isso acontece, algo aqui às vezes quebra. Há um link "Relatar um problema" no popup — os relatos são lidos e as correções costumam sair em poucos dias.
