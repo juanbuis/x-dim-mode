@@ -9,7 +9,8 @@
     "message": "Включить затемнение"
   },
   "credit": {
-    "message": "Сделано @juanbuis"
+    "message": "Подписаться",
+    "description": "Footer follow link in the popup and Extras page"
   },
   "dimLabel": {
     "message": "Затемнение"
@@ -99,19 +100,19 @@
     "message": "Обновления на почту"
   },
   "birdLogo": {
-    "message": "Классический логотип с птицей"
+    "message": "Классический логотип"
   },
   "tweetWording": {
     "message": "«Твит» вместо «Пост»"
   },
   "classicFavicon": {
-    "message": "Классический значок вкладки"
+    "message": "Классический фавикон"
   },
   "oldFont": {
     "message": "Классический шрифт"
   },
   "followingTab": {
-    "message": "Открывать «Отслеживаемые»",
+    "message": "Лента подписок",
     "description": "Extras toggle: open the Following timeline by default"
   },
   "installFeature6": {
@@ -122,7 +123,7 @@
     "description": "Badge on the Extras row when a new extra has shipped"
   },
   "imageGrid": {
-    "message": "Классическая сетка изображений",
+    "message": "Классическая сетка",
     "description": "Extras toggle: restore the old multi-image grid layout"
   },
   "groupLook": {

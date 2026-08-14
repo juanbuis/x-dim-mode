@@ -9,7 +9,8 @@
     "message": "다크 블루 활성화"
   },
   "credit": {
-    "message": "만든이: @juanbuis"
+    "message": "@juanbuis 팔로우",
+    "description": "Footer follow link in the popup and Extras page"
   },
   "dimLabel": {
     "message": "다크 블루"

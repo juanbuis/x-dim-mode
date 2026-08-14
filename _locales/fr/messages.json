@@ -9,7 +9,8 @@
     "message": "Activer Sombre"
   },
   "credit": {
-    "message": "Créé par @juanbuis"
+    "message": "Suivez @juanbuis",
+    "description": "Footer follow link in the popup and Extras page"
   },
   "dimLabel": {
     "message": "Sombre"
@@ -111,7 +112,7 @@
     "message": "Police classique"
   },
   "followingTab": {
-    "message": "Démarrer sur Abonnements",
+    "message": "Ouvrir sur Abonnements",
     "description": "Extras toggle: open the Following timeline by default"
   },
   "installFeature6": {

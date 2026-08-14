@@ -9,7 +9,8 @@
     "message": "تفعيل الوضع الخافت"
   },
   "credit": {
-    "message": "من تطوير @juanbuis"
+    "message": "تابع ‎@juanbuis",
+    "description": "Footer follow link in the popup and Extras page"
   },
   "dimLabel": {
     "message": "خافت"

@@ -1,3 +1,7 @@
+// Arabic is the one RTL locale we ship; Chrome does not set direction on
+// extension pages automatically, so do it from the locale.
+document.documentElement.dir = chrome.i18n.getMessage("@@bidi_dir");
+
 const birdToggle = document.getElementById("birdToggle");
 const tweetWordingToggle = document.getElementById("tweetWordingToggle");
 const faviconToggle = document.getElementById("faviconToggle");

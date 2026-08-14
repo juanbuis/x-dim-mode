@@ -9,7 +9,8 @@
     "message": "启用暗蓝模式"
   },
   "credit": {
-    "message": "由 @juanbuis 开发"
+    "message": "关注 @juanbuis",
+    "description": "Footer follow link in the popup and Extras page"
   },
   "dimLabel": {
     "message": "暗蓝"

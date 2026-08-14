@@ -9,7 +9,8 @@
     "message": "Gedimmt aktivieren"
   },
   "credit": {
-    "message": "Erstellt von @juanbuis"
+    "message": "Folge @juanbuis",
+    "description": "Footer follow link in the popup and Extras page"
   },
   "dimLabel": {
     "message": "Gedimmt"

@@ -52,6 +52,10 @@ function setSettings(obj) {
   chrome.storage.local.set(obj);
 }
 
+// Arabic is the one RTL locale we ship; Chrome does not set direction on
+// extension pages automatically, so do it from the locale.
+document.documentElement.dir = chrome.i18n.getMessage("@@bidi_dir");
+
 // i18n
 document.getElementById("title").textContent = chrome.i18n.getMessage("extName");
 document.getElementById("enableLabel").textContent = chrome.i18n.getMessage("enableDim");

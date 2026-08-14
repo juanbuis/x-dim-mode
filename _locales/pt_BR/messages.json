@@ -9,7 +9,8 @@
     "message": "Ativar Escurecido"
   },
   "credit": {
-    "message": "Feito por @juanbuis"
+    "message": "Siga @juanbuis",
+    "description": "Footer follow link in the popup and Extras page"
   },
   "dimLabel": {
     "message": "Escurecido"
@@ -99,7 +100,7 @@
     "message": "Novidades por e-mail"
   },
   "birdLogo": {
-    "message": "Logo clássico do passarinho"
+    "message": "Logo clássico do pássaro"
   },
   "tweetWording": {
     "message": "Tweet, não Post"
@@ -122,7 +123,7 @@
     "description": "Badge on the Extras row when a new extra has shipped"
   },
   "imageGrid": {
-    "message": "Grade de imagens clássica",
+    "message": "Grade clássica",
     "description": "Extras toggle: restore the old multi-image grid layout"
   },
   "groupLook": {

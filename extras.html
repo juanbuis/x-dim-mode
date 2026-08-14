@@ -11,6 +11,8 @@
       background: #15202B;
       color: #E7E9EA;
     }
+    /* "Back" points right in RTL */
+    html[dir="rtl"] .back-arrow { display: inline-block; transform: scaleX(-1); }
     .back {
       display: inline-flex;
       align-items: center;
@@ -101,7 +103,7 @@
   </style>
 </head>
 <body>
-  <a class="back" href="popup.html">&larr; <span id="backLabel"></span></a>
+  <a class="back" href="popup.html"><span class="back-arrow">&larr;</span> <span id="backLabel"></span></a>
   <h2 id="extrasTitle"></h2>
 
   <!-- Grouped rather than one flat list: six unrelated toggles in a row gave no

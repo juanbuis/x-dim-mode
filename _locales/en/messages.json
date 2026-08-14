@@ -9,7 +9,8 @@
     "message": "Enable Dim"
   },
   "credit": {
-    "message": "Made by @juanbuis"
+    "message": "Follow @juanbuis",
+    "description": "Footer follow link in the popup and Extras page"
   },
   "dimLabel": {
     "message": "Dim"
