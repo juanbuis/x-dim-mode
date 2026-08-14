@@ -3,6 +3,7 @@ const tweetWordingToggle = document.getElementById("tweetWordingToggle");
 const faviconToggle = document.getElementById("faviconToggle");
 const oldFontToggle = document.getElementById("oldFontToggle");
 const followingTabToggle = document.getElementById("followingTabToggle");
+const imageGridToggle = document.getElementById("imageGridToggle");
 
 // i18n
 document.getElementById("backLabel").textContent = chrome.i18n.getMessage("extName");
@@ -12,6 +13,9 @@ document.getElementById("tweetWordingLabel").textContent = chrome.i18n.getMessag
 document.getElementById("faviconLabel").textContent = chrome.i18n.getMessage("classicFavicon");
 document.getElementById("oldFontLabel").textContent = chrome.i18n.getMessage("oldFont");
 document.getElementById("followingTabLabel").textContent = chrome.i18n.getMessage("followingTab");
+document.getElementById("imageGridLabel").textContent = chrome.i18n.getMessage("imageGrid");
+document.getElementById("groupLookLabel").textContent = chrome.i18n.getMessage("groupLook");
+document.getElementById("groupTimelineLabel").textContent = chrome.i18n.getMessage("groupTimeline");
 
 // Report-a-problem link (same prefilled mailto as the popup footer)
 const reportLink = document.getElementById("reportLink");
@@ -26,13 +30,14 @@ reportLink.textContent = chrome.i18n.getMessage("reportProblem");
 }
 
 // Load state (sync preferred, local fallback — mirrors helpers in popup.js)
-const EXTRA_KEYS = ["birdLogo", "tweetWording", "classicFavicon", "oldFont", "followingTab"];
+const EXTRA_KEYS = ["birdLogo", "tweetWording", "classicFavicon", "oldFont", "followingTab", "imageGrid"];
 const TOGGLES = {
   birdLogo: birdToggle,
   tweetWording: tweetWordingToggle,
   classicFavicon: faviconToggle,
   oldFont: oldFontToggle,
   followingTab: followingTabToggle,
+  imageGrid: imageGridToggle,
 };
 
 chrome.storage.sync.get(EXTRA_KEYS, (syncVals) => {

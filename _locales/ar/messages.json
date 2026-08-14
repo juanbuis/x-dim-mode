@@ -135,5 +135,17 @@
   "newBadge": {
     "message": "جديد",
     "description": "Badge on the Extras row when a new extra has shipped"
+  },
+  "imageGrid": {
+    "message": "شبكة الصور الكلاسيكية",
+    "description": "Extras toggle: restore the old multi-image grid layout"
+  },
+  "groupLook": {
+    "message": "المظهر",
+    "description": "Extras section heading for appearance toggles"
+  },
+  "groupTimeline": {
+    "message": "الجدول الزمني",
+    "description": "Extras section heading for timeline/layout toggles"
   }
 }

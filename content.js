@@ -8,6 +8,7 @@ let _birdLogo = false;
 let _oldFont = false;
 let _classicFavicon = false;
 let _tweetWording = false;
+let _imageGrid = false;
 
 // ── Theme Definitions ──────────────────────────────────────────────
 
@@ -29,7 +30,7 @@ let _customHue = 210;
 // migration, and hue-slider drags write local-only to stay inside sync's
 // write quota). Reads prefer sync; local fills any missing keys.
 
-const SETTING_KEYS = ["enabled", "theme", "customHue", "birdLogo", "oldFont", "classicFavicon", "tweetWording", "followingTab"];
+const SETTING_KEYS = ["enabled", "theme", "customHue", "birdLogo", "oldFont", "classicFavicon", "tweetWording", "followingTab", "imageGrid"];
 
 function getSettings(cb) {
   chrome.storage.sync.get(SETTING_KEYS, (syncVals) => {
@@ -498,6 +499,59 @@ function applyOldFont() {
 
 function removeOldFont() {
   document.documentElement.classList.remove(OLDFONT_CLASS);
+}
+
+// ── Classic image grid ────────────────────────────────────────────
+// X replaced the multi-image grid with a horizontal carousel, which hides
+// images: a 3-image post scrolls to ~1011px inside a 598px column, so the
+// third is off-screen behind a next arrow. This lays them back out as a grid,
+// with an odd final image spanning the full width — the old Twitter layout.
+//
+// Not gated on the dim class: it's a layout preference, independent of theme.
+
+const IMAGEGRID_CSS_ID = "x-dim-imagegrid-css";
+const IMAGEGRID_CLASS = "x-dim-imagegrid";
+
+function ensureImageGridCSS() {
+  if (document.getElementById(IMAGEGRID_CSS_ID)) return;
+  const style = document.createElement("style");
+  style.id = IMAGEGRID_CSS_ID;
+  // :not(:has(video)) leaves video/GIF carousels alone — forcing grid onto a
+  // player would break it, and only still images should be re-laid-out.
+  style.textContent = `
+    html.${IMAGEGRID_CLASS} [role="article"] [data-testid="ScrollSnap-List"]:not(:has(video)) {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2px;
+      overflow: visible;
+    }
+    html.${IMAGEGRID_CLASS} [role="article"] [data-testid="ScrollSnap-List"]:not(:has(video)) > *:last-child:nth-child(odd) {
+      grid-column: 1 / -1;
+    }
+    /* X sets object-fit: fill, which stretches an image into whatever cell it
+       lands in (a portrait photo in the full-width slot distorts ~240%).
+       Crop instead, which is what the original grid did. */
+    html.${IMAGEGRID_CLASS} [role="article"] [data-testid="ScrollSnap-List"]:not(:has(video)) img {
+      object-fit: cover !important;
+      width: 100% !important;
+      height: 100% !important;
+    }
+    /* Nothing is hidden any more, so the carousel arrows have nothing to do. */
+    html.${IMAGEGRID_CLASS} [role="article"] [data-testid="ScrollSnap-prevButtonWrapper"],
+    html.${IMAGEGRID_CLASS} [role="article"] [data-testid="ScrollSnap-nextButtonWrapper"] {
+      display: none !important;
+    }
+  `;
+  (document.head || document.documentElement).appendChild(style);
+}
+
+function applyImageGrid() {
+  ensureImageGridCSS();
+  document.documentElement.classList.add(IMAGEGRID_CLASS);
+}
+
+function removeImageGrid() {
+  document.documentElement.classList.remove(IMAGEGRID_CLASS);
 }
 
 // ── Classic Favicon & Tab Title ───────────────────────────────────
@@ -1073,7 +1127,7 @@ function fullRescan() {
 }
 
 // Init — single merged storage read (sync preferred, local fallback)
-getSettings(({ enabled, theme, customHue, birdLogo, oldFont, classicFavicon, tweetWording, followingTab }) => {
+getSettings(({ enabled, theme, customHue, birdLogo, oldFont, classicFavicon, tweetWording, followingTab, imageGrid }) => {
   _theme = theme ?? "dim";
   _customHue = customHue ?? 210;
   _birdLogo = !!birdLogo;
@@ -1081,6 +1135,7 @@ getSettings(({ enabled, theme, customHue, birdLogo, oldFont, classicFavicon, twe
   _classicFavicon = !!classicFavicon;
   _tweetWording = !!tweetWording;
   _followingTab = !!followingTab;
+  _imageGrid = !!imageGrid;
 
   if (enabled === undefined) {
     _enabled = true;
@@ -1131,6 +1186,9 @@ getSettings(({ enabled, theme, customHue, birdLogo, oldFont, classicFavicon, twe
 
   // Apply classic font if enabled
   if (_oldFont) applyOldFont();
+
+  // Apply classic image grid if enabled
+  if (_imageGrid) applyImageGrid();
 
   // Apply classic favicon + tab title if enabled
   if (_classicFavicon) {
@@ -1226,6 +1284,11 @@ chrome.storage.onChanged.addListener((changes, area) => {
       stopBirdInterval();
       restoreBirdLogos();
     }
+  }
+  if (changes.imageGrid) {
+    _imageGrid = !!changes.imageGrid.newValue;
+    if (_imageGrid) applyImageGrid();
+    else removeImageGrid();
   }
   if (changes.oldFont) {
     _oldFont = !!changes.oldFont.newValue;

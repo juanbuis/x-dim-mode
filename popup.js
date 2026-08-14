@@ -71,7 +71,7 @@ reportLink.href = REPORT_URL;
 // Bump EXTRAS_REVISION whenever an extra is added. Anyone whose stored
 // revision is behind gets a "New" badge on the row until they open Extras,
 // which is the only signal they'd otherwise have that something was added.
-const EXTRAS_REVISION = 2; // 1 = bird/font/favicon/wording, 2 = Start on Following
+const EXTRAS_REVISION = 3; // 1 = bird/font/favicon/wording, 2 = Start on Following, 3 = Classic image grid
 
 document.getElementById("extrasRowLabel").textContent = chrome.i18n.getMessage("extras");
 const extrasNew = document.getElementById("extrasNew");

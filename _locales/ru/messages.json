@@ -135,5 +135,17 @@
   "newBadge": {
     "message": "Новое",
     "description": "Badge on the Extras row when a new extra has shipped"
+  },
+  "imageGrid": {
+    "message": "Классическая сетка изображений",
+    "description": "Extras toggle: restore the old multi-image grid layout"
+  },
+  "groupLook": {
+    "message": "Внешний вид",
+    "description": "Extras section heading for appearance toggles"
+  },
+  "groupTimeline": {
+    "message": "Лента",
+    "description": "Extras section heading for timeline/layout toggles"
   }
 }

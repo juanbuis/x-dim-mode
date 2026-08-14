@@ -135,5 +135,17 @@
   "newBadge": {
     "message": "Nouveau",
     "description": "Badge on the Extras row when a new extra has shipped"
+  },
+  "imageGrid": {
+    "message": "Grille d’images classique",
+    "description": "Extras toggle: restore the old multi-image grid layout"
+  },
+  "groupLook": {
+    "message": "Apparence",
+    "description": "Extras section heading for appearance toggles"
+  },
+  "groupTimeline": {
+    "message": "Fil",
+    "description": "Extras section heading for timeline/layout toggles"
   }
 }

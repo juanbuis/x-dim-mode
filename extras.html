@@ -68,6 +68,15 @@
     }
     input:checked + .slider { background: #1D9BF0; }
     input:checked + .slider::before { transform: translateX(20px); }
+    .group {
+      margin: 18px 0 4px;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      color: #536471;
+    }
+    .group:first-of-type { margin-top: 10px; }
     .report {
       display: block;
       margin-top: 12px;
@@ -82,24 +91,14 @@
 <body>
   <a class="back" href="popup.html">&larr; <span id="backLabel"></span></a>
   <h2 id="extrasTitle"></h2>
+
+  <!-- Grouped rather than one flat list: six unrelated toggles in a row gave no
+       sense of what each one affects. Headings are cheap and scale as more land. -->
+  <p class="group" id="groupLookLabel"></p>
   <div class="toggle-row">
     <span class="label" id="birdLabel"></span>
     <label class="toggle">
       <input type="checkbox" id="birdToggle">
-      <span class="slider"></span>
-    </label>
-  </div>
-  <div class="toggle-row">
-    <span class="label" id="tweetWordingLabel"></span>
-    <label class="toggle">
-      <input type="checkbox" id="tweetWordingToggle">
-      <span class="slider"></span>
-    </label>
-  </div>
-  <div class="toggle-row">
-    <span class="label" id="faviconLabel"></span>
-    <label class="toggle">
-      <input type="checkbox" id="faviconToggle">
       <span class="slider"></span>
     </label>
   </div>
@@ -111,12 +110,37 @@
     </label>
   </div>
   <div class="toggle-row">
+    <span class="label" id="faviconLabel"></span>
+    <label class="toggle">
+      <input type="checkbox" id="faviconToggle">
+      <span class="slider"></span>
+    </label>
+  </div>
+
+  <div class="toggle-row">
+    <span class="label" id="tweetWordingLabel"></span>
+    <label class="toggle">
+      <input type="checkbox" id="tweetWordingToggle">
+      <span class="slider"></span>
+    </label>
+  </div>
+
+  <p class="group" id="groupTimelineLabel"></p>
+  <div class="toggle-row">
+    <span class="label" id="imageGridLabel"></span>
+    <label class="toggle">
+      <input type="checkbox" id="imageGridToggle">
+      <span class="slider"></span>
+    </label>
+  </div>
+  <div class="toggle-row">
     <span class="label" id="followingTabLabel"></span>
     <label class="toggle">
       <input type="checkbox" id="followingTabToggle">
       <span class="slider"></span>
     </label>
   </div>
+
   <a class="report" id="reportLink"></a>
   <script src="extras.js"></script>
 </body>

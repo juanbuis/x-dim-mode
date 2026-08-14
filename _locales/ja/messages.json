@@ -135,5 +135,17 @@
   "newBadge": {
     "message": "新着",
     "description": "Badge on the Extras row when a new extra has shipped"
+  },
+  "imageGrid": {
+    "message": "クラシックな画像グリッド",
+    "description": "Extras toggle: restore the old multi-image grid layout"
+  },
+  "groupLook": {
+    "message": "外観",
+    "description": "Extras section heading for appearance toggles"
+  },
+  "groupTimeline": {
+    "message": "タイムライン",
+    "description": "Extras section heading for timeline/layout toggles"
   }
 }
