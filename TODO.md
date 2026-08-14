@@ -23,8 +23,24 @@ so this half cannot be automated from here. Everything to paste is ready:
 - [ ] Leave the short description alone — it comes from the manifest
       (`_locales/*/messages.json` → `extDescription`), already rewritten in all
       10 locales, and typing it into the dashboard would override the translations
-- [ ] Data usage: tick nothing. Permission justification for `storage` is in
-      `store/chrome-listing.md`
+- [ ] Data usage: tick **"Personally identifiable information"** and give the
+      privacy policy URL `https://xdim.app/privacy`. Corrected — an earlier
+      version of this list said "tick nothing", which was wrong: the optional
+      newsletter field does send an email address to MailerLite, and the
+      privacy policy already says so. Nothing else on that list applies.
+- [ ] Permission justification for `storage` is in `store/chrome-listing.md`
+
+## Firefox follow-up — data disclosure
+
+1.7.0 shipped to AMO declaring `data_collection_permissions.required = ["none"]`,
+which tells the install prompt the add-on never transmits personal data. That is
+not quite right: the optional newsletter field sends an email address to
+MailerLite when a user chooses to enter one. `build.sh` now also declares
+`optional: ["personallyIdentifyingInfo"]` (linter clean).
+
+- [ ] Ship this in the next AMO upload. Not urgent enough to rush a 1.7.1 on its
+      own, but it should not sit for long — it is a disclosure accuracy issue,
+      and the fix is already in the build.
 
 ## Edge Add-ons — BLOCKED ON ACCOUNT VERIFICATION
 
@@ -37,6 +53,10 @@ Now done: package replaced with 1.7.0 (verified, permissions reduced to
 English description written, 300x300 logo uploaded, visibility Public,
 all 241 markets. Draft saved.
 
+- [x] Privacy section completed: single-purpose description, `storage`
+      justification, remote code = No, PII disclosed, policy URL switched to
+      https, all three compliance certifications ticked
+- [x] Store listing: English is now Complete (description + 300x300 logo)
 - [ ] **Complete developer account verification** — Partner Center → Account
       Settings. Until this is done the Publish button stays greyed out. This is
       an identity step; it has to be you.
