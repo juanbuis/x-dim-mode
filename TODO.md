@@ -26,6 +26,36 @@ so this half cannot be automated from here. Everything to paste is ready:
 - [ ] Data usage: tick nothing. Permission justification for `storage` is in
       `store/chrome-listing.md`
 
+## Edge Add-ons — BLOCKED ON ACCOUNT VERIFICATION
+
+You already had a Partner Center account with an X Dim Mode draft sitting at
+**version 1.3.0 since 19 Feb** — never published because the store listing was
+never filled in (all 10 languages showed "Incomplete", empty descriptions).
+
+Now done: package replaced with 1.7.0 (verified, permissions reduced to
+`storage` only — the old draft still asked for `assets.mailerlite.com`),
+English description written, 300x300 logo uploaded, visibility Public,
+all 241 markets. Draft saved.
+
+- [ ] **Complete developer account verification** — Partner Center → Account
+      Settings. Until this is done the Publish button stays greyed out. This is
+      an identity step; it has to be you.
+- [ ] Then hit Publish on the Edge draft
+- [ ] Optional: the other 9 languages still have empty descriptions. Edge only
+      requires one, so English is enough — non-English users just see English
+      copy. The extension's own UI stays localised either way.
+- [ ] Optional: screenshots and promo tiles are empty. Not required, but the
+      listing looks bare without them; the CWS/AMO screenshots would drop
+      straight in (1280x800 or 640x400).
+
+## Other stores — not worth doing
+
+- **Opera**: has its own store, but Opera also installs directly from the
+  Chrome Web Store. Not worth a second listing to maintain.
+- **Brave, Vivaldi, Arc**: all install from the Chrome Web Store. Already covered.
+- **Safari**: the only real gap. Needs an Xcode wrapper, a paid Apple Developer
+  account, and its own testing — a project, not a submission.
+
 ## Before or shortly after
 
 - [ ] Manual test: image grid on a 4-image post, quote-tweet with images, and
