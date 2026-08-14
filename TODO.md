@@ -42,31 +42,11 @@ MailerLite when a user chooses to enter one. `build.sh` now also declares
       own, but it should not sit for long — it is a disclosure accuracy issue,
       and the fix is already in the build.
 
-## Edge Add-ons — BLOCKED ON ACCOUNT VERIFICATION
+## Edge Add-ons — blocked
 
-You already had a Partner Center account with an X Dim Mode draft sitting at
-**version 1.3.0 since 19 Feb** — never published because the store listing was
-never filled in (all 10 languages showed "Incomplete", empty descriptions).
-
-Now done: package replaced with 1.7.0 (verified, permissions reduced to
-`storage` only — the old draft still asked for `assets.mailerlite.com`),
-English description written, 300x300 logo uploaded, visibility Public,
-all 241 markets. Draft saved.
-
-- [x] Privacy section completed: single-purpose description, `storage`
-      justification, remote code = No, PII disclosed, policy URL switched to
-      https, all three compliance certifications ticked
-- [x] Store listing: English is now Complete (description + 300x300 logo)
-- [ ] **Complete developer account verification** — Partner Center → Account
-      Settings. Until this is done the Publish button stays greyed out. This is
-      an identity step; it has to be you.
-- [ ] Then hit Publish on the Edge draft
-- [ ] Optional: the other 9 languages still have empty descriptions. Edge only
-      requires one, so English is enough — non-English users just see English
-      copy. The extension's own UI stays localised either way.
-- [ ] Optional: screenshots and promo tiles are empty. Not required, but the
-      listing looks bare without them; the CWS/AMO screenshots would drop
-      straight in (1280x800 or 640x400).
+The listing is complete and would publish on one click; the Microsoft Partner
+Center developer account still needs to clear verification. Account-specific
+detail is kept in a local, untracked file.
 
 ## Other stores — not worth doing
 
