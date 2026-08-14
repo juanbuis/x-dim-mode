@@ -257,7 +257,9 @@
       display: none;
       position: fixed;
       top: 14px;
-      right: 28px;
+      /* Logical, not physical: Chrome mirrors its toolbar in RTL, so on Arabic
+         the extensions button is top-left and the hint has to follow it. */
+      inset-inline-end: 28px;
       z-index: 2;
       max-width: 260px;
       align-items: flex-start;
@@ -265,7 +267,7 @@
       font-size: 13px;
       line-height: 1.45;
       color: #8B98A5;
-      text-align: left;
+      text-align: start;
     }
     .pin-hint.show { display: flex; }
     .pin-copy strong {
@@ -274,18 +276,40 @@
       font-size: 14px;
       margin-bottom: 2px;
     }
+    .pin-point {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2px;
+      flex-shrink: 0;
+      animation: pin-bob 1.6s ease-in-out infinite;
+    }
+    .pin-chip {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid #38444D;
+    }
+    .pin-chip svg {
+      width: 16px;
+      height: 16px;
+      fill: #8B98A5;
+    }
     .pin-arrow {
-      font-size: 20px;
+      font-size: 16px;
       line-height: 1;
       color: #1D9BF0;
-      animation: pin-bob 1.6s ease-in-out infinite;
     }
     @keyframes pin-bob {
       0%, 100% { transform: translateY(0); }
       50%      { transform: translateY(-6px); }
     }
     @media (prefers-reduced-motion: reduce) {
-      .pin-arrow { animation: none; }
+      .pin-point { animation: none; }
     }
     @media (max-width: 900px) {
       .pin-hint.show { display: none; }
@@ -311,7 +335,15 @@
        extension. Hidden under 900px, where the card and the hint would fight
        for the same space and the toolbar position is less predictable. -->
   <div class="pin-hint" id="pinHint">
-    <span class="pin-arrow" aria-hidden="true">&uarr;</span>
+    <span class="pin-point" aria-hidden="true">
+      <!-- Chrome's own extensions glyph, in a chip shaped like the toolbar
+           button, so the shape people are hunting for is right in front of
+           them rather than only described in words. -->
+      <span class="pin-arrow">&uarr;</span>
+      <span class="pin-chip">
+        <svg viewBox="0 0 24 24"><path d="M20.5 11H19V7c0-1.1-.9-2-2-2h-4V3.5C13 2.12 11.88 1 10.5 1S8 2.12 8 3.5V5H4c-1.1 0-1.99.9-1.99 2v3.8H3.5c1.49 0 2.7 1.21 2.7 2.7s-1.21 2.7-2.7 2.7H2V20c0 1.1.9 2 2 2h3.8v-1.5c0-1.49 1.21-2.7 2.7-2.7 1.49 0 2.7 1.21 2.7 2.7V22H17c1.1 0 2-.9 2-2v-4h1.5c1.38 0 2.5-1.12 2.5-2.5S21.88 11 20.5 11z"/></svg>
+      </span>
+    </span>
     <span class="pin-copy">
       <strong id="pinHintTitle"></strong>
       <span id="pinHintText"></span>
