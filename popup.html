@@ -6,6 +6,11 @@
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       width: 240px;
+      /* Firefox for Android renders the action popup full-screen; without these
+         the 240px column hugs the left edge. Both are inert in a Chrome popup,
+         which sizes itself to the body. */
+      max-width: 100%;
+      margin: 0 auto;
       min-height: 0;
       padding: 16px 16px 12px;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;

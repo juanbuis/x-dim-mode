@@ -953,7 +953,27 @@ function dimElement(el) {
 
 // ── Display Settings Injection ─────────────────────────────────────
 
-const CHECKMARK_SVG = `<svg viewBox="0 0 24 24" aria-hidden="true" class="r-4qtqp9 r-yyyyoo r-dnmrzs r-bnwqim r-lrvibr r-m6rgpd r-jwli3a r-1hjwoze r-12ym1je"><g><path d="M9.64 18.952l-5.55-4.861 1.317-1.504 3.951 3.459 8.459-10.948L19.4 6.32 9.64 18.952z"></path></g></svg>`;
+// Built as DOM rather than an innerHTML string: the markup is static, but
+// addons-linter flags every innerHTML write and flagged code buys a manual
+// review pass on every AMO submission.
+const SVG_NS = "http://www.w3.org/2000/svg";
+const CHECKMARK_CLASS =
+  "r-4qtqp9 r-yyyyoo r-dnmrzs r-bnwqim r-lrvibr r-m6rgpd r-jwli3a r-1hjwoze r-12ym1je";
+const CHECKMARK_PATH =
+  "M9.64 18.952l-5.55-4.861 1.317-1.504 3.951 3.459 8.459-10.948L19.4 6.32 9.64 18.952z";
+
+function makeCheckmark() {
+  const svg = document.createElementNS(SVG_NS, "svg");
+  svg.setAttribute("viewBox", "0 0 24 24");
+  svg.setAttribute("aria-hidden", "true");
+  svg.setAttribute("class", CHECKMARK_CLASS);
+  const g = document.createElementNS(SVG_NS, "g");
+  const path = document.createElementNS(SVG_NS, "path");
+  path.setAttribute("d", CHECKMARK_PATH);
+  g.appendChild(path);
+  svg.appendChild(g);
+  return svg;
+}
 
 function setSelected(btnEl) {
   btnEl.style.borderColor = "rgb(29, 155, 240)";
@@ -962,7 +982,7 @@ function setSelected(btnEl) {
   if (circle) {
     circle.style.backgroundColor = "rgb(29, 155, 240)";
     circle.style.borderColor = "rgb(29, 155, 240)";
-    circle.innerHTML = CHECKMARK_SVG;
+    circle.replaceChildren(makeCheckmark());
   }
   const input = btnEl.querySelector('input[type="radio"]');
   if (input) input.checked = true;
