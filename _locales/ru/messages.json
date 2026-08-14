@@ -148,5 +148,9 @@
   "emailInvalid": {
     "message": "Похоже, адрес указан неверно — попробуйте ещё раз.",
     "description": "Shown when MailerLite rejects the address"
+  },
+  "followCta": {
+    "message": "Подписывайтесь на @juanbuis в X →",
+    "description": "Shown after a successful newsletter signup"
   }
 }

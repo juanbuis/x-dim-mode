@@ -148,5 +148,9 @@
   "emailInvalid": {
     "message": "이메일 주소가 올바르지 않은 것 같습니다. 다시 시도해 주세요.",
     "description": "Shown when MailerLite rejects the address"
+  },
+  "followCta": {
+    "message": "X에서 @juanbuis 팔로우 →",
+    "description": "Shown after a successful newsletter signup"
   }
 }

@@ -107,6 +107,11 @@ form.addEventListener("submit", async (e) => {
   const succeed = () => {
     form.style.display = "none";
     success.style.display = "block";
+    // Post-subscribe is peak goodwill, and this audience is on X by
+    // definition — the follow ask lives here, not in another prompt.
+    const follow = document.getElementById("followCta");
+    follow.textContent = msg("followCta");
+    follow.style.display = "block";
     chrome.storage.local.set({ emailSubscribed: true });
     chrome.storage.sync.set({ emailSubscribed: true }, () => void chrome.runtime.lastError);
   };

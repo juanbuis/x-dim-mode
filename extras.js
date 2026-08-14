@@ -17,6 +17,15 @@ document.getElementById("imageGridLabel").textContent = chrome.i18n.getMessage("
 document.getElementById("groupLookLabel").textContent = chrome.i18n.getMessage("groupLook");
 document.getElementById("groupTimelineLabel").textContent = chrome.i18n.getMessage("groupTimeline");
 
+// Footer: credit + share (mirrors the popup footer — this page gets the most
+// engaged users and previously carried no promo at all)
+document.getElementById("creditLink").textContent = chrome.i18n.getMessage("credit");
+const shareLink = document.getElementById("shareLink");
+shareLink.textContent = chrome.i18n.getMessage("popupShareLink");
+shareLink.href = "https://x.com/intent/tweet?text=" +
+  encodeURIComponent("If you miss X's dark blue theme, X Dim Mode brings it back \u2014 free extension:") +
+  "&url=" + encodeURIComponent("https://xdim.app");
+
 // Report-a-problem link (same prefilled mailto as the popup footer)
 const reportLink = document.getElementById("reportLink");
 reportLink.textContent = chrome.i18n.getMessage("reportProblem");

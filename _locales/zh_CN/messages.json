@@ -148,5 +148,9 @@
   "emailInvalid": {
     "message": "邮箱地址似乎不正确，请重试。",
     "description": "Shown when MailerLite rejects the address"
+  },
+  "followCta": {
+    "message": "在 X 上关注 @juanbuis →",
+    "description": "Shown after a successful newsletter signup"
   }
 }

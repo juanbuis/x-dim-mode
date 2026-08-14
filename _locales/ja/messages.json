@@ -148,5 +148,9 @@
   "emailInvalid": {
     "message": "メールアドレスが正しくないようです。もう一度お試しください。",
     "description": "Shown when MailerLite rejects the address"
+  },
+  "followCta": {
+    "message": "Xで @juanbuis をフォロー →",
+    "description": "Shown after a successful newsletter signup"
   }
 }

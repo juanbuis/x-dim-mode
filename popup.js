@@ -224,6 +224,9 @@ document.getElementById("emailPromptForm").addEventListener("submit", async (e) 
     document.getElementById("emailPromptForm").style.display = "none";
     document.getElementById("emailPromptSpam").style.display = "none";
     document.getElementById("emailPromptSuccess").style.display = "block";
+    const follow = document.getElementById("emailPromptFollow");
+    follow.textContent = chrome.i18n.getMessage("followCta");
+    follow.style.display = "block";
     // Subscribed state syncs so other devices don't re-ask
     chrome.storage.local.set({ emailSubscribed: true });
     chrome.storage.sync.set({ emailSubscribed: true }, () => void chrome.runtime.lastError);

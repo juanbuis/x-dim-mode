@@ -148,5 +148,9 @@
   "emailInvalid": {
     "message": "Esse e-mail não parece válido — tente de novo.",
     "description": "Shown when MailerLite rejects the address"
+  },
+  "followCta": {
+    "message": "Siga @juanbuis no X →",
+    "description": "Shown after a successful newsletter signup"
   }
 }
