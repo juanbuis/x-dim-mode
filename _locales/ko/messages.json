@@ -27,19 +27,19 @@
     "message": "계속 함께해 주셔서 감사합니다. 새로운 기능을 소개합니다:"
   },
   "installFeature1": {
-    "message": "X의 다크 블루 배경을 복원"
+    "message": "X의 어두운 파란색 Dim 배경을 복원합니다"
   },
   "installFeature2": {
-    "message": "6가지 색상 테마 중 선택 — 모두 눈에 편안"
+    "message": "6가지 색상 테마 중에서 고르거나 직접 색을 선택하세요"
   },
   "installFeature3": {
-    "message": "X와 X Pro 모두에서 작동"
+    "message": "Extras: 새 로고, 클래식 폰트, 예전 파비콘, '포스트' 대신 '트윗'"
   },
   "installFeature4": {
-    "message": "시스템 테마를 자동으로 따름"
+    "message": "추가 Extras: 팔로우 중 탭으로 시작하고, 클래식 이미지 그리드를 되살리세요"
   },
   "installFeature5": {
-    "message": "팝업 아이콘 또는 설정 → 디스플레이에서 전환"
+    "message": "X와 X Pro에서 작동 — 설정은 기기 간에 동기화됩니다"
   },
   "updateFeature1": {
     "message": "새 기능: 클래식 이미지 그리드 — 여러 장의 이미지가 예전 그리드로 돌아와 가려지지 않습니다"
@@ -115,7 +115,7 @@
     "description": "Extras toggle: open the Following timeline by default"
   },
   "installFeature6": {
-    "message": "눈이 편안해요 — 어두운 배경은 난시가 있는 분들의 빛 번짐을 줄여줍니다"
+    "message": "눈이 편안하게 — 어두운 배경은 난시로 인한 번짐을 줄여줍니다"
   },
   "newBadge": {
     "message": "신규",
@@ -144,5 +144,9 @@
   "emailSubUpdate": {
     "message": "새로운 Extras와 수정 사항을 알려드립니다. 메일은 1년에 몇 번뿐.",
     "description": "Update-screen sub-line under the email heading"
+  },
+  "emailInvalid": {
+    "message": "이메일 주소가 올바르지 않은 것 같습니다. 다시 시도해 주세요.",
+    "description": "Shown when MailerLite rejects the address"
   }
 }

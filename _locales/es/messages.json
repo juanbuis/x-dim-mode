@@ -27,19 +27,19 @@
     "message": "Gracias por seguir con nosotros. Esto es lo nuevo:"
   },
   "installFeature1": {
-    "message": "Restaura el fondo azul oscuro Tenue de X"
+    "message": "Restaura el fondo azul oscuro Dim de X"
   },
   "installFeature2": {
-    "message": "Elige entre 6 temas de color — todos agradables a la vista"
+    "message": "Elige entre 6 temas de color, o crea el tuyo"
   },
   "installFeature3": {
-    "message": "Funciona en X y X Pro"
+    "message": "Extras: el logo del pájaro, la fuente clásica, el favicon antiguo y «Tweet» en vez de «Post»"
   },
   "installFeature4": {
-    "message": "Sigue el tema de tu sistema automáticamente"
+    "message": "Más extras: empieza en la cronología de Siguiendo y recupera la cuadrícula de imágenes clásica"
   },
   "installFeature5": {
-    "message": "Actívalo desde el icono del popup o en Configuración → Pantalla"
+    "message": "Funciona en X y X Pro — los ajustes se sincronizan entre tus dispositivos"
   },
   "updateFeature1": {
     "message": "Nuevo: cuadrícula de imágenes clásica — las publicaciones con varias imágenes vuelven a la cuadrícula, sin nada oculto"
@@ -115,7 +115,7 @@
     "description": "Extras toggle: open the Following timeline by default"
   },
   "installFeature6": {
-    "message": "Más suave para la vista — los fondos atenuados reducen el halo para personas con astigmatismo"
+    "message": "Más descanso para tus ojos — los fondos tenues reducen el halo para personas con astigmatismo"
   },
   "newBadge": {
     "message": "Nuevo",
@@ -144,5 +144,9 @@
   "emailSubUpdate": {
     "message": "Te contamos los nuevos extras y las correcciones. Unos pocos correos al año.",
     "description": "Update-screen sub-line under the email heading"
+  },
+  "emailInvalid": {
+    "message": "Ese correo no parece válido — inténtalo de nuevo.",
+    "description": "Shown when MailerLite rejects the address"
   }
 }

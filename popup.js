@@ -217,23 +217,49 @@ document.getElementById("emailPromptForm").addEventListener("submit", async (e) 
   btn.disabled = true;
   btn.textContent = "...";
 
-  const body = new FormData();
-  body.append("fields[email]", input.value);
-  body.append("fields[source]", "extension-popup");
-  body.append("ml-submit", "1");
-  body.append("anticsrf", "true");
+  const errorEl = document.getElementById("emailPromptError");
+  errorEl.style.display = "none";
 
-  try {
-    await fetch(MAILERLITE_URL, { method: "POST", body, mode: "no-cors" });
+  const succeed = () => {
     document.getElementById("emailPromptForm").style.display = "none";
     document.getElementById("emailPromptSpam").style.display = "none";
     document.getElementById("emailPromptSuccess").style.display = "block";
     // Subscribed state syncs so other devices don't re-ask
     chrome.storage.local.set({ emailSubscribed: true });
     chrome.storage.sync.set({ emailSubscribed: true }, () => void chrome.runtime.lastError);
-  } catch {
+  };
+  const fail = (key) => {
+    errorEl.textContent = chrome.i18n.getMessage(key);
+    errorEl.style.display = "block";
     btn.disabled = false;
     btn.textContent = chrome.i18n.getMessage("subscribe");
+  };
+
+  try {
+    // xdim.app proxy returns MailerLite's real verdict; the form endpoint has
+    // no CORS headers so a direct call is unreadable (see welcome.js).
+    const res = await fetch("https://xdim.app/api/subscribe", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email: input.value.trim(), source: "extension-popup" }),
+    });
+    const data = await res.json();
+    if (data.success) succeed();
+    else fail("emailInvalid");
+  } catch {
+    // Proxy unreachable — fall back to the old opaque direct post rather than
+    // dropping the signup.
+    try {
+      const body = new FormData();
+      body.append("fields[email]", input.value);
+      body.append("fields[signup_source]", "extension-popup");
+      body.append("ml-submit", "1");
+      body.append("anticsrf", "true");
+      await fetch(MAILERLITE_URL, { method: "POST", body, mode: "no-cors" });
+      succeed();
+    } catch {
+      fail("emailNetworkError");
+    }
   }
 });
 

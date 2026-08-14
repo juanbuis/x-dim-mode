@@ -27,19 +27,19 @@
     "message": "感谢你的一路陪伴。以下是最新更新："
   },
   "installFeature1": {
-    "message": "恢复 X 的暗蓝色背景"
+    "message": "找回 X 的深蓝色 Dim 背景"
   },
   "installFeature2": {
-    "message": "6 种配色主题可选 — 全都护眼舒适"
+    "message": "6 种配色主题任选，也可以自定义颜色"
   },
   "installFeature3": {
-    "message": "适用于 X 和 X Pro"
+    "message": "Extras：小鸟图标、经典字体、旧版网站图标，以及用 “Tweet” 替代 “Post”"
   },
   "installFeature4": {
-    "message": "自动跟随系统主题"
+    "message": "更多 Extras：默认打开“正在关注”，找回经典图片网格"
   },
   "installFeature5": {
-    "message": "通过弹出图标或在设置 → 显示中切换"
+    "message": "支持 X 和 X Pro — 设置在设备间自动同步"
   },
   "updateFeature1": {
     "message": "新增：经典图片网格 — 多图帖子恢复网格排列，不再有图片被藏起来"
@@ -115,7 +115,7 @@
     "description": "Extras toggle: open the Following timeline by default"
   },
   "installFeature6": {
-    "message": "更护眼 — 柔和的深色背景可减少散光用户看到的光晕"
+    "message": "更护眼 — 柔和的深色背景可减轻散光用户的光晕感"
   },
   "newBadge": {
     "message": "新",
@@ -144,5 +144,9 @@
   "emailSubUpdate": {
     "message": "新的 Extras 和修复都会通知你。一年只发几封邮件。",
     "description": "Update-screen sub-line under the email heading"
+  },
+  "emailInvalid": {
+    "message": "邮箱地址似乎不正确，请重试。",
+    "description": "Shown when MailerLite rejects the address"
   }
 }

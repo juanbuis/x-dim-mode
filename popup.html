@@ -367,6 +367,12 @@
       flex-shrink: 0;
     }
 
+    .email-prompt-error {
+      margin: 8px 0 0;
+      font-size: 12px;
+      color: #F4212E;
+    }
+
     /* ── Footer ── */
     .footer {
       display: flex;
@@ -451,6 +457,7 @@
       <input class="email-prompt-input" type="email" placeholder="you@email.com" required id="emailPromptInput">
       <button class="email-prompt-btn" type="submit" id="emailPromptBtn"></button>
     </form>
+    <p class="email-prompt-error" id="emailPromptError" style="display: none;"></p>
     <p class="email-prompt-spam" id="emailPromptSpam"></p>
     <p class="email-prompt-success" id="emailPromptSuccess" style="display: none;"></p>
   </div>

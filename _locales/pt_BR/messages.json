@@ -27,19 +27,19 @@
     "message": "Obrigado por continuar conosco. Veja o que há de novo:"
   },
   "installFeature1": {
-    "message": "Restaura o fundo azul escuro Escurecido do X"
+    "message": "Restaura o fundo azul-escuro Dim do X"
   },
   "installFeature2": {
-    "message": "Escolha entre 6 temas de cores — todos agradáveis aos olhos"
+    "message": "Escolha entre 6 temas de cor, ou crie a sua própria"
   },
   "installFeature3": {
-    "message": "Funciona no X e no X Pro"
+    "message": "Extras: o logo do pássaro, a fonte clássica, o favicon antigo e “Tweet” em vez de “Post”"
   },
   "installFeature4": {
-    "message": "Segue o tema do seu sistema automaticamente"
+    "message": "Mais extras: comece na linha do tempo Seguindo e recupere a grade de imagens clássica"
   },
   "installFeature5": {
-    "message": "Ative pelo ícone do popup ou em Configurações → Tela"
+    "message": "Funciona no X e no X Pro — as configurações sincronizam entre seus dispositivos"
   },
   "updateFeature1": {
     "message": "Novo: grade de imagens clássica — posts com várias imagens voltam à grade, sem nada escondido"
@@ -115,7 +115,7 @@
     "description": "Extras toggle: open the Following timeline by default"
   },
   "installFeature6": {
-    "message": "Mais confortável para os olhos — fundos atenuados reduzem o halo para quem tem astigmatismo"
+    "message": "Mais conforto para os olhos — fundos escuros reduzem o halo para quem tem astigmatismo"
   },
   "newBadge": {
     "message": "Novo",
@@ -144,5 +144,9 @@
   "emailSubUpdate": {
     "message": "Você fica sabendo dos novos extras e das correções. Alguns e-mails por ano.",
     "description": "Update-screen sub-line under the email heading"
+  },
+  "emailInvalid": {
+    "message": "Esse e-mail não parece válido — tente de novo.",
+    "description": "Shown when MailerLite rejects the address"
   }
 }

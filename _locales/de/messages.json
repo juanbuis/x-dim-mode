@@ -27,19 +27,19 @@
     "message": "Danke, dass du dabei bleibst. Das ist neu:"
   },
   "installFeature1": {
-    "message": "Stellt den dunkelblauen Gedimmt-Hintergrund von X wieder her"
+    "message": "Bringt Xs dunkelblauen Dim-Hintergrund zurück"
   },
   "installFeature2": {
-    "message": "Wähle aus 6 Farbdesigns — alle angenehm für die Augen"
+    "message": "Wähle aus 6 Farbthemen oder stelle deine eigene Farbe ein"
   },
   "installFeature3": {
-    "message": "Funktioniert auf X und X Pro"
+    "message": "Extras: Vogel-Logo, klassische Schrift, altes Favicon und „Tweet“ statt „Post“"
   },
   "installFeature4": {
-    "message": "Folgt automatisch deinem System-Design"
+    "message": "Noch mehr Extras: mit „Folge ich“ starten und das klassische Bildraster zurückholen"
   },
   "installFeature5": {
-    "message": "Schalte es über das Popup-Symbol oder unter Einstellungen → Anzeige um"
+    "message": "Funktioniert auf X und X Pro — Einstellungen syncen über deine Geräte"
   },
   "updateFeature1": {
     "message": "Neu: klassisches Bildraster — Beiträge mit mehreren Bildern zeigen wieder alles auf einen Blick"
@@ -115,7 +115,7 @@
     "description": "Extras toggle: open the Following timeline by default"
   },
   "installFeature6": {
-    "message": "Angenehmer für die Augen — gedimmte Hintergründe reduzieren Lichthöfe bei Astigmatismus"
+    "message": "Angenehmer für die Augen — dunkle Hintergründe reduzieren Halos bei Astigmatismus"
   },
   "newBadge": {
     "message": "Neu",
@@ -144,5 +144,9 @@
   "emailSubUpdate": {
     "message": "Du erfährst von neuen Extras und Fixes. Ein paar E-Mails im Jahr.",
     "description": "Update-screen sub-line under the email heading"
+  },
+  "emailInvalid": {
+    "message": "Diese E-Mail-Adresse scheint ungültig zu sein — bitte erneut versuchen.",
+    "description": "Shown when MailerLite rejects the address"
   }
 }

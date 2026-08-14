@@ -27,19 +27,19 @@
     "message": "ご利用いただきありがとうございます。新機能をご紹介します："
   },
   "installFeature1": {
-    "message": "Xのダークブルー背景を復元"
+    "message": "Xの濃紺の背景「Dim」を復元"
   },
   "installFeature2": {
-    "message": "6つのカラーテーマから選択 — すべて目に優しい"
+    "message": "6色のテーマから選ぶか、好きな色を自由に設定"
   },
   "installFeature3": {
-    "message": "XとX Proの両方で動作"
+    "message": "Extras：鳥のロゴ、クラシックフォント、旧ファビコン、「ツイート」表記"
   },
   "installFeature4": {
-    "message": "システムテーマに自動で追従"
+    "message": "さらに：「フォロー中」から開く設定と、クラシックな画像グリッド"
   },
   "installFeature5": {
-    "message": "ポップアップアイコンまたは設定 → 表示から切り替え"
+    "message": "XとX Proに対応 — 設定はデバイス間で同期"
   },
   "updateFeature1": {
     "message": "新機能：クラシックな画像グリッド — 複数画像の投稿が元のグリッド表示に戻り、隠れる画像がなくなりました"
@@ -115,7 +115,7 @@
     "description": "Extras toggle: open the Following timeline by default"
   },
   "installFeature6": {
-    "message": "目にやさしい — 薄暗い背景は乱視の方のにじみを軽減します"
+    "message": "目にやさしい — 暗めの背景は乱視のハレーションを軽減します"
   },
   "newBadge": {
     "message": "新着",
@@ -144,5 +144,9 @@
   "emailSubUpdate": {
     "message": "新しいExtrasと修正をお知らせします。メールは年に数回だけ。",
     "description": "Update-screen sub-line under the email heading"
+  },
+  "emailInvalid": {
+    "message": "メールアドレスが正しくないようです。もう一度お試しください。",
+    "description": "Shown when MailerLite rejects the address"
   }
 }

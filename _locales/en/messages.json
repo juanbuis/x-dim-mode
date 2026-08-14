@@ -30,16 +30,16 @@
     "message": "Restores X's Dim dark blue background"
   },
   "installFeature2": {
-    "message": "Pick from 6 color themes — all easy on the eyes"
+    "message": "Pick from 6 color themes, or choose your own color"
   },
   "installFeature3": {
-    "message": "Works across X and X Pro"
+    "message": "Extras: the bird logo, the classic font, the old favicon, and “Tweet” instead of “Post”"
   },
   "installFeature4": {
-    "message": "Follows your system theme automatically"
+    "message": "More Extras: start on the Following timeline, and bring back the classic image grid"
   },
   "installFeature5": {
-    "message": "Toggle it from the popup icon or from Settings → Display"
+    "message": "Works across X and X Pro — settings sync across your devices"
   },
   "updateFeature1": {
     "message": "New: Classic image grid — multi-image posts get the old grid back, with nothing hidden off-screen"
@@ -144,5 +144,9 @@
   "emailSubUpdate": {
     "message": "You'll hear about new Extras and fixes. A few emails a year.",
     "description": "Update-screen sub-line under the email heading"
+  },
+  "emailInvalid": {
+    "message": "That email doesn’t look right — try again.",
+    "description": "Shown when MailerLite rejects the address"
   }
 }

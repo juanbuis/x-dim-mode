@@ -104,17 +104,43 @@ form.addEventListener("submit", async (e) => {
   btn.textContent = "...";
   error.style.display = "none";
 
-  try {
-    await fetch(form.action, {
-      method: "POST",
-      body: new FormData(form),
-      mode: "no-cors",
-    });
+  const succeed = () => {
     form.style.display = "none";
     success.style.display = "block";
     chrome.storage.local.set({ emailSubscribed: true });
     chrome.storage.sync.set({ emailSubscribed: true }, () => void chrome.runtime.lastError);
+  };
+
+  try {
+    // The xdim.app proxy returns MailerLite's real verdict (the form endpoint
+    // itself has no CORS headers, so it can only be read server-side).
+    const res = await fetch("https://xdim.app/api/subscribe", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        email: document.getElementById("emailInput").value.trim(),
+        source: document.getElementById("emailSource").value,
+      }),
+    });
+    const data = await res.json();
+    if (data.success) {
+      succeed();
+      return;
+    }
+    // Proxy reachable and MailerLite said no — almost always a bad address.
+    error.textContent = msg("emailInvalid");
+    error.style.display = "block";
+    btn.disabled = false;
+    btn.textContent = msg("subscribe");
   } catch (err) {
+    // Proxy unreachable (offline, or xdim.app down): fall back to the direct
+    // no-cors post so the signup is never dropped. Opaque response, so assume
+    // success — exactly what every version before the proxy did.
+    try {
+      await fetch(form.action, { method: "POST", body: new FormData(form), mode: "no-cors" });
+      succeed();
+      return;
+    } catch {}
     error.textContent = msg("emailNetworkError");
     error.style.display = "block";
     btn.disabled = false;

@@ -27,19 +27,19 @@
     "message": "شكرًا لبقائك معنا. إليك الجديد:"
   },
   "installFeature1": {
-    "message": "يستعيد خلفية X الزرقاء الداكنة"
+    "message": "يعيد خلفية X الزرقاء الداكنة «Dim»"
   },
   "installFeature2": {
-    "message": "اختر من 6 سمات ألوان — جميعها مريحة للعين"
+    "message": "اختر من 6 سمات لونية أو حدّد لونك الخاص"
   },
   "installFeature3": {
-    "message": "يعمل على X و X Pro"
+    "message": "الإضافات: شعار الطائر، الخط الكلاسيكي، الأيقونة القديمة، و«تغريدة» بدل «منشور»"
   },
   "installFeature4": {
-    "message": "يتبع سمة نظامك تلقائيًا"
+    "message": "والمزيد: ابدأ من «المتابَعون» واستعد شبكة الصور الكلاسيكية"
   },
   "installFeature5": {
-    "message": "فعّله من أيقونة الإضافة أو من الإعدادات ← العرض"
+    "message": "يعمل على X وX Pro — وتتزامن الإعدادات بين أجهزتك"
   },
   "updateFeature1": {
     "message": "جديد: شبكة الصور الكلاسيكية — منشورات الصور المتعددة تعود إلى الشبكة دون إخفاء أي صورة"
@@ -115,7 +115,7 @@
     "description": "Extras toggle: open the Following timeline by default"
   },
   "installFeature6": {
-    "message": "أريح للعين — الخلفيات المعتمة تقلّل التوهّج لمن لديهم اللابؤرية"
+    "message": "أريح للعين — الخلفيات المعتمة تقلّل الهالات لمن لديهم لابؤرية"
   },
   "newBadge": {
     "message": "جديد",
@@ -144,5 +144,9 @@
   "emailSubUpdate": {
     "message": "ستصلك أخبار الإضافات الجديدة والإصلاحات. بضع رسائل في السنة.",
     "description": "Update-screen sub-line under the email heading"
+  },
+  "emailInvalid": {
+    "message": "يبدو أن البريد الإلكتروني غير صحيح — حاول مرة أخرى.",
+    "description": "Shown when MailerLite rejects the address"
   }
 }
