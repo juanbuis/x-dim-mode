@@ -45,22 +45,22 @@
     "message": "Actívalo desde el icono del popup o en Configuración → Pantalla"
   },
   "updateFeature1": {
-    "message": "Nuevo: Empezar en Siguiendo — X se abre en la cronología de Siguiendo en vez de Para ti"
+    "message": "Nuevo: cuadrícula de imágenes clásica — las publicaciones con varias imágenes vuelven a la cuadrícula, sin nada oculto"
   },
   "updateFeature2": {
-    "message": "Corregido: Dim ya no se activa cuando X usa el tema Claro"
+    "message": "Nuevo: Extras es más fácil de encontrar y ahora está agrupado en secciones"
   },
   "updateFeature3": {
-    "message": "Corregido: la ventana «Compartir por chat» se ve atenuada correctamente"
+    "message": "Corregido: «Tweet, no Post» también renombra el botón grande de redactar"
   },
   "updateFeature4": {
-    "message": "Corregido: las fotos de perfil ya no parpadean en gris mientras cargan"
+    "message": "En Extras: el logo del pájaro, la fuente clásica y el favicon de «Twitter»"
   },
   "updateFeature5": {
-    "message": "Corregido: el fondo detrás de las ventanas vuelve a ser el gris azulado clásico"
+    "message": "También en Extras: Empezar en Siguiendo — abre X en Siguiendo en vez de Para ti"
   },
   "updateFeature6": {
-    "message": "Todos los extras —logo del pájaro, fuente clásica, «Tweet» en vez de «Post»— están en Extras"
+    "message": "¿Algo se ve mal? Repórtalo desde el menú de la extensión"
   },
   "tryNow": {
     "message": "Pruébalo ahora"

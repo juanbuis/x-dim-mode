@@ -45,22 +45,22 @@
     "message": "팝업 아이콘 또는 설정 → 디스플레이에서 전환"
   },
   "updateFeature1": {
-    "message": "새 기능: 팔로우 중 탭으로 시작 — X가 ‘추천’ 대신 ‘팔로우 중’으로 열립니다"
+    "message": "새 기능: 클래식 이미지 그리드 — 여러 장의 이미지가 예전 그리드로 돌아와 가려지지 않습니다"
   },
   "updateFeature2": {
-    "message": "수정: X가 라이트 테마일 때 Dim이 적용되지 않습니다"
+    "message": "새 기능: Extras를 찾기 쉬워지고 섹션별로 정리되었습니다"
   },
   "updateFeature3": {
-    "message": "수정: ‘채팅으로 공유’ 창이 제대로 어둡게 표시됩니다"
+    "message": "수정: '포스트 대신 트윗'이 사이드바의 큰 작성 버튼에도 적용됩니다"
   },
   "updateFeature4": {
-    "message": "수정: 프로필 사진이 로딩 중 회색으로 깜빡이지 않습니다"
+    "message": "Extras에는: 새 로고, 클래식 폰트, 'Twitter' 파비콘"
   },
   "updateFeature5": {
-    "message": "수정: 팝업 뒤 배경이 다시 클래식한 블루그레이입니다"
+    "message": "Extras에 또: 팔로우 중 탭으로 시작하기"
   },
   "updateFeature6": {
-    "message": "새 로고, 클래식 폰트, ‘트윗’ 표기 등은 Extras에서 확인하세요"
+    "message": "이상한 부분이 보이나요? 팝업에서 바로 알려주세요"
   },
   "tryNow": {
     "message": "지금 사용해 보기"

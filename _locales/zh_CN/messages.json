@@ -45,22 +45,22 @@
     "message": "通过弹出图标或在设置 → 显示中切换"
   },
   "updateFeature1": {
-    "message": "新增：默认打开“正在关注” — X 将打开“正在关注”时间线，而非“为你推荐”"
+    "message": "新增：经典图片网格 — 多图帖子恢复网格排列，不再有图片被藏起来"
   },
   "updateFeature2": {
-    "message": "修复：X 使用浅色主题时不再套用 Dim"
+    "message": "新增：Extras 更容易找到，并按分区整理"
   },
   "updateFeature3": {
-    "message": "修复：“通过聊天分享”窗口现在会正确变暗"
+    "message": "修复：“Tweet 替代 Post”现在也会重命名侧边栏的大发布按钮"
   },
   "updateFeature4": {
-    "message": "修复：头像加载时不再闪现灰色"
+    "message": "Extras 里有：小鸟图标、经典字体和 “Twitter” 网站图标"
   },
   "updateFeature5": {
-    "message": "修复：弹窗背后的遮罩恢复为经典蓝灰色"
+    "message": "Extras 里还有：默认打开“正在关注”，而不是“为你推荐”"
   },
   "updateFeature6": {
-    "message": "小鸟图标、经典字体、“Tweet” 替代 “Post” 等都在 Extras 中"
+    "message": "发现显示异常？可直接从弹窗反馈"
   },
   "tryNow": {
     "message": "立即体验"

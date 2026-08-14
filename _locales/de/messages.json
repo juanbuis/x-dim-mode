@@ -45,22 +45,22 @@
     "message": "Schalte es über das Popup-Symbol oder unter Einstellungen → Anzeige um"
   },
   "updateFeature1": {
-    "message": "Neu: Mit „Folge ich“ starten — X öffnet die Folge-ich-Timeline statt „Für dich“"
+    "message": "Neu: klassisches Bildraster — Beiträge mit mehreren Bildern zeigen wieder alles auf einen Blick"
   },
   "updateFeature2": {
-    "message": "Behoben: Dim überlagert nicht mehr das helle Design von X"
+    "message": "Neu: Extras ist leichter zu finden und jetzt in Abschnitte gegliedert"
   },
   "updateFeature3": {
-    "message": "Behoben: das Fenster „Über Chat teilen“ wird korrekt abgedunkelt"
+    "message": "Behoben: „Tweet statt Post“ benennt auch den großen Schreiben-Button um"
   },
   "updateFeature4": {
-    "message": "Behoben: Profilbilder blitzen beim Laden nicht mehr grau auf"
+    "message": "In den Extras: Vogel-Logo, klassische Schrift und das „Twitter“-Favicon"
   },
   "updateFeature5": {
-    "message": "Behoben: der Hintergrund hinter Dialogen ist wieder das klassische Blaugrau"
+    "message": "Ebenfalls in den Extras: Mit „Folge ich“ starten statt „Für dich“"
   },
   "updateFeature6": {
-    "message": "Alle Extras – Vogel-Logo, klassische Schrift, „Tweet“ statt „Post“ – findest du unter Extras"
+    "message": "Etwas sieht falsch aus? Melde es direkt aus dem Popup"
   },
   "tryNow": {
     "message": "Jetzt ausprobieren"

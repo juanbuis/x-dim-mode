@@ -45,22 +45,22 @@
     "message": "Ative pelo ícone do popup ou em Configurações → Tela"
   },
   "updateFeature1": {
-    "message": "Novo: Começar em Seguindo — o X abre na linha do tempo Seguindo em vez de Para você"
+    "message": "Novo: grade de imagens clássica — posts com várias imagens voltam à grade, sem nada escondido"
   },
   "updateFeature2": {
-    "message": "Corrigido: o Dim não assume mais quando o X está no tema Claro"
+    "message": "Novo: Extras ficou mais fácil de achar e agora está agrupado em seções"
   },
   "updateFeature3": {
-    "message": "Corrigido: a janela “Compartilhar via Chat” fica escurecida corretamente"
+    "message": "Corrigido: “Tweet, não Post” também renomeia o botão grande de publicar"
   },
   "updateFeature4": {
-    "message": "Corrigido: as fotos de perfil não piscam mais em cinza ao carregar"
+    "message": "Em Extras: o logo do pássaro, a fonte clássica e o favicon do “Twitter”"
   },
   "updateFeature5": {
-    "message": "Corrigido: o fundo atrás das janelas voltou a ser o cinza-azulado clássico"
+    "message": "Também em Extras: Começar em Seguindo, em vez de Para você"
   },
   "updateFeature6": {
-    "message": "Todos os extras — logo do pássaro, fonte clássica, “Tweet” em vez de “Post” — estão em Extras"
+    "message": "Viu algo errado? Relate direto pelo menu da extensão"
   },
   "tryNow": {
     "message": "Experimente agora"

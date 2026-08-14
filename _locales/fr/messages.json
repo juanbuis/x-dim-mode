@@ -45,22 +45,22 @@
     "message": "Activez depuis l'icône du popup ou dans Paramètres → Affichage"
   },
   "updateFeature1": {
-    "message": "Nouveau : Démarrer sur Abonnements — X s’ouvre sur le fil Abonnements au lieu de Pour vous"
+    "message": "Nouveau : grille d’images classique — les posts à plusieurs images retrouvent la grille, rien n’est masqué"
   },
   "updateFeature2": {
-    "message": "Corrigé : Dim ne s’active plus quand X est en thème Clair"
+    "message": "Nouveau : Extras est plus facile à trouver et désormais regroupé par sections"
   },
   "updateFeature3": {
-    "message": "Corrigé : la fenêtre « Partager via Chat » est correctement assombrie"
+    "message": "Corrigé : « Tweet, pas Post » renomme aussi le grand bouton de rédaction"
   },
   "updateFeature4": {
-    "message": "Corrigé : les photos de profil ne clignotent plus en gris pendant le chargement"
+    "message": "Dans Extras : le logo oiseau, la police classique et le favicon « Twitter »"
   },
   "updateFeature5": {
-    "message": "Corrigé : l’arrière-plan des fenêtres est de nouveau le gris-bleu classique"
+    "message": "Aussi dans Extras : Démarrer sur Abonnements plutôt que Pour vous"
   },
   "updateFeature6": {
-    "message": "Tous les extras — logo oiseau, police classique, « Tweet » au lieu de « Post » — sont dans Extras"
+    "message": "Un problème d’affichage ? Signalez-le depuis la fenêtre de l’extension"
   },
   "tryNow": {
     "message": "Essayer maintenant"

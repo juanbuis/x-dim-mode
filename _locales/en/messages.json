@@ -45,22 +45,22 @@
     "message": "Toggle it from the popup icon or from Settings → Display"
   },
   "updateFeature1": {
-    "message": "New: Start on Following — X opens on the Following timeline instead of For you"
+    "message": "New: Classic image grid — multi-image posts get the old grid back, with nothing hidden off-screen"
   },
   "updateFeature2": {
-    "message": "Fixed: Dim no longer takes over when X is set to its Light theme"
+    "message": "New: Extras is easier to find, and now grouped into sections"
   },
   "updateFeature3": {
-    "message": "Fixed: the “Share via Chat” window is properly dimmed"
+    "message": "Fixed: “Tweet, not Post” also renames the big compose button in the sidebar"
   },
   "updateFeature4": {
-    "message": "Fixed: profile pictures no longer flash grey while they load"
+    "message": "In Extras: the classic bird logo, the old font, and the “Twitter” favicon"
   },
   "updateFeature5": {
-    "message": "Fixed: the backdrop behind pop-ups is the classic blue-grey again"
+    "message": "Also in Extras: Start on Following — open X on the Following timeline, not For you"
   },
   "updateFeature6": {
-    "message": "All the extras — bird logo, classic font, “Tweet” not “Post” — live under Extras in the popup"
+    "message": "Spotted something broken? Report it right from the popup"
   },
   "tryNow": {
     "message": "Try it now"

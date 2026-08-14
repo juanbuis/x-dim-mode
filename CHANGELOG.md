@@ -1,6 +1,6 @@
 # Changelog
 
-## 1.6.2
+## 1.7.0
 
 - **New:** "Classic image grid" (Extras) — multi-image posts go back to a grid instead of X's side-scrolling carousel, so nothing is hidden off-screen
 - **New:** Extras is now grouped into sections, and a labelled row in the popup instead of a small sparkle icon — with a "New" badge when something's been added
