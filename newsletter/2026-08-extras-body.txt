@@ -1,15 +1,19 @@
+*(top of email: NEW badge, headline "Extras just landed in X Dim Mode", then
+the animated toggle demo)*
+
 Hey,
 
 Thanks for installing X Dim Mode, and for signing up to hear from us. We
-promised a few emails a year and we meant it, so this is the first one.
+promised we'd only email when there's something genuinely new — and today
+there is.
 
-Here's the thing we keep hearing: most people never find half of what's in
-there.
+X Dim Mode now comes with Extras: six optional toggles that bring back the
+best parts of old Twitter.
 
-Which is fair enough. You came for the dark blue background — that's the whole
-reason it exists. But if you click the X Dim Mode icon in your toolbar, there's
-a row called Extras, and behind it are six optional toggles. They're all off
-by default, so nothing changes unless you decide you want it to:
+You came for the dark blue background — that's still the heart of it. But
+click the X Dim Mode icon in your toolbar and you'll find the new Extras menu
+right underneath. Everything in it is off by default, so nothing changes
+unless you decide you want it to:
 
 • Classic bird logo — the bird, back where the X is
 • Classic font — Helvetica Neue, what Twitter used before Chirp
