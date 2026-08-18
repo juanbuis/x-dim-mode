@@ -3,3 +3,6 @@ dist/
 build.sh
 *.zip
 .DS_Store
+
+# personal working notes, never published
+NOTES.local.md

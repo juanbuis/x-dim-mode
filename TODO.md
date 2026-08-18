@@ -51,7 +51,13 @@ MailerLite when a user chooses to enter one. `build.sh` now also declares
 
 The listing is complete and would publish on one click; the Microsoft Partner
 Center developer account still needs to clear verification. Account-specific
-detail is kept in a local, untracked file.
+detail is in NOTES.local.md (untracked).
+
+Everything else on Edge is done and waiting:
+- [x] Package 1.7.0 uploaded and verified (permissions reduced to `storage`)
+- [x] Privacy section complete and saved
+- [x] English store listing complete (description + 300x300 logo)
+- [x] Public, all 241 markets
 
 ## Other stores — not worth doing
 
