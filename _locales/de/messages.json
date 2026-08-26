@@ -43,19 +43,19 @@
     "message": "Funktioniert auf X und X Pro — Einstellungen syncen über deine Geräte"
   },
   "updateFeature1": {
-    "message": "Neu: klassisches Bildraster — Beiträge mit mehreren Bildern zeigen wieder alles auf einen Blick"
+    "message": "Neu: „Link kopieren“ zuerst — X hat „Link kopieren“ unter „Über Chat senden“ verschoben. Damit steht es wieder ganz oben."
   },
   "updateFeature2": {
-    "message": "Neu: Extras ist leichter zu finden und jetzt in Abschnitte gegliedert"
+    "message": "Zu finden unter „Extras“ im Popup"
   },
   "updateFeature3": {
-    "message": "Behoben: „Tweet statt Post“ benennt auch den großen Schreiben-Button um"
+    "message": "Mehr vom alten Twitter in den Extras: Vogel-Logo, klassische Schrift, „Twitter“-Favicon, „Tweet“ statt „Post“, Start bei „Folge ich“ und das klassische Bildraster"
   },
   "updateFeature4": {
-    "message": "Hol dir mehr vom alten Twitter in den Extras: Vogel-Logo, klassische Schrift, altes Favicon und „Folge ich“ als Start"
+    "message": "Etwas kaputt? Melden Sie es direkt im Popup"
   },
   "updateFeature5": {
-    "message": "Etwas sieht falsch aus? Melde es direkt aus dem Popup"
+    "message": ""
   },
   "tryNow": {
     "message": "Jetzt ausprobieren"
@@ -101,6 +101,10 @@
   },
   "tweetWording": {
     "message": "Tweet statt Post"
+  },
+  "copyLinkFirst": {
+    "message": "„Link kopieren“ zuerst",
+    "description": "Extras toggle: move Copy link to the top of X's share menu"
   },
   "classicFavicon": {
     "message": "Klassisches Favicon"

@@ -43,19 +43,19 @@
     "message": "Funciona no X e no X Pro — as configurações sincronizam entre seus dispositivos"
   },
   "updateFeature1": {
-    "message": "Novo: grade de imagens clássica — posts com várias imagens voltam à grade, sem nada escondido"
+    "message": "Novo: \"Copiar link\" primeiro — o X colocou isso abaixo de \"Enviar via Chat\" no menu de compartilhar. Ative e ele volta para o topo."
   },
   "updateFeature2": {
-    "message": "Novo: Extras ficou mais fácil de achar e agora está agrupado em seções"
+    "message": "Está em Extras, no popup"
   },
   "updateFeature3": {
-    "message": "Corrigido: “Tweet, não Post” também renomeia o botão grande de publicar"
+    "message": "Mais do antigo Twitter em Extras: o logo do passarinho, a fonte clássica, o favicon do \"Twitter\", \"Tweet\" em vez de \"Post\", começar em Seguindo e a grade de imagens clássica"
   },
   "updateFeature4": {
-    "message": "Tenha mais do Twitter antigo em Extras: o logo do pássaro, a fonte clássica, o favicon antigo e Começar em Seguindo"
+    "message": "Achou algo quebrado? Relate direto pelo popup"
   },
   "updateFeature5": {
-    "message": "Viu algo errado? Relate direto pelo menu da extensão"
+    "message": ""
   },
   "tryNow": {
     "message": "Experimente agora"
@@ -101,6 +101,10 @@
   },
   "tweetWording": {
     "message": "Tweet, não Post"
+  },
+  "copyLinkFirst": {
+    "message": "\"Copiar link\" primeiro",
+    "description": "Extras toggle: move Copy link to the top of X's share menu"
   },
   "classicFavicon": {
     "message": "Favicon clássico"

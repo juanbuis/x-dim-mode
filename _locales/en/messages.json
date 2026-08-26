@@ -43,19 +43,19 @@
     "message": "Works across X and X Pro — settings sync across your devices"
   },
   "updateFeature1": {
-    "message": "New: Classic image grid — multi-image posts get the old grid back, with nothing hidden off-screen"
+    "message": "New: “Copy link first” — X buried Copy link under Send via Chat in the share menu. Turn this on and it goes back to the top."
   },
   "updateFeature2": {
-    "message": "New: Extras is easier to find, and now grouped into sections"
+    "message": "Find it in Extras, in the popup"
   },
   "updateFeature3": {
-    "message": "Fixed: “Tweet, not Post” also renames the big compose button in the sidebar"
+    "message": "More of old Twitter in Extras: the bird logo, the classic font, the “Twitter” favicon, “Tweet” instead of “Post”, Start on Following, and the classic image grid"
   },
   "updateFeature4": {
-    "message": "Get more of old Twitter in Extras: the bird logo, the classic font, the “Twitter” favicon, and Start on Following"
+    "message": "Spotted something broken? Report it right from the popup"
   },
   "updateFeature5": {
-    "message": "Spotted something broken? Report it right from the popup"
+    "message": ""
   },
   "tryNow": {
     "message": "Try it now"
@@ -92,6 +92,10 @@
   },
   "tweetWording": {
     "message": "Tweet, not Post"
+  },
+  "copyLinkFirst": {
+    "message": "Copy link first",
+    "description": "Extras toggle: move Copy link to the top of X's share menu"
   },
   "classicFavicon": {
     "message": "Classic favicon"

@@ -43,19 +43,19 @@
     "message": "X와 X Pro에서 작동 — 설정은 기기 간에 동기화됩니다"
   },
   "updateFeature1": {
-    "message": "새 기능: 클래식 이미지 그리드 — 여러 장의 이미지가 예전 그리드로 돌아와 가려지지 않습니다"
+    "message": "새 기능: '링크 복사'를 맨 위로 — X가 공유 메뉴에서 '채팅으로 보내기' 아래로 옮겼습니다. 켜면 원래 자리로 돌아갑니다."
   },
   "updateFeature2": {
-    "message": "새 기능: Extras를 찾기 쉬워지고 섹션별로 정리되었습니다"
+    "message": "팝업의 Extras에서 찾을 수 있습니다"
   },
   "updateFeature3": {
-    "message": "수정: '포스트 대신 트윗'이 사이드바의 큰 작성 버튼에도 적용됩니다"
+    "message": "Extras에서 옛 트위터를 더: 새 로고, 클래식 글꼴, 'Twitter' 파비콘, '포스트' 대신 '트윗', 팔로잉에서 시작, 클래식 이미지 그리드"
   },
   "updateFeature4": {
-    "message": "Extras에서 옛 트위터를 더 많이: 새 로고, 클래식 폰트, 예전 파비콘, 팔로우 중 탭으로 시작"
+    "message": "문제를 발견하셨나요? 팝업에서 바로 신고하세요"
   },
   "updateFeature5": {
-    "message": "이상한 부분이 보이나요? 팝업에서 바로 알려주세요"
+    "message": ""
   },
   "tryNow": {
     "message": "지금 사용해 보기"
@@ -101,6 +101,10 @@
   },
   "tweetWording": {
     "message": "포스트 대신 트윗"
+  },
+  "copyLinkFirst": {
+    "message": "'링크 복사'를 맨 위로",
+    "description": "Extras toggle: move Copy link to the top of X's share menu"
   },
   "classicFavicon": {
     "message": "클래식 파비콘"

@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.8.0
+
+- **New:** "Copy link first" (Extras) — X pushed *Copy link* below *Send via Chat* in the share menu. This puts it back on top, where it used to be. Thanks to Eliran for the suggestion.
+
 ## 1.7.0
 
 - **New:** "Classic image grid" (Extras) — multi-image posts go back to a grid instead of X's side-scrolling carousel, so nothing is hidden off-screen

@@ -9,6 +9,7 @@ let _oldFont = false;
 let _classicFavicon = false;
 let _tweetWording = false;
 let _imageGrid = false;
+let _copyLinkFirst = false;
 
 // ── Theme Definitions ──────────────────────────────────────────────
 
@@ -30,7 +31,7 @@ let _customHue = 210;
 // local and fall back to sync — see getSettings for why that order matters.
 // Remote changes arrive via onChanged and are mirrored back into local.
 
-const SETTING_KEYS = ["enabled", "theme", "customHue", "birdLogo", "oldFont", "classicFavicon", "tweetWording", "followingTab", "imageGrid"];
+const SETTING_KEYS = ["enabled", "theme", "customHue", "birdLogo", "oldFont", "classicFavicon", "tweetWording", "followingTab", "imageGrid", "copyLinkFirst"];
 
 function getSettings(cb) {
   chrome.storage.sync.get(SETTING_KEYS, (syncVals) => {
@@ -558,6 +559,48 @@ function applyImageGrid() {
 
 function removeImageGrid() {
   document.documentElement.classList.remove(IMAGEGRID_CLASS);
+}
+
+// ── Copy link first (share menu) ──────────────────────────────────
+//
+// X pushed "Copy link" below "Send via Chat" in the share menu; this puts it
+// back on top. Done purely in CSS: the menu is React-managed and short-lived,
+// so physically moving the node risks breaking reconciliation when it closes.
+// Instead the menu becomes a flex column and the item gets order:-1.
+//
+// The item is matched by its icon path rather than its label, so this works in
+// every language X ships without us maintaining a translation table. The
+// prefix is the start of X's link glyph, verified against the live markup.
+
+const COPYLINK_CSS_ID = "x-dim-copylink-css";
+const COPYLINK_CLASS = "x-dim-copylink";
+const COPYLINK_ICON = "M18.36 5.64c-1.95-1.96-5.11-1.96-7.07 0";
+
+function ensureCopyLinkCSS() {
+  if (document.getElementById(COPYLINK_CSS_ID)) return;
+  const style = document.createElement("style");
+  style.id = COPYLINK_CSS_ID;
+  // Only menus that actually contain a Copy link item are switched to flex,
+  // so every other dropdown on X keeps its own layout untouched.
+  style.textContent = `
+    html.${COPYLINK_CLASS} [role="menu"]:has(> [role="menuitem"] path[d^="${COPYLINK_ICON}"]) {
+      display: flex !important;
+      flex-direction: column !important;
+    }
+    html.${COPYLINK_CLASS} [role="menu"] > [role="menuitem"]:has(path[d^="${COPYLINK_ICON}"]) {
+      order: -1 !important;
+    }
+  `;
+  (document.head || document.documentElement).appendChild(style);
+}
+
+function applyCopyLinkFirst() {
+  ensureCopyLinkCSS();
+  document.documentElement.classList.add(COPYLINK_CLASS);
+}
+
+function removeCopyLinkFirst() {
+  document.documentElement.classList.remove(COPYLINK_CLASS);
 }
 
 // ── Classic Favicon & Tab Title ───────────────────────────────────
@@ -1157,7 +1200,7 @@ function fullRescan() {
 }
 
 // Init — single merged storage read (sync preferred, local fallback)
-getSettings(({ enabled, theme, customHue, birdLogo, oldFont, classicFavicon, tweetWording, followingTab, imageGrid }) => {
+getSettings(({ enabled, theme, customHue, birdLogo, oldFont, classicFavicon, tweetWording, followingTab, imageGrid, copyLinkFirst }) => {
   _theme = theme ?? "dim";
   _customHue = customHue ?? 210;
   _birdLogo = !!birdLogo;
@@ -1166,6 +1209,7 @@ getSettings(({ enabled, theme, customHue, birdLogo, oldFont, classicFavicon, twe
   _tweetWording = !!tweetWording;
   _followingTab = !!followingTab;
   _imageGrid = !!imageGrid;
+  _copyLinkFirst = !!copyLinkFirst;
 
   if (enabled === undefined) {
     // Genuinely first run — unless this device already recorded "off", in
@@ -1222,6 +1266,7 @@ getSettings(({ enabled, theme, customHue, birdLogo, oldFont, classicFavicon, twe
 
   // Apply classic image grid if enabled
   if (_imageGrid) applyImageGrid();
+  if (_copyLinkFirst) applyCopyLinkFirst();
 
   // Apply classic favicon + tab title if enabled
   if (_classicFavicon) {
@@ -1331,6 +1376,11 @@ chrome.storage.onChanged.addListener((changes, area) => {
     _imageGrid = !!changes.imageGrid.newValue;
     if (_imageGrid) applyImageGrid();
     else removeImageGrid();
+  }
+  if (changes.copyLinkFirst) {
+    _copyLinkFirst = !!changes.copyLinkFirst.newValue;
+    if (_copyLinkFirst) applyCopyLinkFirst();
+    else removeCopyLinkFirst();
   }
   if (changes.oldFont) {
     _oldFont = !!changes.oldFont.newValue;

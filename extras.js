@@ -8,6 +8,7 @@ const faviconToggle = document.getElementById("faviconToggle");
 const oldFontToggle = document.getElementById("oldFontToggle");
 const followingTabToggle = document.getElementById("followingTabToggle");
 const imageGridToggle = document.getElementById("imageGridToggle");
+const copyLinkFirstToggle = document.getElementById("copyLinkFirstToggle");
 
 // i18n
 document.getElementById("backLabel").textContent = chrome.i18n.getMessage("extName");
@@ -18,6 +19,7 @@ document.getElementById("faviconLabel").textContent = chrome.i18n.getMessage("cl
 document.getElementById("oldFontLabel").textContent = chrome.i18n.getMessage("oldFont");
 document.getElementById("followingTabLabel").textContent = chrome.i18n.getMessage("followingTab");
 document.getElementById("imageGridLabel").textContent = chrome.i18n.getMessage("imageGrid");
+document.getElementById("copyLinkFirstLabel").textContent = chrome.i18n.getMessage("copyLinkFirst");
 document.getElementById("groupLookLabel").textContent = chrome.i18n.getMessage("groupLook");
 document.getElementById("groupTimelineLabel").textContent = chrome.i18n.getMessage("groupTimeline");
 
@@ -43,7 +45,7 @@ reportLink.textContent = chrome.i18n.getMessage("reportProblem");
 }
 
 // Load state (sync preferred, local fallback — mirrors helpers in popup.js)
-const EXTRA_KEYS = ["birdLogo", "tweetWording", "classicFavicon", "oldFont", "followingTab", "imageGrid"];
+const EXTRA_KEYS = ["birdLogo", "tweetWording", "classicFavicon", "oldFont", "followingTab", "imageGrid", "copyLinkFirst"];
 const TOGGLES = {
   birdLogo: birdToggle,
   tweetWording: tweetWordingToggle,
@@ -51,6 +53,7 @@ const TOGGLES = {
   oldFont: oldFontToggle,
   followingTab: followingTabToggle,
   imageGrid: imageGridToggle,
+  copyLinkFirst: copyLinkFirstToggle,
 };
 
 chrome.storage.sync.get(EXTRA_KEYS, (syncVals) => {

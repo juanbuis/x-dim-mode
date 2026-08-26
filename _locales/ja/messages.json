@@ -43,19 +43,19 @@
     "message": "XとX Proに対応 — 設定はデバイス間で同期"
   },
   "updateFeature1": {
-    "message": "新機能：クラシックな画像グリッド — 複数画像の投稿が元のグリッド表示に戻り、隠れる画像がなくなりました"
+    "message": "新機能：「リンクをコピー」を最初に — Xは共有メニューでこれを「チャットで送信」の下に移しました。オンにすると元の一番上に戻ります。"
   },
   "updateFeature2": {
-    "message": "新機能：Extras が見つけやすくなり、セクションごとに整理されました"
+    "message": "ポップアップの「Extras」から設定できます"
   },
   "updateFeature3": {
-    "message": "修正：「ツイート」表記がサイドバーの投稿ボタンにも適用されます"
+    "message": "Extrasでさらに昔のTwitterを：鳥ロゴ、クラシックなフォント、「Twitter」のファビコン、「ポスト」ではなく「ツイート」、フォロー中から開始、クラシックな画像グリッド"
   },
   "updateFeature4": {
-    "message": "「Extras」でもっと昔のTwitterを：鳥のロゴ、クラシックフォント、旧ファビコン、「フォロー中」から開く設定"
+    "message": "不具合を見つけたら、ポップアップから報告できます"
   },
   "updateFeature5": {
-    "message": "表示がおかしいときは、ポップアップからそのまま報告できます"
+    "message": ""
   },
   "tryNow": {
     "message": "今すぐ試す"
@@ -101,6 +101,10 @@
   },
   "tweetWording": {
     "message": "「ツイート」表記"
+  },
+  "copyLinkFirst": {
+    "message": "リンクのコピーを最初に",
+    "description": "Extras toggle: move Copy link to the top of X's share menu"
   },
   "classicFavicon": {
     "message": "クラシックなファビコン"

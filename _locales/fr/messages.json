@@ -43,19 +43,19 @@
     "message": "Fonctionne sur X et X Pro — vos réglages se synchronisent entre vos appareils"
   },
   "updateFeature1": {
-    "message": "Nouveau : grille d’images classique — les posts à plusieurs images retrouvent la grille, rien n’est masqué"
+    "message": "Nouveau : « Copier le lien » en premier — X l'avait placé sous « Envoyer via Chat ». Activez ceci et il remonte en tête."
   },
   "updateFeature2": {
-    "message": "Nouveau : Extras est plus facile à trouver et désormais regroupé par sections"
+    "message": "À retrouver dans Extras, dans la fenêtre de l'extension"
   },
   "updateFeature3": {
-    "message": "Corrigé : « Tweet, pas Post » renomme aussi le grand bouton de rédaction"
+    "message": "Plus de l'ancien Twitter dans Extras : le logo oiseau, la police classique, le favicon « Twitter », « Tweet » au lieu de « Post », démarrer sur Abonnements et l'ancienne grille d'images"
   },
   "updateFeature4": {
-    "message": "Retrouvez plus du Twitter d’avant dans Extras : le logo oiseau, la police classique, l’ancien favicon et Démarrer sur Abonnements"
+    "message": "Quelque chose ne va pas ? Signalez-le depuis la fenêtre"
   },
   "updateFeature5": {
-    "message": "Un problème d’affichage ? Signalez-le depuis la fenêtre de l’extension"
+    "message": ""
   },
   "tryNow": {
     "message": "Essayer maintenant"
@@ -101,6 +101,10 @@
   },
   "tweetWording": {
     "message": "Tweet, pas Post"
+  },
+  "copyLinkFirst": {
+    "message": "« Copier le lien » d'abord",
+    "description": "Extras toggle: move Copy link to the top of X's share menu"
   },
   "classicFavicon": {
     "message": "Favicon classique"

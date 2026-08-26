@@ -43,19 +43,19 @@
     "message": "支持 X 和 X Pro — 设置在设备间自动同步"
   },
   "updateFeature1": {
-    "message": "新增：经典图片网格 — 多图帖子恢复网格排列，不再有图片被藏起来"
+    "message": "新功能：「复制链接」置顶 —— X 把它挪到了分享菜单里「通过聊天发送」的下面。打开这个开关，它就回到最上面。"
   },
   "updateFeature2": {
-    "message": "新增：Extras 更容易找到，并按分区整理"
+    "message": "在弹窗的 Extras 里可以找到"
   },
   "updateFeature3": {
-    "message": "修复：“Tweet 替代 Post”现在也会重命名侧边栏的大发布按钮"
+    "message": "在 Extras 里找回更多老 Twitter：小鸟标志、经典字体、「Twitter」网站图标、「推文」而非「帖子」、从「正在关注」开始，以及经典图片网格"
   },
   "updateFeature4": {
-    "message": "在 Extras 里找回更多老 Twitter：小鸟图标、经典字体、旧网站图标，以及默认打开“正在关注”"
+    "message": "发现问题？直接在弹窗里反馈"
   },
   "updateFeature5": {
-    "message": "发现显示异常？可直接从弹窗反馈"
+    "message": ""
   },
   "tryNow": {
     "message": "立即体验"
@@ -101,6 +101,10 @@
   },
   "tweetWording": {
     "message": "用 Tweet 替代 Post"
+  },
+  "copyLinkFirst": {
+    "message": "「复制链接」置顶",
+    "description": "Extras toggle: move Copy link to the top of X's share menu"
   },
   "classicFavicon": {
     "message": "经典网站图标"

@@ -43,19 +43,19 @@
     "message": "Funciona en X y X Pro — los ajustes se sincronizan entre tus dispositivos"
   },
   "updateFeature1": {
-    "message": "Nuevo: cuadrícula de imágenes clásica — las publicaciones con varias imágenes vuelven a la cuadrícula, sin nada oculto"
+    "message": "Nuevo: «Copiar enlace» primero — X lo puso debajo de «Enviar por chat» en el menú de compartir. Actívalo y vuelve arriba."
   },
   "updateFeature2": {
-    "message": "Nuevo: Extras es más fácil de encontrar y ahora está agrupado en secciones"
+    "message": "Lo encuentras en Extras, en el popup"
   },
   "updateFeature3": {
-    "message": "Corregido: «Tweet, no Post» también renombra el botón grande de redactar"
+    "message": "Más del antiguo Twitter en Extras: el logo del pájaro, la fuente clásica, el favicon de «Twitter», «Tweet» en vez de «Post», empezar en Siguiendo y la cuadrícula de imágenes clásica"
   },
   "updateFeature4": {
-    "message": "Consigue más del Twitter de antes en Extras: el logo del pájaro, la fuente clásica, el favicon antiguo y Empezar en Siguiendo"
+    "message": "¿Algo no funciona? Repórtalo desde el popup"
   },
   "updateFeature5": {
-    "message": "¿Algo se ve mal? Repórtalo desde el menú de la extensión"
+    "message": ""
   },
   "tryNow": {
     "message": "Pruébalo ahora"
@@ -101,6 +101,10 @@
   },
   "tweetWording": {
     "message": "Tweet, no Post"
+  },
+  "copyLinkFirst": {
+    "message": "«Copiar enlace» primero",
+    "description": "Extras toggle: move Copy link to the top of X's share menu"
   },
   "classicFavicon": {
     "message": "Favicon clásico"
