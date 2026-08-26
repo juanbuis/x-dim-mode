@@ -317,7 +317,7 @@ function showEngagePrompt() {
 
 chrome.storage.sync.get(["emailSubscribed"], (syncVals) => {
   chrome.storage.local.get(
-    ["emailSubscribed", "installTimestamp", "emailPromptDismissed", "emailPromptDismissedAt", "engageDismissed", "followDismissed"],
+    ["emailSubscribed", "installTimestamp", "emailPromptDismissed", "emailPromptDismissedAt", "engageDismissed", "followDismissed", "extrasDelightAt"],
     (d) => {
       const now = Date.now();
       const subscribed = syncVals.emailSubscribed !== undefined ? syncVals.emailSubscribed : d.emailSubscribed;
@@ -326,10 +326,17 @@ chrome.storage.sync.get(["emailSubscribed"], (syncVals) => {
       const dismissedAt = d.emailPromptDismissedAt ?? (d.emailPromptDismissed ? now : undefined);
       const installedFor = d.installTimestamp ? now - d.installTimestamp : 0;
 
+      // Set when a second Extra was switched on (see extras.js). It means the
+      // review ask is due on a moment of genuine delight rather than a timer.
+      const delighted = !!d.extrasDelightAt && !d.engageDismissed;
+
       if (!subscribed) {
         emailCtaBtn.style.display = "block";
         const snoozed = dismissedAt !== undefined && now - dismissedAt < SIXTY_DAYS;
-        if (installedFor >= TWO_DAYS && !snoozed) {
+        // A pending review ask outranks the email auto-expand: the delight
+        // moment is short-lived, the email CTA stays visible either way, and
+        // showing both at once is what the one-ask-at-a-time rule prevents.
+        if (installedFor >= TWO_DAYS && !snoozed && !delighted) {
           _autoExpanded = true;
           expandEmailPanel();
         }
@@ -340,7 +347,11 @@ chrome.storage.sync.get(["emailSubscribed"], (syncVals) => {
       // never shows two at once.
       const emailSettled = !!subscribed || dismissedAt !== undefined;
       const engageSettled = !!d.engageDismissed;
-      if (!_autoExpanded && emailSettled && !engageSettled && installedFor >= FOURTEEN_DAYS) {
+      // Two ways in: the delight trigger (2nd Extra enabled, any age), or the
+      // original day-14 timer as a fallback for people who never open Extras.
+      // Delight skips the emailSettled gate — it earned the interruption.
+      if (!_autoExpanded && !engageSettled &&
+          (delighted || (emailSettled && installedFor >= FOURTEEN_DAYS))) {
         showEngagePrompt();
       } else if (!_autoExpanded && emailSettled && engageSettled &&
                  !d.followDismissed && installedFor >= THIRTY_DAYS) {

@@ -70,5 +70,19 @@ for (const key of EXTRA_KEYS) {
     const obj = { [key]: TOGGLES[key].checked };
     chrome.storage.sync.set(obj, () => void chrome.runtime.lastError);
     chrome.storage.local.set(obj);
+    if (TOGGLES[key].checked) noteDelight();
+  });
+}
+
+// Someone who has switched on a second Extra has gone looking for more of the
+// product and liked what they found — a far better moment to ask for a review
+// than an arbitrary day-14 timer, which most people are not in the popup for.
+// Recorded here; the prompt itself is shown by popup.js on the way back.
+function noteDelight() {
+  const on = EXTRA_KEYS.filter((k) => TOGGLES[k].checked).length;
+  if (on < 2) return;
+  chrome.storage.local.get(["extrasDelightAt"], (d) => {
+    if (d.extrasDelightAt) return;               // only ever the first time
+    chrome.storage.local.set({ extrasDelightAt: Date.now() });
   });
 }
