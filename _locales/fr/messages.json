@@ -166,5 +166,13 @@
   "pinHintText": {
     "message": "Cliquez sur l’icône puzzle, puis sur l’épingle à côté de X Dim Mode",
     "description": "Install-only hint body"
+  },
+  "promoEyebrow": {
+    "message": "Également de nous",
+    "description": "Cross-promo label above another project's name"
+  },
+  "promoDesc": {
+    "message": "Transforme n'importe quelle recette en un tableau de préparation lisible d'un coup d'œil.",
+    "description": "One-line description of RecipeTables"
   }
 }

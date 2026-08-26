@@ -166,5 +166,13 @@
   "pinHintText": {
     "message": "Click the puzzle icon, then the pin next to X Dim Mode",
     "description": "Install-only hint body"
+  },
+  "promoEyebrow": {
+    "message": "Also from us",
+    "description": "Cross-promo label above another project's name"
+  },
+  "promoDesc": {
+    "message": "Turn any recipe into a prep table you can read at a glance.",
+    "description": "One-line description of RecipeTables"
   }
 }

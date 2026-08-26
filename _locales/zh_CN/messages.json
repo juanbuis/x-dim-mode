@@ -166,5 +166,13 @@
   "pinHintText": {
     "message": "点击拼图图标，然后点击 X Dim Mode 旁边的图钉",
     "description": "Install-only hint body"
+  },
+  "promoEyebrow": {
+    "message": "我们的另一个作品",
+    "description": "Cross-promo label above another project's name"
+  },
+  "promoDesc": {
+    "message": "把任何食谱变成一眼就能看懂的备料表。",
+    "description": "One-line description of RecipeTables"
   }
 }

@@ -166,5 +166,13 @@
   "pinHintText": {
     "message": "Haz clic en el icono del puzle y luego en el pin junto a X Dim Mode",
     "description": "Install-only hint body"
+  },
+  "promoEyebrow": {
+    "message": "También nuestro",
+    "description": "Cross-promo label above another project's name"
+  },
+  "promoDesc": {
+    "message": "Convierte cualquier receta en una tabla de preparación que se lee de un vistazo.",
+    "description": "One-line description of RecipeTables"
   }
 }

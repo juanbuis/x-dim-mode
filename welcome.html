@@ -315,6 +315,54 @@
       .pin-hint.show { display: none; }
     }
 
+    /* Cross-promo (update screen only) — deliberately quiet: this is a
+       "same maker" note, not an ad. Muted card, small logo, no button. */
+    .promo {
+      display: none;
+      align-items: center;
+      gap: 14px;
+      margin-top: 28px;
+      padding: 14px 16px;
+      border: 1px solid #38444D;
+      border-radius: 12px;
+      text-decoration: none;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .promo.show { display: flex; }
+    .promo:hover {
+      border-color: #536471;
+      background: rgba(255, 255, 255, 0.03);
+    }
+    .promo-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 9px;
+      flex-shrink: 0;
+    }
+    .promo-copy { min-width: 0; }
+    .promo-eyebrow {
+      display: block;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.6px;
+      text-transform: uppercase;
+      color: #536471;
+      margin-bottom: 3px;
+    }
+    .promo-name {
+      display: block;
+      font-size: 15px;
+      font-weight: 700;
+      color: #E7E9EA;
+      margin-bottom: 2px;
+    }
+    .promo-desc {
+      display: block;
+      font-size: 13px;
+      line-height: 1.4;
+      color: #8B98A5;
+    }
+
     /* Footer */
     .footer {
       margin-top: 20px;
@@ -382,6 +430,18 @@
     <div class="actions" id="actions"></div>
 
     <ul class="features" id="features"></ul>
+
+    <!-- Shown on the update screen only. Every release reaches the whole
+         install base, which makes this the one recurring launch surface the
+         project has. Local image: the extension makes no remote requests. -->
+    <a class="promo" id="promo" target="_blank" rel="noopener">
+      <img class="promo-icon" src="icons/recipetables96.png" alt="">
+      <span class="promo-copy">
+        <span class="promo-eyebrow" id="promoEyebrow"></span>
+        <span class="promo-name" id="promoName"></span>
+        <span class="promo-desc" id="promoDesc"></span>
+      </span>
+    </a>
 
   </div>
   <p class="footer">A project by <a href="https://juanbuis.com" target="_blank">Juan Buis</a> — <a href="https://x.com/juanbuis" target="_blank">follow me on X for updates</a> :)</p>

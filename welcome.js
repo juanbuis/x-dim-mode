@@ -93,6 +93,18 @@ tryBtn.textContent = msg("tryNow");
 actions.appendChild(tryBtn);
 
 
+// Cross-promo — update screen only. On install the page is already asking for
+// an email and a pin; adding a third thing there would cost more than it earns.
+// UTM tags so the click-through is measurable on the other side.
+if (isUpdate) {
+  const promo = document.getElementById("promo");
+  promo.href = "https://recipetables.com/?utm_source=xdimmode&utm_medium=update&utm_campaign=crosspromo";
+  document.getElementById("promoEyebrow").textContent = msg("promoEyebrow");
+  document.getElementById("promoName").textContent = "RecipeTables";
+  document.getElementById("promoDesc").textContent = msg("promoDesc");
+  promo.classList.add("show");
+}
+
 // Tag which surface the signup came from, so MailerLite can tell the install
 // welcome apart from the post-update screen (all touchpoints share one form).
 document.getElementById("emailSource").value = isUpdate ? "extension-update" : "extension-welcome";

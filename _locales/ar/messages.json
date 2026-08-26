@@ -166,5 +166,13 @@
   "pinHintText": {
     "message": "انقر على أيقونة القطعة، ثم على الدبوس بجانب X Dim Mode",
     "description": "Install-only hint body"
+  },
+  "promoEyebrow": {
+    "message": "أيضاً من صنعنا",
+    "description": "Cross-promo label above another project's name"
+  },
+  "promoDesc": {
+    "message": "يحوّل أي وصفة إلى جدول تحضير يمكن قراءته بنظرة واحدة.",
+    "description": "One-line description of RecipeTables"
   }
 }

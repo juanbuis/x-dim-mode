@@ -166,5 +166,13 @@
   "pinHintText": {
     "message": "パズルのアイコンをクリックし、X Dim Mode の横のピンを押します",
     "description": "Install-only hint body"
+  },
+  "promoEyebrow": {
+    "message": "私たちの別の作品",
+    "description": "Cross-promo label above another project's name"
+  },
+  "promoDesc": {
+    "message": "どんなレシピも、ひと目で読める下ごしらえの表に変換します。",
+    "description": "One-line description of RecipeTables"
   }
 }

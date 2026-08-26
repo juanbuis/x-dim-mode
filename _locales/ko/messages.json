@@ -166,5 +166,13 @@
   "pinHintText": {
     "message": "퍼즐 아이콘을 클릭한 다음 X Dim Mode 옆의 핀을 누르세요",
     "description": "Install-only hint body"
+  },
+  "promoEyebrow": {
+    "message": "우리의 다른 작품",
+    "description": "Cross-promo label above another project's name"
+  },
+  "promoDesc": {
+    "message": "어떤 레시피든 한눈에 읽히는 준비 표로 바꿔 줍니다.",
+    "description": "One-line description of RecipeTables"
   }
 }

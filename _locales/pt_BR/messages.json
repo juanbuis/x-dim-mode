@@ -166,5 +166,13 @@
   "pinHintText": {
     "message": "Clique no ícone de quebra-cabeça e depois no alfinete ao lado de X Dim Mode",
     "description": "Install-only hint body"
+  },
+  "promoEyebrow": {
+    "message": "Também nosso",
+    "description": "Cross-promo label above another project's name"
+  },
+  "promoDesc": {
+    "message": "Transforma qualquer receita em uma tabela de preparo que se lê num relance.",
+    "description": "One-line description of RecipeTables"
   }
 }

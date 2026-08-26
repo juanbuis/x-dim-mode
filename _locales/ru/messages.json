@@ -166,5 +166,13 @@
   "pinHintText": {
     "message": "Нажмите на значок пазла, затем на булавку рядом с X Dim Mode",
     "description": "Install-only hint body"
+  },
+  "promoEyebrow": {
+    "message": "Ещё от нас",
+    "description": "Cross-promo label above another project's name"
+  },
+  "promoDesc": {
+    "message": "Превращает любой рецепт в таблицу подготовки, которую видно с одного взгляда.",
+    "description": "One-line description of RecipeTables"
   }
 }

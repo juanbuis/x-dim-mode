@@ -166,5 +166,13 @@
   "pinHintText": {
     "message": "Klicke auf das Puzzle-Symbol und dann auf die Pinnnadel neben X Dim Mode",
     "description": "Install-only hint body"
+  },
+  "promoEyebrow": {
+    "message": "Auch von uns",
+    "description": "Cross-promo label above another project's name"
+  },
+  "promoDesc": {
+    "message": "Verwandelt jedes Rezept in eine Übersichtstabelle, die man auf einen Blick liest.",
+    "description": "One-line description of RecipeTables"
   }
 }
