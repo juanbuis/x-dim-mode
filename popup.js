@@ -92,6 +92,9 @@ chrome.storage.sync.get(["extrasSeenRevision"], (syncVals) => {
 
 document.getElementById("extrasRow").addEventListener("click", () => {
   const v = { extrasSeenRevision: EXTRAS_REVISION };
+  // Clear the toolbar dot immediately; the storage listener in background.js
+  // would also catch this, but the popup is closing and this is instant.
+  chrome.action?.setBadgeText?.({ text: "" });
   chrome.storage.local.set(v);
   chrome.storage.sync.set(v, () => void chrome.runtime.lastError);
 });

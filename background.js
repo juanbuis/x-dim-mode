@@ -1,3 +1,35 @@
+// Keep in sync with EXTRAS_REVISION in popup.js — the two run in separate
+// contexts and cannot share a constant. Bump both when an extra is added.
+const EXTRAS_REVISION = 4;
+
+// A set-and-forget extension gives nobody a reason to open its popup, so the
+// asks that live there (review, follow) never get seen. A dot on the toolbar
+// icon is the one honest reason to open it: it only ever appears when there is
+// genuinely a new Extra, and it clears the moment Extras is opened.
+function refreshExtrasBadge() {
+  chrome.storage.sync.get(["extrasSeenRevision"], (syncVals) => {
+    chrome.storage.local.get(["extrasSeenRevision"], (localVals) => {
+      const seen = syncVals.extrasSeenRevision !== undefined
+        ? syncVals.extrasSeenRevision
+        : localVals.extrasSeenRevision;
+      const unseen = (seen ?? 0) < EXTRAS_REVISION;
+      chrome.action.setBadgeText({ text: unseen ? "\u2022" : "" });
+      if (unseen) {
+        chrome.action.setBadgeBackgroundColor({ color: "#1D9BF0" });
+        if (chrome.action.setBadgeTextColor) {
+          chrome.action.setBadgeTextColor({ color: "#FFFFFF" });
+        }
+      }
+    });
+  });
+}
+
+// Re-evaluate whenever the seen-revision changes (including via sync from
+// another device, so clearing it on your laptop clears it on your desktop).
+chrome.storage.onChanged.addListener((changes) => {
+  if (changes.extrasSeenRevision) refreshExtrasBadge();
+});
+
 // Uninstall survey
 chrome.runtime.setUninstallURL("https://docs.google.com/forms/d/e/1FAIpQLSewJf4DzNQpDiemgLskxtiTr8v8jGsRnf2TElorW2gLvkuagg/viewform");
 
@@ -29,10 +61,15 @@ chrome.runtime.onInstalled.addListener(({ reason, previousVersion }) => {
   });
 
   if (reason === "install") {
+    // A first-time user has no "new" to catch up on: mark everything seen.
+    chrome.storage.local.set({ extrasSeenRevision: EXTRAS_REVISION });
+    chrome.action.setBadgeText({ text: "" });
     chrome.storage.local.set({ installTimestamp: Date.now() });
     const params = new URLSearchParams({ v, reason });
     chrome.tabs.create({ url: chrome.runtime.getURL(`welcome.html?${params}`) });
   } else if (reason === "update") {
+    refreshExtrasBadge();
+
     // Set installTimestamp for existing users so engagement prompt starts from update
     chrome.storage.local.get("installTimestamp", ({ installTimestamp }) => {
       if (!installTimestamp) chrome.storage.local.set({ installTimestamp: Date.now() });

@@ -3,6 +3,7 @@
 ## 1.8.0
 
 - **New:** "Copy link first" (Extras) — X pushed *Copy link* below *Send via Chat* in the share menu. This puts it back on top, where it used to be. Thanks to Eliran for the suggestion.
+- **New:** a small dot appears on the toolbar icon when a new Extra lands, and clears as soon as you open Extras. Nothing else ever puts it there.
 
 ## 1.7.0
 
