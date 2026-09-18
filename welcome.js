@@ -92,6 +92,18 @@ tryBtn.className = "btn-secondary";
 tryBtn.textContent = msg("tryNow");
 actions.appendChild(tryBtn);
 
+// The update screen is the one surface the whole install base reliably sees,
+// which makes it the highest-reach place to ask. Update only: a fresh install
+// has nothing to rate yet.
+if (isUpdate) {
+  const rateBtn = document.createElement("a");
+  rateBtn.href = RATE_URL;
+  rateBtn.target = "_blank";
+  rateBtn.className = "btn-secondary";
+  rateBtn.textContent = msg("engageRate");
+  actions.appendChild(rateBtn);
+}
+
 
 // Cross-promo — update screen only. On install the page is already asking for
 // an email and a pin; adding a third thing there would cost more than it earns.

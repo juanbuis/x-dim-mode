@@ -17,8 +17,6 @@ const SHARE_URL = (() => {
   return `https://x.com/intent/tweet?text=${text}&url=${url}`;
 })();
 
-const RATE_URL = "https://chromewebstore.google.com/detail/x-dim-mode/cplloghlcgkjkogmbehmkhlleopnfogc/reviews";
-
 // Prefilled problem report — turns broken-theming moments into reports
 // instead of uninstalls. mailto works for everyone (no GitHub account needed).
 const REPORT_URL = (() => {
@@ -183,6 +181,7 @@ const TWO_DAYS = 2 * 24 * 60 * 60 * 1000;
 const FOURTEEN_DAYS = 14 * 24 * 60 * 60 * 1000;
 const THIRTY_DAYS = 30 * 24 * 60 * 60 * 1000;
 const SIXTY_DAYS = 60 * 24 * 60 * 60 * 1000;
+const NINETY_DAYS = 90 * 24 * 60 * 60 * 1000;
 
 const MAILERLITE_URL = "https://assets.mailerlite.com/jsonp/1436119/forms/179598724460184835/subscribe";
 
@@ -301,13 +300,16 @@ function showEngagePrompt() {
   engageRate.textContent = chrome.i18n.getMessage("engageRate");
   engageRate.href = RATE_URL;
 
-  function dismiss() {
-    chrome.storage.local.set({ engageDismissed: true });
+  // Closing snoozes for 90 days; clicking through means they went to rate,
+  // so never ask again.
+  document.getElementById("engageClose").addEventListener("click", () => {
+    chrome.storage.local.set({ engageDismissedAt: Date.now() });
     prompt.style.display = "none";
-  }
-
-  document.getElementById("engageClose").addEventListener("click", dismiss);
-  engageRate.addEventListener("click", dismiss);
+  });
+  engageRate.addEventListener("click", () => {
+    chrome.storage.local.set({ engageRated: true });
+    prompt.style.display = "none";
+  });
 }
 
 // ── CTA & prompt logic ───────────────────────────────────────────────
@@ -317,7 +319,7 @@ function showEngagePrompt() {
 
 chrome.storage.sync.get(["emailSubscribed"], (syncVals) => {
   chrome.storage.local.get(
-    ["emailSubscribed", "installTimestamp", "emailPromptDismissed", "emailPromptDismissedAt", "engageDismissed", "followDismissed", "extrasDelightAt"],
+    ["emailSubscribed", "installTimestamp", "emailPromptDismissed", "emailPromptDismissedAt", "engageDismissed", "engageDismissedAt", "engageRated", "followDismissed", "extrasDelightAt"],
     (d) => {
       const now = Date.now();
       const subscribed = syncVals.emailSubscribed !== undefined ? syncVals.emailSubscribed : d.emailSubscribed;
@@ -328,7 +330,11 @@ chrome.storage.sync.get(["emailSubscribed"], (syncVals) => {
 
       // Set when a second Extra was switched on (see extras.js). It means the
       // review ask is due on a moment of genuine delight rather than a timer.
-      const delighted = !!d.extrasDelightAt && !d.engageDismissed;
+      // Review ask is settled if they clicked through (forever) or closed it
+      // within the last 90 days. Legacy boolean → treat as closed now.
+      const engageAt = d.engageDismissedAt ?? (d.engageDismissed ? now : undefined);
+      const engageSettled = !!d.engageRated || (engageAt !== undefined && now - engageAt < NINETY_DAYS);
+      const delighted = !!d.extrasDelightAt && !engageSettled;
 
       if (!subscribed) {
         emailCtaBtn.style.display = "block";
@@ -346,7 +352,6 @@ chrome.storage.sync.get(["emailSubscribed"], (syncVals) => {
       // (day 30). Each waits for the previous to be settled, so the popup
       // never shows two at once.
       const emailSettled = !!subscribed || dismissedAt !== undefined;
-      const engageSettled = !!d.engageDismissed;
       // Two ways in: the delight trigger (2nd Extra enabled, any age), or the
       // original day-14 timer as a fallback for people who never open Extras.
       // Delight skips the emailSettled gate — it earned the interruption.

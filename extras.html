@@ -79,15 +79,23 @@
       color: #536471;
     }
     .group:first-of-type { margin-top: 10px; }
-    .report {
-      display: block;
+    /* Feedback row: report + review. Two links, each kept on one line, so at
+       240px a long locale wraps between them rather than inside one. */
+    .feedback {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0 12px;
       margin-top: 12px;
       font-size: 12px;
       color: #536471;
+    }
+    .feedback a {
+      color: #536471;
       text-decoration: none;
+      white-space: nowrap;
       transition: color 0.2s;
     }
-    .report:hover { color: #8B98A5; }
+    .feedback a:hover { color: #8B98A5; }
     .footer {
       margin-top: 14px;
       font-size: 12px;
@@ -163,12 +171,16 @@
     </label>
   </div>
 
-  <a class="report" id="reportLink"></a>
+  <div class="feedback">
+    <a id="reportLink"></a>
+    <a id="rateLink" target="_blank"></a>
+  </div>
   <div class="footer">
     <a href="https://x.com/juanbuis" target="_blank" id="creditLink"></a>
     <span class="footer-sep">&middot;</span>
     <a id="shareLink" target="_blank"></a>
   </div>
+  <script src="rate.js"></script>
   <script src="extras.js"></script>
 </body>
 </html>

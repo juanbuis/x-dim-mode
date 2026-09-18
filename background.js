@@ -59,6 +59,12 @@ chrome.runtime.onInstalled.addListener(({ reason, previousVersion }) => {
       chrome.storage.local.set({ emailPromptDismissedAt: Date.now() });
     }
   });
+  // Same for the review ask: a permanent dismissal becomes a 90-day snooze.
+  chrome.storage.local.get(["engageDismissed", "engageDismissedAt", "engageRated"], (d) => {
+    if (d.engageDismissed && !d.engageDismissedAt && !d.engageRated) {
+      chrome.storage.local.set({ engageDismissedAt: Date.now() });
+    }
+  });
 
   if (reason === "install") {
     // A first-time user has no "new" to catch up on: mark everything seen.

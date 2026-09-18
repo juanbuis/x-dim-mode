@@ -26,6 +26,9 @@ document.getElementById("groupTimelineLabel").textContent = chrome.i18n.getMessa
 // Footer: credit + share (mirrors the popup footer — this page gets the most
 // engaged users and previously carried no promo at all)
 document.getElementById("creditLink").textContent = chrome.i18n.getMessage("credit");
+const rateLink = document.getElementById("rateLink");
+rateLink.textContent = chrome.i18n.getMessage("engageRate");
+rateLink.href = RATE_URL;
 const shareLink = document.getElementById("shareLink");
 shareLink.textContent = chrome.i18n.getMessage("popupShareLink");
 shareLink.href = "https://x.com/intent/tweet?text=" +
