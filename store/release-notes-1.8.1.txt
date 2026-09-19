@@ -1,0 +1,2 @@
+Fixed
+• "Copy link first" now works when you're signed in to X. X lays out its menus differently for signed-in users, and 1.8.0 only handled the signed-out layout. Thanks to Eliran for reporting it.

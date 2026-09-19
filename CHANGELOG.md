@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.8.1
+
+- **Fixed:** "Copy link first" didn't do anything for signed-in users. X wraps its menu items differently when you're logged in, and the first version only handled the logged-out layout. Thanks to Eliran for reporting it.
+
 ## 1.8.0
 
 - **New:** "Copy link first" (Extras) — X pushed *Copy link* below *Send via Chat* in the share menu. This puts it back on top, where it used to be. Thanks to Eliran for the suggestion.

@@ -572,35 +572,63 @@ function removeImageGrid() {
 // every language X ships without us maintaining a translation table. The
 // prefix is the start of X's link glyph, verified against the live markup.
 
-const COPYLINK_CSS_ID = "x-dim-copylink-css";
-const COPYLINK_CLASS = "x-dim-copylink";
 const COPYLINK_ICON = "M18.36 5.64c-1.95-1.96-5.11-1.96-7.07 0";
 
-function ensureCopyLinkCSS() {
-  if (document.getElementById(COPYLINK_CSS_ID)) return;
-  const style = document.createElement("style");
-  style.id = COPYLINK_CSS_ID;
-  // Only menus that actually contain a Copy link item are switched to flex,
-  // so every other dropdown on X keeps its own layout untouched.
-  style.textContent = `
-    html.${COPYLINK_CLASS} [role="menu"]:has(> [role="menuitem"] path[d^="${COPYLINK_ICON}"]) {
-      display: flex !important;
-      flex-direction: column !important;
+// Structure-agnostic. 1.8.0 used pure CSS that assumed menu items were direct
+// children of [role="menu"] — true logged out, where it was verified, but
+// logged-in X wraps its dropdown items in extra containers, so the selector
+// never matched and nothing moved. Now: find the Copy link item, climb to the
+// level where it sits beside its sibling items (whatever wraps them), make that
+// container a flex column and give the item order:-1. Inline styles only, no
+// node moves, so React's reconciliation is untouched.
+
+// Fallback labels for the rare case X swaps the icon: X's own wording in the
+// languages we ship.
+const COPYLINK_LABELS = new Set([
+  "copy link", "link kopieren", "copiar enlace", "copier le lien", "copiar link",
+  "リンクをコピー", "링크 복사", "копировать ссылку", "复制链接", "نسخ الرابط",
+]);
+
+function isCopyLinkItem(item) {
+  for (const p of item.querySelectorAll("svg path")) {
+    if ((p.getAttribute("d") || "").startsWith(COPYLINK_ICON)) return true;
+  }
+  return COPYLINK_LABELS.has((item.textContent || "").trim().toLowerCase());
+}
+
+function hoistCopyLink(root) {
+  if (!root || !root.querySelectorAll) return;
+  // The added node may be the menu, something containing it, or (if X fills
+  // the menu after mounting it) an item inside an already-open menu.
+  const inside = root.closest?.('[role="menu"]');
+  const menus = inside ? [inside] : root.querySelectorAll('[role="menu"]');
+  for (const menu of menus) {
+    const items = [...menu.querySelectorAll('[role="menuitem"]')];
+    if (items.length < 2) continue;
+    const copy = items.find(isCopyLinkItem);
+    if (!copy) continue;
+    // Climb until the next level up also contains another menu item: that
+    // level is the list, and `node` is Copy link's row within it.
+    let node = copy;
+    while (node.parentElement && node.parentElement !== menu.parentElement) {
+      const parent = node.parentElement;
+      if (items.some((it) => it !== copy && parent.contains(it) && !node.contains(it))) break;
+      node = parent;
     }
-    html.${COPYLINK_CLASS} [role="menu"] > [role="menuitem"]:has(path[d^="${COPYLINK_ICON}"]) {
-      order: -1 !important;
-    }
-  `;
-  (document.head || document.documentElement).appendChild(style);
+    const list = node.parentElement;
+    if (!list) continue;
+    list.style.setProperty("display", "flex", "important");
+    list.style.setProperty("flex-direction", "column", "important");
+    node.style.setProperty("order", "-1", "important");
+  }
 }
 
 function applyCopyLinkFirst() {
-  ensureCopyLinkCSS();
-  document.documentElement.classList.add(COPYLINK_CLASS);
+  hoistCopyLink(document.body);
 }
 
 function removeCopyLinkFirst() {
-  document.documentElement.classList.remove(COPYLINK_CLASS);
+  // Menus are rebuilt on every open, so there is nothing to undo on the page.
 }
 
 // ── Classic Favicon & Tab Title ───────────────────────────────────
@@ -1169,6 +1197,14 @@ function startObserver() {
         for (const m of mutations) {
           for (const n of m.addedNodes) {
             if (n.nodeType === 1) applyTweetWording(n, false);
+          }
+        }
+      }
+      // Put Copy link first in any share menu that just opened
+      if (_copyLinkFirst) {
+        for (const m of mutations) {
+          for (const n of m.addedNodes) {
+            if (n.nodeType === 1) hoistCopyLink(n);
           }
         }
       }

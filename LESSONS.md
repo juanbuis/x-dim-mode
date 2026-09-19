@@ -34,3 +34,16 @@ the scrape fails — exactly what earns manual actions.
 
 **Rule:** If real data isn't available, omit the property. A missing `aggregateRating`
 costs a rich-result enhancement; a fake one risks the whole listing.
+
+## Verify X features logged in, not just logged out
+
+1.8.0's "Copy link first" was verified only on a logged-out post page. Logged-in
+X wraps dropdown items in extra containers, so a selector requiring
+`[role="menu"] > [role="menuitem"]` matched nothing for every real user.
+
+- Logged-out X is a different DOM. Treat a logged-out check as a smoke test,
+  never as verification.
+- Don't encode parent/child structure in selectors for X UI. Find the target by
+  a stable signal (icon path, testid), then derive structure at runtime.
+- If a logged-in check isn't possible, say so explicitly and test the code
+  against the plausible structural variants before shipping.
