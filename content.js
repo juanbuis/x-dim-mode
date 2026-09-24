@@ -132,6 +132,20 @@ function buildThemeCSS() {
     /* Chat UI's modal scrim is already classic blue-grey rgba(91,112,131,0.4);
        re-derive it from the active hue so non-blue themes stay cohesive. */
     --color-modal-overlay: ${p.scrim};
+    /* X's newer --x-* tokens (chat composer, sheets). Every neutral surface is
+       black or white-over-black, so re-derive each from the dim bg: the
+       composer pill (--x-btn-tertiary-opaque) is color-mix(#fff 10%, #000000)
+       natively, which reads as a black strip on navy. */
+    --x-bg-primary: var(--xdm-bg);
+    --x-bg-secondary: var(--xdm-bg);
+    --x-bg-sheets: var(--xdm-bg);
+    --x-bg-tertiary: color-mix(in srgb, #fff 15%, var(--xdm-bg));
+    --x-btn-secondary: color-mix(in srgb, #fff 15%, var(--xdm-bg));
+    --x-btn-secondary-hover: color-mix(in srgb, #fff 20%, var(--xdm-bg));
+    --x-btn-secondary-pressed: color-mix(in srgb, #fff 30%, var(--xdm-bg));
+    --x-btn-tertiary-opaque: color-mix(in srgb, #fff 10%, var(--xdm-bg));
+    --x-btn-tertiary-opaque-hover: color-mix(in srgb, #fff 15%, var(--xdm-bg));
+    --x-btn-tertiary-opaque-pressed: color-mix(in srgb, #fff 20%, var(--xdm-bg));
   }`;
 }
 
@@ -284,6 +298,10 @@ const STATIC_CSS = `
   /* Scanner-discovered black backgrounds */
   html.${DIM_CLASS} .xdm-dimmed {
     background-color: var(--xdm-bg) !important;
+  }
+  /* Scanner-discovered neutral dividers (jetfuel modals, #262626) */
+  html.${DIM_CLASS} .xdm-dimmed-divider {
+    background-color: var(--xdm-border) !important;
   }
   /* Scanner-discovered elevated backgrounds (e.g. section cards) */
   html.${DIM_CLASS} .xdm-dimmed-elevated {
@@ -883,8 +901,8 @@ function removeDim() {
     _pendingShallow.clear();
   }
   // Remove scanner-applied classes (non-destructive — doesn't touch original styles)
-  for (const el of document.querySelectorAll(".xdm-dimmed, .xdm-dimmed-elevated")) {
-    el.classList.remove("xdm-dimmed", "xdm-dimmed-elevated");
+  for (const el of document.querySelectorAll(".xdm-dimmed, .xdm-dimmed-elevated, .xdm-dimmed-divider")) {
+    el.classList.remove("xdm-dimmed", "xdm-dimmed-elevated", "xdm-dimmed-divider");
   }
 }
 
@@ -1011,14 +1029,20 @@ function dimSubtree(root) {
 }
 
 function dimElement(el) {
-  if (!el || el.nodeType !== 1 || el.classList.contains("xdm-dimmed") || el.classList.contains("xdm-dimmed-elevated")) return;
-  const bg = el.classList.contains("jf-element")
+  if (!el || el.nodeType !== 1 || el.classList.contains("xdm-dimmed") ||
+      el.classList.contains("xdm-dimmed-elevated") || el.classList.contains("xdm-dimmed-divider")) return;
+  const jf = el.classList.contains("jf-element");
+  const bg = jf
     ? (() => { try { return getComputedStyle(el).backgroundColor; } catch { return ""; } })()
     : el.style.backgroundColor;
-  if (bg === "rgb(0, 0, 0)" || bg === "rgba(0, 0, 0, 1)" || bg === "rgb(20, 20, 20)") {
+  // rgb(23,23,23): jetfuel modal surface (Original Content Rewards "?" dialog)
+  if (bg === "rgb(0, 0, 0)" || bg === "rgba(0, 0, 0, 1)" || bg === "rgb(20, 20, 20)" ||
+      (jf && bg === "rgb(23, 23, 23)")) {
     el.classList.add("xdm-dimmed");
   } else if (bg === "rgb(24, 24, 27)") {
     el.classList.add("xdm-dimmed-elevated");
+  } else if (jf && bg === "rgb(38, 38, 38)" && !el.childElementCount) {
+    el.classList.add("xdm-dimmed-divider");
   }
 }
 

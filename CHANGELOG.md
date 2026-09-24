@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.8.2
+
+- **Fixed:** the box you type DMs into was still black. X moved Chat to a new set of colors, which Dim now covers.
+- **Fixed:** some Creator Studio popups were still black, like the "How payouts work" window behind the ? on Original Content Rewards.
+
 ## 1.8.1
 
 - **Fixed:** "Copy link first" didn't do anything for signed-in users. X wraps its menu items differently when you're logged in, and the first version only handled the logged-out layout. Thanks to Eliran for reporting it.

@@ -1,0 +1,3 @@
+Fixed
+• The box you type DMs into was still black. X moved Chat to a new set of colors, which Dim now covers.
+• Some Creator Studio popups were still black, like the "How payouts work" window behind the ? on Original Content Rewards.
