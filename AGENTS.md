@@ -18,8 +18,9 @@ minimum versions). **A change never needs to land anywhere else.**
 history. Do not edit it. `../x-dim-mode-1.5.0` is an unzipped release artifact,
 not a repo. The marketing site is `../x-dim-mode-site`.
 
-**`build.sh` is gitignored, so it exists only on this machine.** If it is ever
-lost, it has to be rewritten from the store listings and this file.
+**`build.sh` and `publish-chrome.py` are gitignored, so they exist only on this
+machine.** If either is lost, it has to be rewritten from the store listings,
+this file and the commit that added this line.
 
 ## Where the thinking lives
 
@@ -47,10 +48,14 @@ on a file is usually faster than re-deriving its history.
 - The version lives only in `manifest.json`, but a bump also touches
   `CHANGELOG.md`, `store/release-notes-<ver>.txt`, `store/chrome-listing.md` and
   the site's changelog array. These drift; check all five.
-- **Chrome submission cannot be automated** — Chrome blocks extensions from
-  scripting the Web Store. Everything needed is paste-ready in `store/`,
-  including the host-permission justification that silently blocks submission
-  when it's missing.
+- **Chrome uploads go through the Web Store API, not the dashboard.**
+  `./publish-chrome.py` uploads the built zip and submits it for review;
+  `./publish-chrome.py status` shows what's live and pending. Credentials live
+  in `~/.config/x-dim-mode/` (Google Cloud project "X Dim Mode Publishing").
+  The dashboard itself can't be scripted, and the API can't change listing
+  text, screenshots or the privacy tab: those stay manual, paste-ready in
+  `store/`, including the host-permission justification that silently blocks
+  submission when it's missing.
 - **Never type the short description into the Chrome dashboard.** It is read
   from `_locales/*/messages.json` `extDescription`; typing it overrides all ten
   translations at once.

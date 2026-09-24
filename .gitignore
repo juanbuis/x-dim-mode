@@ -1,6 +1,7 @@
 cws_assets/
 dist/
 build.sh
+publish-chrome.py
 *.zip
 .DS_Store
 
