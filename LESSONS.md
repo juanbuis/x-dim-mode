@@ -47,3 +47,15 @@ X wraps dropdown items in extra containers, so a selector requiring
   a stable signal (icon path, testid), then derive structure at runtime.
 - If a logged-in check isn't possible, say so explicitly and test the code
   against the plausible structural variants before shipping.
+
+## X can move UI into shadow DOM, out of reach of page CSS
+
+**What happened (Oct 2026):** X rebuilt Chat inside open shadow roots with their
+own adopted Tailwind sheets. Page-level overrides and the scanner stopped
+reaching it, and the whole chat went black again a few weeks after 1.8.2 fixed it.
+
+- When a surface suddenly ignores every override, check `elementsFromPoint` for a
+  shadow host before chasing selectors.
+- Chat styling now ships through `shadow.js` (page world), which adopts one
+  sheet into every shadow root at creation. Tokens come from `chatTokens()`, so
+  page and shadow can't drift. New chat tokens go there.

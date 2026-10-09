@@ -107,7 +107,14 @@ function buildThemeCSS() {
 
   /* Chat / DM interface (Tailwind + shadcn/Radix) */
   html.${DIM_CLASS}[data-theme="dark"],
-  html.${DIM_CLASS} [data-theme="dark"] {
+  html.${DIM_CLASS} [data-theme="dark"] {${chatTokens(p)}
+  }`;
+}
+
+// Chat's color tokens, shared by the page and by X's chat shadow roots (see
+// buildShadowCSS), so the two can never drift apart.
+function chatTokens(p) {
+  return `
     --background: ${p.bgRaw};
     --border: ${p.borderRaw};
     --input: ${p.borderRaw};
@@ -132,6 +139,10 @@ function buildThemeCSS() {
     /* Chat UI's modal scrim is already classic blue-grey rgba(91,112,131,0.4);
        re-derive it from the active hue so non-blue themes stay cohesive. */
     --color-modal-overlay: ${p.scrim};
+    /* The newer chat dialogs (conversation info, etc.) use --x-overlay-normal,
+       plain black at 40%; same scrim treatment. --x-overlay-strong (80%
+       black) is left alone: it backs full-screen media, which wants dark. */
+    --x-overlay-normal: ${p.scrim};
     /* X's newer --x-* tokens (chat composer, sheets). Every neutral surface is
        black or white-over-black, so re-derive each from the dim bg: the
        composer pill (--x-btn-tertiary-opaque) is color-mix(#fff 10%, #000000)
@@ -146,8 +157,25 @@ function buildThemeCSS() {
     --x-btn-tertiary-opaque: color-mix(in srgb, #fff 10%, var(--xdm-bg));
     --x-btn-tertiary-opaque-hover: color-mix(in srgb, #fff 15%, var(--xdm-bg));
     --x-btn-tertiary-opaque-pressed: color-mix(in srgb, #fff 20%, var(--xdm-bg));
-  }`;
+`;
 }
+
+// CSS adopted into every shadow root by shadow.js. X now renders Chat inside
+// open shadow roots whose own Tailwind sheet redefines the dark tokens on an
+// inner [data-theme="dark"] div, which the page stylesheet can't reach.
+// html.x-dim-active isn't visible from inside a shadow tree, so shadow.js
+// mirrors that gate by disabling the sheet; !important beats X's adopted
+// sheets regardless of the order X adopts them in.
+function buildShadowCSS() {
+  const { hue: h, sat: s } = getActiveHueSat();
+  const important = (decls) => decls.replace(/\/\*[\s\S]*?\*\//g, "").replace(/;/g, " !important;");
+  return `
+  [data-theme="dark"] {${important(chatTokens(paletteFromHue(h, s)))}
+  }
+  .bg-gray-0 { background-color: var(--xdm-bg) !important; }
+  .border-gray-50, .border-gray-100 { border-color: var(--xdm-border) !important; }`;
+}
+
 
 // Static CSS rules — reference CSS variables, theme-independent
 const STATIC_CSS = `
@@ -352,7 +380,19 @@ function ensureBaseCSS() {
     (document.head || document.documentElement).appendChild(style);
   }
   if (style.textContent !== css) style.textContent = css;
+  sendShadowCSS();
 }
+
+// Hand the chat CSS to shadow.js (page world). Either script can load first,
+// so shadow.js announces itself and gets a resend.
+let _shadowCSS = "";
+function sendShadowCSS(force) {
+  const css = buildShadowCSS();
+  if (css === _shadowCSS && !force) return;
+  _shadowCSS = css;
+  document.dispatchEvent(new CustomEvent("xdm:shadow-css", { detail: css }));
+}
+document.addEventListener("xdm:shadow-ready", () => sendShadowCSS(true));
 
 // Inject CSS immediately at document_start — don't wait for async storage read.
 // Rules are gated by html.x-dim-active so they're inert until the class is added.

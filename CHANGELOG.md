@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.8.3
+
+- **Fixed:** Chat was black again. X rebuilt Chat in a way the dim colors couldn't reach, so the whole chat screen, the passcode screen and the conversation info panel went back to black. They're dim again, and dialogs in Chat now get the classic blue-grey backdrop.
+
 ## 1.8.2
 
 - **Fixed:** the box you type DMs into was still black. X moved Chat to a new set of colors, which Dim now covers.

@@ -1,13 +1,25 @@
 {
   "manifest_version": 3,
   "name": "__MSG_extName__",
-  "version": "1.8.2",
+  "version": "1.8.3",
   "description": "__MSG_extDescription__",
   "default_locale": "en",
   "permissions": [
     "storage"
   ],
   "content_scripts": [
+    {
+      "matches": [
+        "https://x.com/*",
+        "https://twitter.com/*",
+        "https://pro.x.com/*"
+      ],
+      "js": [
+        "shadow.js"
+      ],
+      "run_at": "document_start",
+      "world": "MAIN"
+    },
     {
       "matches": [
         "https://x.com/*",
