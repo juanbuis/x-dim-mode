@@ -1,5 +1,6 @@
 cws_assets/
 dist/
+xcuserdata/
 build.sh
 *.zip
 .DS_Store

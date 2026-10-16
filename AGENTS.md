@@ -14,6 +14,15 @@ there is only one to edit).
 the way out (MV3 `service_worker` → `background.scripts`, the `gecko` id, the
 minimum versions). **A change never needs to land anywhere else.**
 
+It also stages an unpacked **Safari** build in `dist/safari`, which the Xcode
+project in `safari/` bundles (Mac only, bundle id `com.juanbuis.xdimmode`, team
+`CT68UCKVVN`). Safari ignores `"world": "MAIN"`, so the Safari manifest swaps
+the page-world `shadow.js` entry for `shadow-loader.js`, which loads it as a
+page script (x.com's CSP allows it in Safari 27). Build the app with
+`xcodebuild -project "safari/X Dim Mode/X Dim Mode.xcodeproj" -scheme "X Dim
+Mode" build` after `./build.sh`. `build.sh` warns when a new extension file is
+missing from the Xcode project or the project's version has drifted.
+
 `../x-dim-mode-firefox` is a dead fork, two minor versions behind, kept only as
 history. Do not edit it. `../x-dim-mode-1.5.0` is an unzipped release artifact,
 not a repo. The marketing site is `../x-dim-mode-site`.
@@ -45,8 +54,9 @@ on a file is usually faster than re-deriving its history.
 - **Check the store's live version before packaging.** The repo changelog has
   been wrong before, and a zip was once built at an already-published version.
 - The version lives only in `manifest.json`, but a bump also touches
-  `CHANGELOG.md`, `store/release-notes-<ver>.txt`, `store/chrome-listing.md` and
-  the site's changelog array. These drift; check all five.
+  `CHANGELOG.md`, `store/release-notes-<ver>.txt`, `store/chrome-listing.md`,
+  the site's changelog array and the Safari project's `MARKETING_VERSION`.
+  These drift; check all six.
 - **Chrome uploads go through the Web Store API, not the dashboard.**
   `cws-publish cplloghlcgkjkogmbehmkhlleopnfogc ~/Downloads/x-dim-mode-<ver>.zip`
   uploads and submits for review; `cws-publish status cplloghlcgkjkogmbehmkhlleopnfogc`

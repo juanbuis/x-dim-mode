@@ -27,6 +27,17 @@
     return root;
   };
 
+  // Roots created before this ran (Safari loads it late, see shadow-loader.js):
+  // re-assigning goes through the setter above, which appends the sheet.
+  const adoptExisting = (root) => {
+    for (const el of root.querySelectorAll("*")) {
+      if (!el.shadowRoot) continue;
+      try { el.shadowRoot.adoptedStyleSheets = el.shadowRoot.adoptedStyleSheets; } catch {}
+      adoptExisting(el.shadowRoot);
+    }
+  };
+  adoptExisting(document);
+
   const html = document.documentElement;
   const gate = () => { sheet.disabled = !html.classList.contains("x-dim-active"); };
   gate();
