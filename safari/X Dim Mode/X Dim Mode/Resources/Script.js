@@ -20,7 +20,7 @@ const STRINGS = {
     "step2": "Klicke auf x.com in der Symbolleiste auf das X Dim Mode-Symbol und erlaube es dauerhaft für diese Website.",
     "hintOn": "Keine Änderung zu sehen? Klicke auf x.com in der Symbolleiste auf das X Dim Mode-Symbol und erlaube es dauerhaft für diese Website.",
     "button": "Safari-Einstellungen öffnen",
-    "tagline": "Bringt das von X entfernte dunkelblaue Dim-Design zurück – samt Twitter-Vogel, klassischer Schrift und altem Bildraster."
+    "tagline": "Das von X entfernte dunkelblaue Dim ist zurück – mit Twitter-Vogel, alter Schrift und altem Bildraster."
   },
   "es": {
     "on": "X Dim Mode está activado. Abre x.com en Safari para verlo.",
@@ -29,7 +29,7 @@ const STRINGS = {
     "step2": "En x.com, haz clic en el icono de X Dim Mode de la barra de herramientas y permítelo siempre en este sitio web.",
     "hintOn": "¿No ves el cambio? En x.com, haz clic en el icono de X Dim Mode de la barra de herramientas y permítelo siempre en este sitio web.",
     "button": "Abrir Ajustes de Safari",
-    "tagline": "Recupera el tema Tenue azul oscuro que X eliminó, con el pájaro de Twitter, la tipografía clásica y la cuadrícula antigua."
+    "tagline": "Vuelve el tema Tenue azul oscuro que X quitó, con el pájaro de Twitter, la fuente y la cuadrícula de antes."
   },
   "fr": {
     "on": "X Dim Mode est activé. Ouvrez x.com dans Safari pour le voir.",
@@ -38,7 +38,7 @@ const STRINGS = {
     "step2": "Sur x.com, cliquez sur l’icône X Dim Mode dans la barre d’outils et autorisez-le toujours sur ce site.",
     "hintOn": "Rien ne change ? Sur x.com, cliquez sur l’icône X Dim Mode dans la barre d’outils et autorisez-le toujours sur ce site.",
     "button": "Ouvrir les réglages de Safari",
-    "tagline": "Restaure le thème Sombre bleu foncé supprimé par X, avec l'oiseau Twitter, la police classique et l'ancienne grille d'images."
+    "tagline": "Le thème Sombre bleu foncé retiré par X revient, avec l'oiseau Twitter, la police et la grille d'avant."
   },
   "ja": {
     "on": "X Dim Mode はオンです。Safari で x.com を開くと反映されます。",
@@ -65,7 +65,7 @@ const STRINGS = {
     "step2": "No x.com, clique no ícone do X Dim Mode na barra de ferramentas e permita sempre neste site.",
     "hintOn": "Não mudou nada? No x.com, clique no ícone do X Dim Mode na barra de ferramentas e permita sempre neste site.",
     "button": "Abrir Ajustes do Safari",
-    "tagline": "Traz de volta o tema Escurecido azul escuro que o X removeu, com o pássaro do Twitter, a fonte clássica e a grade antiga."
+    "tagline": "Volta o tema Escurecido azul escuro que o X removeu, com o pássaro do Twitter, a fonte e a grade de antes."
   },
   "ru": {
     "on": "X Dim Mode включён. Откройте x.com в Safari, чтобы увидеть результат.",
@@ -74,7 +74,7 @@ const STRINGS = {
     "step2": "На x.com нажмите значок X Dim Mode на панели инструментов и всегда разрешайте его на этом сайте.",
     "hintOn": "Ничего не изменилось? На x.com нажмите значок X Dim Mode на панели инструментов и всегда разрешайте его на этом сайте.",
     "button": "Открыть настройки Safari",
-    "tagline": "Возвращает тёмно-синий фон Dim, убранный X, а также птицу Twitter, классический шрифт и старую сетку изображений."
+    "tagline": "Возвращает тёмно-синий фон Dim, убранный X, плюс птицу Twitter, классический шрифт и старую сетку."
   },
   "zh_CN": {
     "on": "X Dim Mode 已开启。在 Safari 中打开 x.com 即可看到效果。",
