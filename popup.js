@@ -367,9 +367,14 @@ chrome.storage.sync.get(["emailSubscribed"], (syncVals) => {
 });
 
 // ── Dev buttons (only visible for unpacked/local installs) ────────
-if (!chrome.runtime.getManifest().update_url) {
-  document.getElementById("devButtons").style.display = "flex";
-}
+// Ask the browser rather than checking for update_url: only Chrome Web Store
+// installs carry one, so that test showed these buttons to every Firefox and
+// Safari user. getSelf needs no permission; Safari lacks it, so they stay hidden.
+chrome.management?.getSelf?.((self) => {
+  if (self?.installType === "development") {
+    document.getElementById("devButtons").style.display = "flex";
+  }
+});
 document.getElementById("devEmail").addEventListener("click", () => {
   document.getElementById("engagePrompt").style.display = "none";
   expandEmailPanel();

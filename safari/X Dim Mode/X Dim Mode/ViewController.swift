@@ -28,16 +28,15 @@ class ViewController: NSViewController, WKNavigationDelegate, WKScriptMessageHan
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         SFSafariExtensionManager.getStateOfSafariExtension(withIdentifier: extensionBundleIdentifier) { (state, error) in
             guard let state = state, error == nil else {
-                // Insert code to inform the user that something went wrong.
+                DispatchQueue.main.async { webView.evaluateJavaScript("show(false, \"\(Locale.preferredLanguages.first ?? "en")\")") }
                 return
             }
 
+            // The bundle is English-only, so WebKit would always report "en";
+            // pass the Mac's own preferred language to pick the copy.
+            let lang = Locale.preferredLanguages.first ?? "en"
             DispatchQueue.main.async {
-                if #available(macOS 13, *) {
-                    webView.evaluateJavaScript("show(\(state.isEnabled), true)")
-                } else {
-                    webView.evaluateJavaScript("show(\(state.isEnabled), false)")
-                }
+                webView.evaluateJavaScript("show(\(state.isEnabled), \"\(lang)\")")
             }
         }
     }

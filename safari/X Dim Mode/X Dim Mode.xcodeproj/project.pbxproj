@@ -472,6 +472,7 @@
 					SafariServices,
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.juanbuis.xdimmode.Extension;
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
@@ -507,6 +508,7 @@
 					SafariServices,
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.juanbuis.xdimmode.Extension;
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
@@ -549,6 +551,8 @@
 					WebKit,
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.juanbuis.xdimmode;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				REGISTER_APP_GROUPS = YES;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
@@ -592,6 +596,8 @@
 					WebKit,
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.juanbuis.xdimmode;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				REGISTER_APP_GROUPS = YES;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;

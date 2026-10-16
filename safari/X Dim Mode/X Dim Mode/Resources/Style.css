@@ -4,42 +4,66 @@
     cursor: default;
 }
 
+/* Always the Dim palette: this window is the product's first impression. */
 :root {
-    color-scheme: light dark;
-
-    --spacing: 20px;
+    color-scheme: dark;
+    --bg: #15202B;
+    --card: #192734;
+    --border: #38444D;
+    --text: #E7E9EA;
+    --muted: #8B98A5;
+    --blue: #1D9BF0;
 }
 
-html {
-    height: 100%;
-}
+html { height: 100%; background: var(--bg); }
 
 body {
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    flex-direction: column;
-
-    gap: var(--spacing);
-    margin: 0 calc(var(--spacing) * 2);
+    gap: 10px;
     height: 100%;
-
-    font: -apple-system-short-body;
+    margin: 0 36px;
+    font: 13px/1.45 -apple-system, BlinkMacSystemFont, sans-serif;
+    color: var(--text);
     text-align: center;
+    visibility: hidden;
 }
+body.ready { visibility: visible; }
 
-body:not(.state-on, .state-off) :is(.state-on, .state-off) {
-    display: none;
+/* The icon is navy too: outline its shape so it doesn't vanish into the page. */
+img {
+    margin-bottom: 2px;
+    filter: drop-shadow(0 0 0.75px #4A5A68) drop-shadow(0 6px 14px rgba(0, 0, 0, 0.45));
 }
+h1 { margin: 0; font-size: 20px; font-weight: 700; letter-spacing: -0.2px; }
+.tagline { margin: 0 0 6px; color: var(--muted); max-width: 360px; }
+.status { margin: 0; font-weight: 600; }
+.hint { margin: 0; color: var(--muted); max-width: 360px; }
 
-body.state-on :is(.state-off, .state-unknown) {
-    display: none;
+ol {
+    margin: 0;
+    padding: 12px 16px 12px 34px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    text-align: start;
+    max-width: 340px;
 }
-
-body.state-off :is(.state-on, .state-unknown) {
-    display: none;
-}
+[dir="rtl"] ol { padding: 12px 34px 12px 16px; }
+li + li { margin-top: 6px; }
+li::marker { color: var(--blue); font-weight: 700; }
 
 button {
-    font-size: 1em;
+    margin-top: 6px;
+    padding: 8px 18px;
+    border: 0;
+    border-radius: 999px;
+    background: var(--blue);
+    color: #fff;
+    font: 600 13px -apple-system, BlinkMacSystemFont, sans-serif;
 }
+button:active { filter: brightness(0.9); }
+
+body.state-on .off, body.state-off .on { display: none; }
