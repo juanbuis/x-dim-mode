@@ -59,3 +59,17 @@ reaching it, and the whole chat went black again a few weeks after 1.8.2 fixed i
 - Chat styling now ships through `shadow.js` (page world), which adopts one
   sheet into every shadow root at creation. Tokens come from `chatTokens()`, so
   page and shadow can't drift. New chat tokens go there.
+
+## Never lead a product name with someone else's brand
+
+**What happened (Oct 2026):** the Mac App Store rejected "X Dim Mode" under
+guideline 4.1(c): the name opens with another company's brand. Chrome and
+Firefox had accepted it for months, which proved nothing; they just enforce
+later.
+
+- Lead with our own name, then "for <Platform>" as a compatibility label:
+  "Dim Mode for Twitter / X", like Control Panel for Twitter or Sink It for
+  Reddit. Search the App Store for live examples before naming anything.
+- `extName` is the store name; `appName` ("Dim Mode") is what the product
+  calls itself in its own UI, where the long form doesn't fit.
+- Third-party brands stay out of App Store keywords too.
