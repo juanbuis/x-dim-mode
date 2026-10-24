@@ -1,13 +1,15 @@
-# X Dim Mode
+# Dim Mode for Twitter / X
+
+*Formerly X Dim Mode.*
 
 > [!TIP]
 > **Now on the Chrome Web Store!** One click to install, updates automatically.
 >
-> [**Install X Dim Mode →**](https://chromewebstore.google.com/detail/x-dim-mode/cplloghlcgkjkogmbehmkhlleopnfogc)
+> [**Install Dim Mode →**](https://chromewebstore.google.com/detail/x-dim-mode/cplloghlcgkjkogmbehmkhlleopnfogc)
 
-Chrome extension that restores the Dim (dark blue) background option to X/Twitter display settings.
+Browser extension (Chrome, Firefox, Safari) that restores the Dim (dark blue) background option to X/Twitter display settings.
 
-![X Dim Mode icon](icons/icon128.png)
+![Dim Mode icon](icons/icon128.png)
 
 ## What it does
 

@@ -1,0 +1,6 @@
+New
+• X Dim Mode is now called Dim Mode for Twitter / X. Same extension, same settings, nothing to do.
+
+Fixed
+• The popup no longer shows three developer test buttons (Email, Engage, Welcome). They were meant for local testing only, but showed up for everyone outside the Chrome Web Store.
+• Chat panels that were already open when the extension loaded could stay black. They now turn dim too.
