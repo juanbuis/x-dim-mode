@@ -1,4 +1,4 @@
-# Mac App Store listing — X Dim Mode (Safari extension)
+# Mac App Store listing — Dim Mode for Twitter / X (Safari extension)
 
 App Store Connect, macOS app, bundle id `com.juanbuis.xdimmode`, SKU `xdimmode-mac`.
 Everything here is paste-ready. App Review rejects metadata or screenshots that
@@ -10,8 +10,13 @@ Firefox or Edge — keep it that way when editing.
 ## Name (max 30)
 
 ```
-X Dim Mode
+Dim Mode for Twitter / X
 ```
+
+App Review rejected "X Dim Mode" under guideline 4.1(c) (another developer's brand
+leading the name, Oct 2026). Approved apps lead with their own name and add
+"for Twitter / X" as a compatibility label, e.g. Control Panel for Twitter,
+Minimal Theme for Twitter / X. Keep the brand out of the first words.
 
 ## Subtitle (max 30)
 
@@ -28,13 +33,13 @@ Chat was going black again after X rebuilt it. It's dim again, and dialogs get t
 ## Keywords (max 100, comma-separated, no spaces needed)
 
 ```
-dim,dark mode,twitter,dark blue,theme,night mode,lights out,tweetdeck,bird,classic,safari extension
+dim,dark mode,dark blue,theme,night mode,lights out,tweetdeck,bird,classic,safari extension
 ```
 
 ## Description (max 4000)
 
 ```
-X removed Dim — the dark blue background that used to sit between Lights Out and Default — and left you with pure black or pure white. X Dim Mode puts it back, right in Safari.
+X removed Dim — the dark blue background that used to sit between Lights Out and Default — and left you with pure black or pure white. Dim Mode puts it back, right in Safari.
 
 Dim returns as an option inside X's own display settings, exactly where it always was. Pick it once and it stays.
 
@@ -62,8 +67,8 @@ No account, no tracking, no analytics. Your settings stay on your Mac. The only 
 
 HOW TO TURN IT ON
 1. Open the app and click "Open Safari Settings".
-2. Tick X Dim Mode under Extensions.
-3. On x.com, click the X Dim Mode icon in the toolbar and choose "Always Allow on This Website".
+2. Tick Dim Mode under Extensions.
+3. On x.com, click the Dim Mode icon in the toolbar and choose "Always Allow on This Website".
 
 ALSO WORTH KNOWING
 • Works on x.com, twitter.com and X Pro
@@ -72,7 +77,7 @@ ALSO WORTH KNOWING
 
 X changes its layout often, and when it does, something here occasionally breaks. There's a "Report a problem" link in the extension's popup. Reports get read, and fixes usually ship within a few days.
 
-X Dim Mode is an independent project and isn't affiliated with or endorsed by X Corp.
+Dim Mode is an independent project and isn't affiliated with or endorsed by X Corp.
 ```
 
 ## URLs
@@ -114,11 +119,11 @@ Free, all territories.
 ## App Review notes
 
 ```
-X Dim Mode is a Safari web extension that restyles x.com (X, formerly Twitter) with a dark blue "Dim" theme, which X removed from its own settings. The app itself only explains how to turn the extension on.
+Dim Mode is a Safari web extension that restyles x.com (X, formerly Twitter) with a dark blue "Dim" theme, which X removed from its own settings. The app itself only explains how to turn the extension on.
 
 To test:
-1. Launch the app, click "Open Safari Settings", tick X Dim Mode under Extensions.
-2. In Safari, visit https://x.com. Click the X Dim Mode toolbar icon and choose "Always Allow on This Website".
+1. Launch the app, click "Open Safari Settings", tick Dim Mode under Extensions.
+2. In Safari, visit https://x.com. Click the Dim Mode toolbar icon and choose "Always Allow on This Website".
 3. The theme applies when X itself is in dark mode. Without an X account, the logged-out pages still show it: the black backgrounds turn dark blue. The toolbar popup lets you pick a color and open Extras.
 
 No login is needed to use the extension. It asks only for the "storage" permission and access to x.com, twitter.com and pro.x.com. Source: https://github.com/juanbuis/x-dim-mode

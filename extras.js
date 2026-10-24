@@ -11,7 +11,7 @@ const imageGridToggle = document.getElementById("imageGridToggle");
 const copyLinkFirstToggle = document.getElementById("copyLinkFirstToggle");
 
 // i18n
-document.getElementById("backLabel").textContent = chrome.i18n.getMessage("extName");
+document.getElementById("backLabel").textContent = chrome.i18n.getMessage("appName");
 document.getElementById("extrasTitle").textContent = chrome.i18n.getMessage("extras");
 document.getElementById("birdLabel").textContent = chrome.i18n.getMessage("birdLogo");
 document.getElementById("tweetWordingLabel").textContent = chrome.i18n.getMessage("tweetWording");
@@ -32,7 +32,7 @@ rateLink.href = RATE_URL;
 const shareLink = document.getElementById("shareLink");
 shareLink.textContent = chrome.i18n.getMessage("popupShareLink");
 shareLink.href = "https://x.com/intent/tweet?text=" +
-  encodeURIComponent("If you miss X's dark blue theme, X Dim Mode brings it back \u2014 free extension:") +
+  encodeURIComponent("If you miss X's dark blue theme, Dim Mode brings it back \u2014 free extension:") +
   "&url=" + encodeURIComponent("https://xdim.app");
 
 // Report-a-problem link (same prefilled mailto as the popup footer)
@@ -40,7 +40,7 @@ const reportLink = document.getElementById("reportLink");
 reportLink.textContent = chrome.i18n.getMessage("reportProblem");
 {
   const v = chrome.runtime.getManifest().version;
-  const subject = encodeURIComponent(`X Dim Mode ${v} — problem report`);
+  const subject = encodeURIComponent(`Dim Mode ${v} — problem report`);
   const body = encodeURIComponent(
     `What looks wrong?\n\n\nWhere on X (page or section):\n\n\n---\nVersion: ${v}\nBrowser: ${navigator.userAgent}`
   );

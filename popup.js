@@ -12,7 +12,7 @@ const RAINBOW = `conic-gradient(
 )`;
 
 const SHARE_URL = (() => {
-  const text = encodeURIComponent("If you miss X's dark blue theme, X Dim Mode brings it back \u2014 free extension:");
+  const text = encodeURIComponent("If you miss X's dark blue theme, Dim Mode brings it back \u2014 free extension:");
   const url = encodeURIComponent("https://xdim.app");
   return `https://x.com/intent/tweet?text=${text}&url=${url}`;
 })();
@@ -21,7 +21,7 @@ const SHARE_URL = (() => {
 // instead of uninstalls. mailto works for everyone (no GitHub account needed).
 const REPORT_URL = (() => {
   const v = chrome.runtime.getManifest().version;
-  const subject = encodeURIComponent(`X Dim Mode ${v} — problem report`);
+  const subject = encodeURIComponent(`Dim Mode ${v} — problem report`);
   const body = encodeURIComponent(
     `What looks wrong?\n\n\nWhere on X (page or section):\n\n\n---\nVersion: ${v}\nBrowser: ${navigator.userAgent}`
   );
@@ -55,7 +55,7 @@ function setSettings(obj) {
 document.documentElement.dir = chrome.i18n.getMessage("@@bidi_dir");
 
 // i18n
-document.getElementById("title").textContent = chrome.i18n.getMessage("extName");
+document.getElementById("title").textContent = chrome.i18n.getMessage("appName");
 document.getElementById("enableLabel").textContent = chrome.i18n.getMessage("enableDim");
 document.getElementById("credit").textContent = chrome.i18n.getMessage("credit");
 

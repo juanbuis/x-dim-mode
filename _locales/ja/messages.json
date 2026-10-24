@@ -1,6 +1,10 @@
 {
   "extName": {
-    "message": "X Dim Mode"
+    "message": "Dim Mode for Twitter / X"
+  },
+  "appName": {
+    "message": "Dim Mode",
+    "description": "Short product name for headings inside the extension. Not translated."
   },
   "extDescription": {
     "message": "Xが削除したダークブルーのDim背景を復元。Twitterの鳥ロゴ、クラシックなフォント、旧画像グリッドも。"
@@ -19,10 +23,10 @@
     "message": "準備完了！"
   },
   "welcomeSubtitleInstall": {
-    "message": "X Dim ModeはXが削除したダークブルーテーマを復元し、さらに多くの機能を追加します。"
+    "message": "Dim ModeはXが削除したダークブルーテーマを復元し、さらに多くの機能を追加します。"
   },
   "welcomeHeadingUpdate": {
-    "message": "X Dim Modeがさらに良くなりました"
+    "message": "Dim Modeがさらに良くなりました"
   },
   "welcomeSubtitleUpdate": {
     "message": "ご利用いただきありがとうございます。新機能をご紹介します："
@@ -82,7 +86,7 @@
     "message": "Xが変わるたびに、新しいExtrasと修正を。"
   },
   "engageQuestion": {
-    "message": "X Dim Modeはいかがですか？"
+    "message": "Dim Modeはいかがですか？"
   },
   "engageRate": {
     "message": "レビューを書く"
@@ -164,7 +168,7 @@
     "description": "Install-only hint pointing at the toolbar puzzle icon"
   },
   "pinHintText": {
-    "message": "パズルのアイコンをクリックし、X Dim Mode の横のピンを押します",
+    "message": "パズルのアイコンをクリックし、Dim Mode の横のピンを押します",
     "description": "Install-only hint body"
   },
   "promoEyebrow": {

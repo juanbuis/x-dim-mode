@@ -1,6 +1,10 @@
 {
   "extName": {
-    "message": "X Dim Mode"
+    "message": "Dim Mode for Twitter / X"
+  },
+  "appName": {
+    "message": "Dim Mode",
+    "description": "Short product name for headings inside the extension. Not translated."
   },
   "extDescription": {
     "message": "Das von X entfernte dunkelblaue Dim ist zurück – mit Twitter-Vogel, alter Schrift und altem Bildraster."
@@ -19,10 +23,10 @@
     "message": "Alles bereit!"
   },
   "welcomeSubtitleInstall": {
-    "message": "X Dim Mode bringt das dunkelblaue Gedimmt-Design zurück, das X entfernt hat — und fügt noch viel mehr hinzu."
+    "message": "Dim Mode bringt das dunkelblaue Gedimmt-Design zurück, das X entfernt hat — und fügt noch viel mehr hinzu."
   },
   "welcomeHeadingUpdate": {
-    "message": "X Dim Mode ist jetzt noch besser"
+    "message": "Dim Mode ist jetzt noch besser"
   },
   "welcomeSubtitleUpdate": {
     "message": "Danke, dass du dabei bleibst. Das ist neu:"
@@ -82,7 +86,7 @@
     "message": "Neue Extras und Fixes, wenn X etwas ändert."
   },
   "engageQuestion": {
-    "message": "Gefällt dir X Dim Mode?"
+    "message": "Gefällt dir Dim Mode?"
   },
   "engageRate": {
     "message": "Bewertung abgeben"
@@ -164,7 +168,7 @@
     "description": "Install-only hint pointing at the toolbar puzzle icon"
   },
   "pinHintText": {
-    "message": "Klicke auf das Puzzle-Symbol und dann auf die Pinnnadel neben X Dim Mode",
+    "message": "Klicke auf das Puzzle-Symbol und dann auf die Pinnnadel neben Dim Mode",
     "description": "Install-only hint body"
   },
   "promoEyebrow": {

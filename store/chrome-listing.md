@@ -1,4 +1,4 @@
-# Chrome Web Store listing — X Dim Mode
+# Chrome Web Store listing — Dim Mode for Twitter / X
 
 Paste-ready copy for the CWS dashboard. Keep this file in sync when features change.
 
@@ -19,7 +19,7 @@ Brings back the Dim dark blue theme X removed, plus the Twitter bird logo, class
 ## Detailed description (max 16,000)
 
 ```
-X removed Dim — the dark blue background that used to sit between Lights Out and Default — and left you with pure black or pure white. X Dim Mode puts it back.
+X removed Dim — the dark blue background that used to sit between Lights Out and Default — and left you with pure black or pure white. Dim Mode puts it back.
 
 Dim returns as a fourth option inside X's own display settings, exactly where it always was. Pick it once and it stays.
 

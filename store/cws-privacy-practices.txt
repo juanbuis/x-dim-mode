@@ -6,7 +6,7 @@ below is the exact text for one field. Copy between the dashed lines.
 
 1. SINGLE PURPOSE
 ------------------------------------------------------------------------------
-X Dim Mode restores the "Dim" dark blue theme that X (formerly Twitter) removed
+Dim Mode restores the "Dim" dark blue theme that X (formerly Twitter) removed
 from its display settings, and optionally restores other parts of X's earlier
 interface. It adds Dim back as a choice inside X's own display settings, offers
 six themes plus a custom color, and includes optional toggles that bring back

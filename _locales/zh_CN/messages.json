@@ -1,6 +1,10 @@
 {
   "extName": {
-    "message": "X Dim Mode"
+    "message": "Dim Mode for Twitter / X"
+  },
+  "appName": {
+    "message": "Dim Mode",
+    "description": "Short product name for headings inside the extension. Not translated."
   },
   "extDescription": {
     "message": "找回 X 移除的暗蓝色 Dim 背景，还有 Twitter 小鸟标志、经典字体和旧版图片网格。"
@@ -19,10 +23,10 @@
     "message": "一切就绪！"
   },
   "welcomeSubtitleInstall": {
-    "message": "X Dim Mode 恢复了 X 移除的暗蓝色主题，还增加了更多功能。"
+    "message": "Dim Mode 恢复了 X 移除的暗蓝色主题，还增加了更多功能。"
   },
   "welcomeHeadingUpdate": {
-    "message": "X Dim Mode 变得更好了"
+    "message": "Dim Mode 变得更好了"
   },
   "welcomeSubtitleUpdate": {
     "message": "感谢你的一路陪伴。以下是最新更新："
@@ -82,7 +86,7 @@
     "message": "X 一变，我们就更新 Extras 和修复。"
   },
   "engageQuestion": {
-    "message": "喜欢 X Dim Mode 吗？"
+    "message": "喜欢 Dim Mode 吗？"
   },
   "engageRate": {
     "message": "撰写评价"
@@ -164,7 +168,7 @@
     "description": "Install-only hint pointing at the toolbar puzzle icon"
   },
   "pinHintText": {
-    "message": "点击拼图图标，然后点击 X Dim Mode 旁边的图钉",
+    "message": "点击拼图图标，然后点击 Dim Mode 旁边的图钉",
     "description": "Install-only hint body"
   },
   "promoEyebrow": {

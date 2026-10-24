@@ -1,4 +1,4 @@
-O X removeu o Escurecido (Dim) — o fundo azul escuro que ficava entre Luzes Apagadas e Padrão — e deixou você apenas com preto puro ou branco puro. O X Dim Mode traz ele de volta.
+O X removeu o Escurecido (Dim) — o fundo azul escuro que ficava entre Luzes Apagadas e Padrão — e deixou você apenas com preto puro ou branco puro. O Dim Mode traz ele de volta.
 
 O Escurecido volta como uma quarta opção dentro das próprias configurações de exibição do X, exatamente onde sempre esteve. Escolha uma vez e ele fica.
 

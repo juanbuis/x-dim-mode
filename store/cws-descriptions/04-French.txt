@@ -1,4 +1,4 @@
-X a supprimé Sombre (Dim), l'arrière-plan bleu foncé situé entre Extinction des feux et Par défaut, et ne vous laisse que du noir pur ou du blanc pur. X Dim Mode le remet en place.
+X a supprimé Sombre (Dim), l'arrière-plan bleu foncé situé entre Extinction des feux et Par défaut, et ne vous laisse que du noir pur ou du blanc pur. Dim Mode le remet en place.
 
 Sombre revient comme quatrième option dans les paramètres d'affichage de X, exactement là où il a toujours été. Choisissez-le une fois, il reste.
 

@@ -1,4 +1,4 @@
-X hat „Dim" entfernt – den dunkelblauen Hintergrund, der zwischen „Lights Out" und „Standard" lag – und lässt Ihnen nur noch reines Schwarz oder reines Weiß. X Dim Mode holt ihn zurück.
+X hat „Dim" entfernt – den dunkelblauen Hintergrund, der zwischen „Lights Out" und „Standard" lag – und lässt Ihnen nur noch reines Schwarz oder reines Weiß. Dim Mode holt ihn zurück.
 
 Dim erscheint wieder als vierte Option in den Anzeige-Einstellungen von X, genau dort, wo sie immer war. Einmal auswählen, und sie bleibt.
 

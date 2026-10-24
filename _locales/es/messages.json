@@ -1,6 +1,10 @@
 {
   "extName": {
-    "message": "X Dim Mode"
+    "message": "Dim Mode for Twitter / X"
+  },
+  "appName": {
+    "message": "Dim Mode",
+    "description": "Short product name for headings inside the extension. Not translated."
   },
   "extDescription": {
     "message": "Vuelve el tema Tenue azul oscuro que X quitó, con el pájaro de Twitter, la fuente y la cuadrícula de antes."
@@ -19,10 +23,10 @@
     "message": "¡Todo listo!"
   },
   "welcomeSubtitleInstall": {
-    "message": "X Dim Mode restaura el tema azul oscuro Tenue que X eliminó — y añade mucho más."
+    "message": "Dim Mode restaura el tema azul oscuro Tenue que X eliminó — y añade mucho más."
   },
   "welcomeHeadingUpdate": {
-    "message": "X Dim Mode acaba de mejorar"
+    "message": "Dim Mode acaba de mejorar"
   },
   "welcomeSubtitleUpdate": {
     "message": "Gracias por seguir con nosotros. Esto es lo nuevo:"
@@ -82,7 +86,7 @@
     "message": "Nuevos extras y correcciones cuando X cambia cosas."
   },
   "engageQuestion": {
-    "message": "¿Te gusta X Dim Mode?"
+    "message": "¿Te gusta Dim Mode?"
   },
   "engageRate": {
     "message": "Dejar una reseña"
@@ -164,7 +168,7 @@
     "description": "Install-only hint pointing at the toolbar puzzle icon"
   },
   "pinHintText": {
-    "message": "Haz clic en el icono del puzle y luego en el pin junto a X Dim Mode",
+    "message": "Haz clic en el icono del puzle y luego en el pin junto a Dim Mode",
     "description": "Install-only hint body"
   },
   "promoEyebrow": {

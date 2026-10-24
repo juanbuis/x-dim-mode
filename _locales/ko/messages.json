@@ -1,6 +1,10 @@
 {
   "extName": {
-    "message": "X Dim Mode"
+    "message": "Dim Mode for Twitter / X"
+  },
+  "appName": {
+    "message": "Dim Mode",
+    "description": "Short product name for headings inside the extension. Not translated."
   },
   "extDescription": {
     "message": "X가 없앤 어두운 파란색 Dim 배경을 되살립니다. 트위터 새 로고, 클래식 글꼴, 옛 이미지 그리드까지."
@@ -19,10 +23,10 @@
     "message": "모든 준비 완료!"
   },
   "welcomeSubtitleInstall": {
-    "message": "X Dim Mode는 X가 제거한 다크 블루 테마를 복원하고, 더 많은 기능을 추가합니다."
+    "message": "Dim Mode는 X가 제거한 다크 블루 테마를 복원하고, 더 많은 기능을 추가합니다."
   },
   "welcomeHeadingUpdate": {
-    "message": "X Dim Mode가 더 좋아졌습니다"
+    "message": "Dim Mode가 더 좋아졌습니다"
   },
   "welcomeSubtitleUpdate": {
     "message": "계속 함께해 주셔서 감사합니다. 새로운 기능을 소개합니다:"
@@ -82,7 +86,7 @@
     "message": "X가 바뀔 때마다 새로운 Extras와 수정 사항을."
   },
   "engageQuestion": {
-    "message": "X Dim Mode 마음에 드시나요?"
+    "message": "Dim Mode 마음에 드시나요?"
   },
   "engageRate": {
     "message": "리뷰 남기기"
@@ -164,7 +168,7 @@
     "description": "Install-only hint pointing at the toolbar puzzle icon"
   },
   "pinHintText": {
-    "message": "퍼즐 아이콘을 클릭한 다음 X Dim Mode 옆의 핀을 누르세요",
+    "message": "퍼즐 아이콘을 클릭한 다음 Dim Mode 옆의 핀을 누르세요",
     "description": "Install-only hint body"
   },
   "promoEyebrow": {

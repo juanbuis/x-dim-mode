@@ -1,4 +1,4 @@
-X eliminó Tenue (Dim), el fondo azul oscuro que estaba entre Apagar luces y Predeterminado, y te dejó con negro puro o blanco puro. X Dim Mode lo devuelve.
+X eliminó Tenue (Dim), el fondo azul oscuro que estaba entre Apagar luces y Predeterminado, y te dejó con negro puro o blanco puro. Dim Mode lo devuelve.
 
 Tenue vuelve como una cuarta opción dentro de la propia configuración de pantalla de X, exactamente donde siempre estuvo. Elígelo una vez y se queda.
 

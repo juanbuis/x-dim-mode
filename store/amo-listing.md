@@ -1,4 +1,4 @@
-# addons.mozilla.org listing — X Dim Mode
+# addons.mozilla.org listing — Dim Mode for Twitter / X
 
 Same product, but AMO has its own fields and its own markup rules.
 Firefox for Android is served from this one listing: the
@@ -20,7 +20,7 @@ AMO's description field is **Markdown**, not HTML — the editor links to
 list syntax, which renders inconsistently. This is what is currently live.
 
 ```
-X removed Dim — the dark blue background that used to sit between Lights Out and Default — and left you with pure black or pure white. X Dim Mode puts it back.
+X removed Dim — the dark blue background that used to sit between Lights Out and Default — and left you with pure black or pure white. Dim Mode puts it back.
 
 Dim returns as a fourth option inside X's own display settings, exactly where it always was. Pick it once and it stays.
 
