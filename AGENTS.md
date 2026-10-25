@@ -22,6 +22,10 @@ page script (x.com's CSP allows it in Safari 27). Build the app with
 `xcodebuild -project "safari/X Dim Mode/X Dim Mode.xcodeproj" -scheme "X Dim
 Mode" build` after `./build.sh`. `build.sh` warns when a new extension file is
 missing from the Xcode project or the project's version has drifted.
+Upload with `xcodebuild -exportArchive` plus the App Store Connect API key
+flags (`-authenticationKeyPath/-KeyID/-KeyIssuerID`), not Xcode's account
+sign-in, which expires. It needs the **Admin** key: only that one may use
+cloud-managed distribution signing. Key IDs are in `NOTES.local.md`.
 
 `../x-dim-mode-firefox` is a dead fork, two minor versions behind, kept only as
 history. Do not edit it. `../x-dim-mode-1.5.0` is an unzipped release artifact,
