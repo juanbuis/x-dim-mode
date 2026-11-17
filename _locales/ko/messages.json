@@ -110,6 +110,22 @@
     "message": "'링크 복사'를 맨 위로",
     "description": "Extras toggle: move Copy link to the top of X's share menu"
   },
+  "buttonColor": {
+    "message": "버튼 색상",
+    "description": "Extras row: color of X's primary buttons like Post and Follow"
+  },
+  "buttonColorWhite": {
+    "message": "흰색",
+    "description": "Tooltip: keep X's white buttons"
+  },
+  "buttonColorTheme": {
+    "message": "테마에 맞추기",
+    "description": "Tooltip: button color follows the current theme"
+  },
+  "buttonColorCustom": {
+    "message": "사용자 지정",
+    "description": "Tooltip: choose your own button color"
+  },
   "classicFavicon": {
     "message": "클래식 파비콘"
   },

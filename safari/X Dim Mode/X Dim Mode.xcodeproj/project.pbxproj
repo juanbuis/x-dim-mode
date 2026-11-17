@@ -15,7 +15,7 @@
 		0D58E0A43082660000673D99 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D58E0A33082660000673D99 /* ViewController.swift */; };
 		0D58E0A73082660000673D99 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0D58E0A53082660000673D99 /* Main.storyboard */; };
 		0D58E0A93082660100673D99 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0D58E0A83082660100673D99 /* Assets.xcassets */; };
-		0D58E0B03082660100673D99 /* X Dim Mode Extension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 0D58E0AF3082660100673D99 /* X Dim Mode Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		0D58E0B03082660100673D99 /* Dim Mode Extension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 0D58E0AF3082660100673D99 /* Dim Mode Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		0D58E0B53082660100673D99 /* SafariWebExtensionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D58E0B43082660100673D99 /* SafariWebExtensionHandler.swift */; };
 		0D58E0D03082660100673D99 /* rate.js in Resources */ = {isa = PBXBuildFile; fileRef = 0D58E0C13082660100673D99 /* rate.js */; };
 		0D58E0D13082660100673D99 /* popup.js in Resources */ = {isa = PBXBuildFile; fileRef = 0D58E0C23082660100673D99 /* popup.js */; };
@@ -50,7 +50,7 @@
 			dstPath = "";
 			dstSubfolder = PlugIns;
 			files = (
-				0D58E0B03082660100673D99 /* X Dim Mode Extension.appex in Embed Foundation Extensions */,
+				0D58E0B03082660100673D99 /* Dim Mode Extension.appex in Embed Foundation Extensions */,
 			);
 			name = "Embed Foundation Extensions";
 		};
@@ -67,7 +67,7 @@
 		0D58E0A63082660000673D99 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0D58E0A83082660100673D99 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0D58E0AA3082660100673D99 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		0D58E0AF3082660100673D99 /* X Dim Mode Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "X Dim Mode Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		0D58E0AF3082660100673D99 /* Dim Mode Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Dim Mode Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0D58E0B43082660100673D99 /* SafariWebExtensionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariWebExtensionHandler.swift; sourceTree = "<group>"; };
 		0D58E0B63082660100673D99 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0D58E0C13082660100673D99 /* rate.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; name = rate.js; path = ../../../dist/safari/rate.js; sourceTree = "<group>"; };
@@ -114,7 +114,7 @@
 			isa = PBXGroup;
 			children = (
 				0D58E0943082660000673D99 /* X Dim Mode.app */,
-				0D58E0AF3082660100673D99 /* X Dim Mode Extension.appex */,
+				0D58E0AF3082660100673D99 /* Dim Mode Extension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -210,7 +210,7 @@
 			);
 			name = "X Dim Mode Extension";
 			productName = "X Dim Mode Extension";
-			productReference = 0D58E0AF3082660100673D99 /* X Dim Mode Extension.appex */;
+			productReference = 0D58E0AF3082660100673D99 /* Dim Mode Extension.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
@@ -452,13 +452,13 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = CT68UCKVVN;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "X Dim Mode Extension/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "X Dim Mode Extension";
+				INFOPLIST_KEY_CFBundleDisplayName = "Dim Mode Extension";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -473,7 +473,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.juanbuis.xdimmode.Extension;
 				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Dim Mode Extension";
 				SKIP_INSTALL = YES;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
@@ -488,13 +488,13 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = CT68UCKVVN;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "X Dim Mode Extension/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "X Dim Mode Extension";
+				INFOPLIST_KEY_CFBundleDisplayName = "Dim Mode Extension";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -509,7 +509,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.juanbuis.xdimmode.Extension;
 				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Dim Mode Extension";
 				SKIP_INSTALL = YES;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
@@ -527,14 +527,14 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = CT68UCKVVN;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_OUTGOING_NETWORK_CONNECTIONS = YES;
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "X Dim Mode/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "X Dim Mode";
+				INFOPLIST_KEY_CFBundleDisplayName = "Dim Mode";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INFOPLIST_KEY_NSMainStoryboardFile = Main;
 				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
@@ -572,14 +572,14 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = CT68UCKVVN;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_OUTGOING_NETWORK_CONNECTIONS = YES;
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "X Dim Mode/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "X Dim Mode";
+				INFOPLIST_KEY_CFBundleDisplayName = "Dim Mode";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INFOPLIST_KEY_NSMainStoryboardFile = Main;
 				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
