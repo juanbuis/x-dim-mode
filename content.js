@@ -10,16 +10,18 @@ let _classicFavicon = false;
 let _tweetWording = false;
 let _imageGrid = false;
 let _copyLinkFirst = false;
+let _buttonColor = "white";
+let _buttonHex = "";
 
 // ── Theme Definitions ──────────────────────────────────────────────
 
 const THEMES = {
-  dim:   { hue: 210, sat: 34 },
-  slate: { hue: 210, sat: 8  },
-  jade:  { hue: 150, sat: 34 },
-  plum:  { hue: 270, sat: 34 },
-  dusk:  { hue: 330, sat: 34 },
-  ember: { hue: 25,  sat: 34 },
+  dim:   { hue: 210, sat: 34, button: "#1d9bf0" },
+  slate: { hue: 210, sat: 8,  button: null },
+  jade:  { hue: 150, sat: 34, button: "#00ba7c" },
+  plum:  { hue: 270, sat: 34, button: "#7856ff" },
+  dusk:  { hue: 330, sat: 34, button: "#f91880" },
+  ember: { hue: 25,  sat: 34, button: "#ff7a00" },
 };
 
 let _theme = "dim";
@@ -31,7 +33,7 @@ let _customHue = 210;
 // local and fall back to sync — see getSettings for why that order matters.
 // Remote changes arrive via onChanged and are mirrored back into local.
 
-const SETTING_KEYS = ["enabled", "theme", "customHue", "birdLogo", "oldFont", "classicFavicon", "tweetWording", "followingTab", "imageGrid", "copyLinkFirst"];
+const SETTING_KEYS = ["enabled", "theme", "customHue", "birdLogo", "oldFont", "classicFavicon", "tweetWording", "followingTab", "imageGrid", "copyLinkFirst", "buttonColor", "buttonHex"];
 
 function getSettings(cb) {
   chrome.storage.sync.get(SETTING_KEYS, (syncVals) => {
@@ -689,6 +691,64 @@ function removeCopyLinkFirst() {
   // Menus are rebuilt on every open, so there is nothing to undo on the page.
 }
 
+// ── Button color ───────────────────────────────────────────────
+// X paints its primary buttons (Post, Follow) near-white in dark mode, with no
+// setting to change it. The dark label inside is the stable signal: the button's
+// own inline background vanishes on hover, but the label's color stays, and
+// nothing else on a dark page uses it. :not(:has()) keeps it to the innermost
+// control, since a "Who to follow" row is itself a button around a Follow button.
+
+const BUTTONS_CSS_ID = "x-dim-buttons-css";
+const CLICKABLE = ':is(button, a, [role="button"], [role="link"])';
+const PRIMARY_BUTTON = `html.${DIM_CLASS} ${CLICKABLE}:has([style*="color: rgb(15, 20, 25)"]):not(:has(${CLICKABLE}))`;
+
+// "Match theme" pairs each preset with one of X's own accent colors; Slate has no
+// color of its own, so it keeps X's white. A custom hue gets the same saturation
+// and lightness as X's blue.
+function themeButtonColor() {
+  if (_theme !== "custom") return (THEMES[_theme] || THEMES.dim).button;
+  const a = 0.88 * 0.47;
+  const f = (n) => {
+    const k = (n + _customHue / 30) % 12;
+    const v = 0.53 - a * Math.max(-1, Math.min(k - 3, 9 - k, 1));
+    return Math.round(v * 255).toString(16).padStart(2, "0");
+  };
+  return `#${f(0)}${f(8)}${f(4)}`;
+}
+
+// Dark text only on genuinely light colors. Plain contrast ratio would put dark
+// text on X's own blue, where X itself uses white.
+function buttonTextColor(hex) {
+  const [r, g, b] = [1, 3, 5].map((i) => {
+    const c = parseInt(hex.slice(i, i + 2), 16) / 255;
+    return c <= 0.03928 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4;
+  });
+  return 0.2126 * r + 0.7152 * g + 0.0722 * b > 0.4 ? "#0f1419" : "#ffffff";
+}
+
+function applyButtonColor() {
+  const color = _buttonColor === "theme" ? themeButtonColor()
+    : _buttonColor === "custom" && /^#[0-9a-f]{6}$/i.test(_buttonHex) ? _buttonHex
+    : null;
+  if (!color) return removeButtonColor();
+  let style = document.getElementById(BUTTONS_CSS_ID);
+  if (!style) {
+    style = document.createElement("style");
+    style.id = BUTTONS_CSS_ID;
+    (document.head || document.documentElement).appendChild(style);
+  }
+  style.textContent = `
+    ${PRIMARY_BUTTON} { background-color: ${color} !important; }
+    ${PRIMARY_BUTTON}:hover { background-color: color-mix(in srgb, ${color} 85%, #000) !important; }
+    ${PRIMARY_BUTTON}:active { background-color: color-mix(in srgb, ${color} 70%, #000) !important; }
+    ${PRIMARY_BUTTON}, ${PRIMARY_BUTTON} * { color: ${buttonTextColor(color)} !important; }
+  `;
+}
+
+function removeButtonColor() {
+  document.getElementById(BUTTONS_CSS_ID)?.remove();
+}
+
 // ── Classic Favicon & Tab Title ───────────────────────────────────
 // Restores the blue bird favicon and renames the tab from "X" to "Twitter".
 // X rewrites both (favicon for unread counts, title on every navigation), so a
@@ -1300,7 +1360,7 @@ function fullRescan() {
 }
 
 // Init — single merged storage read (sync preferred, local fallback)
-getSettings(({ enabled, theme, customHue, birdLogo, oldFont, classicFavicon, tweetWording, followingTab, imageGrid, copyLinkFirst }) => {
+getSettings(({ enabled, theme, customHue, birdLogo, oldFont, classicFavicon, tweetWording, followingTab, imageGrid, copyLinkFirst, buttonColor, buttonHex }) => {
   _theme = theme ?? "dim";
   _customHue = customHue ?? 210;
   _birdLogo = !!birdLogo;
@@ -1310,6 +1370,8 @@ getSettings(({ enabled, theme, customHue, birdLogo, oldFont, classicFavicon, twe
   _followingTab = !!followingTab;
   _imageGrid = !!imageGrid;
   _copyLinkFirst = !!copyLinkFirst;
+  _buttonColor = buttonColor || "white";
+  _buttonHex = buttonHex || "";
 
   if (enabled === undefined) {
     // Genuinely first run — unless this device already recorded "off", in
@@ -1367,6 +1429,9 @@ getSettings(({ enabled, theme, customHue, birdLogo, oldFont, classicFavicon, twe
   // Apply classic image grid if enabled
   if (_imageGrid) applyImageGrid();
   if (_copyLinkFirst) applyCopyLinkFirst();
+
+  // Apply button color if set
+  applyButtonColor();
 
   // Apply classic favicon + tab title if enabled
   if (_classicFavicon) {
@@ -1460,6 +1525,7 @@ chrome.storage.onChanged.addListener((changes, area) => {
     ensureBaseCSS();
     syncThemeColor();
     updateSettingsButtonColor();
+    applyButtonColor();
   }
   if (changes.birdLogo) {
     _birdLogo = !!changes.birdLogo.newValue;
@@ -1481,6 +1547,11 @@ chrome.storage.onChanged.addListener((changes, area) => {
     _copyLinkFirst = !!changes.copyLinkFirst.newValue;
     if (_copyLinkFirst) applyCopyLinkFirst();
     else removeCopyLinkFirst();
+  }
+  if (changes.buttonColor || changes.buttonHex) {
+    if (changes.buttonColor) _buttonColor = changes.buttonColor.newValue || "white";
+    if (changes.buttonHex) _buttonHex = changes.buttonHex.newValue || "";
+    applyButtonColor();
   }
   if (changes.oldFont) {
     _oldFont = !!changes.oldFont.newValue;

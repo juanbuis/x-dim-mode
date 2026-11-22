@@ -79,6 +79,83 @@
       color: #536471;
     }
     .group:first-of-type { margin-top: 10px; }
+    /* Button color: same dots and slider as the popup's themes */
+    .swatches { display: flex; flex-shrink: 0; align-items: center; gap: 8px; }
+    .swatch {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      transition: transform 0.15s ease, outline-color 0.2s;
+      outline: 2px solid transparent;
+      outline-offset: 2px;
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+      -webkit-appearance: none;
+      appearance: none;
+    }
+    .swatch:hover { transform: scale(1.15); }
+    .swatch.active { outline-color: #1D9BF0; }
+    .swatch-white { background: #EFF3F4; }
+    .swatch-theme { background: #1D9BF0; }
+    .color-wrap { display: none; padding: 2px 0 8px; }
+    .color-wrap.open { display: block; }
+    .hue-slider {
+      -webkit-appearance: none;
+      appearance: none;
+      display: block;
+      width: 100%;
+      height: 16px;
+      background: transparent;
+      outline: none;
+      cursor: pointer;
+    }
+    .hue-slider::-webkit-slider-runnable-track {
+      height: 8px;
+      border-radius: 4px;
+      background: linear-gradient(to right, #f00, #ff0, #0f0, #0ff, #00f, #f0f, #f00);
+    }
+    .hue-slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 16px;
+      height: 16px;
+      margin-top: -4px;
+      border-radius: 50%;
+      border: 2px solid #fff;
+      background: #fff;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+      cursor: pointer;
+    }
+    .hue-slider::-moz-range-track {
+      height: 8px;
+      border-radius: 4px;
+      border: none;
+      background: linear-gradient(to right, #f00, #ff0, #0f0, #0ff, #00f, #f0f, #f00);
+    }
+    .hue-slider::-moz-range-thumb {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      border: 2px solid #fff;
+      background: #fff;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+      cursor: pointer;
+    }
+    .hex-input {
+      display: block;
+      width: 100%;
+      margin-top: 8px;
+      padding: 6px 8px;
+      font: 13px ui-monospace, SFMono-Regular, Menlo, monospace;
+      color: #E7E9EA;
+      background: #192734;
+      border: 1px solid #38444D;
+      border-radius: 6px;
+      outline: none;
+    }
+    .hex-input:focus { border-color: #1D9BF0; }
+    .hex-input.invalid { border-color: #F4212E; }
     /* Feedback row: report + review. Two links, each kept on one line, so at
        240px a long locale wraps between them rather than inside one. */
     .feedback {
@@ -137,6 +214,19 @@
       <input type="checkbox" id="faviconToggle">
       <span class="slider"></span>
     </label>
+  </div>
+
+  <div class="toggle-row">
+    <span class="label" id="buttonColorLabel"></span>
+    <div class="swatches">
+      <button class="swatch swatch-white" data-color="white" id="swatchWhite"></button>
+      <button class="swatch swatch-theme" data-color="theme" id="swatchTheme"></button>
+      <button class="swatch" data-color="custom" id="swatchCustom"></button>
+    </div>
+  </div>
+  <div class="color-wrap" id="colorWrap">
+    <input type="range" class="hue-slider" id="buttonHue" min="0" max="360" value="20">
+    <input type="text" class="hex-input" id="buttonHex" dir="ltr" maxlength="7" spellcheck="false" autocomplete="off" placeholder="#ff5500" aria-label="Hex">
   </div>
 
   <div class="toggle-row">

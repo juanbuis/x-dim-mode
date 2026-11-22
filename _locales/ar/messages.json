@@ -110,6 +110,22 @@
     "message": "«نسخ الرابط» أولاً",
     "description": "Extras toggle: move Copy link to the top of X's share menu"
   },
+  "buttonColor": {
+    "message": "لون الأزرار",
+    "description": "Extras row: color of X's primary buttons like Post and Follow"
+  },
+  "buttonColorWhite": {
+    "message": "أبيض",
+    "description": "Tooltip: keep X's white buttons"
+  },
+  "buttonColorTheme": {
+    "message": "مثل السمة",
+    "description": "Tooltip: button color follows the current theme"
+  },
+  "buttonColorCustom": {
+    "message": "مخصص",
+    "description": "Tooltip: choose your own button color"
+  },
   "classicFavicon": {
     "message": "أيقونة الموقع الكلاسيكية"
   },

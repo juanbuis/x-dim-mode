@@ -110,6 +110,22 @@
     "message": "\"Copiar link\" primeiro",
     "description": "Extras toggle: move Copy link to the top of X's share menu"
   },
+  "buttonColor": {
+    "message": "Cor dos botões",
+    "description": "Extras row: color of X's primary buttons like Post and Follow"
+  },
+  "buttonColorWhite": {
+    "message": "Branco",
+    "description": "Tooltip: keep X's white buttons"
+  },
+  "buttonColorTheme": {
+    "message": "Igual ao tema",
+    "description": "Tooltip: button color follows the current theme"
+  },
+  "buttonColorCustom": {
+    "message": "Personalizado",
+    "description": "Tooltip: choose your own button color"
+  },
   "classicFavicon": {
     "message": "Favicon clássico"
   },

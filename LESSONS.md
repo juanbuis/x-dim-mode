@@ -73,3 +73,8 @@ later.
 - `extName` is the store name; `appName` ("Dim Mode") is what the product
   calls itself in its own UI, where the long form doesn't fit.
 - Third-party brands stay out of App Store keywords too.
+- A rename isn't done until the built app says so. App Review reads the name on
+  device from `CFBundleDisplayName`, which is separate from `PRODUCT_NAME` and
+  the store name: the second 4.1(c) rejection cited "Name on Device: X Dim Mode"
+  after everything else had been renamed. Read the name out of the archive's
+  `Info.plist` before uploading.
