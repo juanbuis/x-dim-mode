@@ -107,3 +107,9 @@ testids and icon paths broke silently.
 - The neutral grey of every handle and timestamp is `--x-fg-secondary` →
   `--x-neutral-400`. Remapping the dark half of the neutral scale fixes every
   token built on it at once.
+- Don't flatten X's surface steps into one colour. `--x-bg-secondary` is X's
+  one-step-up surface, and received chat bubbles use nothing else: mapped to
+  the page bg, they vanished. The audit for neutral colours can't catch that;
+  only looking at the screen does.
+- `--x-bg-alpha-NN` is the page colour at NN% (frosted sticky headers), not
+  black. `--x-black-NN` is the one to leave black for media.

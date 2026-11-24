@@ -156,7 +156,10 @@ function chatTokens(p) {
        composer pill (--x-btn-tertiary-opaque) is color-mix(#fff 10%, #000000)
        natively, which reads as a black strip on navy. */
     --x-bg-primary: var(--xdm-bg);
-    --x-bg-secondary: var(--xdm-bg);
+    /* Not the page colour: X uses bg-secondary as the one step up from the
+       page (#141414 on black), and received chat bubbles are drawn with
+       nothing else, so mapping it to the page bg made them invisible. */
+    --x-bg-secondary: var(--xdm-bg-elevated);
     --x-bg-sheets: var(--xdm-bg);
     --x-bg-tertiary: color-mix(in srgb, #fff 15%, var(--xdm-bg));
     --x-btn-secondary: color-mix(in srgb, #fff 15%, var(--xdm-bg));
@@ -183,8 +186,15 @@ function chatTokens(p) {
     --x-fg-tertiary: var(--x-neutral-700);
     /* Toasts: X's is translucent neutral grey (#2229). */
     --x-toast-bg: color-mix(in srgb, ${p.bgElevated} 92%, transparent);
+    /* --x-bg-alpha-NN is the page colour at NN% (white on light, black on
+       dark): frosted sticky headers like Chat settings use 85%. On dark it
+       read as a black bar over navy. (--x-black-NN stays black for media.) */${BG_ALPHA_STEPS.map((n) =>
+      `\n    --x-bg-alpha-${n}: color-mix(in srgb, var(--xdm-bg) ${+n}%, transparent);`).join("")}
 `;
 }
+
+const BG_ALPHA_STEPS = ["00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10",
+  "15", "20", "30", "40", "50", "60", "70", "80", "85", "90", "95", "100"];
 
 // CSS adopted into every shadow root by shadow.js. X now renders Chat inside
 // open shadow roots whose own Tailwind sheet redefines the dark tokens on an
