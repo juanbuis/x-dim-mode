@@ -12,6 +12,10 @@
   "enableDim": {
     "message": "다크 블루 활성화"
   },
+  "pausedLight": {
+    "message": "X가 라이트 모드라서 일시 중지되었습니다. X 설정에서 다크 블루를 선택하세요.",
+    "description": "Popup note under the toggle when Dim is on but X itself is set to Light, which pauses Dim. Clicking it opens X’s display settings."
+  },
   "credit": {
     "message": "@juanbuis 팔로우",
     "description": "Footer follow link in the popup and Extras page"

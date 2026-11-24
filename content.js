@@ -65,6 +65,12 @@ function paletteFromHue(h, s) {
     backdrop:   `hsla(${h}, ${s}%, 13%, 0.85)`,
     text:       `hsl(${h}, ${Math.round(s * 0.32)}%, 60%)`,
     border:     `hsl(${h}, ${bSat}%, 26%)`,
+    // X's dark neutral scale (#0d0d0d … #999), re-derived from the active hue.
+    // The light half (000–300) is left alone: those are near-white text tones.
+    n1100:      `hsl(${h}, ${s}%, 10%)`,
+    n700:       `hsl(${h}, ${bSat}%, 34%)`,
+    n600:       `hsl(${h}, ${Math.round(s * 0.32)}%, 44%)`,
+    n500:       `hsl(${h}, ${Math.round(s * 0.32)}%, 52%)`,
     // Modal scrim — classic Twitter's #5B7083 at 40% for hue 210, hue-adaptive
     scrim:      `hsla(${h}, 18%, 44%, 0.4)`,
     // Raw HSL components for X's CSS variable format (space-separated, no wrapper)
@@ -105,9 +111,11 @@ function buildThemeCSS() {
     --border-color: var(--xdm-border);
   }
 
-  /* Chat / DM interface (Tailwind + shadcn/Radix) */
+  /* X's Tailwind tokens: Chat since 2025, the whole app since the Nov 2026
+     redesign. X declares its dark tokens on [data-theme=dark] and .dark-theme. */
   html.${DIM_CLASS}[data-theme="dark"],
-  html.${DIM_CLASS} [data-theme="dark"] {${chatTokens(p)}
+  html.${DIM_CLASS} [data-theme="dark"],
+  html.${DIM_CLASS} .dark-theme {${chatTokens(p)}
   }`;
 }
 
@@ -157,6 +165,24 @@ function chatTokens(p) {
     --x-btn-tertiary-opaque: color-mix(in srgb, #fff 10%, var(--xdm-bg));
     --x-btn-tertiary-opaque-hover: color-mix(in srgb, #fff 15%, var(--xdm-bg));
     --x-btn-tertiary-opaque-pressed: color-mix(in srgb, #fff 20%, var(--xdm-bg));
+    /* Nov 2026 redesign: the whole app (not just chat) is now Tailwind on
+       these --x-* tokens, and every semantic token X doesn't set from black or
+       white comes from its neutral scale: --x-fg-secondary is neutral-400
+       (#999), the grey of every handle and timestamp; --x-fg-tertiary is
+       neutral-700. Re-deriving the dark half of the scale catches those, plus
+       the utilities that use a neutral directly (radio rings, Grok chips). */
+    --x-neutral-400: ${p.text};
+    --x-neutral-500: ${p.n500};
+    --x-neutral-600: ${p.n600};
+    --x-neutral-700: ${p.n700};
+    --x-neutral-800: ${p.border};
+    --x-neutral-900: ${p.bgElevated};
+    --x-neutral-1000: ${p.bg};
+    --x-neutral-1100: ${p.n1100};
+    --x-fg-secondary: var(--x-neutral-400);
+    --x-fg-tertiary: var(--x-neutral-700);
+    /* Toasts: X's is translucent neutral grey (#2229). */
+    --x-toast-bg: color-mix(in srgb, ${p.bgElevated} 92%, transparent);
 `;
 }
 
@@ -170,7 +196,7 @@ function buildShadowCSS() {
   const { hue: h, sat: s } = getActiveHueSat();
   const important = (decls) => decls.replace(/\/\*[\s\S]*?\*\//g, "").replace(/;/g, " !important;");
   return `
-  [data-theme="dark"] {${important(chatTokens(paletteFromHue(h, s)))}
+  :host([data-theme="dark"]), [data-theme="dark"], .dark-theme {${important(chatTokens(paletteFromHue(h, s)))}
   }
   .bg-gray-0 { background-color: var(--xdm-bg) !important; }
   .border-gray-50, .border-gray-100 { border-color: var(--xdm-border) !important; }`;
@@ -467,8 +493,11 @@ function restoreThemeColor() {
 
 const BIRD_CSS_ID = "x-dim-bird-css";
 
+// One prefix per X logo generation; the Nov 2026 redesign drew a new one.
+const X_LOGO_PREFIXES = ["M18.244", "M21.742", "m21.62 21.5-7.47-10.9"];
+
 function isXLogoPath(d) {
-  return d && (d.startsWith("M18.244") || d.startsWith("M21.742"));
+  return !!d && X_LOGO_PREFIXES.some((pre) => d.startsWith(pre));
 }
 
 function swapSinglePath(p) {
@@ -497,10 +526,14 @@ function ensureBirdCSS() {
   const style = document.createElement("style");
   style.id = BIRD_CSS_ID;
   // Dark/dim mode: inherit UI color (white). Light mode: classic Twitter blue.
+  // Keyed off X's own theme: keying it off the OS painted a blue bird on a
+  // dark X for anyone whose OS is light. The media query only covers a page
+  // that hasn't declared a theme yet.
   style.textContent = `
     path[data-xdm-bird] { fill: currentColor !important; }
+    html[data-theme="light"] path[data-xdm-bird] { fill: #1D9BF0 !important; }
     @media (prefers-color-scheme: light) {
-      path[data-xdm-bird] { fill: #1D9BF0 !important; }
+      html:not([data-theme]) path[data-xdm-bird] { fill: #1D9BF0 !important; }
     }
   `;
   (document.head || document.documentElement).appendChild(style);
@@ -576,6 +609,9 @@ function removeOldFont() {
 
 const IMAGEGRID_CSS_ID = "x-dim-imagegrid-css";
 const IMAGEGRID_CLASS = "x-dim-imagegrid";
+// The redesign's still-image carousel track with 2–4 slides.
+const GRID_TRACK = 'article [class~="group/carousel"] [class~="snap-x"]' +
+  ":not(:has(video)):has(> :nth-child(2)):not(:has(> :nth-child(5)))";
 
 function ensureImageGridCSS() {
   if (document.getElementById(IMAGEGRID_CSS_ID)) return;
@@ -606,6 +642,37 @@ function ensureImageGridCSS() {
     html.${IMAGEGRID_CLASS} [role="article"] [data-testid="ScrollSnap-nextButtonWrapper"] {
       display: none !important;
     }
+
+    /* Nov 2026 redesign: no testids; the carousel is the snap-x track inside a
+       group/carousel, its slides fixed squares in a fixed-height box. The grid
+       fills that same box (rows share its height), so nothing below moves.
+       Capped at four, as the old grid was: past that the cells get too small,
+       and those posts keep X's carousel. X drops the arrows by itself once the
+       track no longer scrolls. */
+    html.${IMAGEGRID_CLASS} ${GRID_TRACK} {
+      display: grid !important;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      grid-auto-rows: minmax(0, 1fr);
+      gap: 2px !important;
+      height: 100% !important;
+      padding: 0 !important;
+      overflow: hidden !important;
+    }
+    html.${IMAGEGRID_CLASS} ${GRID_TRACK} > * {
+      width: auto !important;
+      height: auto !important;
+      min-width: 0 !important;
+      min-height: 0 !important;
+      aspect-ratio: auto !important;
+    }
+    html.${IMAGEGRID_CLASS} ${GRID_TRACK} > *:last-child:nth-child(odd) {
+      grid-column: 1 / -1;
+    }
+    html.${IMAGEGRID_CLASS} ${GRID_TRACK} img {
+      object-fit: cover !important;
+      width: 100% !important;
+      height: 100% !important;
+    }
   `;
   (document.head || document.documentElement).appendChild(style);
 }
@@ -630,7 +697,8 @@ function removeImageGrid() {
 // every language X ships without us maintaining a translation table. The
 // prefix is the start of X's link glyph, verified against the live markup.
 
-const COPYLINK_ICON = "M18.36 5.64c-1.95-1.96-5.11-1.96-7.07 0";
+// One per icon generation: the Nov 2026 redesign drew a new link glyph.
+const COPYLINK_ICONS = ["M18.36 5.64c-1.95-1.96-5.11-1.96-7.07 0", "M1 12a7 7 0 0 1 7-7h"];
 
 // Structure-agnostic. 1.8.0 used pure CSS that assumed menu items were direct
 // children of [role="menu"] — true logged out, where it was verified, but
@@ -649,7 +717,8 @@ const COPYLINK_LABELS = new Set([
 
 function isCopyLinkItem(item) {
   for (const p of item.querySelectorAll("svg path")) {
-    if ((p.getAttribute("d") || "").startsWith(COPYLINK_ICON)) return true;
+    const d = p.getAttribute("d") || "";
+    if (COPYLINK_ICONS.some((pre) => d.startsWith(pre))) return true;
   }
   return COPYLINK_LABELS.has((item.textContent || "").trim().toLowerCase());
 }
@@ -814,12 +883,21 @@ const WORDING_REVERSE = [
 // SideNav_NewTweet_Button is the big compose button in the left sidebar — the
 // most prominent "Post" on the whole site, and the one people mean when they
 // ask for this.
+//
+// The Nov 2026 redesign dropped nearly every data-testid. Its equivalents: the
+// sidebar button is #sidebar-compose-post, the composer's Post button is the
+// design-system button inside the compose <form>, and the retweet button is
+// the one drawing the #icon-repost sprite (language-independent). The legacy
+// selectors stay for accounts X hasn't moved over yet.
 const WORDING_TEXT_SELECTOR = [
   '[data-testid="SideNav_NewTweet_Button"]',
   '[data-testid="tweetButton"]',
   '[data-testid="tweetButtonInline"]',
   '[role="tab"]',
   '[data-testid="Dropdown"] [role="menuitem"]',
+  '#sidebar-compose-post',
+  'form [data-slot="xds-button"]',
+  '[role="menu"] [role="menuitem"]',
 ].join(",");
 
 // aria-labels safe to rewrite (interactive controls, never tweet bodies).
@@ -829,6 +907,9 @@ const WORDING_ARIA_SELECTOR = [
   '[data-testid="SideNav_NewTweet_Button"]',
   '[data-testid="tweetButton"]',
   '[data-testid="tweetButtonInline"]',
+  '#sidebar-compose-post',
+  'form [data-slot="xds-button"]',
+  'button:has(use[href^="#icon-repost"])',
 ].join(",");
 
 function xdmWordSwap(s, reverse) {
@@ -896,7 +977,9 @@ let _lastPath = location.pathname;
 
 function tryDefaultFollowing() {
   if (!_followingTab || _followingDone || location.pathname !== "/home") return;
-  const primary = document.querySelector('[data-testid="primaryColumn"]');
+  // primaryColumn went away in the Nov 2026 redesign; <main> holds the same
+  // tablist there.
+  const primary = document.querySelector('[data-testid="primaryColumn"]') || document.querySelector("main");
   if (!primary) return;
   // The tabs are localized and carry no test id, so match on position: X always
   // renders "For you" first and "Following" second, with pinned lists after.
@@ -990,6 +1073,7 @@ function syncDimWithTheme() {
     _suspendedForLight = true;
     removeDim();
   }
+  syncSettingsButtons(true);
 }
 
 function startBodyObserver() {
@@ -1136,10 +1220,113 @@ function setUnselected(btnEl) {
   if (input) input.checked = false;
 }
 
+// ── Appearance panel (Nov 2026 redesign) ──
+// Settings became a modal whose Background group is Light / Dark / Use system
+// setting: Base UI radios, each a row of label + span[role=radio] + a hidden
+// input whose value (light|dark|system) is the only language-independent
+// signal. Dim goes back in as a fourth row between Light and Dark, the order
+// classic Twitter used, cloned from X's own Dark row so it looks native.
+
+function findBackgroundGroup() {
+  const dark = document.querySelector('[role="radiogroup"] input[type="radio"][value="dark"]');
+  const group = dark && dark.closest('[role="radiogroup"]');
+  if (!group || !group.querySelector('input[type="radio"][value="light"]')) return null;
+  return { group, dark };
+}
+
+// The child of `group` that holds `el`, whatever wraps it.
+function rowIn(group, el) {
+  let n = el;
+  while (n && n.parentElement !== group) n = n.parentElement;
+  return n;
+}
+
+function setRadioChecked(radio, on) {
+  if (!radio) return;
+  radio.setAttribute("aria-checked", on ? "true" : "false");
+  radio.toggleAttribute("data-checked", on);
+  radio.toggleAttribute("data-unchecked", !on);
+}
+
+// Dim's row is checked only while Dim is actually showing. X's own rows show
+// X's real state otherwise, so the panel never claims Dim while X is light.
+function syncDimRow(dimShowing) {
+  const row = document.getElementById(DIM_BTN_ID);
+  if (!row || !row.hasAttribute("data-xdm-row")) return false;
+  const group = row.closest('[role="radiogroup"]');
+  if (!group) return true;
+  setRadioChecked(row.querySelector('[role="radio"]'), dimShowing);
+  for (const input of group.querySelectorAll('input[type="radio"]')) {
+    const r = rowIn(group, input);
+    setRadioChecked(r && r.querySelector('[role="radio"]'), !dimShowing && input.checked);
+  }
+  return true;
+}
+
+function tryInjectDimRow() {
+  if (document.getElementById(DIM_BTN_ID)) return true;
+  const bg = findBackgroundGroup();
+  if (!bg) return false;
+  const { group } = bg;
+  const darkRow = rowIn(group, bg.dark);
+  if (!darkRow) return false;
+
+  const row = darkRow.cloneNode(true);
+  row.id = DIM_BTN_ID;
+  row.setAttribute("data-xdm-row", "");
+  // Cut every tie to X's wiring: the label's for= would select Dark, and the
+  // hidden input would join X's form state.
+  for (const el of row.querySelectorAll("[id]")) el.removeAttribute("id");
+  row.querySelector("label")?.removeAttribute("for");
+  row.querySelector("input")?.remove();
+  const radio = row.querySelector('[role="radio"]');
+  const name = chrome.i18n.getMessage("dimLabel");
+  if (radio) {
+    radio.removeAttribute("aria-labelledby");
+    radio.removeAttribute("data-composite-item-active");
+    radio.setAttribute("aria-label", name);
+    radio.setAttribute("tabindex", "0");
+  }
+  const label = [...row.querySelectorAll("label span, label")].find(
+    (el) => !el.children.length && el.textContent.trim()
+  );
+  if (label) label.textContent = name;
+
+  group.insertBefore(row, darkRow);
+
+  row.addEventListener("click", (e) => {
+    e.preventDefault();
+    setSettings({ enabled: true });
+    // The onChanged handler does the same; doing it here too makes the click
+    // feel instant instead of waiting on the storage round trip.
+    _enabled = true;
+    activateLightsOut();
+    syncSettingsButtons(true);
+  });
+  row.addEventListener("keydown", (e) => {
+    if (e.key === " " || e.key === "Enter") { e.preventDefault(); row.click(); }
+  });
+
+  // Picking any of X's own backgrounds is choosing not to have Dim, as it was
+  // with the old picker. Capture phase, so it runs before X re-renders.
+  group.addEventListener("click", (e) => {
+    if (_switchingToDim || row.contains(e.target)) return;
+    const own = rowIn(group, e.target);
+    if (!own || !own.querySelector('input[type="radio"]')) return;
+    setSettings({ enabled: false });
+    _enabled = false;
+    setTimeout(() => syncDimRow(false), 0);
+  }, true);
+
+  getSettings(({ enabled }) => syncSettingsButtons(!!enabled));
+  return true;
+}
+
 function tryInjectDimOption() {
   if (document.getElementById(DIM_BTN_ID)) return;
+  if (tryInjectDimRow()) return;
 
-  // Find the background picker by its radio inputs (language-independent)
+  // Legacy picker: find it by its radio inputs (language-independent)
   const bgRadio = document.querySelector('input[name="background-picker"]');
   if (!bgRadio) return;
   const radiogroup = bgRadio.closest('[role="radiogroup"]');
@@ -1205,6 +1392,18 @@ let _switchingToDim = false;
 function activateLightsOut() {
   const dimBtn = document.getElementById(DIM_BTN_ID);
   if (!dimBtn) return; // Settings page not open
+  if (dimBtn.hasAttribute("data-xdm-row")) {
+    // Appearance panel: select X's Dark. Base UI listens on the role=radio span.
+    const bg = findBackgroundGroup();
+    if (!bg || bg.dark.checked) return;
+    const darkRadio = rowIn(bg.group, bg.dark)?.querySelector('[role="radio"]');
+    _switchingToDim = true;
+    (darkRadio || bg.dark).click();
+    _switchingToDim = false;
+    // X re-renders its radios after the switch; re-assert Dim's row after it.
+    for (const ms of [50, 300]) setTimeout(() => syncSettingsButtons(_enabled), ms);
+    return;
+  }
   const radiogroup = dimBtn.closest('[role="radiogroup"]');
   if (!radiogroup) return;
   const allBtns = radiogroup.querySelectorAll(":scope > div");
@@ -1300,7 +1499,7 @@ function fullRescan() {
 }
 
 // Init — single merged storage read (sync preferred, local fallback)
-getSettings(({ enabled, theme, customHue, birdLogo, oldFont, classicFavicon, tweetWording, followingTab, imageGrid, copyLinkFirst }) => {
+getSettings(({ enabled, theme, customHue, birdLogo, oldFont, classicFavicon, tweetWording, followingTab, imageGrid, copyLinkFirst, buttonColor, buttonHex }) => {
   _theme = theme ?? "dim";
   _customHue = customHue ?? 210;
   _birdLogo = !!birdLogo;
@@ -1393,10 +1592,18 @@ getSettings(({ enabled, theme, customHue, birdLogo, oldFont, classicFavicon, twe
   }
 });
 
+// The popup asks whether Dim is on but standing down because X is in Light
+// mode. Nothing else says so, and from the outside it looks exactly like Dim
+// being broken.
+chrome.runtime?.onMessage?.addListener((msg, _sender, reply) => {
+  if (msg && msg.type === "xdm:status") reply({ xLight: _enabled && isXDark() === false });
+});
+
 // Sync the radio buttons on the Display settings page with the current state
 function syncSettingsButtons(enabled) {
   const dimBtn = document.getElementById(DIM_BTN_ID);
   if (!dimBtn) return;
+  if (syncDimRow(!!enabled && isXDark() !== false)) return;
   const radiogroup = dimBtn.closest('[role="radiogroup"]');
   if (!radiogroup) return;
   const allBtns = radiogroup.querySelectorAll(":scope > div");
@@ -1416,7 +1623,8 @@ function syncSettingsButtons(enabled) {
 // Update the settings page Dim button preview color
 function updateSettingsButtonColor() {
   const dimBtn = document.getElementById(DIM_BTN_ID);
-  if (!dimBtn) return;
+  // The Appearance panel's rows are plain list rows, with no swatch to tint.
+  if (!dimBtn || dimBtn.hasAttribute("data-xdm-row")) return;
   const { hue, sat } = getActiveHueSat();
   dimBtn.style.backgroundColor = `hsl(${hue}, ${sat}%, 13%)`;
 }

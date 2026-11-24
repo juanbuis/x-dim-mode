@@ -12,6 +12,10 @@
   "enableDim": {
     "message": "ダークブルーを有効にする"
   },
+  "pausedLight": {
+    "message": "X がライトモードのため一時停止中です。X の設定で「ダークブルー」を選んでください。",
+    "description": "Popup note under the toggle when Dim is on but X itself is set to Light, which pauses Dim. Clicking it opens X’s display settings."
+  },
   "credit": {
     "message": "@juanbuis をフォロー",
     "description": "Footer follow link in the popup and Extras page"

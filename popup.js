@@ -38,7 +38,11 @@ function getSettings(cb) {
     chrome.storage.local.get(SETTING_KEYS, (localVals) => {
       const merged = {};
       for (const k of SETTING_KEYS) {
-        merged[k] = syncVals[k] !== undefined ? syncVals[k] : localVals[k];
+        // Local first, exactly as content.js reads it. This was sync-first, so
+        // whenever the two disagreed the toggle showed Dim on while the page
+        // used the local "off", and switching it on did nothing because it
+        // already looked on.
+        merged[k] = localVals[k] !== undefined ? localVals[k] : syncVals[k];
       }
       cb(merged);
     });
@@ -114,10 +118,37 @@ function setActiveTheme(themeName) {
   hueWrap.classList.toggle("open", themeName === "custom");
 }
 
+// ── Paused by X's Light theme ──────────────────────────────────────
+// Dim only paints over X's dark theme, so with X on Light (or on "Use system
+// setting" with a light OS) Dim is on but nothing changes. Ask the active tab,
+// and if that's what's happening, say so and link to X's Appearance settings,
+// where the Dim option switches X to dark. No reply means it isn't an X tab.
+const pausedNote = document.getElementById("pausedNote");
+pausedNote.textContent = chrome.i18n.getMessage("pausedLight");
+
+function checkPaused(enabled) {
+  pausedNote.hidden = true;
+  if (!enabled || !chrome.tabs?.query) return;
+  chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+    const tab = tabs && tabs[0];
+    if (!tab || tab.id === undefined) return;
+    chrome.tabs.sendMessage(tab.id, { type: "xdm:status" }, (res) => {
+      if (chrome.runtime.lastError || !res) return;
+      pausedNote.hidden = !res.xLight;
+      pausedNote.onclick = (e) => {
+        e.preventDefault();
+        chrome.tabs.update(tab.id, { url: pausedNote.href });
+        window.close();
+      };
+    });
+  });
+}
+
 // Load initial state
 getSettings(({ enabled, theme, customHue }) => {
   toggle.checked = !!enabled;
   dot.classList.toggle("active", !!enabled);
+  checkPaused(!!enabled);
 
   if (customHue !== undefined) {
     hueSlider.value = customHue;
@@ -131,6 +162,8 @@ toggle.addEventListener("change", () => {
   const enabled = toggle.checked;
   setSettings({ enabled });
   dot.classList.toggle("active", enabled);
+  // Give the tab a moment to receive the change before asking it.
+  setTimeout(() => checkPaused(enabled), 150);
 });
 
 // Preset theme clicks

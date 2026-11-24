@@ -12,6 +12,10 @@
   "enableDim": {
     "message": "Activer Sombre"
   },
+  "pausedLight": {
+    "message": "En pause tant que X est en mode clair. Choisissez Sombre dans les paramètres de X.",
+    "description": "Popup note under the toggle when Dim is on but X itself is set to Light, which pauses Dim. Clicking it opens X’s display settings."
+  },
   "credit": {
     "message": "Suivez @juanbuis",
     "description": "Footer follow link in the popup and Extras page"

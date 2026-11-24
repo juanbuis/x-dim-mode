@@ -62,7 +62,9 @@ const TOGGLES = {
 chrome.storage.sync.get(EXTRA_KEYS, (syncVals) => {
   chrome.storage.local.get(EXTRA_KEYS, (localVals) => {
     for (const key of EXTRA_KEYS) {
-      const val = syncVals[key] !== undefined ? syncVals[key] : localVals[key];
+      // Local first, as content.js reads it, so a toggle never shows a state
+      // the page isn't using.
+      const val = localVals[key] !== undefined ? localVals[key] : syncVals[key];
       TOGGLES[key].checked = !!val;
     }
   });

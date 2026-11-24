@@ -73,3 +73,37 @@ later.
 - `extName` is the store name; `appName` ("Dim Mode") is what the product
   calls itself in its own UI, where the long form doesn't fit.
 - Third-party brands stay out of App Store keywords too.
+
+## One precedence rule means every reader, not just the content script
+
+**What happened (Nov 2026):** daf6e62 made settings reads local-first in
+`content.js`, but `popup.js` and `extras.js` kept reading sync-first, and the
+sync→local mirror only ran inside an open X tab. Whenever the two stores
+disagreed, the popup showed Dim on while the page used local's "off", and the
+toggle couldn't fix it because it already looked on.
+
+- Settings precedence lives in four places (content, popup, extras,
+  background). Grep for `syncVals[` when changing it.
+- Anything that has to happen on a sync change, whether or not X is open,
+  belongs in `background.js`.
+- "Dim is on but not dim" has a second, legitimate cause: X itself on Light
+  (or "Use system setting" on a light OS). Dim stands down on purpose; the popup
+  now says so instead of looking broken.
+
+## X's Nov 2026 redesign: no testids, no react-native-web
+
+The redesign moved the whole app onto the Tailwind `--x-*` tokens Chat already
+used, and dropped nearly every `data-testid` (only `SearchBox_Search_Input`
+survived), `role="article"`, `primaryColumn` and every `r-*` class. Dim
+survived because it already remapped the tokens; the Extras that hung off
+testids and icon paths broke silently.
+
+- The new stable signals: sprite icons (`<use href="#icon-repost">`), element
+  ids like `#sidebar-compose-post`, radio `value`s, and semantic Tailwind
+  classes like `group/carousel`.
+- Icon paths get redrawn too (the X logo and the link glyph both changed), so
+  icon matchers take a list of prefixes, one per generation. Keep the old ones:
+  X rolls redesigns out gradually.
+- The neutral grey of every handle and timestamp is `--x-fg-secondary` →
+  `--x-neutral-400`. Remapping the dark half of the neutral scale fixes every
+  token built on it at once.

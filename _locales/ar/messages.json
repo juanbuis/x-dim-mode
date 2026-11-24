@@ -12,6 +12,10 @@
   "enableDim": {
     "message": "تفعيل الوضع الخافت"
   },
+  "pausedLight": {
+    "message": "متوقف مؤقتًا لأن X في الوضع الفاتح. اختر الوضع الخافت من إعدادات X.",
+    "description": "Popup note under the toggle when Dim is on but X itself is set to Light, which pauses Dim. Clicking it opens X’s display settings."
+  },
   "credit": {
     "message": "تابع ‎@juanbuis",
     "description": "Footer follow link in the popup and Extras page"

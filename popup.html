@@ -72,6 +72,17 @@
       border-radius: 50%;
       transition: 0.2s;
     }
+    /* Dim on, but X itself set to Light: say why nothing is dim. */
+    .paused {
+      display: block;
+      margin: -4px 0 10px;
+      font-size: 12px;
+      line-height: 1.4;
+      color: #8B98A5;
+      text-decoration: none;
+    }
+    .paused[hidden] { display: none; }
+    .paused:hover { color: #E7E9EA; text-decoration: underline; }
     input:checked + .slider { background: #1D9BF0; }
     input:checked + .slider::before { transform: translateX(20px); }
     .themes {
@@ -418,6 +429,7 @@
       <span class="slider"></span>
     </label>
   </div>
+  <a class="paused" id="pausedNote" href="https://x.com/settings/display" hidden></a>
   <div class="themes">
     <button class="theme-dot" data-theme="dim" style="background: hsl(210, 34%, 28%)" title="Dim"></button>
     <button class="theme-dot" data-theme="slate" style="background: hsl(210, 8%, 33%)" title="Slate"></button>

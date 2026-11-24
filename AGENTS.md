@@ -82,8 +82,10 @@ on a file is usually faster than re-deriving its history.
 
 **Matching X's DOM**
 - X's markup differs when logged out, and changes without notice. **Never encode
-  parent/child structure in a selector.** Match a stable signal — an icon's
-  `path` prefix, a `data-testid` — and derive structure at runtime.
+  parent/child structure in a selector.** Match a stable signal — a sprite
+  icon (`use[href="#icon-…"]`), an icon's `path` prefix, an element id, a
+  `data-testid` on the older UI — and derive structure at runtime. The Nov 2026
+  redesign removed almost all testids; see LESSONS.md.
 - Match controls by icon path, not by label. That is free i18n across every
   language X ships.
 - The share menu is React-managed and short-lived: **never move nodes**, reorder

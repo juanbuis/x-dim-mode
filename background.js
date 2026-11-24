@@ -26,8 +26,23 @@ function refreshExtrasBadge() {
 
 // Re-evaluate whenever the seen-revision changes (including via sync from
 // another device, so clearing it on your laptop clears it on your desktop).
-chrome.storage.onChanged.addListener((changes) => {
+// Reads prefer local (see content.js getSettings), so a change from another
+// device has to land in local too. content.js mirrors it, but only while an X
+// tab is open; one that arrived with none open left local stale, and Dim kept
+// this device's old state no matter what the popup showed. Mirror it here,
+// where something is always listening. Keep this list in step with
+// SETTING_KEYS in content.js.
+const MIRRORED_KEYS = ["enabled", "theme", "customHue", "birdLogo", "oldFont", "classicFavicon",
+  "tweetWording", "followingTab", "imageGrid", "copyLinkFirst", "buttonColor", "buttonHex"];
+
+chrome.storage.onChanged.addListener((changes, area) => {
   if (changes.extrasSeenRevision) refreshExtrasBadge();
+  if (area !== "sync") return;
+  const mirror = {};
+  for (const k of MIRRORED_KEYS) {
+    if (changes[k] && changes[k].newValue !== undefined) mirror[k] = changes[k].newValue;
+  }
+  if (Object.keys(mirror).length) chrome.storage.local.set(mirror);
 });
 
 // Uninstall survey
