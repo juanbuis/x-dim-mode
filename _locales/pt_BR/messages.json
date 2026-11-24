@@ -51,19 +51,13 @@
     "message": "Funciona no X e no X Pro — as configurações sincronizam entre seus dispositivos"
   },
   "updateFeature1": {
-    "message": "Novo: \"Copiar link\" primeiro — o X colocou isso abaixo de \"Enviar via Chat\" no menu de compartilhar. Ative e ele volta para o topo."
+    "message": "O Escurecido voltou a ser uma opção nas configurações de exibição do X"
   },
   "updateFeature2": {
-    "message": "Está em Extras, no popup"
+    "message": "Nomes de usuário, horários e balões do chat combinam com o seu tema de novo"
   },
   "updateFeature3": {
-    "message": "Mais do antigo Twitter em Extras: o logo do passarinho, a fonte clássica, o favicon do \"Twitter\", \"Tweet\" em vez de \"Post\", começar em Seguindo e a grade de imagens clássica"
-  },
-  "updateFeature4": {
-    "message": "Achou algo quebrado? Relate direto pelo popup"
-  },
-  "updateFeature5": {
-    "message": ""
+    "message": "O logo do pássaro, “Tweet” e a grade clássica de imagens funcionam no novo X"
   },
   "tryNow": {
     "message": "Experimente agora"
@@ -210,5 +204,45 @@
   "promoDesc": {
     "message": "Transforma qualquer receita em uma tabela de preparo que se lê num relance.",
     "description": "One-line description of RecipeTables"
+  },
+  "update2Title": {
+    "message": "Feito para o novo X",
+    "description": "2.0 update screen: headline"
+  },
+  "update2Sub": {
+    "message": "O X redesenhou tudo, e o Dim Mode agora cobre tudo isso. A 2.0 também traz três Extras novos: experimente aqui mesmo.",
+    "description": "2.0 update screen: line under the headline"
+  },
+  "newIn2": {
+    "message": "Novo na 2.0",
+    "description": "2.0 update screen: heading over the three new Extras, which can be switched on right there"
+  },
+  "welcomeMakeYours": {
+    "message": "Do seu jeito",
+    "description": "Install screen: heading over the theme picker and a few Extras to try"
+  },
+  "themeLabel": {
+    "message": "Tema",
+    "description": "Welcome screen: label for the theme colour dots"
+  },
+  "extrasHint": {
+    "message": "Dá para mudar quando quiser em Extras, no menu do Dim Mode.",
+    "description": "Welcome screen: note under the switches"
+  },
+  "alsoNew": {
+    "message": "Também nesta atualização",
+    "description": "2.0 update screen: heading over the short list of fixes"
+  },
+  "mockPost": {
+    "message": "Postar",
+    "description": "X’s own label on its compose button, shown in the preview of X"
+  },
+  "mockTweet": {
+    "message": "Tweetar",
+    "description": "The classic “Tweet” label for the compose button, shown in the preview when Tweet-not-Post is on"
+  },
+  "mockFollow": {
+    "message": "Seguir",
+    "description": "X’s own label on its Follow button, shown in the preview of X"
   }
 }

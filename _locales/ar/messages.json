@@ -51,19 +51,13 @@
     "message": "يعمل على X وX Pro — وتتزامن الإعدادات بين أجهزتك"
   },
   "updateFeature1": {
-    "message": "جديد: «نسخ الرابط» أولاً — نقله X إلى أسفل «الإرسال عبر الدردشة» في قائمة المشاركة. فعّل هذا ليعود إلى الأعلى."
+    "message": "عاد الوضع الخافت خيارًا في إعدادات العرض في X"
   },
   "updateFeature2": {
-    "message": "تجده ضمن «الإضافات» في النافذة المنبثقة"
+    "message": "أسماء المستخدمين والأوقات وفقاعات الدردشة تتماشى مع سمتك من جديد"
   },
   "updateFeature3": {
-    "message": "المزيد من تويتر القديم في الإضافات: شعار الطائر، الخط الكلاسيكي، أيقونة «Twitter»، «تغريدة» بدل «منشور»، البدء من «أتابعهم»، وشبكة الصور الكلاسيكية"
-  },
-  "updateFeature4": {
-    "message": "لاحظت خللاً؟ أبلغ عنه مباشرة من النافذة المنبثقة"
-  },
-  "updateFeature5": {
-    "message": ""
+    "message": "شعار الطائر وكلمة «تغريدة» وشبكة الصور الكلاسيكية تعمل على X الجديد"
   },
   "tryNow": {
     "message": "جرّبه الآن"
@@ -210,5 +204,45 @@
   "promoDesc": {
     "message": "يحوّل أي وصفة إلى جدول تحضير يمكن قراءته بنظرة واحدة.",
     "description": "One-line description of RecipeTables"
+  },
+  "update2Title": {
+    "message": "مصمم لـ X الجديد",
+    "description": "2.0 update screen: headline"
+  },
+  "update2Sub": {
+    "message": "أعادت X تصميم كل شيء، و Dim Mode يغطيه الآن بالكامل. ويضيف الإصدار 2.0 ثلاث إضافات جديدة: جرّبها هنا مباشرة.",
+    "description": "2.0 update screen: line under the headline"
+  },
+  "newIn2": {
+    "message": "الجديد في 2.0",
+    "description": "2.0 update screen: heading over the three new Extras, which can be switched on right there"
+  },
+  "welcomeMakeYours": {
+    "message": "اجعله على ذوقك",
+    "description": "Install screen: heading over the theme picker and a few Extras to try"
+  },
+  "themeLabel": {
+    "message": "السمة",
+    "description": "Welcome screen: label for the theme colour dots"
+  },
+  "extrasHint": {
+    "message": "يمكنك تغيير ذلك في أي وقت من «إضافات» في قائمة Dim Mode.",
+    "description": "Welcome screen: note under the switches"
+  },
+  "alsoNew": {
+    "message": "وأيضًا في هذا التحديث",
+    "description": "2.0 update screen: heading over the short list of fixes"
+  },
+  "mockPost": {
+    "message": "نشر",
+    "description": "X’s own label on its compose button, shown in the preview of X"
+  },
+  "mockTweet": {
+    "message": "غرّد",
+    "description": "The classic “Tweet” label for the compose button, shown in the preview when Tweet-not-Post is on"
+  },
+  "mockFollow": {
+    "message": "متابعة",
+    "description": "X’s own label on its Follow button, shown in the preview of X"
   }
 }

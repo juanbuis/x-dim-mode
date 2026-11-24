@@ -51,19 +51,13 @@
     "message": "X와 X Pro에서 작동 — 설정은 기기 간에 동기화됩니다"
   },
   "updateFeature1": {
-    "message": "새 기능: '링크 복사'를 맨 위로 — X가 공유 메뉴에서 '채팅으로 보내기' 아래로 옮겼습니다. 켜면 원래 자리로 돌아갑니다."
+    "message": "X 자체 화면 설정에 다크 블루 옵션이 다시 생겼어요"
   },
   "updateFeature2": {
-    "message": "팝업의 Extras에서 찾을 수 있습니다"
+    "message": "사용자 이름, 시간, 채팅 말풍선이 다시 테마에 맞춰져요"
   },
   "updateFeature3": {
-    "message": "Extras에서 옛 트위터를 더: 새 로고, 클래식 글꼴, 'Twitter' 파비콘, '포스트' 대신 '트윗', 팔로잉에서 시작, 클래식 이미지 그리드"
-  },
-  "updateFeature4": {
-    "message": "문제를 발견하셨나요? 팝업에서 바로 신고하세요"
-  },
-  "updateFeature5": {
-    "message": ""
+    "message": "파랑새 로고, '트윗' 표기, 클래식 이미지 그리드가 새로운 X에서도 작동해요"
   },
   "tryNow": {
     "message": "지금 사용해 보기"
@@ -210,5 +204,45 @@
   "promoDesc": {
     "message": "어떤 레시피든 한눈에 읽히는 준비 표로 바꿔 줍니다.",
     "description": "One-line description of RecipeTables"
+  },
+  "update2Title": {
+    "message": "새로운 X를 위해 만들었어요",
+    "description": "2.0 update screen: headline"
+  },
+  "update2Sub": {
+    "message": "X가 디자인을 전부 바꿨고, Dim Mode는 이제 그 모두를 지원해요. 2.0에는 새로운 추가 기능도 세 가지 있어요. 바로 여기서 써 보세요.",
+    "description": "2.0 update screen: line under the headline"
+  },
+  "newIn2": {
+    "message": "2.0의 새 기능",
+    "description": "2.0 update screen: heading over the three new Extras, which can be switched on right there"
+  },
+  "welcomeMakeYours": {
+    "message": "나만의 스타일로",
+    "description": "Install screen: heading over the theme picker and a few Extras to try"
+  },
+  "themeLabel": {
+    "message": "테마",
+    "description": "Welcome screen: label for the theme colour dots"
+  },
+  "extrasHint": {
+    "message": "Dim Mode 메뉴의 추가 기능에서 언제든 바꿀 수 있어요.",
+    "description": "Welcome screen: note under the switches"
+  },
+  "alsoNew": {
+    "message": "이번 업데이트의 다른 변경 사항",
+    "description": "2.0 update screen: heading over the short list of fixes"
+  },
+  "mockPost": {
+    "message": "게시하기",
+    "description": "X’s own label on its compose button, shown in the preview of X"
+  },
+  "mockTweet": {
+    "message": "트윗하기",
+    "description": "The classic “Tweet” label for the compose button, shown in the preview when Tweet-not-Post is on"
+  },
+  "mockFollow": {
+    "message": "팔로우",
+    "description": "X’s own label on its Follow button, shown in the preview of X"
   }
 }

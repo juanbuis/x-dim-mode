@@ -51,19 +51,13 @@
     "message": "XとX Proに対応 — 設定はデバイス間で同期"
   },
   "updateFeature1": {
-    "message": "新機能：「リンクをコピー」を最初に — Xは共有メニューでこれを「チャットで送信」の下に移しました。オンにすると元の一番上に戻ります。"
+    "message": "X の表示設定に「ダークブルー」が戻ってきました"
   },
   "updateFeature2": {
-    "message": "ポップアップの「Extras」から設定できます"
+    "message": "ユーザー名や時刻、チャットの吹き出しが再びテーマに合うようになりました"
   },
   "updateFeature3": {
-    "message": "Extrasでさらに昔のTwitterを：鳥ロゴ、クラシックなフォント、「Twitter」のファビコン、「ポスト」ではなく「ツイート」、フォロー中から開始、クラシックな画像グリッド"
-  },
-  "updateFeature4": {
-    "message": "不具合を見つけたら、ポップアップから報告できます"
-  },
-  "updateFeature5": {
-    "message": ""
+    "message": "鳥のロゴ、「ツイート」表記、クラシックな画像グリッドが新しい X で動作します"
   },
   "tryNow": {
     "message": "今すぐ試す"
@@ -210,5 +204,45 @@
   "promoDesc": {
     "message": "どんなレシピも、ひと目で読める下ごしらえの表に変換します。",
     "description": "One-line description of RecipeTables"
+  },
+  "update2Title": {
+    "message": "新しい X のために",
+    "description": "2.0 update screen: headline"
+  },
+  "update2Sub": {
+    "message": "X のデザインが一新され、Dim Mode はそのすべてに対応しました。2.0 では「その他の機能」に 3 つの新機能も加わりました。ここで試せます。",
+    "description": "2.0 update screen: line under the headline"
+  },
+  "newIn2": {
+    "message": "2.0 の新機能",
+    "description": "2.0 update screen: heading over the three new Extras, which can be switched on right there"
+  },
+  "welcomeMakeYours": {
+    "message": "自分好みに",
+    "description": "Install screen: heading over the theme picker and a few Extras to try"
+  },
+  "themeLabel": {
+    "message": "テーマ",
+    "description": "Welcome screen: label for the theme colour dots"
+  },
+  "extrasHint": {
+    "message": "Dim Mode のメニューの「その他の機能」からいつでも変更できます。",
+    "description": "Welcome screen: note under the switches"
+  },
+  "alsoNew": {
+    "message": "このアップデートのその他の変更",
+    "description": "2.0 update screen: heading over the short list of fixes"
+  },
+  "mockPost": {
+    "message": "ポストする",
+    "description": "X’s own label on its compose button, shown in the preview of X"
+  },
+  "mockTweet": {
+    "message": "ツイートする",
+    "description": "The classic “Tweet” label for the compose button, shown in the preview when Tweet-not-Post is on"
+  },
+  "mockFollow": {
+    "message": "フォローする",
+    "description": "X’s own label on its Follow button, shown in the preview of X"
   }
 }

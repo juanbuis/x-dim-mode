@@ -51,19 +51,13 @@
     "message": "Fonctionne sur X et X Pro — vos réglages se synchronisent entre vos appareils"
   },
   "updateFeature1": {
-    "message": "Nouveau : « Copier le lien » en premier — X l'avait placé sous « Envoyer via Chat ». Activez ceci et il remonte en tête."
+    "message": "Sombre est de retour dans les réglages d’affichage de X"
   },
   "updateFeature2": {
-    "message": "À retrouver dans Extras, dans la fenêtre de l'extension"
+    "message": "Les identifiants, les horodatages et les bulles du chat suivent à nouveau votre thème"
   },
   "updateFeature3": {
-    "message": "Plus de l'ancien Twitter dans Extras : le logo oiseau, la police classique, le favicon « Twitter », « Tweet » au lieu de « Post », démarrer sur Abonnements et l'ancienne grille d'images"
-  },
-  "updateFeature4": {
-    "message": "Quelque chose ne va pas ? Signalez-le depuis la fenêtre"
-  },
-  "updateFeature5": {
-    "message": ""
+    "message": "Le logo oiseau, « Tweet » et la grille d’images classique fonctionnent sur le nouveau X"
   },
   "tryNow": {
     "message": "Essayer maintenant"
@@ -210,5 +204,45 @@
   "promoDesc": {
     "message": "Transforme n'importe quelle recette en un tableau de préparation lisible d'un coup d'œil.",
     "description": "One-line description of RecipeTables"
+  },
+  "update2Title": {
+    "message": "Conçu pour le nouveau X",
+    "description": "2.0 update screen: headline"
+  },
+  "update2Sub": {
+    "message": "X a tout redessiné, et Dim Mode couvre désormais l’ensemble. La 2.0 ajoute aussi trois nouveaux Extras : essayez-les ici.",
+    "description": "2.0 update screen: line under the headline"
+  },
+  "newIn2": {
+    "message": "Nouveau dans la 2.0",
+    "description": "2.0 update screen: heading over the three new Extras, which can be switched on right there"
+  },
+  "welcomeMakeYours": {
+    "message": "Personnalisez-le",
+    "description": "Install screen: heading over the theme picker and a few Extras to try"
+  },
+  "themeLabel": {
+    "message": "Thème",
+    "description": "Welcome screen: label for the theme colour dots"
+  },
+  "extrasHint": {
+    "message": "Modifiable à tout moment dans Extras, depuis le menu Dim Mode.",
+    "description": "Welcome screen: note under the switches"
+  },
+  "alsoNew": {
+    "message": "Également dans cette mise à jour",
+    "description": "2.0 update screen: heading over the short list of fixes"
+  },
+  "mockPost": {
+    "message": "Poster",
+    "description": "X’s own label on its compose button, shown in the preview of X"
+  },
+  "mockTweet": {
+    "message": "Tweeter",
+    "description": "The classic “Tweet” label for the compose button, shown in the preview when Tweet-not-Post is on"
+  },
+  "mockFollow": {
+    "message": "Suivre",
+    "description": "X’s own label on its Follow button, shown in the preview of X"
   }
 }

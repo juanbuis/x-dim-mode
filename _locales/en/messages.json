@@ -51,19 +51,13 @@
     "message": "Works across X and X Pro — settings sync across your devices"
   },
   "updateFeature1": {
-    "message": "New: “Copy link first” — X buried Copy link under Send via Chat in the share menu. Turn this on and it goes back to the top."
+    "message": "Dim is back as an option in X’s own display settings"
   },
   "updateFeature2": {
-    "message": "Find it in Extras, in the popup"
+    "message": "Handles, timestamps and Chat bubbles match your theme again"
   },
   "updateFeature3": {
-    "message": "More of old Twitter in Extras: the bird logo, the classic font, the “Twitter” favicon, “Tweet” instead of “Post”, Start on Following, and the classic image grid"
-  },
-  "updateFeature4": {
-    "message": "Spotted something broken? Report it right from the popup"
-  },
-  "updateFeature5": {
-    "message": ""
+    "message": "The bird logo, Tweet wording and classic image grid work on the new X"
   },
   "tryNow": {
     "message": "Try it now"
@@ -210,5 +204,45 @@
   "promoDesc": {
     "message": "Turn any recipe into a prep table you can read at a glance.",
     "description": "One-line description of RecipeTables"
+  },
+  "update2Title": {
+    "message": "Made for the new X",
+    "description": "2.0 update screen: headline"
+  },
+  "update2Sub": {
+    "message": "X redesigned everything, and Dim Mode now covers all of it. 2.0 also adds three new Extras: try them right here.",
+    "description": "2.0 update screen: line under the headline"
+  },
+  "newIn2": {
+    "message": "New in 2.0",
+    "description": "2.0 update screen: heading over the three new Extras, which can be switched on right there"
+  },
+  "welcomeMakeYours": {
+    "message": "Make it yours",
+    "description": "Install screen: heading over the theme picker and a few Extras to try"
+  },
+  "themeLabel": {
+    "message": "Theme",
+    "description": "Welcome screen: label for the theme colour dots"
+  },
+  "extrasHint": {
+    "message": "Change these anytime under Extras in the Dim Mode menu.",
+    "description": "Welcome screen: note under the switches"
+  },
+  "alsoNew": {
+    "message": "Also in this update",
+    "description": "2.0 update screen: heading over the short list of fixes"
+  },
+  "mockPost": {
+    "message": "Post",
+    "description": "X’s own label on its compose button, shown in the preview of X"
+  },
+  "mockTweet": {
+    "message": "Tweet",
+    "description": "The classic “Tweet” label for the compose button, shown in the preview when Tweet-not-Post is on"
+  },
+  "mockFollow": {
+    "message": "Follow",
+    "description": "X’s own label on its Follow button, shown in the preview of X"
   }
 }

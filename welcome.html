@@ -2,15 +2,18 @@
 <html>
 <head>
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Dim Mode</title>
   <style>
-    /* Same tokens and components as popup.html (X's Nov 2026 design system in
-       Dim's navy). The card is Dim's page colour; the page around it is one
-       step darker, the way X sits a modal on its overlay. */
+    /* Welcome (install) and update screens. The page shows the product instead
+       of describing it: a drawn mini X in Dim sits beside the copy, and the
+       switches next to it are the real settings, so what you flip here is what
+       you get on x.com. Tokens match popup.html (X's Nov 2026 design system in
+       Dim's navy). */
     :root {
       color-scheme: dark;
       --bg: hsl(210, 34%, 13%);
-      --bg-deep: hsl(210, 34%, 9%);
+      --bg-deep: hsl(210, 34%, 8%);
       --tint: rgba(255, 255, 255, 0.04);
       --hover: rgba(255, 255, 255, 0.08);
       --line: rgba(255, 255, 255, 0.15);
@@ -19,94 +22,162 @@
       --fg-2: hsl(210, 12%, 63%);
       --fg-3: hsl(210, 12%, 40%);
       --brand: #1D9BF0;
+      --track: hsl(210, 11%, 46%);
       --btn: #F7F9F9;
       --btn-hover: rgba(247, 249, 249, 0.85);
       --btn-fg: #0F1419;
       --danger: #F4212E;
       --success: #00BA7C;
+      --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
     }
     * { margin: 0; padding: 0; box-sizing: border-box; }
     ::selection { background: rgba(29, 155, 240, 0.4); }
+    html { background: var(--bg-deep); }
     body {
       min-height: 100vh;
       font: 15px/20px -apple-system, BlinkMacSystemFont, system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       -webkit-font-smoothing: antialiased;
-      background: var(--bg-deep);
       color: var(--fg);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 60px 20px;
+      padding: 56px 32px 40px;
     }
     a:focus-visible, button:focus-visible, input:focus-visible {
       outline: 2px solid var(--fg);
       outline-offset: 2px;
     }
-    .container {
-      max-width: 540px;
-      width: 100%;
-      background: var(--bg);
-      border: 1px solid var(--line-soft);
-      border-radius: 24px;
-      padding: 36px;
+
+    .page {
       position: relative;
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+      max-width: 1040px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.08fr);
+      gap: 56px;
+      align-items: start;
     }
 
-    /* Close button: X's round ghost icon button */
-    .close-btn {
+    /* ── Copy column ── */
+    .brand { display: flex; align-items: center; gap: 10px; margin-bottom: 28px; }
+    .brand img { width: 36px; height: 36px; border-radius: 10px; }
+    .brand-name { font-size: 17px; line-height: 20px; font-weight: 800; }
+    .version {
+      font-size: 12px;
+      line-height: 20px;
+      font-weight: 700;
+      color: var(--fg-2);
+      padding: 0 8px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+    }
+    .version:empty { display: none; }
+    h1 {
+      font-size: 40px;
+      line-height: 44px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      text-wrap: balance;
+      margin-bottom: 14px;
+    }
+    .lede {
+      font-size: 17px;
+      line-height: 24px;
+      color: var(--fg-2);
+      max-width: 34em;
+      text-wrap: pretty;
+    }
+
+    /* Settings panel: X's grouped settings list */
+    .panel {
+      margin-top: 32px;
+      border-radius: 20px;
+      border: 1px solid var(--line-soft);
+      background: var(--tint);
+      padding: 6px 18px;
+    }
+    .panel-title {
+      font-size: 13px;
+      line-height: 16px;
+      font-weight: 700;
+      color: var(--fg-2);
+      padding: 12px 0 6px;
+    }
+    .row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      min-height: 52px;
+      border-top: 1px solid var(--line-soft);
+    }
+    .panel-title + .row { border-top: none; }
+    .row-label { font-size: 15px; line-height: 20px; }
+
+    /* X's switch */
+    .toggle { position: relative; flex-shrink: 0; width: 34px; height: 20px; }
+    .toggle input { position: absolute; opacity: 0; width: 0; height: 0; }
+    .slider {
       position: absolute;
-      top: 16px;
-      inset-inline-end: 16px;
-      display: grid;
-      place-items: center;
-      width: 36px;
-      height: 36px;
+      inset: 0;
+      cursor: pointer;
+      border-radius: 999px;
+      background: var(--track);
+      transition: background-color 0.2s var(--ease);
+    }
+    .slider::before {
+      content: "";
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: #fff;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+      transition: transform 0.2s var(--ease);
+    }
+    input:checked + .slider { background: var(--brand); }
+    input:checked + .slider::before { transform: translateX(14px); }
+    input:focus-visible + .slider { outline: 2px solid var(--fg); outline-offset: 2px; }
+    [dir="rtl"] .slider::before { left: auto; right: 2px; }
+    [dir="rtl"] input:checked + .slider::before { transform: translateX(-14px); }
+
+    /* Colour dots (themes, button colour) with X's white selection ring */
+    .dots { display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
+    .dots button {
+      width: 22px;
+      height: 22px;
       border-radius: 50%;
       border: none;
-      background: transparent;
-      color: var(--fg-2);
+      padding: 0;
       cursor: pointer;
-      transition: background-color 0.2s, color 0.2s;
+      outline: 2px solid transparent;
+      outline-offset: 2px;
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.12);
+      transition: outline-color 0.15s;
+      -webkit-appearance: none;
+      appearance: none;
     }
-    .close-btn:hover { background: var(--hover); color: var(--fg); }
-    .close-btn svg { width: 20px; height: 20px; }
+    .dots button:hover { outline-color: rgba(247, 249, 249, 0.3); }
+    .dots button[aria-pressed="true"] { outline-color: var(--fg); }
+    .dots button:focus-visible { outline-color: var(--brand); }
+    .hint { font-size: 13px; line-height: 16px; color: var(--fg-2); margin: 10px 4px 0; }
 
-    /* Header */
-    .icon { width: 56px; height: 56px; margin-bottom: 16px; border-radius: 14px; }
-    h1 { font-size: 23px; line-height: 28px; font-weight: 800; margin-bottom: 2px; }
-    .version { font-size: 13px; line-height: 16px; color: var(--fg-2); margin-bottom: 32px; }
-
-    /* Heading & subtitle */
-    .heading { font-size: 20px; line-height: 24px; font-weight: 800; margin-bottom: 8px; }
-    .subtitle { font-size: 15px; line-height: 22px; color: var(--fg-2); margin-bottom: 20px; }
-    /* On the update screen the subtitle moves down to introduce the bullet
-       list, where it needs air above it instead of sitting on the email box. */
-    .subtitle.leads-list { margin-top: 28px; margin-bottom: 8px; }
-
-    /* Feature list */
-    .features { list-style: none; padding-bottom: 4px; }
-    .features li {
+    /* Also in this update */
+    .also { margin-top: 28px; }
+    .also h2 { font-size: 13px; line-height: 16px; font-weight: 700; color: var(--fg-2); margin-bottom: 4px; }
+    .also ul { list-style: none; }
+    .also li {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      padding: 6px 0;
       font-size: 15px;
       line-height: 20px;
-      color: var(--fg-2);
-      padding: 7px 0;
-      display: flex;
-      align-items: flex-start;
-      gap: 12px;
+      color: var(--fg);
     }
-    .features li::before {
-      content: "";
-      flex-shrink: 0;
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: var(--brand);
-      margin-top: 7px;
-    }
+    .also li svg { width: 18px; height: 18px; margin-top: 1px; flex-shrink: 0; color: var(--success); }
 
     /* Pill buttons: X's primary is white on dark, secondary an outline */
-    .actions { display: flex; flex-wrap: wrap; gap: 10px; margin: 24px 0 8px; }
+    .actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 28px; }
     .btn-primary, .btn-secondary {
       display: inline-flex;
       align-items: center;
@@ -126,24 +197,16 @@
     .btn-secondary { border: 1px solid var(--line); background: transparent; color: var(--fg); }
     .btn-secondary:hover { background: var(--hover); }
 
-    /* Email form: X's info surface (brand tint), field and button in one pill */
+    /* Email: X's info surface, field and button sharing one pill */
     .email-section {
-      background: color-mix(in srgb, var(--brand) 10%, var(--bg));
-      border: 1px solid color-mix(in srgb, var(--brand) 22%, transparent);
-      border-radius: 16px;
+      margin-top: 32px;
       padding: 20px;
-      margin-top: 8px;
-      text-align: start;
+      border-radius: 20px;
+      background: color-mix(in srgb, var(--brand) 9%, var(--bg));
+      border: 1px solid color-mix(in srgb, var(--brand) 22%, transparent);
     }
-    .email-label { font-size: 15px; line-height: 22px; color: var(--fg-2); margin-bottom: 14px; }
-    .email-label strong {
-      display: block;
-      color: var(--fg);
-      font-size: 17px;
-      line-height: 22px;
-      font-weight: 800;
-      margin-bottom: 2px;
-    }
+    .email-label { font-size: 15px; line-height: 20px; color: var(--fg-2); margin-bottom: 14px; }
+    .email-label strong { display: block; color: var(--fg); font-size: 17px; line-height: 22px; font-weight: 800; margin-bottom: 2px; }
     .email-row {
       display: flex;
       gap: 4px;
@@ -163,7 +226,6 @@
       background: transparent;
       color: var(--fg);
       font: inherit;
-      font-size: 15px;
       outline: none;
     }
     .email-input::placeholder { color: var(--fg-2); }
@@ -175,7 +237,6 @@
       background: var(--btn);
       color: var(--btn-fg);
       font: inherit;
-      font-size: 15px;
       font-weight: 700;
       cursor: pointer;
       white-space: nowrap;
@@ -183,12 +244,173 @@
     }
     .email-btn:hover { background: var(--btn-hover); }
     .email-btn:disabled { opacity: 0.7; cursor: default; }
-
-    /* Success / error */
-    .email-success { display: none; font-size: 14px; line-height: 18px; color: var(--success); padding-top: 10px; }
+    .email-success { display: none; font-size: 14px; line-height: 18px; color: var(--success); }
     .follow-cta { display: block; margin-top: 6px; font-size: 14px; color: var(--brand); text-decoration: none; }
     .follow-cta:hover { text-decoration: underline; text-underline-offset: 2px; }
     .email-error { display: none; font-size: 13px; line-height: 16px; color: var(--danger); padding-top: 8px; }
+
+    /* Close */
+    .close-btn {
+      position: fixed;
+      top: 16px;
+      inset-inline-start: 16px;
+      z-index: 3;
+      display: grid;
+      place-items: center;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: none;
+      background: transparent;
+      color: var(--fg-2);
+      cursor: pointer;
+      transition: background-color 0.2s, color 0.2s;
+    }
+    .close-btn:hover { background: var(--hover); color: var(--fg); }
+    .close-btn svg { width: 20px; height: 20px; }
+
+    /* ── The mini X ──
+       Drawn, not a screenshot: it recolours with the theme and rearranges as
+       the switches change. Every colour comes from the --m-* variables, which
+       welcome.js derives exactly the way content.js does. */
+    .stage { position: sticky; top: 40px; }
+    .mock {
+      --m-bg: hsl(210, 34%, 13%);
+      --m-line: hsl(210, 16%, 26%);
+      --m-fg2: hsl(210, 11%, 60%);
+      --m-el: hsl(210, 24%, 20%);
+      --m-btn: #EFF3F4;
+      --m-btn-fg: #0F1419;
+      position: relative;
+      height: 520px;
+      display: grid;
+      grid-template-columns: 68px minmax(0, 1fr);
+      border-radius: 24px;
+      border: 1px solid var(--line);
+      background: var(--m-bg);
+      overflow: hidden;
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5), 0 2px 8px rgba(0, 0, 0, 0.3);
+      transition: background-color 0.35s var(--ease);
+      user-select: none;
+    }
+    .mock * { transition: background-color 0.35s var(--ease), border-color 0.35s var(--ease), color 0.35s var(--ease); }
+    .m-rail {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 14px 0;
+      border-inline-end: 1px solid var(--m-line);
+    }
+    .m-logo { display: grid; place-items: center; width: 40px; height: 40px; margin-bottom: 4px; }
+    .m-logo svg { width: 26px; height: 26px; fill: var(--fg); }
+    .m-logo .m-x { font-size: 26px; font-weight: 800; line-height: 1; }
+    .m-ico {
+      display: grid;
+      place-items: center;
+      width: 40px;
+      height: 38px;
+      max-height: 38px;
+      border-radius: 50%;
+      color: var(--fg);
+      transition: opacity 0.3s var(--ease), transform 0.3s var(--ease), max-height 0.35s var(--ease);
+    }
+    .m-ico svg { width: 23px; height: 23px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+    .m-ico.on svg { stroke-width: 2.4; }
+    .m-pen {
+      display: grid;
+      place-items: center;
+      width: 40px;
+      height: 40px;
+      margin-top: 10px;
+      border-radius: 50%;
+      background: var(--m-btn);
+      color: var(--m-btn-fg);
+    }
+    .m-pen svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+    .m-main { display: flex; flex-direction: column; min-width: 0; }
+    .m-tabs { display: flex; height: 50px; border-bottom: 1px solid var(--m-line); flex-shrink: 0; }
+    .m-tabs span { flex: 1; display: grid; place-items: center; position: relative; }
+    .m-tabs .on::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      width: 52px;
+      height: 4px;
+      border-radius: 2px;
+      background: var(--brand);
+    }
+    .bar { display: block; height: 8px; border-radius: 4px; background: var(--m-fg2); opacity: 0.55; }
+    .m-tabs .on .bar { background: var(--fg); opacity: 1; }
+    .m-compose { display: flex; align-items: center; gap: 12px; padding: 14px 16px; border-bottom: 1px solid var(--m-line); }
+    .m-av { width: 36px; height: 36px; border-radius: 50%; flex-shrink: 0; }
+    .m-av.a1 { background: url("icons/icon48.png") center / cover; }
+    .m-av.a2 { background: linear-gradient(135deg, #f7b267, #f25f5c); }
+    .m-av.a3 { background: linear-gradient(135deg, #7ad3a8, #2e8b8b); }
+    .m-btn {
+      margin-inline-start: auto;
+      flex-shrink: 0;
+      height: 32px;
+      padding: 0 16px;
+      border-radius: 999px;
+      background: var(--m-btn);
+      color: var(--m-btn-fg);
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 32px;
+      white-space: nowrap;
+    }
+    .m-post { display: flex; gap: 12px; padding: 14px 16px; border-bottom: 1px solid var(--m-line); }
+    .m-body { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 8px; }
+    .m-head { display: flex; align-items: center; gap: 6px; min-width: 0; font-size: 14px; line-height: 18px; }
+    .m-name { font-weight: 700; white-space: nowrap; }
+    .m-handle { color: var(--m-fg2); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; direction: ltr; unicode-bidi: isolate; }
+    .m-grok { margin-inline-start: auto; }
+    .m-grok, .m-more { display: grid; place-items: center; width: 22px; height: 22px; color: var(--m-fg2); flex-shrink: 0; }
+    .m-head svg, .m-acts svg { width: 17px; height: 17px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+    .m-text { display: flex; flex-direction: column; gap: 7px; }
+    .m-text .bar { background: var(--fg); opacity: 0.8; height: 7px; }
+    .m-media {
+      height: 108px;
+      border-radius: 14px;
+      border: 1px solid var(--m-line);
+      background:
+        radial-gradient(120% 90% at 20% 110%, rgba(255, 196, 120, 0.55), transparent 55%),
+        linear-gradient(160deg, #2a4f7a 0%, #1b2f4d 55%, #0f1d33 100%);
+    }
+    .m-acts { display: flex; justify-content: space-between; color: var(--m-fg2); padding-inline-end: 24px; }
+    .m-acts span { display: flex; align-items: center; gap: 5px; font-size: 12px; }
+    /* Clear of the dock column, where X itself floats its Grok and Chat bubbles. */
+    .m-who { display: flex; align-items: center; gap: 12px; padding: 14px 16px; padding-inline-end: 72px; }
+    .m-who .m-body { gap: 6px; }
+
+    .m-dock { position: absolute; bottom: 14px; inset-inline-end: 14px; display: flex; flex-direction: column; gap: 8px; }
+    .m-bubble {
+      display: grid;
+      place-items: center;
+      width: 42px;
+      height: 42px;
+      max-height: 42px;
+      border-radius: 50%;
+      background: var(--m-el);
+      border: 1px solid var(--m-line);
+      color: var(--fg);
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+      transition: opacity 0.3s var(--ease), transform 0.3s var(--ease), max-height 0.35s var(--ease);
+    }
+    .m-bubble svg { width: 21px; height: 21px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+
+    /* What the switches do to the mock */
+    .mock.no-grok [data-grok],
+    .mock.simple [data-side] { opacity: 0; transform: scale(0.4); max-height: 0; pointer-events: none; }
+    .mock.no-grok .m-head [data-grok] { width: 0; }
+
+    /* No animation until the first render has landed (welcome.js adds .ready),
+       so the saved state appears as-is instead of animating in. */
+    .mock:not(.ready), .mock:not(.ready) * { transition: none !important; }
+    @media (prefers-reduced-motion: reduce) {
+      .mock, .mock *, .m-ico, .m-bubble { transition: none !important; }
+    }
 
     /* Pin hint (install only) */
     .pin-hint {
@@ -208,44 +430,22 @@
       text-align: start;
     }
     .pin-hint.show { display: flex; }
+    /* Room under the hint, so it never sits on the mock. */
+    body.has-pin { padding-top: 104px; }
     .pin-copy strong { display: block; color: var(--fg); font-size: 14px; margin-bottom: 2px; }
-    .pin-point {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 4px;
-      flex-shrink: 0;
-      animation: pin-bob 1.6s ease-in-out infinite;
-    }
-    .pin-chip {
-      display: grid;
-      place-items: center;
-      width: 30px;
-      height: 30px;
-      border-radius: 50%;
-      background: var(--hover);
-      border: 1px solid var(--line);
-    }
+    .pin-point { display: flex; flex-direction: column; align-items: center; gap: 4px; flex-shrink: 0; animation: pin-bob 1.6s ease-in-out infinite; }
+    .pin-chip { display: grid; place-items: center; width: 30px; height: 30px; border-radius: 50%; background: var(--hover); border: 1px solid var(--line); }
     .pin-chip svg { width: 16px; height: 16px; fill: var(--fg-2); }
     .pin-arrow { width: 16px; height: 16px; color: var(--brand); }
-    @keyframes pin-bob {
-      0%, 100% { transform: translateY(0); }
-      50%      { transform: translateY(-6px); }
-    }
-    @media (prefers-reduced-motion: reduce) {
-      .pin-point { animation: none; }
-    }
-    @media (max-width: 900px) {
-      .pin-hint.show { display: none; }
-    }
+    @keyframes pin-bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+    @media (prefers-reduced-motion: reduce) { .pin-point { animation: none; } }
 
-    /* Cross-promo (update screen only): a quiet "same maker" note, not an ad.
-       Muted card, small logo, no button; the byline is sentence case. */
+    /* Cross-promo (update screen only): a quiet "same maker" note, not an ad. */
     .promo {
       display: none;
       align-items: center;
       gap: 14px;
-      margin-top: 28px;
+      margin-top: 16px;
       padding: 14px 16px;
       border: 1px solid var(--line-soft);
       border-radius: 16px;
@@ -260,22 +460,39 @@
     .promo-name { display: block; font-size: 15px; line-height: 20px; font-weight: 700; color: var(--fg); }
     .promo-desc { display: block; font-size: 13px; line-height: 18px; color: var(--fg-2); }
 
-    /* Footer */
-    .footer { margin-top: 20px; font-size: 13px; line-height: 16px; color: var(--fg-2); text-align: center; }
-    .footer a { color: var(--brand); text-decoration: none; }
+    .footer {
+      max-width: 1040px;
+      margin: 48px auto 0;
+      padding-top: 20px;
+      border-top: 1px solid var(--line-soft);
+      font-size: 13px;
+      line-height: 16px;
+      color: var(--fg-2);
+    }
+    .footer a { color: var(--fg); text-decoration: none; }
     .footer a:hover { text-decoration: underline; text-underline-offset: 2px; }
+
+    @media (max-width: 900px) {
+      .pin-hint.show { display: none; }
+      body, body.has-pin { padding: 64px 20px 32px; }
+      .page { grid-template-columns: minmax(0, 1fr); gap: 40px; }
+      .stage { position: static; order: -1; }
+      h1 { font-size: 32px; line-height: 36px; }
+    }
   </style>
 </head>
 <body>
+  <button class="close-btn" id="closeBtn" title="Close" aria-label="Close"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+
   <!-- Install-only: points at the toolbar puzzle icon so people can pin the
-       extension. Hidden under 900px, where the card and the hint would fight
+       extension. Hidden under 900px, where the hint and the page would fight
        for the same space and the toolbar position is less predictable. -->
   <div class="pin-hint" id="pinHint">
     <span class="pin-point" aria-hidden="true">
+      <svg class="pin-arrow" viewBox="0 0 24 24"><path d="M12 20V5m-7 7 7-7 7 7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
       <!-- Chrome's own extensions glyph, in a chip shaped like the toolbar
            button, so the shape people are hunting for is right in front of
            them rather than only described in words. -->
-      <svg class="pin-arrow" viewBox="0 0 24 24"><path d="M12 20V5m-7 7 7-7 7 7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
       <span class="pin-chip">
         <svg viewBox="0 0 24 24"><path d="M20.5 11H19V7c0-1.1-.9-2-2-2h-4V3.5C13 2.12 11.88 1 10.5 1S8 2.12 8 3.5V5H4c-1.1 0-1.99.9-1.99 2v3.8H3.5c1.49 0 2.7 1.21 2.7 2.7s-1.21 2.7-2.7 2.7H2V20c0 1.1.9 2 2 2h3.8v-1.5c0-1.49 1.21-2.7 2.7-2.7 1.49 0 2.7 1.21 2.7 2.7V22H17c1.1 0 2-.9 2-2v-4h1.5c1.38 0 2.5-1.12 2.5-2.5S21.88 11 20.5 11z"/></svg>
       </span>
@@ -286,52 +503,117 @@
     </span>
   </div>
 
-  <div class="container">
-    <button class="close-btn" id="closeBtn" title="Close" aria-label="Close"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
-    <img class="icon" src="icons/icon128.png" alt="">
-    <h1>Dim Mode</h1>
-    <p class="version" id="version"></p>
+  <main class="page">
+    <section class="copy">
+      <div class="brand">
+        <img src="icons/icon128.png" alt="">
+        <span class="brand-name">Dim Mode</span>
+        <span class="version" id="version"></span>
+      </div>
+      <h1 id="heading"></h1>
+      <p class="lede" id="subtitle"></p>
 
-    <h2 class="heading" id="heading"></h2>
-    <p class="subtitle" id="subtitle"></p>
+      <!-- Filled by welcome.js: the theme and a few Extras on install, the
+           three new Extras on the 2.0 update. Each control writes the real
+           setting and redraws the mini X. -->
+      <div class="panel" id="panel">
+        <p class="panel-title" id="panelTitle"></p>
+      </div>
+      <p class="hint" id="hint"></p>
 
-    <!-- The email ask sits directly under the subtitle: it used to live below
-         six bullets and a "Try it now" button that navigates to x.com, which
-         put it ~160px below the fold on a 1280x800 laptop. Almost nobody
-         scrolled back to it. -->
-    <div class="email-section">
-      <p class="email-label" id="emailLabel"></p>
-      <form class="email-row" id="emailForm"
-            action="https://assets.mailerlite.com/jsonp/1436119/forms/179598724460184835/subscribe"
-            method="POST">
-        <input type="hidden" name="ml-submit" value="1">
-        <input type="hidden" name="anticsrf" value="true">
-        <input type="hidden" name="fields[signup_source]" id="emailSource" value="">
-        <input class="email-input" type="email" name="fields[email]" placeholder="you@email.com" required id="emailInput">
-        <button class="email-btn" type="submit" id="subscribeBtn"></button>
-      </form>
-      <p class="email-success" id="emailSuccess"></p>
-      <a class="follow-cta" id="followCta" href="https://x.com/juanbuis" target="_blank" style="display: none;"></a>
-      <p class="email-error" id="emailError"></p>
+      <!-- The email ask sits right under the switches, inside the first
+           screen: it used to live below six bullets and a "Try it now" button
+           that navigates to x.com, and almost nobody scrolled back to it. -->
+      <div class="email-section">
+        <p class="email-label" id="emailLabel"></p>
+        <form class="email-row" id="emailForm"
+              action="https://assets.mailerlite.com/jsonp/1436119/forms/179598724460184835/subscribe"
+              method="POST">
+          <input type="hidden" name="ml-submit" value="1">
+          <input type="hidden" name="anticsrf" value="true">
+          <input type="hidden" name="fields[signup_source]" id="emailSource" value="">
+          <input class="email-input" type="email" name="fields[email]" placeholder="you@email.com" required id="emailInput">
+          <button class="email-btn" type="submit" id="subscribeBtn"></button>
+        </form>
+        <p class="email-success" id="emailSuccess"></p>
+        <a class="follow-cta" id="followCta" href="https://x.com/juanbuis" target="_blank" style="display: none;"></a>
+        <p class="email-error" id="emailError"></p>
+      </div>
+
+      <div class="also" id="also" hidden>
+        <h2 id="alsoTitle"></h2>
+        <ul id="features"></ul>
+      </div>
+
+      <div class="actions" id="actions"></div>
+
+      <!-- Shown on the update screen only. Every release reaches the whole
+           install base, which makes this the one recurring launch surface the
+           project has. Local image: the extension makes no remote requests. -->
+      <a class="promo" id="promo" target="_blank" rel="noopener">
+        <img class="promo-icon" src="icons/recipetables96.png" alt="">
+        <span class="promo-copy">
+          <span class="promo-eyebrow" id="promoEyebrow"></span>
+          <span class="promo-name" id="promoName"></span>
+          <span class="promo-desc" id="promoDesc"></span>
+        </span>
+      </a>
+    </section>
+
+    <div class="stage" aria-hidden="true">
+      <div class="mock" id="mock">
+        <nav class="m-rail">
+          <span class="m-logo" id="mockLogo"></span>
+          <span class="m-ico on"><svg viewBox="0 0 24 24"><path d="M3.5 10.2 12 3.5l8.5 6.7V20a1 1 0 0 1-1 1H15v-6H9v6H4.5a1 1 0 0 1-1-1z"/></svg></span>
+          <span class="m-ico"><svg viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m15.5 15.5 5 5"/></svg></span>
+          <span class="m-ico"><svg viewBox="0 0 24 24"><path d="M6 16.5V11a6 6 0 1 1 12 0v5.5l1.5 2h-15zM10 21h4"/></svg></span>
+          <span class="m-ico"><svg viewBox="0 0 24 24"><path d="M4 5.5h16v11H10l-6 4z"/></svg></span>
+          <span class="m-ico" data-grok><svg viewBox="0 0 24 24"><path d="M12 3v5M12 16v5M3 12h5M16 12h5M6 6l3 3M15 15l3 3M18 6l-3 3M9 15l-3 3"/></svg></span>
+          <span class="m-ico" data-side><svg viewBox="0 0 24 24"><path d="m12 3.5 2.6 5.3 5.9.9-4.3 4.1 1 5.8-5.2-2.7-5.2 2.7 1-5.8-4.3-4.1 5.9-.9z"/></svg></span>
+          <span class="m-ico" data-side><svg viewBox="0 0 24 24"><path d="M5 20V11M10.5 20V5M16 20v-6M3 20.5h18"/></svg></span>
+          <span class="m-ico" data-side><svg viewBox="0 0 24 24"><path d="M6.5 3.5h8l4 4v13h-12zM14 3.5V8h4.5M9.5 12.5h6M9.5 16h6"/></svg></span>
+          <span class="m-ico" data-side><svg viewBox="0 0 24 24"><path d="M6 3.5h3.5l2 5L9 10a11 11 0 0 0 5 5l1.5-2.5 5 2V18a2.5 2.5 0 0 1-2.5 2.5A15 15 0 0 1 3.5 6 2.5 2.5 0 0 1 6 3.5z"/></svg></span>
+          <span class="m-ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4.5 21a7.5 7.5 0 0 1 15 0"/></svg></span>
+          <span class="m-pen"><svg viewBox="0 0 24 24"><path d="M4 20l4.5-1L19 8.5 15.5 5 5 15.5zM13.5 7l3.5 3.5"/></svg></span>
+        </nav>
+        <div class="m-main">
+          <div class="m-tabs"><span class="on"><i class="bar" style="width: 58px"></i></span><span><i class="bar" style="width: 66px"></i></span></div>
+          <div class="m-compose">
+            <i class="m-av a1"></i>
+            <i class="bar" style="width: 38%"></i>
+            <b class="m-btn" id="mockPost"></b>
+          </div>
+          <div class="m-post">
+            <i class="m-av a2"></i>
+            <div class="m-body">
+              <div class="m-head"><span class="m-name">Juan</span><span class="m-handle">@juanbuis · 2h</span>
+                <span class="m-grok" data-grok><svg viewBox="0 0 24 24"><path d="M12 3v5M12 16v5M3 12h5M16 12h5M6 6l3 3M15 15l3 3M18 6l-3 3M9 15l-3 3"/></svg></span>
+                <span class="m-more"><svg viewBox="0 0 24 24"><path d="M5 12h.01M12 12h.01M19 12h.01" stroke-width="3"/></svg></span>
+              </div>
+              <div class="m-text"><i class="bar" style="width: 92%"></i><i class="bar" style="width: 64%"></i></div>
+              <div class="m-media"></div>
+              <div class="m-acts">
+                <span><svg viewBox="0 0 24 24"><path d="M4 5.5h16v11H10l-6 4z"/></svg>24</span>
+                <span><svg viewBox="0 0 24 24"><path d="M7 7.5h10.5V11M17 16.5H6.5V13M15 5l2.5 2.5L15 10M9 19l-2.5-2.5L9 14"/></svg>18</span>
+                <span><svg viewBox="0 0 24 24"><path d="M12 20s-7.5-4.6-7.5-10.2A4.2 4.2 0 0 1 12 7.3a4.2 4.2 0 0 1 7.5 2.5C19.5 15.4 12 20 12 20z"/></svg>312</span>
+                <span><svg viewBox="0 0 24 24"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg></span>
+              </div>
+            </div>
+          </div>
+          <div class="m-who">
+            <i class="m-av a3"></i>
+            <div class="m-body"><i class="bar" style="width: 46%; background: var(--fg); opacity: .8"></i><i class="bar" style="width: 30%"></i></div>
+            <b class="m-btn" id="mockFollow"></b>
+          </div>
+        </div>
+        <div class="m-dock">
+          <span class="m-bubble" data-grok><svg viewBox="0 0 24 24"><path d="M12 3v5M12 16v5M3 12h5M16 12h5M6 6l3 3M15 15l3 3M18 6l-3 3M9 15l-3 3"/></svg></span>
+          <span class="m-bubble" data-side><svg viewBox="0 0 24 24"><path d="M4 5.5h16v11H10l-6 4z"/></svg></span>
+        </div>
+      </div>
     </div>
+  </main>
 
-    <div class="actions" id="actions"></div>
-
-    <ul class="features" id="features"></ul>
-
-    <!-- Shown on the update screen only. Every release reaches the whole
-         install base, which makes this the one recurring launch surface the
-         project has. Local image: the extension makes no remote requests. -->
-    <a class="promo" id="promo" target="_blank" rel="noopener">
-      <img class="promo-icon" src="icons/recipetables96.png" alt="">
-      <span class="promo-copy">
-        <span class="promo-eyebrow" id="promoEyebrow"></span>
-        <span class="promo-name" id="promoName"></span>
-        <span class="promo-desc" id="promoDesc"></span>
-      </span>
-    </a>
-
-  </div>
   <p class="footer">A project by <a href="https://juanbuis.com" target="_blank">Juan Buis</a> — <a href="https://x.com/juanbuis" target="_blank">follow me on X for updates</a> :)</p>
 
   <script src="rate.js"></script>

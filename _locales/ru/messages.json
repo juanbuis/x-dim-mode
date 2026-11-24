@@ -51,19 +51,13 @@
     "message": "Работает в X и X Pro — настройки синхронизируются между устройствами"
   },
   "updateFeature1": {
-    "message": "Новое: «Копировать ссылку» первым — X убрал этот пункт под «Отправить в чат». Включите, и он вернётся наверх."
+    "message": "«Затемнение» снова есть в настройках оформления X"
   },
   "updateFeature2": {
-    "message": "Ищите в разделе Extras во всплывающем окне"
+    "message": "Имена пользователей, время и сообщения в чате снова в цвет темы"
   },
   "updateFeature3": {
-    "message": "Больше старого Twitter в Extras: логотип-птица, классический шрифт, значок «Twitter», «Твит» вместо «Пост», начинать с «Подписки» и классическая сетка изображений"
-  },
-  "updateFeature4": {
-    "message": "Что-то сломалось? Сообщите прямо из всплывающего окна"
-  },
-  "updateFeature5": {
-    "message": ""
+    "message": "Логотип с птицей, «Твит» и классическая сетка изображений работают в новом X"
   },
   "tryNow": {
     "message": "Попробовать"
@@ -210,5 +204,45 @@
   "promoDesc": {
     "message": "Превращает любой рецепт в таблицу подготовки, которую видно с одного взгляда.",
     "description": "One-line description of RecipeTables"
+  },
+  "update2Title": {
+    "message": "Создан для нового X",
+    "description": "2.0 update screen: headline"
+  },
+  "update2Sub": {
+    "message": "X полностью сменил дизайн, и Dim Mode теперь поддерживает его целиком. А ещё в 2.0 три новые функции в разделе «Дополнительно» — попробуйте их прямо здесь.",
+    "description": "2.0 update screen: line under the headline"
+  },
+  "newIn2": {
+    "message": "Новое в 2.0",
+    "description": "2.0 update screen: heading over the three new Extras, which can be switched on right there"
+  },
+  "welcomeMakeYours": {
+    "message": "Настройте под себя",
+    "description": "Install screen: heading over the theme picker and a few Extras to try"
+  },
+  "themeLabel": {
+    "message": "Тема",
+    "description": "Welcome screen: label for the theme colour dots"
+  },
+  "extrasHint": {
+    "message": "Это можно изменить в любой момент в разделе «Дополнительно» меню Dim Mode.",
+    "description": "Welcome screen: note under the switches"
+  },
+  "alsoNew": {
+    "message": "Также в этом обновлении",
+    "description": "2.0 update screen: heading over the short list of fixes"
+  },
+  "mockPost": {
+    "message": "Опубликовать",
+    "description": "X’s own label on its compose button, shown in the preview of X"
+  },
+  "mockTweet": {
+    "message": "Твитнуть",
+    "description": "The classic “Tweet” label for the compose button, shown in the preview when Tweet-not-Post is on"
+  },
+  "mockFollow": {
+    "message": "Читать",
+    "description": "X’s own label on its Follow button, shown in the preview of X"
   }
 }
