@@ -245,8 +245,11 @@ const STATIC_CSS = `
   html.${DIM_CLASS} [style*="background-color: rgb(62, 65, 68)"] {
     background-color: var(--xdm-border) !important;
   }
-  /* Icon containers in menu rows (Premium, etc.) */
-  html.${DIM_CLASS} [role="link"] > div > div:first-child div:has(> svg:only-child) {
+  /* Icon containers in menu rows (Premium, etc.), legacy UI only. This rule is
+     structural, and the Nov 2026 redesign's notification rows match the same
+     shape, so it painted a slab behind every notification icon. react-native-
+     web's class list always starts "css-"; the redesign's never does. */
+  html.${DIM_CLASS} [role="link"] > div > div:first-child div[class^="css-"]:has(> svg:only-child) {
     background-color: var(--xdm-bg-elevated) !important;
   }
 
