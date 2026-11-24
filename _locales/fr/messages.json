@@ -161,9 +161,53 @@
     "message": "Masquer Grok",
     "description": "Extras toggle: hide every Grok button and link on X"
   },
-  "simpleSidebar": {
-    "message": "Barre latérale épurée",
-    "description": "Extras toggle: hide Subscription, Creator Studio, Articles and Calls from the sidebar, plus the floating Chat button"
+  "sidebarItems": {
+    "message": "Barre latérale",
+    "description": "Extras: label above a row of X's sidebar icons that can be tapped to hide each item"
+  },
+  "sidebarHint": {
+    "message": "Touchez une icône pour la masquer de la barre latérale de X.",
+    "description": "Extras: hint under the sidebar icon row"
+  },
+  "navExplore": {
+    "message": "Explorer",
+    "description": "Name of an item in X's sidebar (screen reader label and tooltip in the sidebar picker); match X's own wording"
+  },
+  "navNotifications": {
+    "message": "Notifications",
+    "description": "Name of an item in X's sidebar (screen reader label and tooltip in the sidebar picker); match X's own wording"
+  },
+  "navChat": {
+    "message": "Chat",
+    "description": "Name of an item in X's sidebar (screen reader label and tooltip in the sidebar picker); match X's own wording"
+  },
+  "navCalls": {
+    "message": "Appels",
+    "description": "Name of an item in X's sidebar (screen reader label and tooltip in the sidebar picker); match X's own wording"
+  },
+  "navGrok": {
+    "message": "Grok",
+    "description": "Name of an item in X's sidebar (screen reader label and tooltip in the sidebar picker); match X's own wording"
+  },
+  "navPremium": {
+    "message": "Abonnement",
+    "description": "Name of an item in X's sidebar (screen reader label and tooltip in the sidebar picker); match X's own wording"
+  },
+  "navBookmarks": {
+    "message": "Signets",
+    "description": "Name of an item in X's sidebar (screen reader label and tooltip in the sidebar picker); match X's own wording"
+  },
+  "navStudio": {
+    "message": "Creator Studio",
+    "description": "Name of an item in X's sidebar (screen reader label and tooltip in the sidebar picker); match X's own wording"
+  },
+  "navArticles": {
+    "message": "Articles",
+    "description": "Name of an item in X's sidebar (screen reader label and tooltip in the sidebar picker); match X's own wording"
+  },
+  "navChatBubble": {
+    "message": "Bouton Chat",
+    "description": "Name of an item in X's sidebar (screen reader label and tooltip in the sidebar picker); match X's own wording"
   },
   "emailSubInstall": {
     "message": "De nouveaux extras et des correctifs quand X change les choses. Quelques e-mails par an.",
@@ -200,6 +244,10 @@
   "promoEyebrow": {
     "message": "Également de nous",
     "description": "Cross-promo label above another project's name"
+  },
+  "promoBackglowDesc": {
+    "message": "Contrôlez le logo lumineux du nouveau MacBook Pro.",
+    "description": "Cross-promo: one-line description of Backglow, a Mac app for the glowing Apple logo"
   },
   "promoDesc": {
     "message": "Transforme n'importe quelle recette en un tableau de préparation lisible d'un coup d'œil.",

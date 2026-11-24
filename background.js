@@ -33,7 +33,7 @@ function refreshExtrasBadge() {
 // where something is always listening. Keep this list in step with
 // SETTING_KEYS in content.js.
 const MIRRORED_KEYS = ["enabled", "theme", "customHue", "birdLogo", "oldFont", "classicFavicon",
-  "tweetWording", "followingTab", "imageGrid", "copyLinkFirst", "buttonColor", "buttonHex", "hideGrok", "simpleSidebar"];
+  "tweetWording", "followingTab", "imageGrid", "copyLinkFirst", "buttonColor", "buttonHex", "hideGrok", "hiddenNav"];
 
 chrome.storage.onChanged.addListener((changes, area) => {
   if (changes.extrasSeenRevision) refreshExtrasBadge();

@@ -13,7 +13,6 @@ let _copyLinkFirst = false;
 let _buttonColor = "white";
 let _buttonHex = "";
 let _hideGrok = false;
-let _simpleSidebar = false;
 
 // ── Theme Definitions ──────────────────────────────────────────────
 
@@ -35,7 +34,7 @@ let _customHue = 210;
 // local and fall back to sync — see getSettings for why that order matters.
 // Remote changes arrive via onChanged and are mirrored back into local.
 
-const SETTING_KEYS = ["enabled", "theme", "customHue", "birdLogo", "oldFont", "classicFavicon", "tweetWording", "followingTab", "imageGrid", "copyLinkFirst", "buttonColor", "buttonHex", "hideGrok", "simpleSidebar"];
+const SETTING_KEYS = ["enabled", "theme", "customHue", "birdLogo", "oldFont", "classicFavicon", "tweetWording", "followingTab", "imageGrid", "copyLinkFirst", "buttonColor", "buttonHex", "hideGrok", "hiddenNav"];
 
 function getSettings(cb) {
   chrome.storage.sync.get(SETTING_KEYS, (syncVals) => {
@@ -819,39 +818,47 @@ function removeHideGrok() {
   document.documentElement.classList.remove(HIDEGROK_CLASS);
 }
 
-// ── Simpler sidebar ───────────────────────────────────────────────
-// The redesign's sidebar grew to eleven items. This hides the ones that are
-// upsells or niche tools (Subscription, Creator Studio, Articles, Calls) and
-// the floating Chat launcher, which duplicates the Chat nav item. Matched by
-// href and icon, never by label. All of them stay reachable by URL.
+// ── Sidebar items ─────────────────────────────────────────────────
+// The redesign's sidebar grew to eleven items. People pick which ones to hide
+// (extras.html / welcome.html, ids in nav-items.js). Matched by href and icon,
+// never by label, and scoped to the nav so links in posts are never touched.
+// Everything hidden stays reachable by URL. Not gated on the dim class: it's
+// a layout preference.
 
 const SIDEBAR_CSS_ID = "x-dim-sidebar-css";
-const SIDEBAR_CLASS = "x-dim-simplesidebar";
-const SIDEBAR_HREFS = ["/i/premium", "/i/premium_sign_up", "/i/verified-choose",
-  "/i/jf/creators/studio", "/compose/articles", "/i/calls"];
+const NAV_HREFS = {
+  explore: ["/explore"],
+  notifications: ["/notifications"],
+  chat: ["/i/chat", "/messages"],
+  calls: ["/i/calls"],
+  grok: ["/i/grok"],
+  premium: ["/i/premium", "/i/premium_sign_up", "/i/verified-choose"],
+  bookmarks: ["/i/history", "/i/bookmarks"],   // History is the redesign's name
+  studio: ["/i/jf/creators/studio"],
+  articles: ["/compose/articles"],
+};
 const CHAT_ICON = 'path[d^="M20.61 11.6c0-4.43-3.8"]';
 
-function ensureSidebarCSS() {
-  if (document.getElementById(SIDEBAR_CSS_ID)) return;
-  const style = document.createElement("style");
-  style.id = SIDEBAR_CSS_ID;
-  const links = SIDEBAR_HREFS.map((h) => `html.${SIDEBAR_CLASS} :is(nav, header) a[href="${h}"]`).join(",\n    ");
-  style.textContent = `
-    ${links},
-    html.${SIDEBAR_CLASS} [data-slot="xds-dock-window"]:has([data-slot="xds-dock-launcher"] ${CHAT_ICON}) {
-      display: none !important;
+function applyHiddenNav(ids) {
+  const list = Array.isArray(ids) ? ids : [];
+  const rules = [];
+  for (const id of list) {
+    for (const h of NAV_HREFS[id] || []) rules.push(`:is(nav, header) a[href="${h}"]`);
+    if (id === "chatBubble") {
+      rules.push(`[data-slot="xds-dock-window"]:has([data-slot="xds-dock-launcher"] ${CHAT_ICON})`);
+      // The pre-redesign layout's floating Messages drawer. X rolls redesigns
+      // out gradually, so both stay matched until the old one is gone.
+      rules.push('[data-testid="DMDrawer"]', '[data-testid="chat-drawer-root"]');
     }
-  `;
-  (document.head || document.documentElement).appendChild(style);
-}
-
-function applySimpleSidebar() {
-  ensureSidebarCSS();
-  document.documentElement.classList.add(SIDEBAR_CLASS);
-}
-
-function removeSimpleSidebar() {
-  document.documentElement.classList.remove(SIDEBAR_CLASS);
+  }
+  let style = document.getElementById(SIDEBAR_CSS_ID);
+  if (!rules.length) { style?.remove(); return; }
+  if (!style) {
+    style = document.createElement("style");
+    style.id = SIDEBAR_CSS_ID;
+    (document.head || document.documentElement).appendChild(style);
+  }
+  style.textContent = `${rules.join(",\n")} { display: none !important; }`;
 }
 
 // ── Button color ───────────────────────────────────────────────
@@ -1696,7 +1703,7 @@ function fullRescan() {
 }
 
 // Init — single merged storage read (sync preferred, local fallback)
-getSettings(({ enabled, theme, customHue, birdLogo, oldFont, classicFavicon, tweetWording, followingTab, imageGrid, copyLinkFirst, buttonColor, buttonHex, hideGrok, simpleSidebar }) => {
+getSettings(({ enabled, theme, customHue, birdLogo, oldFont, classicFavicon, tweetWording, followingTab, imageGrid, copyLinkFirst, buttonColor, buttonHex, hideGrok, hiddenNav }) => {
   _theme = theme ?? "dim";
   _customHue = customHue ?? 210;
   _birdLogo = !!birdLogo;
@@ -1709,7 +1716,6 @@ getSettings(({ enabled, theme, customHue, birdLogo, oldFont, classicFavicon, twe
   _buttonColor = buttonColor || "white";
   _buttonHex = buttonHex || "";
   _hideGrok = !!hideGrok;
-  _simpleSidebar = !!simpleSidebar;
 
   if (enabled === undefined) {
     // Genuinely first run — unless this device already recorded "off", in
@@ -1768,7 +1774,7 @@ getSettings(({ enabled, theme, customHue, birdLogo, oldFont, classicFavicon, twe
   if (_imageGrid) applyImageGrid();
   if (_copyLinkFirst) applyCopyLinkFirst();
   if (_hideGrok) applyHideGrok();
-  if (_simpleSidebar) applySimpleSidebar();
+  applyHiddenNav(hiddenNav);
 
   // Apply button color if set
   applyButtonColor();
@@ -1907,11 +1913,7 @@ chrome.storage.onChanged.addListener((changes, area) => {
     if (_hideGrok) applyHideGrok();
     else removeHideGrok();
   }
-  if (changes.simpleSidebar) {
-    _simpleSidebar = !!changes.simpleSidebar.newValue;
-    if (_simpleSidebar) applySimpleSidebar();
-    else removeSimpleSidebar();
-  }
+  if (changes.hiddenNav) applyHiddenNav(changes.hiddenNav.newValue);
   if (changes.oldFont) {
     _oldFont = !!changes.oldFont.newValue;
     if (_oldFont) applyOldFont();

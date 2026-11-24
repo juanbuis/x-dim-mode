@@ -10,7 +10,6 @@ const followingTabToggle = document.getElementById("followingTabToggle");
 const imageGridToggle = document.getElementById("imageGridToggle");
 const copyLinkFirstToggle = document.getElementById("copyLinkFirstToggle");
 const hideGrokToggle = document.getElementById("hideGrokToggle");
-const simpleSidebarToggle = document.getElementById("simpleSidebarToggle");
 
 // i18n
 document.getElementById("backLabel").textContent = chrome.i18n.getMessage("appName");
@@ -27,7 +26,8 @@ document.getElementById("groupLookLabel").textContent = chrome.i18n.getMessage("
 document.getElementById("groupTimelineLabel").textContent = chrome.i18n.getMessage("groupTimeline");
 document.getElementById("groupDeclutterLabel").textContent = chrome.i18n.getMessage("groupDeclutter");
 document.getElementById("hideGrokLabel").textContent = chrome.i18n.getMessage("hideGrok");
-document.getElementById("simpleSidebarLabel").textContent = chrome.i18n.getMessage("simpleSidebar");
+document.getElementById("sidebarLabel").textContent = chrome.i18n.getMessage("sidebarItems");
+document.getElementById("sidebarHint").textContent = chrome.i18n.getMessage("sidebarHint");
 
 // Footer: credit + share (mirrors the popup footer — this page gets the most
 // engaged users and previously carried no promo at all)
@@ -54,7 +54,7 @@ reportLink.textContent = chrome.i18n.getMessage("reportProblem");
 }
 
 // Load state (sync preferred, local fallback — mirrors helpers in popup.js)
-const EXTRA_KEYS = ["birdLogo", "tweetWording", "classicFavicon", "oldFont", "followingTab", "imageGrid", "copyLinkFirst", "hideGrok", "simpleSidebar"];
+const EXTRA_KEYS = ["birdLogo", "tweetWording", "classicFavicon", "oldFont", "followingTab", "imageGrid", "copyLinkFirst", "hideGrok"];
 const TOGGLES = {
   birdLogo: birdToggle,
   tweetWording: tweetWordingToggle,
@@ -64,8 +64,23 @@ const TOGGLES = {
   imageGrid: imageGridToggle,
   copyLinkFirst: copyLinkFirstToggle,
   hideGrok: hideGrokToggle,
-  simpleSidebar: simpleSidebarToggle,
 };
+
+// Sidebar items: X's own icons, tap to hide or show (nav-items.js).
+let _hiddenNav = [];
+chrome.storage.sync.get(["hiddenNav"], (syncVals) => {
+  chrome.storage.local.get(["hiddenNav"], (localVals) => {
+    _hiddenNav = localVals.hiddenNav !== undefined ? localVals.hiddenNav : (syncVals.hiddenNav || []);
+    document.getElementById("sidebarPicker").replaceChildren(
+      buildNavPicker(_hiddenNav, (list) => {
+        _hiddenNav = list;
+        chrome.storage.sync.set({ hiddenNav: list }, () => void chrome.runtime.lastError);
+        chrome.storage.local.set({ hiddenNav: list });
+        if (list.length) noteDelight();
+      }, (k) => chrome.i18n.getMessage(k))
+    );
+  });
+});
 
 chrome.storage.sync.get(EXTRA_KEYS, (syncVals) => {
   chrome.storage.local.get(EXTRA_KEYS, (localVals) => {
@@ -92,7 +107,8 @@ for (const key of EXTRA_KEYS) {
 // than an arbitrary day-14 timer, which most people are not in the popup for.
 // Recorded here; the prompt itself is shown by popup.js on the way back.
 function noteDelight() {
-  const on = EXTRA_KEYS.filter((k) => TOGGLES[k].checked).length + (_buttonColor !== "white" ? 1 : 0);
+  const on = EXTRA_KEYS.filter((k) => TOGGLES[k].checked).length + (_buttonColor !== "white" ? 1 : 0) +
+    (_hiddenNav.length ? 1 : 0);
   if (on < 2) return;
   chrome.storage.local.get(["extrasDelightAt"], (d) => {
     if (d.extrasDelightAt) return;               // only ever the first time

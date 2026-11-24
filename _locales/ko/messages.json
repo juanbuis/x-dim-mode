@@ -161,9 +161,53 @@
     "message": "Grok 숨기기",
     "description": "Extras toggle: hide every Grok button and link on X"
   },
-  "simpleSidebar": {
-    "message": "간결한 사이드바",
-    "description": "Extras toggle: hide Subscription, Creator Studio, Articles and Calls from the sidebar, plus the floating Chat button"
+  "sidebarItems": {
+    "message": "사이드바",
+    "description": "Extras: label above a row of X's sidebar icons that can be tapped to hide each item"
+  },
+  "sidebarHint": {
+    "message": "아이콘을 탭하면 X 사이드바에서 숨길 수 있어요.",
+    "description": "Extras: hint under the sidebar icon row"
+  },
+  "navExplore": {
+    "message": "탐색하기",
+    "description": "Name of an item in X's sidebar (screen reader label and tooltip in the sidebar picker); match X's own wording"
+  },
+  "navNotifications": {
+    "message": "알림",
+    "description": "Name of an item in X's sidebar (screen reader label and tooltip in the sidebar picker); match X's own wording"
+  },
+  "navChat": {
+    "message": "채팅",
+    "description": "Name of an item in X's sidebar (screen reader label and tooltip in the sidebar picker); match X's own wording"
+  },
+  "navCalls": {
+    "message": "통화",
+    "description": "Name of an item in X's sidebar (screen reader label and tooltip in the sidebar picker); match X's own wording"
+  },
+  "navGrok": {
+    "message": "Grok",
+    "description": "Name of an item in X's sidebar (screen reader label and tooltip in the sidebar picker); match X's own wording"
+  },
+  "navPremium": {
+    "message": "구독",
+    "description": "Name of an item in X's sidebar (screen reader label and tooltip in the sidebar picker); match X's own wording"
+  },
+  "navBookmarks": {
+    "message": "북마크",
+    "description": "Name of an item in X's sidebar (screen reader label and tooltip in the sidebar picker); match X's own wording"
+  },
+  "navStudio": {
+    "message": "크리에이터 스튜디오",
+    "description": "Name of an item in X's sidebar (screen reader label and tooltip in the sidebar picker); match X's own wording"
+  },
+  "navArticles": {
+    "message": "아티클",
+    "description": "Name of an item in X's sidebar (screen reader label and tooltip in the sidebar picker); match X's own wording"
+  },
+  "navChatBubble": {
+    "message": "채팅 버튼",
+    "description": "Name of an item in X's sidebar (screen reader label and tooltip in the sidebar picker); match X's own wording"
   },
   "emailSubInstall": {
     "message": "X가 바뀔 때마다 새로운 Extras와 수정 사항을. 메일은 1년에 몇 번뿐.",
@@ -200,6 +244,10 @@
   "promoEyebrow": {
     "message": "우리의 다른 작품",
     "description": "Cross-promo label above another project's name"
+  },
+  "promoBackglowDesc": {
+    "message": "새 MacBook Pro의 빛나는 로고를 마음대로 제어하세요.",
+    "description": "Cross-promo: one-line description of Backglow, a Mac app for the glowing Apple logo"
   },
   "promoDesc": {
     "message": "어떤 레시피든 한눈에 읽히는 준비 표로 바꿔 줍니다.",

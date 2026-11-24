@@ -161,9 +161,53 @@
     "message": "Grok を隠す",
     "description": "Extras toggle: hide every Grok button and link on X"
   },
-  "simpleSidebar": {
-    "message": "サイドバーをシンプルに",
-    "description": "Extras toggle: hide Subscription, Creator Studio, Articles and Calls from the sidebar, plus the floating Chat button"
+  "sidebarItems": {
+    "message": "サイドバー",
+    "description": "Extras: label above a row of X's sidebar icons that can be tapped to hide each item"
+  },
+  "sidebarHint": {
+    "message": "アイコンをタップすると、Xのサイドバーから非表示にできます。",
+    "description": "Extras: hint under the sidebar icon row"
+  },
+  "navExplore": {
+    "message": "話題を検索",
+    "description": "Name of an item in X's sidebar (screen reader label and tooltip in the sidebar picker); match X's own wording"
+  },
+  "navNotifications": {
+    "message": "通知",
+    "description": "Name of an item in X's sidebar (screen reader label and tooltip in the sidebar picker); match X's own wording"
+  },
+  "navChat": {
+    "message": "チャット",
+    "description": "Name of an item in X's sidebar (screen reader label and tooltip in the sidebar picker); match X's own wording"
+  },
+  "navCalls": {
+    "message": "通話",
+    "description": "Name of an item in X's sidebar (screen reader label and tooltip in the sidebar picker); match X's own wording"
+  },
+  "navGrok": {
+    "message": "Grok",
+    "description": "Name of an item in X's sidebar (screen reader label and tooltip in the sidebar picker); match X's own wording"
+  },
+  "navPremium": {
+    "message": "サブスクリプション",
+    "description": "Name of an item in X's sidebar (screen reader label and tooltip in the sidebar picker); match X's own wording"
+  },
+  "navBookmarks": {
+    "message": "ブックマーク",
+    "description": "Name of an item in X's sidebar (screen reader label and tooltip in the sidebar picker); match X's own wording"
+  },
+  "navStudio": {
+    "message": "クリエイタースタジオ",
+    "description": "Name of an item in X's sidebar (screen reader label and tooltip in the sidebar picker); match X's own wording"
+  },
+  "navArticles": {
+    "message": "記事",
+    "description": "Name of an item in X's sidebar (screen reader label and tooltip in the sidebar picker); match X's own wording"
+  },
+  "navChatBubble": {
+    "message": "チャットボタン",
+    "description": "Name of an item in X's sidebar (screen reader label and tooltip in the sidebar picker); match X's own wording"
   },
   "emailSubInstall": {
     "message": "Xが変わるたびに、新しいExtrasと修正を。メールは年に数回だけ。",
@@ -200,6 +244,10 @@
   "promoEyebrow": {
     "message": "私たちの別の作品",
     "description": "Cross-promo label above another project's name"
+  },
+  "promoBackglowDesc": {
+    "message": "新しいMacBook Proの光るロゴを自由にコントロール。",
+    "description": "Cross-promo: one-line description of Backglow, a Mac app for the glowing Apple logo"
   },
   "promoDesc": {
     "message": "どんなレシピも、ひと目で読める下ごしらえの表に変換します。",

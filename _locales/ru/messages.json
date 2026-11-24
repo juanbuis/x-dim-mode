@@ -161,9 +161,53 @@
     "message": "Скрыть Grok",
     "description": "Extras toggle: hide every Grok button and link on X"
   },
-  "simpleSidebar": {
-    "message": "Простое меню слева",
-    "description": "Extras toggle: hide Subscription, Creator Studio, Articles and Calls from the sidebar, plus the floating Chat button"
+  "sidebarItems": {
+    "message": "Боковое меню",
+    "description": "Extras: label above a row of X's sidebar icons that can be tapped to hide each item"
+  },
+  "sidebarHint": {
+    "message": "Нажмите на значок, чтобы скрыть его в боковом меню X.",
+    "description": "Extras: hint under the sidebar icon row"
+  },
+  "navExplore": {
+    "message": "Обзор",
+    "description": "Name of an item in X's sidebar (screen reader label and tooltip in the sidebar picker); match X's own wording"
+  },
+  "navNotifications": {
+    "message": "Уведомления",
+    "description": "Name of an item in X's sidebar (screen reader label and tooltip in the sidebar picker); match X's own wording"
+  },
+  "navChat": {
+    "message": "Чат",
+    "description": "Name of an item in X's sidebar (screen reader label and tooltip in the sidebar picker); match X's own wording"
+  },
+  "navCalls": {
+    "message": "Звонки",
+    "description": "Name of an item in X's sidebar (screen reader label and tooltip in the sidebar picker); match X's own wording"
+  },
+  "navGrok": {
+    "message": "Grok",
+    "description": "Name of an item in X's sidebar (screen reader label and tooltip in the sidebar picker); match X's own wording"
+  },
+  "navPremium": {
+    "message": "Подписка",
+    "description": "Name of an item in X's sidebar (screen reader label and tooltip in the sidebar picker); match X's own wording"
+  },
+  "navBookmarks": {
+    "message": "Закладки",
+    "description": "Name of an item in X's sidebar (screen reader label and tooltip in the sidebar picker); match X's own wording"
+  },
+  "navStudio": {
+    "message": "Creator Studio",
+    "description": "Name of an item in X's sidebar (screen reader label and tooltip in the sidebar picker); match X's own wording"
+  },
+  "navArticles": {
+    "message": "Статьи",
+    "description": "Name of an item in X's sidebar (screen reader label and tooltip in the sidebar picker); match X's own wording"
+  },
+  "navChatBubble": {
+    "message": "Кнопка чата",
+    "description": "Name of an item in X's sidebar (screen reader label and tooltip in the sidebar picker); match X's own wording"
   },
   "emailSubInstall": {
     "message": "Новые дополнения и исправления, когда X что-то меняет. Несколько писем в год.",
@@ -200,6 +244,10 @@
   "promoEyebrow": {
     "message": "Ещё от нас",
     "description": "Cross-promo label above another project's name"
+  },
+  "promoBackglowDesc": {
+    "message": "Управляйте светящимся логотипом на новом MacBook Pro.",
+    "description": "Cross-promo: one-line description of Backglow, a Mac app for the glowing Apple logo"
   },
   "promoDesc": {
     "message": "Превращает любой рецепт в таблицу подготовки, которую видно с одного взгляда.",

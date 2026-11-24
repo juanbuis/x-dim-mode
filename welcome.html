@@ -110,6 +110,39 @@
     }
     .panel-title + .row { border-top: none; }
     .row-label { font-size: 15px; line-height: 20px; }
+    .row-stack { flex-direction: column; align-items: stretch; gap: 10px; padding: 14px 0; }
+
+    /* Sidebar items: X's nav icons as toggles (nav-items.js). Shown = full
+       colour on a tint; hidden = faded in a dashed outline. (No slash: the Grok logo is one.) */
+    .nav-picker { display: grid; grid-template-columns: repeat(5, 38px); gap: 8px 10px; }
+    .nav-item {
+      position: relative;
+      display: grid;
+      place-items: center;
+      width: 38px;
+      height: 38px;
+      padding: 0;
+      border: none;
+      border-radius: 50%;
+      background: var(--hover);
+      color: var(--fg);
+      cursor: pointer;
+      transition: background-color 0.2s, color 0.2s;
+      -webkit-appearance: none;
+      appearance: none;
+    }
+    .nav-item:hover { background: rgba(255, 255, 255, 0.14); }
+    .nav-item:focus-visible { outline: 2px solid var(--fg); outline-offset: 2px; }
+    .nav-item svg { width: 20px; height: 20px; fill: currentColor; }
+    .nav-item.is-bubble { box-shadow: inset 0 0 0 1px var(--line); }
+    .nav-item[aria-pressed="false"] {
+      background: transparent;
+      color: var(--fg-3);
+      box-shadow: none;
+      outline: 1.5px dashed var(--line);
+      outline-offset: -1.5px;
+    }
+    .nav-item[aria-pressed="false"]:focus-visible { outline: 2px solid var(--fg); outline-offset: 2px; }
 
     /* X's switch */
     .toggle { position: relative; flex-shrink: 0; width: 34px; height: 20px; }
@@ -366,6 +399,11 @@
     .m-name { font-weight: 700; white-space: nowrap; }
     .m-handle { color: var(--m-fg2); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; direction: ltr; unicode-bidi: isolate; }
     .m-grok { margin-inline-start: auto; }
+    /* X's real Grok glyph is a filled shape, not a stroke like the others. */
+    .mock svg.fill { fill: currentColor; stroke: none; }
+    .m-grok svg.fill { width: 16px; height: 16px; }
+    .m-ico svg.fill { width: 22px; height: 22px; }
+    .m-bubble svg.fill { width: 19px; height: 19px; }
     .m-grok, .m-more { display: grid; place-items: center; width: 22px; height: 22px; color: var(--m-fg2); flex-shrink: 0; }
     .m-head svg, .m-acts svg { width: 17px; height: 17px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
     .m-text { display: flex; flex-direction: column; gap: 7px; }
@@ -401,8 +439,12 @@
     .m-bubble svg { width: 21px; height: 21px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
 
     /* What the switches do to the mock */
+    .m-nav { display: contents; }
+    .m-nav svg, .m-bubble[data-nav] svg { fill: currentColor; stroke: none; }
+    .m-nav .m-ico svg { width: 21px; height: 21px; }
+    .m-bubble[data-nav] svg { width: 19px; height: 19px; }
     .mock.no-grok [data-grok],
-    .mock.simple [data-side] { opacity: 0; transform: scale(0.4); max-height: 0; pointer-events: none; }
+    .mock [data-nav].is-hidden { opacity: 0; transform: scale(0.4); max-height: 0; pointer-events: none; }
     .mock.no-grok .m-head [data-grok] { width: 0; }
 
     /* No animation until the first render has landed (welcome.js adds .ready),
@@ -441,22 +483,22 @@
     @media (prefers-reduced-motion: reduce) { .pin-point { animation: none; } }
 
     /* Cross-promo (update screen only): a quiet "same maker" note, not an ad. */
-    .promo {
-      display: none;
+    .promo { display: none; margin-top: 16px; }
+    .promo.show { display: block; }
+    .promo-eyebrow { display: block; font-size: 13px; line-height: 16px; color: var(--fg-2); margin: 0 0 8px; }
+    .promo-list { border: 1px solid var(--line-soft); border-radius: 16px; overflow: hidden; }
+    .promo-item {
+      display: flex;
       align-items: center;
       gap: 14px;
-      margin-top: 16px;
-      padding: 14px 16px;
-      border: 1px solid var(--line-soft);
-      border-radius: 16px;
+      padding: 12px 16px;
       text-decoration: none;
       transition: background-color 0.2s;
     }
-    .promo.show { display: flex; }
-    .promo:hover { background: var(--hover); }
+    .promo-item + .promo-item { border-top: 1px solid var(--line-soft); }
+    .promo-item:hover { background: var(--hover); }
     .promo-icon { width: 40px; height: 40px; border-radius: 10px; flex-shrink: 0; }
     .promo-copy { min-width: 0; }
-    .promo-eyebrow { display: block; font-size: 13px; line-height: 16px; color: var(--fg-2); margin-bottom: 2px; }
     .promo-name { display: block; font-size: 15px; line-height: 20px; font-weight: 700; color: var(--fg); }
     .promo-desc { display: block; font-size: 13px; line-height: 18px; color: var(--fg-2); }
 
@@ -550,14 +592,25 @@
       <!-- Shown on the update screen only. Every release reaches the whole
            install base, which makes this the one recurring launch surface the
            project has. Local image: the extension makes no remote requests. -->
-      <a class="promo" id="promo" target="_blank" rel="noopener">
-        <img class="promo-icon" src="icons/recipetables96.png" alt="">
-        <span class="promo-copy">
-          <span class="promo-eyebrow" id="promoEyebrow"></span>
-          <span class="promo-name" id="promoName"></span>
-          <span class="promo-desc" id="promoDesc"></span>
-        </span>
-      </a>
+      <div class="promo" id="promo">
+        <span class="promo-eyebrow" id="promoEyebrow"></span>
+        <div class="promo-list">
+          <a class="promo-item" id="promoBackglow" target="_blank" rel="noopener">
+            <img class="promo-icon" src="icons/backglow96.png" alt="">
+            <span class="promo-copy">
+              <span class="promo-name">Backglow</span>
+              <span class="promo-desc" id="promoBackglowDesc"></span>
+            </span>
+          </a>
+          <a class="promo-item" id="promoRecipe" target="_blank" rel="noopener">
+            <img class="promo-icon" src="icons/recipetables96.png" alt="">
+            <span class="promo-copy">
+              <span class="promo-name">RecipeTables</span>
+              <span class="promo-desc" id="promoDesc"></span>
+            </span>
+          </a>
+        </div>
+      </div>
     </section>
 
     <div class="stage" aria-hidden="true">
@@ -565,14 +618,7 @@
         <nav class="m-rail">
           <span class="m-logo" id="mockLogo"></span>
           <span class="m-ico on"><svg viewBox="0 0 24 24"><path d="M3.5 10.2 12 3.5l8.5 6.7V20a1 1 0 0 1-1 1H15v-6H9v6H4.5a1 1 0 0 1-1-1z"/></svg></span>
-          <span class="m-ico"><svg viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m15.5 15.5 5 5"/></svg></span>
-          <span class="m-ico"><svg viewBox="0 0 24 24"><path d="M6 16.5V11a6 6 0 1 1 12 0v5.5l1.5 2h-15zM10 21h4"/></svg></span>
-          <span class="m-ico"><svg viewBox="0 0 24 24"><path d="M4 5.5h16v11H10l-6 4z"/></svg></span>
-          <span class="m-ico" data-grok><svg viewBox="0 0 24 24"><path d="M12 3v5M12 16v5M3 12h5M16 12h5M6 6l3 3M15 15l3 3M18 6l-3 3M9 15l-3 3"/></svg></span>
-          <span class="m-ico" data-side><svg viewBox="0 0 24 24"><path d="m12 3.5 2.6 5.3 5.9.9-4.3 4.1 1 5.8-5.2-2.7-5.2 2.7 1-5.8-4.3-4.1 5.9-.9z"/></svg></span>
-          <span class="m-ico" data-side><svg viewBox="0 0 24 24"><path d="M5 20V11M10.5 20V5M16 20v-6M3 20.5h18"/></svg></span>
-          <span class="m-ico" data-side><svg viewBox="0 0 24 24"><path d="M6.5 3.5h8l4 4v13h-12zM14 3.5V8h4.5M9.5 12.5h6M9.5 16h6"/></svg></span>
-          <span class="m-ico" data-side><svg viewBox="0 0 24 24"><path d="M6 3.5h3.5l2 5L9 10a11 11 0 0 0 5 5l1.5-2.5 5 2V18a2.5 2.5 0 0 1-2.5 2.5A15 15 0 0 1 3.5 6 2.5 2.5 0 0 1 6 3.5z"/></svg></span>
+          <span class="m-nav" id="mockNav"></span>
           <span class="m-ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4.5 21a7.5 7.5 0 0 1 15 0"/></svg></span>
           <span class="m-pen"><svg viewBox="0 0 24 24"><path d="M4 20l4.5-1L19 8.5 15.5 5 5 15.5zM13.5 7l3.5 3.5"/></svg></span>
         </nav>
@@ -587,7 +633,7 @@
             <i class="m-av a2"></i>
             <div class="m-body">
               <div class="m-head"><span class="m-name">Juan</span><span class="m-handle">@juanbuis · 2h</span>
-                <span class="m-grok" data-grok><svg viewBox="0 0 24 24"><path d="M12 3v5M12 16v5M3 12h5M16 12h5M6 6l3 3M15 15l3 3M18 6l-3 3M9 15l-3 3"/></svg></span>
+                <span class="m-grok" data-grok><svg class="fill" viewBox="0 0 24 24"><path d="m9.27 15.28 7.98-5.92c.39-.29.95-.18 1.13.27a6.6 6.6 0 0 1-1.4 7.2 6.5 6.5 0 0 1-7.15 1.42L7.1 19.5a9 9 0 0 0 13.95-9.41h.01c-.98-4.25.24-5.95 2.75-9.42L24 .43l-3.3 3.32v-.01zm-1.65 1.44c-2.79-2.68-2.3-6.83.07-9.22a6.6 6.6 0 0 1 7.17-1.43l2.7-1.26a8.95 8.95 0 0 0-11.58.97 9.1 9.1 0 0 0-1.96 9.8c1.02 2.5-.65 4.27-2.34 6.06-.6.63-1.2 1.26-1.68 1.93z"/></svg></span>
                 <span class="m-more"><svg viewBox="0 0 24 24"><path d="M5 12h.01M12 12h.01M19 12h.01" stroke-width="3"/></svg></span>
               </div>
               <div class="m-text"><i class="bar" style="width: 92%"></i><i class="bar" style="width: 64%"></i></div>
@@ -607,8 +653,8 @@
           </div>
         </div>
         <div class="m-dock">
-          <span class="m-bubble" data-grok><svg viewBox="0 0 24 24"><path d="M12 3v5M12 16v5M3 12h5M16 12h5M6 6l3 3M15 15l3 3M18 6l-3 3M9 15l-3 3"/></svg></span>
-          <span class="m-bubble" data-side><svg viewBox="0 0 24 24"><path d="M4 5.5h16v11H10l-6 4z"/></svg></span>
+          <span class="m-bubble" data-grok><svg class="fill" viewBox="0 0 24 24"><path d="m9.27 15.28 7.98-5.92c.39-.29.95-.18 1.13.27a6.6 6.6 0 0 1-1.4 7.2 6.5 6.5 0 0 1-7.15 1.42L7.1 19.5a9 9 0 0 0 13.95-9.41h.01c-.98-4.25.24-5.95 2.75-9.42L24 .43l-3.3 3.32v-.01zm-1.65 1.44c-2.79-2.68-2.3-6.83.07-9.22a6.6 6.6 0 0 1 7.17-1.43l2.7-1.26a8.95 8.95 0 0 0-11.58.97 9.1 9.1 0 0 0-1.96 9.8c1.02 2.5-.65 4.27-2.34 6.06-.6.63-1.2 1.26-1.68 1.93z"/></svg></span>
+          <span class="m-bubble" data-nav="chatBubble" id="mockChatBubble"></span>
         </div>
       </div>
     </div>
@@ -617,6 +663,7 @@
   <p class="footer">A project by <a href="https://juanbuis.com" target="_blank">Juan Buis</a> — <a href="https://x.com/juanbuis" target="_blank">follow me on X for updates</a> :)</p>
 
   <script src="rate.js"></script>
+  <script src="nav-items.js"></script>
   <script src="welcome.js"></script>
 </body>
 </html>

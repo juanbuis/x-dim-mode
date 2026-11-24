@@ -17,7 +17,7 @@ document.getElementById("version").textContent = version ? `v${version}` : "";
 
 // ── Settings (local first, as content.js reads them) ───────────────
 
-const KEYS = ["theme", "customHue", "birdLogo", "tweetWording", "hideGrok", "simpleSidebar", "buttonColor", "buttonHex"];
+const KEYS = ["theme", "customHue", "birdLogo", "tweetWording", "hideGrok", "hiddenNav", "buttonColor", "buttonHex"];
 
 function getSettings(cb) {
   chrome.storage.sync.get(KEYS, (syncVals) => {
@@ -99,7 +99,8 @@ function renderMock(s) {
   mock.style.setProperty("--m-btn", fill);
   mock.style.setProperty("--m-btn-fg", buttonTextColor(fill));
   mock.classList.toggle("no-grok", !!s.hideGrok);
-  mock.classList.toggle("simple", !!s.simpleSidebar);
+  const hidden = new Set(s.hiddenNav || []);
+  for (const n of mock.querySelectorAll("[data-nav]")) n.classList.toggle("is-hidden", hidden.has(n.dataset.nav));
 
   const logo = document.getElementById("mockLogo");
   if (s.birdLogo) {
@@ -118,6 +119,33 @@ function renderMock(s) {
   document.getElementById("mockPost").textContent = msg(s.tweetWording ? "mockTweet" : "mockPost");
   document.getElementById("mockFollow").textContent = msg("mockFollow");
 }
+
+function navSvg(item) {
+  const svg = document.createElementNS(SVG_NS, "svg");
+  svg.setAttribute("viewBox", "0 0 24 24");
+  for (const [d, evenodd] of item.paths) {
+    const p = document.createElementNS(SVG_NS, "path");
+    p.setAttribute("d", d);
+    if (evenodd) p.setAttribute("fill-rule", "evenodd");
+    svg.appendChild(p);
+  }
+  return svg;
+}
+
+(function buildMockNav() {
+  const rail = document.getElementById("mockNav");
+  for (const item of NAV_ITEMS) {
+    if (item.bubble) {
+      document.getElementById("mockChatBubble").appendChild(navSvg(item));
+      continue;
+    }
+    const span = el("span", "m-ico");
+    span.dataset.nav = item.id;
+    if (item.id === "grok") span.dataset.grok = "";
+    span.appendChild(navSvg(item));
+    rail.appendChild(span);
+  }
+})();
 
 // ── Controls ───────────────────────────────────────────────────────
 // Real settings, not a demo: each one writes storage exactly as the popup and
@@ -210,7 +238,16 @@ function buildUpdatePanel() {
     if (v === "custom" && !state.buttonHex) write.buttonHex = state.buttonHex = DEFAULT_BUTTON_HEX;
     setSettings(write);
   });
-  panel.append(colors, switchRow("hideGrok", msg("hideGrok")), switchRow("simpleSidebar", msg("simpleSidebar")));
+  // Sidebar: X's own icons, tap one to hide it (same control as Extras).
+  const side = el("div", "row row-stack");
+  const sideLabel = el("span", "row-label");
+  sideLabel.textContent = msg("sidebarItems");
+  side.append(sideLabel, buildNavPicker(state.hiddenNav, (list) => {
+    state.hiddenNav = list;
+    setSettings({ hiddenNav: list });
+    renderMock(state);
+  }, msg));
+  panel.append(colors, switchRow("hideGrok", msg("hideGrok")), side);
 
   // Also in this update: the fixes, short. updateFeatureN is rewritten for
   // each release that shows this screen.
@@ -294,12 +331,13 @@ if (isUpdate) {
 // an email and a pin; adding a third thing there would cost more than it earns.
 // UTM tags so the click-through is measurable on the other side.
 if (isUpdate) {
-  const promo = document.getElementById("promo");
-  promo.href = "https://recipetables.com/?utm_source=xdimmode&utm_medium=update&utm_campaign=crosspromo";
+  const utm = "utm_source=xdimmode&utm_medium=update&utm_campaign=crosspromo";
   document.getElementById("promoEyebrow").textContent = msg("promoEyebrow");
-  document.getElementById("promoName").textContent = "RecipeTables";
+  document.getElementById("promoBackglow").href = `https://backglow.app/?${utm}`;
+  document.getElementById("promoBackglowDesc").textContent = msg("promoBackglowDesc");
+  document.getElementById("promoRecipe").href = `https://recipetables.com/?${utm}`;
   document.getElementById("promoDesc").textContent = msg("promoDesc");
-  promo.classList.add("show");
+  document.getElementById("promo").classList.add("show");
 }
 
 // ── Email ──────────────────────────────────────────────────────────
