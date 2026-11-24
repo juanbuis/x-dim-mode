@@ -4,114 +4,96 @@
   <meta charset="utf-8">
   <title>Dim Mode</title>
   <style>
+    /* Same tokens and components as popup.html (X's Nov 2026 design system in
+       Dim's navy). The card is Dim's page colour; the page around it is one
+       step darker, the way X sits a modal on its overlay. */
+    :root {
+      color-scheme: dark;
+      --bg: hsl(210, 34%, 13%);
+      --bg-deep: hsl(210, 34%, 9%);
+      --tint: rgba(255, 255, 255, 0.04);
+      --hover: rgba(255, 255, 255, 0.08);
+      --line: rgba(255, 255, 255, 0.15);
+      --line-soft: rgba(255, 255, 255, 0.08);
+      --fg: #F7F9F9;
+      --fg-2: hsl(210, 12%, 63%);
+      --fg-3: hsl(210, 12%, 40%);
+      --brand: #1D9BF0;
+      --btn: #F7F9F9;
+      --btn-hover: rgba(247, 249, 249, 0.85);
+      --btn-fg: #0F1419;
+      --danger: #F4212E;
+      --success: #00BA7C;
+    }
     * { margin: 0; padding: 0; box-sizing: border-box; }
+    ::selection { background: rgba(29, 155, 240, 0.4); }
     body {
       min-height: 100vh;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      background: #0D1117;
-      color: #E7E9EA;
+      font: 15px/20px -apple-system, BlinkMacSystemFont, system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      background: var(--bg-deep);
+      color: var(--fg);
       display: flex;
       flex-direction: column;
       align-items: center;
       padding: 60px 20px;
     }
-    body::before {
-      content: "";
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 800px;
-      height: 600px;
-      background: radial-gradient(ellipse at center, rgba(29, 155, 240, 0.12) 0%, transparent 70%);
-      pointer-events: none;
-      z-index: 0;
+    a:focus-visible, button:focus-visible, input:focus-visible {
+      outline: 2px solid var(--fg);
+      outline-offset: 2px;
     }
     .container {
       max-width: 540px;
       width: 100%;
-      background: #15202B;
-      border: 1px solid #38444D;
-      border-radius: 16px;
+      background: var(--bg);
+      border: 1px solid var(--line-soft);
+      border-radius: 24px;
       padding: 36px;
       position: relative;
-      z-index: 1;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
     }
 
-    /* Close button */
+    /* Close button: X's round ghost icon button */
     .close-btn {
       position: absolute;
       top: 16px;
-      right: 16px;
-      width: 32px;
-      height: 32px;
+      inset-inline-end: 16px;
+      display: grid;
+      place-items: center;
+      width: 36px;
+      height: 36px;
       border-radius: 50%;
       border: none;
       background: transparent;
-      color: #536471;
-      font-size: 18px;
+      color: var(--fg-2);
       cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: background 0.2s, color 0.2s;
+      transition: background-color 0.2s, color 0.2s;
     }
-    .close-btn:hover {
-      background: rgba(255, 255, 255, 0.08);
-      color: #E7E9EA;
-    }
+    .close-btn:hover { background: var(--hover); color: var(--fg); }
+    .close-btn svg { width: 20px; height: 20px; }
 
     /* Header */
-    .icon {
-      width: 56px;
-      height: 56px;
-      margin-bottom: 16px;
-      border-radius: 12px;
-    }
-    h1 {
-      font-size: 24px;
-      font-weight: 700;
-      margin-bottom: 4px;
-    }
-    .version {
-      font-size: 14px;
-      color: #536471;
-      margin-bottom: 32px;
-    }
+    .icon { width: 56px; height: 56px; margin-bottom: 16px; border-radius: 14px; }
+    h1 { font-size: 23px; line-height: 28px; font-weight: 800; margin-bottom: 2px; }
+    .version { font-size: 13px; line-height: 16px; color: var(--fg-2); margin-bottom: 32px; }
 
     /* Heading & subtitle */
-    .heading {
-      font-size: 20px;
-      font-weight: 700;
-      margin-bottom: 8px;
-    }
-    .subtitle {
-      font-size: 15px;
-      color: #8B98A5;
-      line-height: 1.5;
-      margin-bottom: 20px;
-    }
+    .heading { font-size: 20px; line-height: 24px; font-weight: 800; margin-bottom: 8px; }
+    .subtitle { font-size: 15px; line-height: 22px; color: var(--fg-2); margin-bottom: 20px; }
     /* On the update screen the subtitle moves down to introduce the bullet
        list, where it needs air above it instead of sitting on the email box. */
-    .subtitle.leads-list {
-      margin-top: 26px;
-      margin-bottom: 8px;
-    }
+    .subtitle.leads-list { margin-top: 28px; margin-bottom: 8px; }
 
     /* Feature list */
-    .features {
-      list-style: none;
-      margin-bottom: 0;
-      padding-bottom: 4px;
-    }
+    .features { list-style: none; padding-bottom: 4px; }
     .features li {
       font-size: 15px;
-      color: #8B98A5;
-      padding: 8px 0;
+      line-height: 20px;
+      color: var(--fg-2);
+      padding: 7px 0;
       display: flex;
       align-items: flex-start;
-      gap: 10px;
-      line-height: 1.4;
+      gap: 12px;
     }
     .features li::before {
       content: "";
@@ -119,138 +101,94 @@
       width: 6px;
       height: 6px;
       border-radius: 50%;
-      background: #1D9BF0;
-      margin-top: 8px;
+      background: var(--brand);
+      margin-top: 7px;
     }
 
-    /* Action buttons */
-    .actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 24px;
-      margin-bottom: 8px;
-    }
-    .btn-primary {
+    /* Pill buttons: X's primary is white on dark, secondary an outline */
+    .actions { display: flex; flex-wrap: wrap; gap: 10px; margin: 24px 0 8px; }
+    .btn-primary, .btn-secondary {
       display: inline-flex;
       align-items: center;
       height: 40px;
       padding: 0 20px;
-      border-radius: 20px;
-      border: none;
-      background: #1D9BF0;
-      color: #fff;
-      font-size: 14px;
+      border-radius: 999px;
+      font: inherit;
+      font-size: 15px;
       font-weight: 700;
       cursor: pointer;
       text-decoration: none;
-      transition: opacity 0.2s;
       white-space: nowrap;
+      transition: background-color 0.2s;
     }
-    .btn-primary:hover { opacity: 0.85; }
-    .btn-secondary {
-      display: inline-flex;
-      align-items: center;
-      height: 40px;
-      padding: 0 20px;
-      border-radius: 20px;
-      border: 1px solid #38444D;
-      background: transparent;
-      color: #E7E9EA;
-      font-size: 14px;
-      font-weight: 600;
-      cursor: pointer;
-      text-decoration: none;
-      transition: border-color 0.2s, color 0.2s;
-      white-space: nowrap;
-    }
-    .btn-secondary:hover {
-      border-color: #1D9BF0;
-      color: #1D9BF0;
-    }
-    /* Email form */
+    .btn-primary { border: none; background: var(--btn); color: var(--btn-fg); }
+    .btn-primary:hover { background: var(--btn-hover); }
+    .btn-secondary { border: 1px solid var(--line); background: transparent; color: var(--fg); }
+    .btn-secondary:hover { background: var(--hover); }
+
+    /* Email form: X's info surface (brand tint), field and button in one pill */
     .email-section {
-      background: rgba(29, 155, 240, 0.12);
-      border: 1px solid rgba(29, 155, 240, 0.30);
-      border-radius: 12px;
+      background: color-mix(in srgb, var(--brand) 10%, var(--bg));
+      border: 1px solid color-mix(in srgb, var(--brand) 22%, transparent);
+      border-radius: 16px;
       padding: 20px;
       margin-top: 8px;
-      text-align: left;
+      text-align: start;
     }
-    .email-label {
-      font-size: 15px;
-      color: #8B98A5;
-      margin-bottom: 14px;
-      line-height: 1.5;
-    }
+    .email-label { font-size: 15px; line-height: 22px; color: var(--fg-2); margin-bottom: 14px; }
     .email-label strong {
-      color: #E7E9EA;
-      font-size: 17px;
-      font-weight: 700;
       display: block;
-      margin-bottom: 4px;
+      color: var(--fg);
+      font-size: 17px;
+      line-height: 22px;
+      font-weight: 800;
+      margin-bottom: 2px;
     }
     .email-row {
       display: flex;
-      border-radius: 24px;
-      border: 1px solid #38444D;
-      overflow: hidden;
-      transition: border-color 0.2s;
-      margin: 0;
+      gap: 4px;
+      padding: 4px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(0, 0, 0, 0.18);
+      transition: border-color 0.2s, box-shadow 0.2s;
     }
-    .email-row:focus-within { border-color: #1D9BF0; }
+    .email-row:focus-within { border-color: var(--brand); box-shadow: 0 0 0 1px var(--brand); }
     .email-input {
       flex: 1;
-      height: 44px;
-      padding: 0 16px;
+      min-width: 0;
+      height: 40px;
+      padding: 0 14px;
       border: none;
       background: transparent;
-      color: #E7E9EA;
-      font-size: 14px;
+      color: var(--fg);
+      font: inherit;
+      font-size: 15px;
       outline: none;
     }
-    .email-input::placeholder { color: #536471; }
+    .email-input::placeholder { color: var(--fg-2); }
     .email-btn {
-      height: 44px;
-      padding: 0 22px;
+      height: 40px;
+      padding: 0 20px;
       border: none;
-      background: #1D9BF0;
-      color: #fff;
-      font-size: 14px;
+      border-radius: 999px;
+      background: var(--btn);
+      color: var(--btn-fg);
+      font: inherit;
+      font-size: 15px;
       font-weight: 700;
       cursor: pointer;
-      transition: opacity 0.2s;
       white-space: nowrap;
+      transition: background-color 0.2s;
     }
-    .email-btn:hover { opacity: 0.85; }
-    .email-btn:disabled {
-      opacity: 0.5;
-      cursor: default;
-    }
+    .email-btn:hover { background: var(--btn-hover); }
+    .email-btn:disabled { opacity: 0.7; cursor: default; }
 
-    /* Success state */
-    .email-success {
-      display: none;
-      font-size: 14px;
-      color: #00BA7C;
-      padding: 10px 0 0;
-      margin: 0;
-    }
-    .follow-cta {
-      display: block;
-      margin-top: 6px;
-      font-size: 14px;
-      color: #1D9BF0;
-      text-decoration: none;
-    }
-    .follow-cta:hover { text-decoration: underline; }
-    .email-error {
-      display: none;
-      font-size: 13px;
-      color: #F4212E;
-      padding: 8px 0 0;
-      margin: 0;
-    }
+    /* Success / error */
+    .email-success { display: none; font-size: 14px; line-height: 18px; color: var(--success); padding-top: 10px; }
+    .follow-cta { display: block; margin-top: 6px; font-size: 14px; color: var(--brand); text-decoration: none; }
+    .follow-cta:hover { text-decoration: underline; text-underline-offset: 2px; }
+    .email-error { display: none; font-size: 13px; line-height: 16px; color: var(--danger); padding-top: 8px; }
 
     /* Pin hint (install only) */
     .pin-hint {
@@ -265,45 +203,31 @@
       align-items: flex-start;
       gap: 10px;
       font-size: 13px;
-      line-height: 1.45;
-      color: #8B98A5;
+      line-height: 18px;
+      color: var(--fg-2);
       text-align: start;
     }
     .pin-hint.show { display: flex; }
-    .pin-copy strong {
-      display: block;
-      color: #E7E9EA;
-      font-size: 14px;
-      margin-bottom: 2px;
-    }
+    .pin-copy strong { display: block; color: var(--fg); font-size: 14px; margin-bottom: 2px; }
     .pin-point {
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 2px;
+      gap: 4px;
       flex-shrink: 0;
       animation: pin-bob 1.6s ease-in-out infinite;
     }
     .pin-chip {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 28px;
-      height: 28px;
-      border-radius: 8px;
-      background: rgba(255, 255, 255, 0.08);
-      border: 1px solid #38444D;
+      display: grid;
+      place-items: center;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: var(--hover);
+      border: 1px solid var(--line);
     }
-    .pin-chip svg {
-      width: 16px;
-      height: 16px;
-      fill: #8B98A5;
-    }
-    .pin-arrow {
-      font-size: 16px;
-      line-height: 1;
-      color: #1D9BF0;
-    }
+    .pin-chip svg { width: 16px; height: 16px; fill: var(--fg-2); }
+    .pin-arrow { width: 16px; height: 16px; color: var(--brand); }
     @keyframes pin-bob {
       0%, 100% { transform: translateY(0); }
       50%      { transform: translateY(-6px); }
@@ -315,67 +239,31 @@
       .pin-hint.show { display: none; }
     }
 
-    /* Cross-promo (update screen only) — deliberately quiet: this is a
-       "same maker" note, not an ad. Muted card, small logo, no button. */
+    /* Cross-promo (update screen only): a quiet "same maker" note, not an ad.
+       Muted card, small logo, no button; the byline is sentence case. */
     .promo {
       display: none;
       align-items: center;
       gap: 14px;
       margin-top: 28px;
       padding: 14px 16px;
-      border: 1px solid #38444D;
-      border-radius: 12px;
+      border: 1px solid var(--line-soft);
+      border-radius: 16px;
       text-decoration: none;
-      transition: border-color 0.2s, background 0.2s;
+      transition: background-color 0.2s;
     }
     .promo.show { display: flex; }
-    .promo:hover {
-      border-color: #536471;
-      background: rgba(255, 255, 255, 0.03);
-    }
-    .promo-icon {
-      width: 40px;
-      height: 40px;
-      border-radius: 9px;
-      flex-shrink: 0;
-    }
+    .promo:hover { background: var(--hover); }
+    .promo-icon { width: 40px; height: 40px; border-radius: 10px; flex-shrink: 0; }
     .promo-copy { min-width: 0; }
-    .promo-eyebrow {
-      display: block;
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.6px;
-      text-transform: uppercase;
-      color: #536471;
-      margin-bottom: 3px;
-    }
-    .promo-name {
-      display: block;
-      font-size: 15px;
-      font-weight: 700;
-      color: #E7E9EA;
-      margin-bottom: 2px;
-    }
-    .promo-desc {
-      display: block;
-      font-size: 13px;
-      line-height: 1.4;
-      color: #8B98A5;
-    }
+    .promo-eyebrow { display: block; font-size: 13px; line-height: 16px; color: var(--fg-2); margin-bottom: 2px; }
+    .promo-name { display: block; font-size: 15px; line-height: 20px; font-weight: 700; color: var(--fg); }
+    .promo-desc { display: block; font-size: 13px; line-height: 18px; color: var(--fg-2); }
 
     /* Footer */
-    .footer {
-      margin-top: 20px;
-      font-size: 13px;
-      color: #536471;
-      text-align: center;
-      z-index: 1;
-    }
-    .footer a {
-      color: #1D9BF0;
-      text-decoration: none;
-    }
-    .footer a:hover { text-decoration: underline; }
+    .footer { margin-top: 20px; font-size: 13px; line-height: 16px; color: var(--fg-2); text-align: center; }
+    .footer a { color: var(--brand); text-decoration: none; }
+    .footer a:hover { text-decoration: underline; text-underline-offset: 2px; }
   </style>
 </head>
 <body>
@@ -387,7 +275,7 @@
       <!-- Chrome's own extensions glyph, in a chip shaped like the toolbar
            button, so the shape people are hunting for is right in front of
            them rather than only described in words. -->
-      <span class="pin-arrow">&uarr;</span>
+      <svg class="pin-arrow" viewBox="0 0 24 24"><path d="M12 20V5m-7 7 7-7 7 7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
       <span class="pin-chip">
         <svg viewBox="0 0 24 24"><path d="M20.5 11H19V7c0-1.1-.9-2-2-2h-4V3.5C13 2.12 11.88 1 10.5 1S8 2.12 8 3.5V5H4c-1.1 0-1.99.9-1.99 2v3.8H3.5c1.49 0 2.7 1.21 2.7 2.7s-1.21 2.7-2.7 2.7H2V20c0 1.1.9 2 2 2h3.8v-1.5c0-1.49 1.21-2.7 2.7-2.7 1.49 0 2.7 1.21 2.7 2.7V22H17c1.1 0 2-.9 2-2v-4h1.5c1.38 0 2.5-1.12 2.5-2.5S21.88 11 20.5 11z"/></svg>
       </span>
@@ -399,7 +287,7 @@
   </div>
 
   <div class="container">
-    <button class="close-btn" id="closeBtn" title="Close">&times;</button>
+    <button class="close-btn" id="closeBtn" title="Close" aria-label="Close"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
     <img class="icon" src="icons/icon128.png" alt="">
     <h1>Dim Mode</h1>
     <p class="version" id="version"></p>

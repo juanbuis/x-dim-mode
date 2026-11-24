@@ -3,84 +3,112 @@
 <head>
   <meta charset="utf-8">
   <style>
+    /* Same tokens and components as popup.html (X's Nov 2026 design system in
+       Dim's navy). */
+    :root {
+      color-scheme: dark;
+      --bg: hsl(210, 34%, 13%);
+      --tint: rgba(255, 255, 255, 0.04);
+      --hover: rgba(255, 255, 255, 0.08);
+      --line: rgba(255, 255, 255, 0.15);
+      --fg: #F7F9F9;
+      --fg-2: hsl(210, 12%, 63%);
+      --fg-3: hsl(210, 12%, 40%);
+      --brand: #1D9BF0;
+      --track: hsl(210, 11%, 46%);
+      --danger: #F4212E;
+      --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
     * { margin: 0; padding: 0; box-sizing: border-box; }
+    ::selection { background: rgba(29, 155, 240, 0.4); }
     body {
       width: 240px;
-      padding: 16px;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      background: #15202B;
-      color: #E7E9EA;
+      padding: 10px 16px 14px;
+      font: 15px/20px -apple-system, BlinkMacSystemFont, system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      background: var(--bg);
+      color: var(--fg);
     }
-    /* "Back" points right in RTL */
-    html[dir="rtl"] .back-arrow { display: inline-block; transform: scaleX(-1); }
+    a:focus-visible, button:focus-visible, input:focus-visible {
+      outline: 2px solid var(--fg);
+      outline-offset: 2px;
+    }
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip-path: inset(50%);
+      white-space: nowrap;
+    }
+
+    /* Header: X's round back button beside the title */
+    .head { display: flex; align-items: center; gap: 6px; margin: 0 0 2px -8px; }
+    [dir="rtl"] .head { margin: 0 -8px 2px 0; }
     .back {
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-      font-size: 12px;
-      color: #536471;
-      text-decoration: none;
-      margin-bottom: 12px;
-      transition: color 0.2s;
+      display: grid;
+      place-items: center;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      color: var(--fg);
+      transition: background-color 0.2s;
     }
-    .back:hover { color: #8B98A5; }
-    h2 {
-      font-size: 14px;
-      font-weight: 700;
-      margin-bottom: 12px;
+    .back:hover { background: var(--hover); }
+    .back svg { width: 20px; height: 20px; }
+    [dir="rtl"] .back svg { transform: scaleX(-1); }
+    h2 { font-size: 20px; line-height: 24px; font-weight: 800; }
+
+    /* Section labels: X's sentence-case subtext, not shouted */
+    .group {
+      margin: 18px 0 2px;
+      font-size: 13px;
+      line-height: 16px;
+      font-weight: 600;
+      color: var(--fg-2);
     }
+    .group:first-of-type { margin-top: 10px; }
+
+    /* Row + X's switch */
     .toggle-row {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 8px 0;
+      gap: 8px;
+      min-height: 40px;
     }
-    .label {
-      font-size: 14px;
-      color: #8B98A5;
-    }
-    .toggle {
-      position: relative;
-      width: 44px;
-      height: 24px;
-    }
-    .toggle input {
-      opacity: 0;
-      width: 0;
-      height: 0;
-    }
+    /* X uses 15px; 14px is what keeps every locale on one line at 240px. */
+    .label { font-size: 14px; line-height: 18px; color: var(--fg); }
+    .toggle { position: relative; flex-shrink: 0; width: 34px; height: 20px; }
+    .toggle input { position: absolute; opacity: 0; width: 0; height: 0; }
     .slider {
       position: absolute;
-      cursor: pointer;
       inset: 0;
-      background: #38444D;
-      border-radius: 24px;
-      transition: 0.2s;
+      cursor: pointer;
+      border-radius: 999px;
+      background: var(--track);
+      transition: background-color 0.2s var(--ease);
     }
     .slider::before {
       content: "";
       position: absolute;
-      height: 18px;
-      width: 18px;
-      left: 3px;
-      bottom: 3px;
-      background: #E7E9EA;
+      top: 2px;
+      left: 2px;
+      width: 16px;
+      height: 16px;
       border-radius: 50%;
-      transition: 0.2s;
+      background: #fff;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+      transition: transform 0.2s var(--ease);
     }
-    input:checked + .slider { background: #1D9BF0; }
-    input:checked + .slider::before { transform: translateX(20px); }
-    .group {
-      margin: 18px 0 4px;
-      font-size: 11px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.6px;
-      color: #536471;
-    }
-    .group:first-of-type { margin-top: 10px; }
-    /* Button color: same dots and slider as the popup's themes */
-    .swatches { display: flex; flex-shrink: 0; align-items: center; gap: 8px; }
+    input:checked + .slider { background: var(--brand); }
+    input:checked + .slider::before { transform: translateX(14px); }
+    input:focus-visible + .slider { outline: 2px solid var(--fg); outline-offset: 2px; }
+    [dir="rtl"] .slider::before { left: auto; right: 2px; }
+    [dir="rtl"] input:checked + .slider::before { transform: translateX(-14px); }
+
+    /* Button color: X's colour picker dots */
+    .swatches { display: flex; flex-shrink: 0; align-items: center; gap: 10px; }
     .swatch {
       width: 20px;
       height: 20px;
@@ -88,108 +116,100 @@
       border: none;
       cursor: pointer;
       padding: 0;
-      transition: transform 0.15s ease, outline-color 0.2s;
       outline: 2px solid transparent;
       outline-offset: 2px;
-      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.12);
+      transition: outline-color 0.15s;
       -webkit-appearance: none;
       appearance: none;
     }
-    .swatch:hover { transform: scale(1.15); }
-    .swatch.active { outline-color: #1D9BF0; }
+    .swatch:hover { outline-color: rgba(247, 249, 249, 0.3); }
+    .swatch.active { outline-color: var(--fg); }
+    .swatch:focus-visible { outline-color: var(--brand); }
     .swatch-white { background: #EFF3F4; }
-    .swatch-theme { background: #1D9BF0; }
-    .color-wrap { display: none; padding: 2px 0 8px; }
+    .swatch-theme { background: var(--brand); }
+    .color-wrap { display: none; padding: 4px 0 8px; }
     .color-wrap.open { display: block; }
     .hue-slider {
       -webkit-appearance: none;
       appearance: none;
       display: block;
       width: 100%;
-      height: 16px;
+      height: 20px;
       background: transparent;
-      outline: none;
       cursor: pointer;
     }
     .hue-slider::-webkit-slider-runnable-track {
-      height: 8px;
-      border-radius: 4px;
+      height: 6px;
+      border-radius: 999px;
       background: linear-gradient(to right, #f00, #ff0, #0f0, #0ff, #00f, #f0f, #f00);
     }
     .hue-slider::-webkit-slider-thumb {
       -webkit-appearance: none;
       width: 16px;
       height: 16px;
-      margin-top: -4px;
+      margin-top: -5px;
       border-radius: 50%;
-      border: 2px solid #fff;
       background: #fff;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
-      cursor: pointer;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
     }
     .hue-slider::-moz-range-track {
-      height: 8px;
-      border-radius: 4px;
+      height: 6px;
       border: none;
+      border-radius: 999px;
       background: linear-gradient(to right, #f00, #ff0, #0f0, #0ff, #00f, #f0f, #f00);
     }
     .hue-slider::-moz-range-thumb {
-      width: 12px;
-      height: 12px;
+      width: 16px;
+      height: 16px;
+      border: none;
       border-radius: 50%;
-      border: 2px solid #fff;
       background: #fff;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
-      cursor: pointer;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
     }
     .hex-input {
       display: block;
       width: 100%;
+      height: 36px;
       margin-top: 8px;
-      padding: 6px 8px;
+      padding: 0 12px;
       font: 13px ui-monospace, SFMono-Regular, Menlo, monospace;
-      color: #E7E9EA;
-      background: #192734;
-      border: 1px solid #38444D;
-      border-radius: 6px;
+      color: var(--fg);
+      background: var(--tint);
+      border: 1px solid var(--line);
+      border-radius: 12px;
       outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
     }
-    .hex-input:focus { border-color: #1D9BF0; }
-    .hex-input.invalid { border-color: #F4212E; }
+    .hex-input:focus { border-color: var(--brand); box-shadow: 0 0 0 1px var(--brand); }
+    .hex-input.invalid { border-color: var(--danger); box-shadow: 0 0 0 1px var(--danger); }
+
     /* Feedback row: report + review. Two links, each kept on one line, so at
        240px a long locale wraps between them rather than inside one. */
     .feedback {
       display: flex;
       flex-wrap: wrap;
-      gap: 0 12px;
-      margin-top: 12px;
-      font-size: 12px;
-      color: #536471;
+      gap: 2px 12px;
+      margin-top: 18px;
+      font-size: 13px;
+      line-height: 16px;
     }
-    .feedback a {
-      color: #536471;
+    .feedback a, .footer a {
+      color: var(--fg-2);
       text-decoration: none;
       white-space: nowrap;
       transition: color 0.2s;
     }
-    .feedback a:hover { color: #8B98A5; }
-    .footer {
-      margin-top: 14px;
-      font-size: 12px;
-      color: #536471;
-    }
-    .footer a {
-      color: #536471;
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-    .footer a:hover { color: #8B98A5; }
+    .feedback a:hover, .footer a:hover { color: var(--fg); }
+    .footer { margin-top: 8px; font-size: 13px; line-height: 16px; color: var(--fg-3); }
     .footer-sep { margin: 0 4px; }
   </style>
 </head>
 <body>
-  <a class="back" href="popup.html"><span class="back-arrow">&larr;</span> <span id="backLabel"></span></a>
-  <h2 id="extrasTitle"></h2>
+  <header class="head">
+    <a class="back" href="popup.html"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 12H5m6-7-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="sr-only" id="backLabel"></span></a>
+    <h2 id="extrasTitle"></h2>
+  </header>
 
   <!-- Grouped rather than one flat list: six unrelated toggles in a row gave no
        sense of what each one affects. Headings are cheap and scale as more land. -->
