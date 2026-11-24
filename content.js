@@ -375,6 +375,13 @@ const STATIC_CSS = `
   html.${DIM_CLASS} .xdm-dimmed-divider {
     background-color: var(--xdm-border) !important;
   }
+  /* Scanner-discovered jetfuel badges and grey text (Creator Studio) */
+  html.${DIM_CLASS} .xdm-dimmed-badge {
+    background-color: var(--xdm-bg-elevated) !important;
+  }
+  html.${DIM_CLASS} .xdm-dimmed-text {
+    color: var(--xdm-text) !important;
+  }
   /* Scanner-discovered elevated backgrounds (e.g. section cards) */
   html.${DIM_CLASS} .xdm-dimmed-elevated {
     background-color: var(--xdm-bg-hover) !important;
@@ -1197,8 +1204,8 @@ function removeDim() {
     _pendingShallow.clear();
   }
   // Remove scanner-applied classes (non-destructive — doesn't touch original styles)
-  for (const el of document.querySelectorAll(".xdm-dimmed, .xdm-dimmed-elevated, .xdm-dimmed-divider")) {
-    el.classList.remove("xdm-dimmed", "xdm-dimmed-elevated", "xdm-dimmed-divider");
+  for (const el of document.querySelectorAll(".xdm-dimmed, .xdm-dimmed-elevated, .xdm-dimmed-divider, .xdm-dimmed-badge, .xdm-dimmed-text")) {
+    el.classList.remove("xdm-dimmed", "xdm-dimmed-elevated", "xdm-dimmed-divider", "xdm-dimmed-badge", "xdm-dimmed-text");
   }
 }
 
@@ -1325,21 +1332,38 @@ function dimSubtree(root) {
   }
 }
 
+// Pure neutral grey, as X's jetfuel framework (Creator Studio) hard-codes it:
+// "rgb(115, 115, 115)" or "rgba(115, 115, 115, 1)". Returns the channel or -1.
+function neutralChannel(c) {
+  const m = /^rgba?\((\d+), (\d+), (\d+)(?:, ([\d.]+))?\)$/.exec(c || "");
+  if (!m || (m[4] !== undefined && +m[4] < 0.5)) return -1;
+  const r = +m[1], g = +m[2], b = +m[3];
+  return Math.max(r, g, b) - Math.min(r, g, b) <= 2 ? r : -1;
+}
+
 function dimElement(el) {
-  if (!el || el.nodeType !== 1 || el.classList.contains("xdm-dimmed") ||
-      el.classList.contains("xdm-dimmed-elevated") || el.classList.contains("xdm-dimmed-divider")) return;
+  if (!el || el.nodeType !== 1) return;
   const jf = el.classList.contains("jf-element");
-  const bg = jf
-    ? (() => { try { return getComputedStyle(el).backgroundColor; } catch { return ""; } })()
-    : el.style.backgroundColor;
+  const cs = jf ? (() => { try { return getComputedStyle(el); } catch { return null; } })() : null;
+  // Jetfuel text greys (Creator Studio subtitles, #737373 and friends) have
+  // no token and a hashed class, so the computed colour is the only signal.
+  if (cs && !el.classList.contains("xdm-dimmed-text")) {
+    const t = neutralChannel(cs.color);
+    if (t >= 80 && t <= 200) el.classList.add("xdm-dimmed-text");
+  }
+  if (el.classList.contains("xdm-dimmed") || el.classList.contains("xdm-dimmed-elevated") ||
+      el.classList.contains("xdm-dimmed-divider")) return;
+  const bg = cs ? cs.backgroundColor : el.style.backgroundColor;
   // rgb(23,23,23): jetfuel modal surface (Original Content Rewards "?" dialog)
   if (bg === "rgb(0, 0, 0)" || bg === "rgba(0, 0, 0, 1)" || bg === "rgb(20, 20, 20)" ||
       (jf && bg === "rgb(23, 23, 23)")) {
     el.classList.add("xdm-dimmed");
   } else if (bg === "rgb(24, 24, 27)") {
     el.classList.add("xdm-dimmed-elevated");
-  } else if (jf && bg === "rgb(38, 38, 38)" && !el.childElementCount) {
-    el.classList.add("xdm-dimmed-divider");
+  } else if (jf && neutralChannel(bg) >= 30 && neutralChannel(bg) <= 60) {
+    // #262626-ish: an empty one is a divider line, one with content is a
+    // filled badge ("Retired" on Revenue Sharing).
+    el.classList.add(el.childElementCount || el.textContent.trim() ? "xdm-dimmed-badge" : "xdm-dimmed-divider");
   }
 }
 
