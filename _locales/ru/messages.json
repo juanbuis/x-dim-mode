@@ -277,6 +277,14 @@
     "message": "Это можно изменить в любой момент в разделе «Дополнительно» меню Dim Mode.",
     "description": "Welcome screen: note under the switches"
   },
+  "notDimHelp": {
+    "message": "X всё ещё белый? Dim включается, когда в самом X выбрана тёмная тема.",
+    "description": "Welcome (install): why X may still look white. Dim only applies when X's own theme is dark"
+  },
+  "notDimLink": {
+    "message": "Выберите Dim в настройках отображения X",
+    "description": "Welcome (install): link to x.com/settings/display, where Dim Mode adds a Dim option"
+  },
   "alsoNew": {
     "message": "Также в этом обновлении",
     "description": "2.0 update screen: heading over the short list of fixes"

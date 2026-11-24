@@ -327,6 +327,20 @@ if (isUpdate) {
   actions.appendChild(rateBtn);
 }
 
+// "X still white?" — install only. The uninstall survey's top answer is "it
+// didn't work properly", and the quiet cause behind many of those is X's own
+// theme being Light, where Dim stands down on purpose. X's Appearance panel
+// carries a Dim row (content.js), so point straight at it.
+if (!isUpdate) {
+  const help = document.getElementById("notDim");
+  const link = el("a");
+  link.href = "https://x.com/settings/display";
+  link.target = "_blank";
+  link.textContent = msg("notDimLink");
+  help.append(msg("notDimHelp") + " ", link);
+  help.hidden = false;
+}
+
 // Cross-promo — update screen only. On install the page is already asking for
 // an email and a pin; adding a third thing there would cost more than it earns.
 // UTM tags so the click-through is measurable on the other side.

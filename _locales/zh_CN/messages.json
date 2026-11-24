@@ -277,6 +277,14 @@
     "message": "随时可在 Dim Mode 菜单的“更多功能”中更改。",
     "description": "Welcome screen: note under the switches"
   },
+  "notDimHelp": {
+    "message": "X 还是白色？只有当 X 本身设为深色时，Dim 才会生效。",
+    "description": "Welcome (install): why X may still look white. Dim only applies when X's own theme is dark"
+  },
+  "notDimLink": {
+    "message": "在 X 的显示设置中选择 Dim",
+    "description": "Welcome (install): link to x.com/settings/display, where Dim Mode adds a Dim option"
+  },
   "alsoNew": {
     "message": "本次更新还包括",
     "description": "2.0 update screen: heading over the short list of fixes"

@@ -277,6 +277,14 @@
     "message": "Du kannst das jederzeit unter Extras im Dim-Mode-Menü ändern.",
     "description": "Welcome screen: note under the switches"
   },
+  "notDimHelp": {
+    "message": "X noch weiß? Dim greift erst, wenn X selbst dunkel eingestellt ist.",
+    "description": "Welcome (install): why X may still look white. Dim only applies when X's own theme is dark"
+  },
+  "notDimLink": {
+    "message": "Dim in den Anzeigeeinstellungen von X wählen",
+    "description": "Welcome (install): link to x.com/settings/display, where Dim Mode adds a Dim option"
+  },
   "alsoNew": {
     "message": "Außerdem in diesem Update",
     "description": "2.0 update screen: heading over the short list of fixes"

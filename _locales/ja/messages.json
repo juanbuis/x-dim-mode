@@ -277,6 +277,14 @@
     "message": "Dim Mode のメニューの「その他の機能」からいつでも変更できます。",
     "description": "Welcome screen: note under the switches"
   },
+  "notDimHelp": {
+    "message": "Xが白いままですか？Dimは、X自体がダークに設定されているときに適用されます。",
+    "description": "Welcome (install): why X may still look white. Dim only applies when X's own theme is dark"
+  },
+  "notDimLink": {
+    "message": "Xの表示設定でDimを選ぶ",
+    "description": "Welcome (install): link to x.com/settings/display, where Dim Mode adds a Dim option"
+  },
   "alsoNew": {
     "message": "このアップデートのその他の変更",
     "description": "2.0 update screen: heading over the short list of fixes"

@@ -277,6 +277,14 @@
     "message": "يمكنك تغيير ذلك في أي وقت من «إضافات» في قائمة Dim Mode.",
     "description": "Welcome screen: note under the switches"
   },
+  "notDimHelp": {
+    "message": "هل ما زال X أبيض؟ يعمل Dim عندما يكون X نفسه على الوضع الداكن.",
+    "description": "Welcome (install): why X may still look white. Dim only applies when X's own theme is dark"
+  },
+  "notDimLink": {
+    "message": "اختر Dim في إعدادات العرض في X",
+    "description": "Welcome (install): link to x.com/settings/display, where Dim Mode adds a Dim option"
+  },
   "alsoNew": {
     "message": "وأيضًا في هذا التحديث",
     "description": "2.0 update screen: heading over the short list of fixes"

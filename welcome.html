@@ -209,6 +209,12 @@
     }
     .also li svg { width: 18px; height: 18px; margin-top: 1px; flex-shrink: 0; color: var(--success); }
 
+    /* "X still white?": the most common reason people think Dim is broken
+       is X's own theme being Light, where Dim stands down on purpose. */
+    .help { margin-top: 14px; font-size: 13px; line-height: 18px; color: var(--fg-2); }
+    .help a { color: var(--brand); text-decoration: none; }
+    .help a:hover { text-decoration: underline; text-underline-offset: 2px; }
+
     /* Pill buttons: X's primary is white on dark, secondary an outline */
     .actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 28px; }
     .btn-primary, .btn-secondary {
@@ -341,8 +347,8 @@
       display: grid;
       place-items: center;
       width: 40px;
-      height: 38px;
-      max-height: 38px;
+      height: 34px;
+      max-height: 34px;
       border-radius: 50%;
       color: var(--fg);
       transition: opacity 0.3s var(--ease), transform 0.3s var(--ease), max-height 0.35s var(--ease);
@@ -474,6 +480,7 @@
     .pin-hint.show { display: flex; }
     /* Room under the hint, so it never sits on the mock. */
     body.has-pin { padding-top: 104px; }
+    body.has-pin .stage { top: 104px; }
     .pin-copy strong { display: block; color: var(--fg); font-size: 14px; margin-bottom: 2px; }
     .pin-point { display: flex; flex-direction: column; align-items: center; gap: 4px; flex-shrink: 0; animation: pin-bob 1.6s ease-in-out infinite; }
     .pin-chip { display: grid; place-items: center; width: 30px; height: 30px; border-radius: 50%; background: var(--hover); border: 1px solid var(--line); }
@@ -517,8 +524,12 @@
     @media (max-width: 900px) {
       .pin-hint.show { display: none; }
       body, body.has-pin { padding: 64px 20px 32px; }
-      .page { grid-template-columns: minmax(0, 1fr); gap: 40px; }
-      .stage { position: static; order: -1; }
+      .page { grid-template-columns: minmax(0, 1fr); gap: 0; }
+      /* Headline, then the preview, then the controls: the preview alone
+         used to fill the first screen and hide what the page is about. */
+      .copy { display: contents; }
+      .brand, h1, .lede { order: -2; }
+      .stage { position: static; order: -1; margin-top: 28px; }
       h1 { font-size: 32px; line-height: 36px; }
     }
   </style>
@@ -588,6 +599,7 @@
       </div>
 
       <div class="actions" id="actions"></div>
+      <p class="help" id="notDim" hidden></p>
 
       <!-- Shown on the update screen only. Every release reaches the whole
            install base, which makes this the one recurring launch surface the

@@ -277,6 +277,14 @@
     "message": "Change these anytime under Extras in the Dim Mode menu.",
     "description": "Welcome screen: note under the switches"
   },
+  "notDimHelp": {
+    "message": "X still white? Dim waits until X itself is set to dark.",
+    "description": "Welcome (install): why X may still look white. Dim only applies when X's own theme is dark"
+  },
+  "notDimLink": {
+    "message": "Pick Dim in X's display settings",
+    "description": "Welcome (install): link to x.com/settings/display, where Dim Mode adds a Dim option"
+  },
   "alsoNew": {
     "message": "Also in this update",
     "description": "2.0 update screen: heading over the short list of fixes"
