@@ -10,16 +10,20 @@ let _classicFavicon = false;
 let _tweetWording = false;
 let _imageGrid = false;
 let _copyLinkFirst = false;
+let _buttonColor = "white";
+let _buttonHex = "";
+let _hideGrok = false;
+let _simpleSidebar = false;
 
 // ── Theme Definitions ──────────────────────────────────────────────
 
 const THEMES = {
-  dim:   { hue: 210, sat: 34 },
-  slate: { hue: 210, sat: 8  },
-  jade:  { hue: 150, sat: 34 },
-  plum:  { hue: 270, sat: 34 },
-  dusk:  { hue: 330, sat: 34 },
-  ember: { hue: 25,  sat: 34 },
+  dim:   { hue: 210, sat: 34, button: "#1d9bf0" },
+  slate: { hue: 210, sat: 8,  button: null },
+  jade:  { hue: 150, sat: 34, button: "#00ba7c" },
+  plum:  { hue: 270, sat: 34, button: "#7856ff" },
+  dusk:  { hue: 330, sat: 34, button: "#f91880" },
+  ember: { hue: 25,  sat: 34, button: "#ff7a00" },
 };
 
 let _theme = "dim";
@@ -31,7 +35,7 @@ let _customHue = 210;
 // local and fall back to sync — see getSettings for why that order matters.
 // Remote changes arrive via onChanged and are mirrored back into local.
 
-const SETTING_KEYS = ["enabled", "theme", "customHue", "birdLogo", "oldFont", "classicFavicon", "tweetWording", "followingTab", "imageGrid", "copyLinkFirst"];
+const SETTING_KEYS = ["enabled", "theme", "customHue", "birdLogo", "oldFont", "classicFavicon", "tweetWording", "followingTab", "imageGrid", "copyLinkFirst", "buttonColor", "buttonHex", "hideGrok", "simpleSidebar"];
 
 function getSettings(cb) {
   chrome.storage.sync.get(SETTING_KEYS, (syncVals) => {
@@ -209,7 +213,8 @@ function buildShadowCSS() {
   :host([data-theme="dark"]), [data-theme="dark"], .dark-theme {${important(chatTokens(paletteFromHue(h, s)))}
   }
   .bg-gray-0 { background-color: var(--xdm-bg) !important; }
-  .border-gray-50, .border-gray-100 { border-color: var(--xdm-border) !important; }`;
+  .border-gray-50, .border-gray-100 { border-color: var(--xdm-border) !important; }
+  ${buttonTokenCSS(':host([data-theme="dark"]), [data-theme="dark"], .dark-theme', true)}`;
 }
 
 
@@ -769,6 +774,161 @@ function applyCopyLinkFirst() {
 
 function removeCopyLinkFirst() {
   // Menus are rebuilt on every open, so there is nothing to undo on the page.
+}
+
+// ── Hide Grok ─────────────────────────────────────────────────────
+// The Nov 2026 redesign puts Grok in the nav, in a floating dock launcher,
+// on a button in every post's header ("Explain this post"), on profiles, and
+// in the composer ("Generate image"). Every one of them draws the same Grok
+// glyph, so the icon is the signal: language-independent, and it catches new
+// placements without a selector each. :not(:has()) keeps it to the innermost
+// control. Not gated on the dim class: it's a layout preference.
+
+const HIDEGROK_CSS_ID = "x-dim-hidegrok-css";
+const HIDEGROK_CLASS = "x-dim-hidegrok";
+const GROK_ICON = 'path[d^="m9.27 15.28 7.98-5.92"]';
+
+function ensureHideGrokCSS() {
+  if (document.getElementById(HIDEGROK_CSS_ID)) return;
+  const style = document.createElement("style");
+  style.id = HIDEGROK_CSS_ID;
+  style.textContent = `
+    html.${HIDEGROK_CLASS} a[href="/i/grok"],
+    html.${HIDEGROK_CLASS} :is(a, button):has(${GROK_ICON}):not(:has(:is(a, button) ${GROK_ICON})),
+    html.${HIDEGROK_CLASS} [data-slot="xds-dock-window"]:has([data-slot="xds-dock-launcher"] ${GROK_ICON}),
+    html.${HIDEGROK_CLASS} [data-testid="GrokDrawer"] {
+      display: none !important;
+    }
+  `;
+  (document.head || document.documentElement).appendChild(style);
+}
+
+function applyHideGrok() {
+  ensureHideGrokCSS();
+  document.documentElement.classList.add(HIDEGROK_CLASS);
+}
+
+function removeHideGrok() {
+  document.documentElement.classList.remove(HIDEGROK_CLASS);
+}
+
+// ── Simpler sidebar ───────────────────────────────────────────────
+// The redesign's sidebar grew to eleven items. This hides the ones that are
+// upsells or niche tools (Subscription, Creator Studio, Articles, Calls) and
+// the floating Chat launcher, which duplicates the Chat nav item. Matched by
+// href and icon, never by label. All of them stay reachable by URL.
+
+const SIDEBAR_CSS_ID = "x-dim-sidebar-css";
+const SIDEBAR_CLASS = "x-dim-simplesidebar";
+const SIDEBAR_HREFS = ["/i/premium", "/i/premium_sign_up", "/i/verified-choose",
+  "/i/jf/creators/studio", "/compose/articles", "/i/calls"];
+const CHAT_ICON = 'path[d^="M20.61 11.6c0-4.43-3.8"]';
+
+function ensureSidebarCSS() {
+  if (document.getElementById(SIDEBAR_CSS_ID)) return;
+  const style = document.createElement("style");
+  style.id = SIDEBAR_CSS_ID;
+  const links = SIDEBAR_HREFS.map((h) => `html.${SIDEBAR_CLASS} :is(nav, header) a[href="${h}"]`).join(",\n    ");
+  style.textContent = `
+    ${links},
+    html.${SIDEBAR_CLASS} [data-slot="xds-dock-window"]:has([data-slot="xds-dock-launcher"] ${CHAT_ICON}) {
+      display: none !important;
+    }
+  `;
+  (document.head || document.documentElement).appendChild(style);
+}
+
+function applySimpleSidebar() {
+  ensureSidebarCSS();
+  document.documentElement.classList.add(SIDEBAR_CLASS);
+}
+
+function removeSimpleSidebar() {
+  document.documentElement.classList.remove(SIDEBAR_CLASS);
+}
+
+// ── Button color ───────────────────────────────────────────────
+// X paints its primary buttons (Post, Follow) near-white in dark mode, with no
+// setting to change it. The dark label inside is the stable signal: the button's
+// own inline background vanishes on hover, but the label's color stays, and
+// nothing else on a dark page uses it. :not(:has()) keeps it to the innermost
+// control, since a "Who to follow" row is itself a button around a Follow button.
+
+const BUTTONS_CSS_ID = "x-dim-buttons-css";
+const CLICKABLE = ':is(button, a, [role="button"], [role="link"])';
+const PRIMARY_BUTTON = `html.${DIM_CLASS} ${CLICKABLE}:has([style*="color: rgb(15, 20, 25)"]):not(:has(${CLICKABLE}))`;
+
+// "Match theme" pairs each preset with one of X's own accent colors; Slate has no
+// color of its own, so it keeps X's white. A custom hue gets the same saturation
+// and lightness as X's blue.
+function themeButtonColor() {
+  if (_theme !== "custom") return (THEMES[_theme] || THEMES.dim).button;
+  const a = 0.88 * 0.47;
+  const f = (n) => {
+    const k = (n + _customHue / 30) % 12;
+    const v = 0.53 - a * Math.max(-1, Math.min(k - 3, 9 - k, 1));
+    return Math.round(v * 255).toString(16).padStart(2, "0");
+  };
+  return `#${f(0)}${f(8)}${f(4)}`;
+}
+
+// Dark text only on genuinely light colors. Plain contrast ratio would put dark
+// text on X's own blue, where X itself uses white.
+function buttonTextColor(hex) {
+  const [r, g, b] = [1, 3, 5].map((i) => {
+    const c = parseInt(hex.slice(i, i + 2), 16) / 255;
+    return c <= 0.03928 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4;
+  });
+  return 0.2126 * r + 0.7152 * g + 0.0722 * b > 0.4 ? "#0f1419" : "#ffffff";
+}
+
+function activeButtonColor() {
+  return _buttonColor === "theme" ? themeButtonColor()
+    : _buttonColor === "custom" && /^#[0-9a-f]{6}$/i.test(_buttonHex) ? _buttonHex
+    : null;
+}
+
+// The Nov 2026 redesign has no inline colours to match: every primary button
+// is bg-btn-primary + text-inverted, drawn from X's own --x-btn-primary
+// tokens. Overriding the tokens recolours them all (Post, Follow, Subscribe,
+// Chat's buttons) with X's own hover and pressed states intact. The label
+// colour is set on the button itself, so --x-fg-inverted changes nowhere
+// else. `scope` is the dark-theme selector for the page or a shadow root.
+function buttonTokenCSS(scope, imp) {
+  const color = activeButtonColor();
+  if (!color) return "";
+  const i = imp ? " !important" : "";
+  return `
+  ${scope} {
+    --x-btn-primary: ${color}${i};
+    --x-btn-primary-hover: color-mix(in srgb, ${color} 85%, #000)${i};
+    --x-btn-primary-pressed: color-mix(in srgb, ${color} 70%, #000)${i};
+  }
+  ${imp ? "" : `html.${DIM_CLASS} `}[class~="bg-btn-primary"] { --x-fg-inverted: ${buttonTextColor(color)}${i}; }`;
+}
+
+function applyButtonColor() {
+  const color = activeButtonColor();
+  sendShadowCSS(); // Chat's shadow roots carry the same tokens; see buildShadowCSS
+  if (!color) return removeButtonColor();
+  let style = document.getElementById(BUTTONS_CSS_ID);
+  if (!style) {
+    style = document.createElement("style");
+    style.id = BUTTONS_CSS_ID;
+    (document.head || document.documentElement).appendChild(style);
+  }
+  // Legacy UI (inline colours) first, then the redesign's tokens.
+  style.textContent = `
+    ${PRIMARY_BUTTON} { background-color: ${color} !important; }
+    ${PRIMARY_BUTTON}:hover { background-color: color-mix(in srgb, ${color} 85%, #000) !important; }
+    ${PRIMARY_BUTTON}:active { background-color: color-mix(in srgb, ${color} 70%, #000) !important; }
+    ${PRIMARY_BUTTON}, ${PRIMARY_BUTTON} * { color: ${buttonTextColor(color)} !important; }
+    ${buttonTokenCSS(`html.${DIM_CLASS}[data-theme="dark"], html.${DIM_CLASS} [data-theme="dark"], html.${DIM_CLASS} .dark-theme`, false)}
+  `;
+}
+
+function removeButtonColor() {
+  document.getElementById(BUTTONS_CSS_ID)?.remove();
 }
 
 // ── Classic Favicon & Tab Title ───────────────────────────────────
@@ -1512,7 +1672,7 @@ function fullRescan() {
 }
 
 // Init — single merged storage read (sync preferred, local fallback)
-getSettings(({ enabled, theme, customHue, birdLogo, oldFont, classicFavicon, tweetWording, followingTab, imageGrid, copyLinkFirst, buttonColor, buttonHex }) => {
+getSettings(({ enabled, theme, customHue, birdLogo, oldFont, classicFavicon, tweetWording, followingTab, imageGrid, copyLinkFirst, buttonColor, buttonHex, hideGrok, simpleSidebar }) => {
   _theme = theme ?? "dim";
   _customHue = customHue ?? 210;
   _birdLogo = !!birdLogo;
@@ -1522,6 +1682,10 @@ getSettings(({ enabled, theme, customHue, birdLogo, oldFont, classicFavicon, twe
   _followingTab = !!followingTab;
   _imageGrid = !!imageGrid;
   _copyLinkFirst = !!copyLinkFirst;
+  _buttonColor = buttonColor || "white";
+  _buttonHex = buttonHex || "";
+  _hideGrok = !!hideGrok;
+  _simpleSidebar = !!simpleSidebar;
 
   if (enabled === undefined) {
     // Genuinely first run — unless this device already recorded "off", in
@@ -1579,6 +1743,11 @@ getSettings(({ enabled, theme, customHue, birdLogo, oldFont, classicFavicon, twe
   // Apply classic image grid if enabled
   if (_imageGrid) applyImageGrid();
   if (_copyLinkFirst) applyCopyLinkFirst();
+  if (_hideGrok) applyHideGrok();
+  if (_simpleSidebar) applySimpleSidebar();
+
+  // Apply button color if set
+  applyButtonColor();
 
   // Apply classic favicon + tab title if enabled
   if (_classicFavicon) {
@@ -1681,6 +1850,7 @@ chrome.storage.onChanged.addListener((changes, area) => {
     ensureBaseCSS();
     syncThemeColor();
     updateSettingsButtonColor();
+    applyButtonColor();
   }
   if (changes.birdLogo) {
     _birdLogo = !!changes.birdLogo.newValue;
@@ -1702,6 +1872,21 @@ chrome.storage.onChanged.addListener((changes, area) => {
     _copyLinkFirst = !!changes.copyLinkFirst.newValue;
     if (_copyLinkFirst) applyCopyLinkFirst();
     else removeCopyLinkFirst();
+  }
+  if (changes.buttonColor || changes.buttonHex) {
+    if (changes.buttonColor) _buttonColor = changes.buttonColor.newValue || "white";
+    if (changes.buttonHex) _buttonHex = changes.buttonHex.newValue || "";
+    applyButtonColor();
+  }
+  if (changes.hideGrok) {
+    _hideGrok = !!changes.hideGrok.newValue;
+    if (_hideGrok) applyHideGrok();
+    else removeHideGrok();
+  }
+  if (changes.simpleSidebar) {
+    _simpleSidebar = !!changes.simpleSidebar.newValue;
+    if (_simpleSidebar) applySimpleSidebar();
+    else removeSimpleSidebar();
   }
   if (changes.oldFont) {
     _oldFont = !!changes.oldFont.newValue;

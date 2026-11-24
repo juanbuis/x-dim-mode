@@ -114,6 +114,22 @@
     "message": "「复制链接」置顶",
     "description": "Extras toggle: move Copy link to the top of X's share menu"
   },
+  "buttonColor": {
+    "message": "按钮颜色",
+    "description": "Extras row: color of X's primary buttons like Post and Follow"
+  },
+  "buttonColorWhite": {
+    "message": "白色",
+    "description": "Tooltip: keep X's white buttons"
+  },
+  "buttonColorTheme": {
+    "message": "跟随主题",
+    "description": "Tooltip: button color follows the current theme"
+  },
+  "buttonColorCustom": {
+    "message": "自定义",
+    "description": "Tooltip: choose your own button color"
+  },
   "classicFavicon": {
     "message": "经典网站图标"
   },
@@ -142,6 +158,18 @@
   "groupTimeline": {
     "message": "时间线",
     "description": "Extras section heading for timeline/layout toggles"
+  },
+  "groupDeclutter": {
+    "message": "精简",
+    "description": "Extras section heading: toggles that hide parts of X"
+  },
+  "hideGrok": {
+    "message": "隐藏 Grok",
+    "description": "Extras toggle: hide every Grok button and link on X"
+  },
+  "simpleSidebar": {
+    "message": "精简侧边栏",
+    "description": "Extras toggle: hide Subscription, Creator Studio, Articles and Calls from the sidebar, plus the floating Chat button"
   },
   "emailSubInstall": {
     "message": "X 一变，我们就更新 Extras 和修复。一年只发几封邮件。",

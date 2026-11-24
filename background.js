@@ -1,6 +1,6 @@
 // Keep in sync with EXTRAS_REVISION in popup.js — the two run in separate
 // contexts and cannot share a constant. Bump both when an extra is added.
-const EXTRAS_REVISION = 4;
+const EXTRAS_REVISION = 5;
 
 // A set-and-forget extension gives nobody a reason to open its popup, so the
 // asks that live there (review, follow) never get seen. A dot on the toolbar
@@ -33,7 +33,7 @@ function refreshExtrasBadge() {
 // where something is always listening. Keep this list in step with
 // SETTING_KEYS in content.js.
 const MIRRORED_KEYS = ["enabled", "theme", "customHue", "birdLogo", "oldFont", "classicFavicon",
-  "tweetWording", "followingTab", "imageGrid", "copyLinkFirst", "buttonColor", "buttonHex"];
+  "tweetWording", "followingTab", "imageGrid", "copyLinkFirst", "buttonColor", "buttonHex", "hideGrok", "simpleSidebar"];
 
 chrome.storage.onChanged.addListener((changes, area) => {
   if (changes.extrasSeenRevision) refreshExtrasBadge();

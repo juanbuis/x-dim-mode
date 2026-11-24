@@ -113,3 +113,8 @@ testids and icon paths broke silently.
   only looking at the screen does.
 - `--x-bg-alpha-NN` is the page colour at NN% (frosted sticky headers), not
   black. `--x-black-NN` is the one to leave black for media.
+- Legacy structural selectors misfire on new markup. A 1.x rule for "icon
+  containers in menu rows" matched the redesign's notification rows and put
+  a navy slab behind every icon. Audit for surfaces Dim painted (a background
+  with no `bg-` class and no inline style), not only for leftover greys: a
+  slab in our own palette passes every grey check.
