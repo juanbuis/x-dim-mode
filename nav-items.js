@@ -1,4 +1,4 @@
-// Sidebar items people can hide, shared by extras.html and welcome.html.
+// Sidebar items people can hide, shared by sidebar.html and welcome.html.
 // The icons are X's own (Nov 2026 redesign), so the picker looks like the
 // sidebar it controls and needs no label to be recognised in any language.
 // content.js keeps the matching hrefs (NAV_HREFS); keep the ids in step.
@@ -12,7 +12,9 @@ const NAV_ITEMS = [
     ["M20.61 11.6c0-4.43-3.8-8.11-8.6-8.11S3.38 7.17 3.38 11.6v.03a5 5 0 0 0 .25 1.75l.27.83q.15.42.29.9c.17.66.28 1.39.15 2.25a7 7 0 0 1-.58 1.84c1.26.37 2.53.05 3.98-.6l.45-.2.43.24c1.06.59 1.9 1.07 3.37 1.07 4.8 0 8.61-3.68 8.61-8.1m1.98 0c0 5.62-4.8 10.09-10.59 10.09a7.6 7.6 0 0 1-3.9-1.08c-1.86.76-3.99 1.18-6.19-.08l-.87-.5.51-.86c.54-.9.77-1.57.84-2.1.08-.52.02-.97-.1-1.45q-.1-.36-.25-.77l-.3-.91a7 7 0 0 1-.33-2.37C1.42 5.98 6.2 1.52 12 1.52s10.58 4.47 10.58 10.1"]] },
   { id: "calls", msg: "navCalls", paths: [
     ["M3 6.42A3.4 3.4 0 0 1 6.42 3h3.2l2.6 5.2-1.53 1.52a7 7 0 0 0 3.58 3.59l1.53-1.53 5.2 2.6v3.2A3.4 3.4 0 0 1 17.58 21 14.6 14.6 0 0 1 3 6.42m2 0C5 13.37 10.63 19 17.58 19c.78 0 1.42-.64 1.42-1.42v-1.96l-2.8-1.4-1 .99-.46.46-.61-.24a9.3 9.3 0 0 1-5.56-5.56l-.24-.61.46-.47 1-.99L8.38 5H6.41C5.64 5 5 5.64 5 6.42"]] },
-  { id: "grok", msg: "navGrok", paths: [
+  // Drawn in the welcome preview, but not offered in the pickers: "Hide Grok"
+  // removes it everywhere, and listing it twice read as two different things.
+  { id: "grok", msg: "navGrok", noPick: true, paths: [
     ["m9.27 15.28 7.98-5.92c.39-.29.95-.18 1.13.27a6.6 6.6 0 0 1-1.4 7.2 6.5 6.5 0 0 1-7.15 1.42L7.1 19.5a9 9 0 0 0 13.95-9.41h.01c-.98-4.25.24-5.95 2.75-9.42L24 .43l-3.3 3.32v-.01zm-1.65 1.44c-2.79-2.68-2.3-6.83.07-9.22a6.6 6.6 0 0 1 7.17-1.43l2.7-1.26a8.95 8.95 0 0 0-11.58.97 9.1 9.1 0 0 0-1.96 9.8c1.02 2.5-.65 4.27-2.34 6.06-.6.63-1.2 1.26-1.68 1.93z"]] },
   { id: "premium", msg: "navPremium", paths: [
     ["M16.74 9.43 10.5 16.2l-3.7-3.75 1.42-1.4 2.23 2.25 4.82-5.23z"],
@@ -40,6 +42,7 @@ function buildNavPicker(hidden, onChange, t) {
   wrap.className = "nav-picker";
   wrap.setAttribute("role", "group");
   for (const item of NAV_ITEMS) {
+    if (item.noPick) continue;
     const b = document.createElement("button");
     b.type = "button";
     b.className = "nav-item" + (item.bubble ? " is-bubble" : "");
@@ -61,7 +64,7 @@ function buildNavPicker(hidden, onChange, t) {
     b.addEventListener("click", () => {
       if (set.has(item.id)) set.delete(item.id); else set.add(item.id);
       sync();
-      onChange(NAV_ITEMS.map((i) => i.id).filter((id) => set.has(id)));
+      onChange(NAV_ITEMS.filter((i) => !i.noPick && set.has(i.id)).map((i) => i.id));
     });
     wrap.appendChild(b);
   }

@@ -23,7 +23,7 @@
     ::selection { background: rgba(29, 155, 240, 0.4); }
     body {
       width: 240px;
-      padding: 10px 16px 14px;
+      padding: 10px 16px 12px;
       font: 15px/20px -apple-system, BlinkMacSystemFont, system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       -webkit-font-smoothing: antialiased;
       background: var(--bg);
@@ -61,7 +61,7 @@
 
     /* Section labels: X's sentence-case subtext, not shouted */
     .group {
-      margin: 18px 0 2px;
+      margin: 14px 0 2px;
       font-size: 13px;
       line-height: 16px;
       font-weight: 600;
@@ -75,7 +75,7 @@
       justify-content: space-between;
       align-items: center;
       gap: 8px;
-      min-height: 40px;
+      min-height: 36px;
     }
     /* X uses 15px; 14px is what keeps every locale on one line at 240px. */
     .label { font-size: 14px; line-height: 18px; color: var(--fg); }
@@ -128,13 +128,16 @@
     .swatch:focus-visible { outline-color: var(--brand); }
     .swatch-white { background: #EFF3F4; }
     .swatch-theme { background: var(--brand); }
-    .color-wrap { display: none; padding: 4px 0 8px; }
-    .color-wrap.open { display: block; }
+    /* Custom colour: slider and hex on one line, so opening it never pushes
+       the page past the popup's 600px and into a scrollbar. */
+    .color-wrap { display: none; align-items: center; gap: 10px; padding: 0 0 4px; }
+    .color-wrap.open { display: flex; }
     .hue-slider {
       -webkit-appearance: none;
       appearance: none;
       display: block;
-      width: 100%;
+      flex: 1;
+      min-width: 0;
       height: 20px;
       background: transparent;
       cursor: pointer;
@@ -169,59 +172,33 @@
     }
     .hex-input {
       display: block;
-      width: 100%;
-      height: 36px;
-      margin-top: 8px;
-      padding: 0 12px;
+      flex-shrink: 0;
+      width: 84px;
+      height: 30px;
+      padding: 0 9px;
       font: 13px ui-monospace, SFMono-Regular, Menlo, monospace;
       color: var(--fg);
       background: var(--tint);
       border: 1px solid var(--line);
-      border-radius: 12px;
+      border-radius: 10px;
       outline: none;
       transition: border-color 0.2s, box-shadow 0.2s;
     }
     .hex-input:focus { border-color: var(--brand); box-shadow: 0 0 0 1px var(--brand); }
     .hex-input.invalid { border-color: var(--danger); box-shadow: 0 0 0 1px var(--danger); }
 
-    /* Sidebar items: X's own nav icons as toggles. Shown = full colour on a
-       tint; hidden = faded in a dashed outline. (No slash: the Grok logo is one.) */
-    .sidebar-block { padding: 10px 0 2px; }
-    .nav-picker {
-      display: grid;
-      grid-template-columns: repeat(5, 36px);
-      justify-content: space-between;
-      row-gap: 8px;
-      margin-top: 10px;
-    }
-    .nav-item {
-      position: relative;
-      display: grid;
-      place-items: center;
-      width: 36px;
-      height: 36px;
-      padding: 0;
-      border: none;
-      border-radius: 50%;
-      background: var(--tint);
+    /* Sidebar: its own page, like Extras is one of the popup's. */
+    .nav-row {
+      margin: 0 -8px;
+      padding: 0 8px;
+      border-radius: 10px;
       color: var(--fg);
-      cursor: pointer;
-      transition: background-color 0.2s, color 0.2s;
-      -webkit-appearance: none;
-      appearance: none;
+      text-decoration: none;
+      transition: background-color 0.2s;
     }
-    .nav-item:hover { background: var(--hover); }
-    .nav-item svg { width: 20px; height: 20px; fill: currentColor; }
-    .nav-item.is-bubble { box-shadow: inset 0 0 0 1px var(--line); }
-    .nav-item[aria-pressed="false"] {
-      background: transparent;
-      color: var(--fg-3);
-      box-shadow: none;
-      outline: 1.5px dashed var(--line);
-      outline-offset: -1.5px;
-    }
-    .nav-item[aria-pressed="false"]:focus-visible { outline: 2px solid var(--fg); outline-offset: 2px; }
-    .hint { margin-top: 8px; font-size: 13px; line-height: 16px; color: var(--fg-2); }
+    .nav-row:hover { background: var(--hover); }
+    .nav-row svg { width: 18px; height: 18px; color: var(--fg-2); flex-shrink: 0; }
+    [dir="rtl"] .nav-row svg { transform: scaleX(-1); }
 
     /* Feedback row: report + review. Two links, each kept on one line, so at
        240px a long locale wraps between them rather than inside one. */
@@ -229,19 +206,17 @@
       display: flex;
       flex-wrap: wrap;
       gap: 2px 12px;
-      margin-top: 18px;
+      margin-top: 12px;
       font-size: 13px;
       line-height: 16px;
     }
-    .feedback a, .footer a {
+    .feedback a {
       color: var(--fg-2);
       text-decoration: none;
       white-space: nowrap;
       transition: color 0.2s;
     }
-    .feedback a:hover, .footer a:hover { color: var(--fg); }
-    .footer { margin-top: 8px; font-size: 13px; line-height: 16px; color: var(--fg-3); }
-    .footer-sep { margin: 0 4px; }
+    .feedback a:hover { color: var(--fg); }
   </style>
 </head>
 <body>
@@ -250,8 +225,9 @@
     <h2 id="extrasTitle"></h2>
   </header>
 
-  <!-- Grouped rather than one flat list: six unrelated toggles in a row gave no
-       sense of what each one affects. Headings are cheap and scale as more land. -->
+  <!-- Three groups by what a row changes: how X looks, how the timeline
+       behaves, what gets removed. Sized to fit the popup's 600px without a
+       scrollbar, including with the custom colour controls open. -->
   <p class="group" id="groupLookLabel"></p>
   <div class="toggle-row">
     <span class="label" id="birdLabel"></span>
@@ -274,7 +250,13 @@
       <span class="slider"></span>
     </label>
   </div>
-
+  <div class="toggle-row">
+    <span class="label" id="tweetWordingLabel"></span>
+    <label class="toggle">
+      <input type="checkbox" id="tweetWordingToggle">
+      <span class="slider"></span>
+    </label>
+  </div>
   <div class="toggle-row">
     <span class="label" id="buttonColorLabel"></span>
     <div class="swatches">
@@ -286,22 +268,6 @@
   <div class="color-wrap" id="colorWrap">
     <input type="range" class="hue-slider" id="buttonHue" min="0" max="360" value="20">
     <input type="text" class="hex-input" id="buttonHex" dir="ltr" maxlength="7" spellcheck="false" autocomplete="off" placeholder="#ff5500" aria-label="Hex">
-  </div>
-
-  <div class="toggle-row">
-    <span class="label" id="tweetWordingLabel"></span>
-    <label class="toggle">
-      <input type="checkbox" id="tweetWordingToggle">
-      <span class="slider"></span>
-    </label>
-  </div>
-
-  <div class="toggle-row">
-    <span class="label" id="copyLinkFirstLabel"></span>
-    <label class="toggle">
-      <input type="checkbox" id="copyLinkFirstToggle">
-      <span class="slider"></span>
-    </label>
   </div>
 
   <p class="group" id="groupTimelineLabel"></p>
@@ -319,6 +285,13 @@
       <span class="slider"></span>
     </label>
   </div>
+  <div class="toggle-row">
+    <span class="label" id="copyLinkFirstLabel"></span>
+    <label class="toggle">
+      <input type="checkbox" id="copyLinkFirstToggle">
+      <span class="slider"></span>
+    </label>
+  </div>
 
   <p class="group" id="groupDeclutterLabel"></p>
   <div class="toggle-row">
@@ -328,23 +301,16 @@
       <span class="slider"></span>
     </label>
   </div>
-  <div class="sidebar-block">
+  <a class="toggle-row nav-row" id="sidebarRow" href="sidebar.html">
     <span class="label" id="sidebarLabel"></span>
-    <div id="sidebarPicker"></div>
-    <p class="hint" id="sidebarHint"></p>
-  </div>
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </a>
 
   <div class="feedback">
     <a id="reportLink"></a>
     <a id="rateLink" target="_blank"></a>
   </div>
-  <div class="footer">
-    <a href="https://x.com/juanbuis" target="_blank" id="creditLink"></a>
-    <span class="footer-sep">&middot;</span>
-    <a id="shareLink" target="_blank"></a>
-  </div>
   <script src="rate.js"></script>
-  <script src="nav-items.js"></script>
   <script src="extras.js"></script>
 </body>
 </html>

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <style>
+    /* Same tokens and components as extras.html. */
+    :root {
+      color-scheme: dark;
+      --bg: hsl(210, 34%, 13%);
+      --tint: rgba(255, 255, 255, 0.04);
+      --hover: rgba(255, 255, 255, 0.08);
+      --line: rgba(255, 255, 255, 0.15);
+      --fg: #F7F9F9;
+      --fg-2: hsl(210, 12%, 63%);
+      --fg-3: hsl(210, 12%, 40%);
+      --brand: #1D9BF0;
+      --track: hsl(210, 11%, 46%);
+      --danger: #F4212E;
+      --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    ::selection { background: rgba(29, 155, 240, 0.4); }
+    body {
+      width: 240px;
+      padding: 10px 16px 12px;
+      font: 15px/20px -apple-system, BlinkMacSystemFont, system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      background: var(--bg);
+      color: var(--fg);
+    }
+    a:focus-visible, button:focus-visible, input:focus-visible {
+      outline: 2px solid var(--fg);
+      outline-offset: 2px;
+    }
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip-path: inset(50%);
+      white-space: nowrap;
+    }
+
+    /* Header: X's round back button beside the title */
+    .head { display: flex; align-items: center; gap: 6px; margin: 0 0 2px -8px; }
+    [dir="rtl"] .head { margin: 0 -8px 2px 0; }
+    .back {
+      display: grid;
+      place-items: center;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      color: var(--fg);
+      transition: background-color 0.2s;
+    }
+    .back:hover { background: var(--hover); }
+    .back svg { width: 20px; height: 20px; }
+    [dir="rtl"] .back svg { transform: scaleX(-1); }
+    h2 { font-size: 20px; line-height: 24px; font-weight: 800; }
+
+    /* Row + X's switch */
+    .toggle-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      min-height: 36px;
+    }
+    /* X uses 15px; 14px is what keeps every locale on one line at 240px. */
+    .label { font-size: 14px; line-height: 18px; color: var(--fg); }
+    .toggle { position: relative; flex-shrink: 0; width: 34px; height: 20px; }
+    .toggle input { position: absolute; opacity: 0; width: 0; height: 0; }
+    .slider {
+      position: absolute;
+      inset: 0;
+      cursor: pointer;
+      border-radius: 999px;
+      background: var(--track);
+      transition: background-color 0.2s var(--ease);
+    }
+    .slider::before {
+      content: "";
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: #fff;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+      transition: transform 0.2s var(--ease);
+    }
+    input:checked + .slider { background: var(--brand); }
+    input:checked + .slider::before { transform: translateX(14px); }
+    input:focus-visible + .slider { outline: 2px solid var(--fg); outline-offset: 2px; }
+    [dir="rtl"] .slider::before { left: auto; right: 2px; }
+    [dir="rtl"] input:checked + .slider::before { transform: translateX(-14px); }
+
+    /* Each row: the item's own X icon, its name, and whether it shows. */
+    .hint { margin: 6px 0 8px; font-size: 13px; line-height: 16px; color: var(--fg-2); }
+    .toggle-row .label { display: flex; align-items: center; gap: 8px; min-width: 0; cursor: pointer; }
+    .toggle-row .label svg { width: 20px; height: 20px; fill: currentColor; flex-shrink: 0; }
+    .toggle-row .label span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .toggle-row.is-off .label { color: var(--fg-2); }
+    .toggle-row .label { transition: color 0.2s; }
+  </style>
+</head>
+<body>
+  <header class="head">
+    <a class="back" href="extras.html"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 12H5m6-7-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="sr-only" id="backLabel"></span></a>
+    <h2 id="title"></h2>
+  </header>
+  <p class="hint" id="hint"></p>
+  <div id="list"></div>
+  <script src="nav-items.js"></script>
+  <script src="sidebar.js"></script>
+</body>
+</html>

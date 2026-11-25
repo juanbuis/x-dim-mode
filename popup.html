@@ -225,25 +225,24 @@
       box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
     }
 
-    /* Extras row */
+    /* Extras row: a plain list row like the switch above it. It was a 48px
+       bordered card, the heaviest thing in the popup for a secondary page. */
     .extras-row {
       display: flex;
       align-items: center;
-      gap: 10px;
-      min-height: 48px;
-      margin-top: 10px;
-      padding: 0 12px;
-      border-radius: 16px;
-      border: 1px solid var(--line-soft);
-      background: var(--tint);
+      gap: 8px;
+      min-height: 36px;
+      margin: 6px -8px 0;
+      padding: 0 8px;
+      border-radius: 10px;
       color: var(--fg);
       text-decoration: none;
       font-size: 14px;
-      font-weight: 600;
+      line-height: 18px;
       transition: background-color 0.2s;
     }
     .extras-row:hover { background: var(--hover); }
-    .extras-row-icon { width: 18px; height: 18px; fill: var(--brand); flex-shrink: 0; }
+    .extras-row-icon { width: 16px; height: 16px; fill: var(--brand); flex-shrink: 0; }
     .extras-row-label { flex: 1; min-width: 0; }
     .extras-row-chevron { width: 18px; height: 18px; color: var(--fg-2); flex-shrink: 0; }
     [dir="rtl"] .extras-row-chevron { transform: scaleX(-1); }

@@ -167,11 +167,11 @@
   },
   "sidebarItems": {
     "message": "Боковое меню",
-    "description": "Extras: label above a row of X's sidebar icons that can be tapped to hide each item"
+    "description": "Extras: row that opens the Sidebar page, and that page's title"
   },
   "sidebarHint": {
-    "message": "Нажмите на значок, чтобы скрыть его в боковом меню X.",
-    "description": "Extras: hint under the sidebar icon row"
+    "message": "Выберите, что показывать в боковом меню X.",
+    "description": "Sidebar page (under Extras): one line above a list of X's sidebar items, each with a switch that shows or hides it"
   },
   "navExplore": {
     "message": "Обзор",

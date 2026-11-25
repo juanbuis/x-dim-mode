@@ -167,11 +167,11 @@
   },
   "sidebarItems": {
     "message": "الشريط الجانبي",
-    "description": "Extras: label above a row of X's sidebar icons that can be tapped to hide each item"
+    "description": "Extras: row that opens the Sidebar page, and that page's title"
   },
   "sidebarHint": {
-    "message": "اضغط على أيقونة لإخفائها من الشريط الجانبي في X.",
-    "description": "Extras: hint under the sidebar icon row"
+    "message": "اختر ما يظهر في الشريط الجانبي في X.",
+    "description": "Sidebar page (under Extras): one line above a list of X's sidebar items, each with a switch that shows or hides it"
   },
   "navExplore": {
     "message": "استكشاف",

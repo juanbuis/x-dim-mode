@@ -167,11 +167,11 @@
   },
   "sidebarItems": {
     "message": "Barre latérale",
-    "description": "Extras: label above a row of X's sidebar icons that can be tapped to hide each item"
+    "description": "Extras: row that opens the Sidebar page, and that page's title"
   },
   "sidebarHint": {
-    "message": "Touchez une icône pour la masquer de la barre latérale de X.",
-    "description": "Extras: hint under the sidebar icon row"
+    "message": "Choisissez ce qui s'affiche dans la barre latérale de X.",
+    "description": "Sidebar page (under Extras): one line above a list of X's sidebar items, each with a switch that shows or hides it"
   },
   "navExplore": {
     "message": "Explorer",

@@ -167,11 +167,11 @@
   },
   "sidebarItems": {
     "message": "사이드바",
-    "description": "Extras: label above a row of X's sidebar icons that can be tapped to hide each item"
+    "description": "Extras: row that opens the Sidebar page, and that page's title"
   },
   "sidebarHint": {
-    "message": "아이콘을 탭하면 X 사이드바에서 숨길 수 있어요.",
-    "description": "Extras: hint under the sidebar icon row"
+    "message": "X 사이드바에 표시할 항목을 선택하세요.",
+    "description": "Sidebar page (under Extras): one line above a list of X's sidebar items, each with a switch that shows or hides it"
   },
   "navExplore": {
     "message": "탐색하기",

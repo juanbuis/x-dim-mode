@@ -27,19 +27,12 @@ document.getElementById("groupTimelineLabel").textContent = chrome.i18n.getMessa
 document.getElementById("groupDeclutterLabel").textContent = chrome.i18n.getMessage("groupDeclutter");
 document.getElementById("hideGrokLabel").textContent = chrome.i18n.getMessage("hideGrok");
 document.getElementById("sidebarLabel").textContent = chrome.i18n.getMessage("sidebarItems");
-document.getElementById("sidebarHint").textContent = chrome.i18n.getMessage("sidebarHint");
 
-// Footer: credit + share (mirrors the popup footer — this page gets the most
-// engaged users and previously carried no promo at all)
-document.getElementById("creditLink").textContent = chrome.i18n.getMessage("credit");
+// Footer: report + review only. Follow and Share live in the popup's footer;
+// repeating them here pushed the list past the popup's height.
 const rateLink = document.getElementById("rateLink");
 rateLink.textContent = chrome.i18n.getMessage("engageRate");
 rateLink.href = RATE_URL;
-const shareLink = document.getElementById("shareLink");
-shareLink.textContent = chrome.i18n.getMessage("popupShareLink");
-shareLink.href = "https://x.com/intent/tweet?text=" +
-  encodeURIComponent("If you miss X's dark blue theme, Dim Mode brings it back \u2014 free extension:") +
-  "&url=" + encodeURIComponent("https://xdim.app");
 
 // Report-a-problem link (same prefilled mailto as the popup footer)
 const reportLink = document.getElementById("reportLink");
@@ -66,19 +59,12 @@ const TOGGLES = {
   hideGrok: hideGrokToggle,
 };
 
-// Sidebar items: X's own icons, tap to hide or show (nav-items.js).
+// Sidebar items are chosen on their own page (sidebar.html); here they only
+// count toward noteDelight.
 let _hiddenNav = [];
 chrome.storage.sync.get(["hiddenNav"], (syncVals) => {
   chrome.storage.local.get(["hiddenNav"], (localVals) => {
     _hiddenNav = localVals.hiddenNav !== undefined ? localVals.hiddenNav : (syncVals.hiddenNav || []);
-    document.getElementById("sidebarPicker").replaceChildren(
-      buildNavPicker(_hiddenNav, (list) => {
-        _hiddenNav = list;
-        chrome.storage.sync.set({ hiddenNav: list }, () => void chrome.runtime.lastError);
-        chrome.storage.local.set({ hiddenNav: list });
-        if (list.length) noteDelight();
-      }, (k) => chrome.i18n.getMessage(k))
-    );
   });
 });
 
