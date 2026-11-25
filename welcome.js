@@ -356,11 +356,19 @@ getSettings((s) => {
 
 // Pin hint — install only. On an update the extension is already there, and
 // most people have long since decided whether to pin it.
+// And not when it is already pinned: Chrome can say so (Firefox and Safari
+// cannot, so there the hint simply shows).
 if (!isUpdate) {
-  document.getElementById("pinHintTitle").textContent = msg("pinHintTitle");
-  document.getElementById("pinHintText").textContent = msg("pinHintText");
-  document.getElementById("pinHint").classList.add("show");
-  document.body.classList.add("has-pin");
+  const showPin = () => {
+    document.getElementById("pinHintTitle").textContent = msg("pinHintTitle");
+    document.getElementById("pinHintText").textContent = msg("pinHintText");
+    document.getElementById("pinHint").classList.add("show");
+    document.body.classList.add("has-pin");
+  };
+  let asked;
+  try { asked = chrome.action?.getUserSettings?.(); } catch { asked = null; }
+  if (asked && asked.then) asked.then((u) => { if (!u || !u.isOnToolbar) showPin(); }, showPin);
+  else showPin();
 }
 
 // ── Actions ────────────────────────────────────────────────────────

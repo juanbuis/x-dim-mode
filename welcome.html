@@ -542,8 +542,14 @@
       position: fixed;
       top: 14px;
       /* Logical, not physical: Chrome mirrors its toolbar in RTL, so on Arabic
-         the extensions button is top-left and the hint has to follow it. */
-      inset-inline-end: 28px;
+         the extensions button is top-left and the hint has to follow it.
+         The arrow is the hint's trailing item and lands about 124px from the
+         window edge: Chrome's puzzle button sits ~112px in (menu, profile,
+         puzzle) and ~148px when the media control is showing. A page cannot
+         read the toolbar, so this aims between the two. It used to sit at
+         the hint's leading end, ~270px in, under nothing. */
+      inset-inline-end: 109px;
+      flex-direction: row-reverse;
       z-index: 2;
       max-width: 260px;
       align-items: flex-start;
@@ -551,7 +557,7 @@
       font-size: 13px;
       line-height: 18px;
       color: var(--fg-2);
-      text-align: start;
+      text-align: end;
     }
     .pin-hint.show { display: flex; }
     /* Room under the hint, so it never sits on the mock. */
