@@ -16,6 +16,10 @@ Tous désactivés par défaut. N'activez que ce que vous voulez.
 • « Tweet, pas Post » : l'ancienne formulation, bouton de rédaction compris
 • Démarrer sur Abonnements : ouvrir sur Abonnements plutôt que Pour vous
 • Grille d'images classique : les publications à plusieurs images retrouvent l'ancienne grille, sans rien de coupé hors écran
+• « Copier le lien » d'abord : « Copier le lien » revient en haut du menu de partage
+• Couleur des boutons : les boutons Poster et Suivre en blanc, à la couleur de votre thème ou à celle de votre choix
+• Masquer Grok : retire Grok de la barre latérale, des publications et des profils
+• Barre latérale : choisissez les éléments affichés dans la barre latérale de X
 
 PLUS DOUX POUR LES YEUX
 Les fonds bleu foncé réduisent le halo : cette lueur que le texte blanc projette sur du noir pur et qui gêne la lecture en cas d'astigmatisme. C'est pour cela que beaucoup utilisaient Sombre, et pour cela que sa suppression a tant déplu.

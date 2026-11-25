@@ -42,6 +42,10 @@ All off by default. Turn on only the ones you want.
 • "Tweet, not Post" — the old wording, compose button included
 • Start on Following — open on Following instead of For You
 • Classic image grid — multi-image posts get the old grid, with nothing cropped off-screen
+• Copy link first — Copy link back at the top of the share menu
+• Button color — Post and Follow buttons in white, your theme color, or any color you pick
+• Hide Grok — removes Grok from the sidebar, posts, and profiles
+• Sidebar — choose which items show in X's sidebar
 
 
 EASIER ON THE EYES

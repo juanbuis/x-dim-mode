@@ -1,5 +1,18 @@
 # Changelog
 
+## 2.0.0
+
+- **New: made for the redesigned X.** X rebuilt its whole site in November. Dim now covers all of it: handles and timestamps, Chat bubbles, notifications, settings, Creator Studio and the lines between posts all match your theme again.
+- **New:** Dim is back as an option in X's own Appearance settings, between Light and Dark.
+- **New:** switching Dim on now puts X in Dim right away, even if X was set to Light. Pick "Use system setting" in X and you get light by day and Dim at night.
+- **New:** "Button color" (Extras) — Post and Follow buttons in white, your theme color, or any color you pick. Thanks to everyone who asked for it.
+- **New:** "Hide Grok" (Extras) — removes Grok from the sidebar, posts, profiles and the floating button.
+- **New:** "Sidebar" (Extras) — choose which items show in X's sidebar.
+- **New:** every Extra has a small info icon that says what it does.
+- **Improved:** the popup, Extras and welcome screens are redesigned to match the new X, and the welcome screen shows a live preview of your settings.
+- **Fixed:** the popup could say Dim was on while X stayed un-dimmed. If X itself is on Light, the popup now says so and offers a "Switch to Dim" button.
+- **Fixed:** the bird logo, "Tweet, not Post", the classic image grid, "Copy link first" and "Start on Following" work on the redesigned X.
+
 ## 1.8.4
 
 - **New name:** X Dim Mode is now called Dim Mode for Twitter / X. Same extension, same settings, nothing to do.

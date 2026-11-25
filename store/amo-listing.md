@@ -38,6 +38,10 @@ All off by default. Turn on only the ones you want.
 • "Tweet, not Post" — the old wording, compose button included
 • Start on Following — open on Following instead of For You
 • Classic image grid — multi-image posts get the old grid, with nothing cropped off-screen
+• Copy link first — Copy link back at the top of the share menu
+• Button color — Post and Follow buttons in white, your theme color, or any color you pick
+• Hide Grok — removes Grok from the sidebar, posts, and profiles
+• Sidebar — choose which items show in X's sidebar
 
 **Easier on the eyes**
 Dark blue backgrounds cut halation: the glow that white text throws against pure black, which makes reading harder if you have astigmatism. That is why a lot of people used Dim in the first place, and why its removal was so unwelcome.
@@ -81,6 +85,13 @@ one network request, and only when the user types an email address into the
 optional newsletter field and presses subscribe: a POST to
 https://xdim.app/api/subscribe. Nothing is sent otherwise, and there is no
 telemetry anywhere in the codebase.
+
+New in 2.0.0: when the user switches Dim on while X is showing its light theme,
+content.js sets X's own theme cookie (night_mode=2, on x.com / twitter.com) so
+that X switches to its dark theme, which is the one Dim recolors. It reads the
+same cookie to predict X's theme before first paint. No other cookie is read or
+written, and nothing is sent anywhere. New pages sidebar.html and tips.js are
+plain UI (a list of switches, and hover explanations in the Extras menu).
 ```
 
 ---

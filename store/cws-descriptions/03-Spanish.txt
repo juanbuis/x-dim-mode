@@ -16,6 +16,10 @@ Todos desactivados por defecto. Activa solo los que quieras.
 • «Tweet, no Post»: la terminología antigua, incluido el botón de redactar
 • Empezar en Siguiendo: abre en Siguiendo en lugar de Para ti
 • Cuadrícula de imágenes clásica: las publicaciones con varias imágenes recuperan la cuadrícula antigua, sin nada recortado fuera de pantalla
+• «Copiar enlace» primero: «Copiar enlace» vuelve a lo más alto del menú de compartir
+• Color de botones: los botones de Postear y Seguir en blanco, en el color de tu tema o en el que elijas
+• Ocultar Grok: quita Grok de la barra lateral, las publicaciones y los perfiles
+• Barra lateral: elige qué elementos se muestran en la barra lateral de X
 
 MÁS CÓMODO PARA LA VISTA
 Los fondos azul oscuro reducen la halación: el resplandor que produce el texto blanco sobre negro puro y que dificulta la lectura si tienes astigmatismo. Por eso mucha gente usaba Tenue, y por eso su retirada sentó tan mal.

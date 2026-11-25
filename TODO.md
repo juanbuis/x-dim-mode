@@ -1,86 +1,83 @@
-# Ship checklist — 1.7.0
+# Ship checklist — 2.0.0
 
-## Firefox (AMO) — DONE
+Live everywhere: **1.8.4** (Chrome Web Store and AMO checked 2026-11-25, nothing
+pending). 2.0.0 is prepared and **not submitted**.
 
-- [x] Uploaded `x-dim-mode-firefox-1.7.0.zip`; validated with 0 errors, 0 warnings
-- [x] Firefox for Android enabled (AMO locked the checkbox on from the
-      `gecko_android` manifest key — no separate submission exists)
-- [x] Release notes + reviewer notes filled in
-- [x] Auto-approved and **live**: https://addons.mozilla.org/firefox/addon/x-dim-mode/
-- [x] Listing summary and description rewritten; categories now
-      Appearance + Social & Communication
+## Packages (built 2026-11-25 with the rewritten `build.sh`)
 
-## Chrome Web Store — NEEDS JUAN
+- `~/Downloads/x-dim-mode-2.0.0.zip` — Chrome Web Store, Edge
+- `~/Downloads/x-dim-mode-firefox-2.0.0.zip` — AMO (desktop + Android)
+- Same files as 1.8.4 plus `nav-items.js`, `sidebar.html`, `sidebar.js`,
+  `tips.js`, `icons/backglow96.png`. Firefox manifest identical to 1.8.4 apart
+  from the version. `addons-linter`: 0 errors, 0 warnings, 0 notices.
 
-Chrome blocks every extension from scripting the Web Store and its dev console,
-so this half cannot be automated from here. Everything to paste is ready:
+## Before submitting
 
-- [ ] Upload `~/Downloads/x-dim-mode-1.7.0.zip`
-      (published version is currently 1.6.1 — verified against the live CRX)
-- [ ] Paste the detailed description from `store/chrome-listing.md`
-      — **the reminder you asked for: the current one still only sells themes**
-- [ ] Paste "What's new" from `store/release-notes-1.7.0.txt`
-- [ ] Leave the short description alone — it comes from the manifest
-      (`_locales/*/messages.json` → `extDescription`), already rewritten in all
-      10 locales, and typing it into the dashboard would override the translations
-- [ ] Work the **Privacy practices** tab from `store/cws-privacy-practices.txt`
-      — every field paste-ready, including the **host-permission justification**
-      (x.com / twitter.com / pro.x.com), which is easy to miss and blocks
-      submission on its own
-- [ ] Data usage there: tick **only** "Personally identifiable information",
-      policy URL `https://xdim.app/privacy`. Corrected — an earlier version of
-      this list said "tick nothing", which was wrong.
-- [ ] Paste the 10 localized descriptions from `store/cws-descriptions/`
-      (language dropdown at the top of the Store listing tab)
-- [ ] Optional: screenshots predate this release — the classic image grid and
-      the grouped Extras menu are the two worth showing
+- [ ] Load the **built zip** unpacked (not the source tree) and click through:
+      popup, Extras with the info icons, Sidebar page, welcome screen
+      (`?reason=install`) and 2.0 screen (`?reason=update`)
+- [ ] Fresh-install first run: remove and re-add, open x.com with X set to
+      Light. X should turn Dim by itself. Also checks the pin hint.
+- [ ] Old X design: if X serves it, check the Extras and that switching Dim on
+      from Light works (it reloads the tab once there)
+- [ ] Firefox: load the Firefox zip in about:debugging and repeat the first two
+- [ ] New screenshots (see below)
 
-## Firefox follow-up — data disclosure
+## Chrome Web Store
 
-1.7.0 shipped to AMO declaring `data_collection_permissions.required = ["none"]`,
-which tells the install prompt the add-on never transmits personal data. That is
-not quite right: the optional newsletter field sends an email address to
-MailerLite when a user chooses to enter one. `build.sh` now also declares
-`optional: ["personallyIdentifyingInfo"]` (linter clean).
+- [ ] `cws-publish cplloghlcgkjkogmbehmkhlleopnfogc ~/Downloads/x-dim-mode-2.0.0.zip`
+      (uploads and submits for review)
+- [ ] Paste the detailed description from `store/chrome-listing.md`, and the 10
+      localized ones from `store/cws-descriptions/` (four new Extras lines each)
+- [ ] Leave the short description alone: it comes from `extDescription`
+- [ ] Privacy tab: unchanged, but check the host-permission justification is
+      still filled in (`store/cws-privacy-practices.txt`)
+- [ ] Upload the new screenshots
 
-- [ ] Ship this in the next AMO upload. Not urgent enough to rush a 1.7.1 on its
-      own, but it should not sit for long — it is a disclosure accuracy issue,
-      and the fix is already in the build.
+## Firefox (AMO)
+
+- [ ] Upload `x-dim-mode-firefox-2.0.0.zip`
+- [ ] Release notes: `store/release-notes-2.0.0.txt`
+- [ ] Reviewer notes: `store/amo-listing.md` (now mentions the theme cookie)
+- [ ] Description from `store/amo-listing.md`; new screenshots
+
+## Safari (Mac App Store) — not ready
+
+- [ ] Add `nav-items.js`, `sidebar.html`, `sidebar.js`, `tips.js` to the Xcode
+      project (`build.sh` warns about each). `MARKETING_VERSION` is already 2.0.0.
+- [ ] `build.sh` now stages `dist/safari` from AGENTS.md's description, not
+      from the lost original: build the app and test on x.com before trusting it
+- [ ] The App Store Connect key IDs were in `NOTES.local.md`, which did not
+      survive the move to this Mac
+
+## Screenshots (1280×800 everywhere: CWS, AMO, Edge, Mac App Store)
+
+The four in `store/safari/screenshots/` and the three on AMO show the old X.
+New set, same files for every store:
+
+1. Dim is back — Home on the redesigned X, in Dim
+2. Before / after — X's black next to Dim
+3. In X's own settings — the Appearance panel with the Dim row
+4. Themes — the six themes and the custom color
+5. Extras — Button color, Hide Grok and the Sidebar page
+
+Also: `og-image.png` and the two `extras-demo` GIFs on xdim.app show the old X.
+
+## After release
+
+- [ ] Site: merge the `release/2.0-changelog` branch in `x-dim-mode-site` and deploy
+- [ ] Reply to the person who asked for button colors
+- [ ] Link the uninstall form to a Sheet, so reasons can be read by date
 
 ## Edge Add-ons — blocked
 
-The listing is complete and would publish on one click; the Microsoft Partner
-Center developer account still needs to clear verification. Account-specific
-detail is in NOTES.local.md (untracked).
+Unchanged: the Partner Center account still needs to clear verification
+(detail was in NOTES.local.md). The Chrome zip is what gets uploaded there.
 
-Everything else on Edge is done and waiting:
-- [x] Package 1.7.0 uploaded and verified (permissions reduced to `storage`)
-- [x] Privacy section complete and saved
-- [x] English store listing complete (description + 300x300 logo)
-- [x] Public, all 241 markets
-
-## Other stores — not worth doing
-
-- **Opera**: has its own store, but Opera also installs directly from the
-  Chrome Web Store. Not worth a second listing to maintain.
-- **Brave, Vivaldi, Arc**: all install from the Chrome Web Store. Already covered.
-- **Safari**: the only real gap. Needs an Xcode wrapper, a paid Apple Developer
-  account, and its own testing — a project, not a submission.
-
-## Before or shortly after
+## Still open from earlier releases
 
 - [ ] Manual test: image grid on a 4-image post, quote-tweet with images, and
-      the photo lightbox (the three cases never covered in testing)
-- [ ] Test the pin hint — only appears on a genuine install
-      (`reason=install`), so remove and re-add the unpacked extension
+      the photo lightbox
 - [ ] Delete test subscribers from MailerLite (search `+xdm-`)
-- [ ] Check MailerLite for `signup_source` values arriving
-      (extension-welcome / extension-update / extension-popup / website)
 - [ ] Reply to @cornholio74 (image-grid bug report) and the AMO 4★ reviewer
-      (Barbes, review id 2723590) — drafts are in the session notes
-
-## Note
-
-When testing locally, `localhost:4411` served a stale copy more than once this
-session. Rebuild with `./build.sh` and reload from the zip, or the changes look
-like they never landed.
+      (Barbes, review id 2723590)

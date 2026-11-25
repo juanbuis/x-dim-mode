@@ -16,6 +16,10 @@ Todos desligados por padrão. Ligue só o que você quiser.
 • "Tweet, não Post" — a nomenclatura antiga, incluindo o botão de publicar
 • Começar em Seguindo — abrir em Seguindo em vez de Para você
 • Grade de imagens clássica — posts com várias imagens voltam à grade antiga, sem nada cortado fora da tela
+• "Copiar link" primeiro — "Copiar link" volta ao topo do menu de compartilhar
+• Cor dos botões — os botões Postar e Seguir em branco, na cor do seu tema ou na que você escolher
+• Ocultar o Grok — remove o Grok da barra lateral, dos posts e dos perfis
+• Barra lateral — escolha quais itens aparecem na barra lateral do X
 
 MAIS CONFORTÁVEL PARA OS OLHOS
 Fundos azul escuro reduzem a halação: o brilho que o texto branco provoca sobre o preto puro e que dificulta a leitura para quem tem astigmatismo. É por isso que muita gente usava o Escurecido, e por isso a remoção foi tão mal recebida.

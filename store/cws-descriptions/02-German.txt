@@ -16,6 +16,10 @@ Standardmäßig alle aus. Schalten Sie nur ein, was Sie möchten.
 • „Tweet statt Post" – die alte Bezeichnung, inklusive Schreiben-Schaltfläche
 • Mit „Folge ich" starten – statt mit „Für dich"
 • Klassisches Bildraster – Beiträge mit mehreren Bildern im alten Raster, ohne dass etwas außerhalb des Bildschirms verschwindet
+• „Link kopieren" zuerst – „Link kopieren" steht im Teilen-Menü wieder ganz oben
+• Buttonfarbe – Posten- und Folgen-Schaltflächen in Weiß, in Ihrer Designfarbe oder in einer eigenen Farbe
+• Grok ausblenden – entfernt Grok aus der Seitenleiste, aus Beiträgen und Profilen
+• Seitenleiste – wählen Sie, was in der Seitenleiste von X erscheint
 
 SCHONENDER FÜR DIE AUGEN
 Dunkelblaue Hintergründe verringern die Halation: das Leuchten, das weißer Text auf reinem Schwarz erzeugt und das Lesen bei Astigmatismus erschwert. Genau deshalb haben viele Dim benutzt – und deshalb war das Entfernen so unwillkommen.
