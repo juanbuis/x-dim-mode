@@ -58,10 +58,10 @@
     "message": "Sombre est de retour dans les réglages d’affichage de X"
   },
   "updateFeature2": {
-    "message": "Les identifiants, les horodatages et les bulles du chat suivent à nouveau votre thème"
+    "message": "Activer Sombre bascule X aussitôt, même depuis le mode clair"
   },
   "updateFeature3": {
-    "message": "Le logo oiseau, « Tweet » et la grille d’images classique fonctionnent sur le nouveau X"
+    "message": "Les couleurs, le chat et les Extras classiques fonctionnent sur le nouveau X"
   },
   "tryNow": {
     "message": "Essayer maintenant"

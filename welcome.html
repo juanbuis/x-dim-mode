@@ -12,17 +12,23 @@
        Dim's navy). */
     :root {
       color-scheme: dark;
-      --bg: hsl(210, 34%, 13%);
-      --bg-deep: hsl(210, 34%, 8%);
+      /* The page wears the theme the person has picked: welcome.js sets
+         --h / --s (the theme's hue and saturation) and --brand (its accent),
+         so choosing Jade or Plum recolours the whole page, not only the
+         preview. Defaults are Dim's. */
+      --h: 210;
+      --s: 34%;
+      --bg: hsl(var(--h), var(--s), 13%);
+      --bg-deep: hsl(var(--h), var(--s), 8%);
       --tint: rgba(255, 255, 255, 0.04);
       --hover: rgba(255, 255, 255, 0.08);
       --line: rgba(255, 255, 255, 0.15);
       --line-soft: rgba(255, 255, 255, 0.08);
       --fg: #F7F9F9;
-      --fg-2: hsl(210, 12%, 63%);
-      --fg-3: hsl(210, 12%, 40%);
+      --fg-2: hsl(var(--h), calc(var(--s) * 0.35), 63%);
+      --fg-3: hsl(var(--h), calc(var(--s) * 0.35), 40%);
       --brand: #1D9BF0;
-      --track: hsl(210, 11%, 46%);
+      --track: hsl(var(--h), calc(var(--s) * 0.32), 46%);
       --btn: #F7F9F9;
       --btn-hover: rgba(247, 249, 249, 0.85);
       --btn-fg: #0F1419;
@@ -32,7 +38,8 @@
     }
     * { margin: 0; padding: 0; box-sizing: border-box; }
     ::selection { background: rgba(29, 155, 240, 0.4); }
-    html { background: var(--bg-deep); }
+    /* overflow-x: the glow behind the preview reaches past the page edge. */
+    html { background: var(--bg-deep); transition: background-color 0.35s var(--ease); overflow-x: clip; }
     body {
       min-height: 100vh;
       font: 15px/20px -apple-system, BlinkMacSystemFont, system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
@@ -109,12 +116,58 @@
       border-top: 1px solid var(--line-soft);
     }
     .panel-title + .row { border-top: none; }
-    .row-label { font-size: 15px; line-height: 20px; }
+    .row { padding: 10px 0; }
+    .row-text { min-width: 0; }
+    .row-label { display: block; font-size: 15px; line-height: 20px; }
+    .row-desc { margin-top: 2px; font-size: 13px; line-height: 18px; color: var(--fg-2); }
+    .row-stack .row-text { margin-bottom: 2px; }
+    /* Hue slider under Button color while Custom is picked */
+    .row-sub { border-top: none; min-height: 0; padding: 0 0 14px; }
+    .row-sub[hidden] { display: none; }
+    .hue-slider {
+      -webkit-appearance: none;
+      appearance: none;
+      display: block;
+      width: 100%;
+      height: 20px;
+      background: transparent;
+      cursor: pointer;
+    }
+    .hue-slider::-webkit-slider-runnable-track {
+      height: 6px;
+      border-radius: 999px;
+      background: linear-gradient(to right, #f00, #ff0, #0f0, #0ff, #00f, #f0f, #f00);
+    }
+    .hue-slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 18px;
+      height: 18px;
+      margin-top: -6px;
+      border-radius: 50%;
+      background: #fff;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+    }
+    .hue-slider::-moz-range-track {
+      height: 6px;
+      border: none;
+      border-radius: 999px;
+      background: linear-gradient(to right, #f00, #ff0, #0f0, #0ff, #00f, #f0f, #f00);
+    }
+    .hue-slider::-moz-range-thumb {
+      width: 18px;
+      height: 18px;
+      border: none;
+      border-radius: 50%;
+      background: #fff;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+    }
+    .hue-slider:focus-visible { outline: 2px solid var(--fg); outline-offset: 4px; border-radius: 999px; }
     .row-stack { flex-direction: column; align-items: stretch; gap: 10px; padding: 14px 0; }
 
     /* Sidebar items: X's nav icons as toggles (nav-items.js). Shown = full
        colour on a tint; hidden = faded in a dashed outline. (No slash: the Grok logo is one.) */
-    .nav-picker { display: grid; grid-template-columns: repeat(5, 38px); gap: 8px 10px; }
+    /* Nine items: one row on desktop, wrapping on phones. */
+    .nav-picker { display: flex; flex-wrap: wrap; gap: 8px; }
     .nav-item {
       position: relative;
       display: grid;
@@ -307,6 +360,20 @@
        the switches change. Every colour comes from the --m-* variables, which
        welcome.js derives exactly the way content.js does. */
     .stage { position: sticky; top: 40px; }
+    /* Light spilling from behind the preview, in the theme's accent: gives
+       the one product shot on the page some depth, and changes with it. */
+    .stage::before {
+      content: "";
+      position: absolute;
+      inset: -12% -5% -6%;
+      z-index: -1;
+      background:
+        radial-gradient(60% 55% at 72% 18%, color-mix(in srgb, var(--brand) 26%, transparent), transparent 70%),
+        radial-gradient(55% 50% at 18% 92%, color-mix(in srgb, var(--brand) 12%, transparent), transparent 72%);
+      filter: blur(24px);
+      pointer-events: none;
+      transition: background 0.35s var(--ease);
+    }
     .mock {
       --m-bg: hsl(210, 34%, 13%);
       --m-line: hsl(210, 16%, 26%);
@@ -380,6 +447,16 @@
     .m-av.a1 { background: url("icons/icon48.png") center / cover; }
     .m-av.a2 { background: linear-gradient(135deg, #f7b267, #f25f5c); }
     .m-av.a3 { background: linear-gradient(135deg, #7ad3a8, #2e8b8b); }
+    .m-av.a4 { background: linear-gradient(135deg, #b9a1ff, #6a5acd); }
+    /* A liked post and a link, as on a real timeline: the two spots of colour
+       X itself has. */
+    .m-acts .liked { color: #F91880; }
+    .m-acts .liked svg { fill: currentColor; }
+    .m-text .bar.link { background: var(--brand); opacity: 1; }
+    /* Second post: text only, clear of the dock in the corner. */
+    .m-post.p2 { border-top: 1px solid var(--m-line); border-bottom: none; padding-inline-end: 72px; }
+    .m-post.p2 .m-head { gap: 8px; }
+    .m-post.p2 .m-head .bar { height: 7px; }
     .m-btn {
       margin-inline-start: auto;
       flex-shrink: 0;
@@ -483,7 +560,7 @@
     @keyframes pin-bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
     @media (prefers-reduced-motion: reduce) { .pin-point { animation: none; } }
 
-    /* Cross-promo (update screen only): a quiet "same maker" note, not an ad. */
+    /* Cross-promo: a quiet "same maker" note, not an ad. */
     .promo { display: none; margin-top: 16px; }
     .promo.show { display: block; }
     .promo-eyebrow { display: block; font-size: 13px; line-height: 16px; color: var(--fg-2); margin: 0 0 8px; }
@@ -523,7 +600,9 @@
          used to fill the first screen and hide what the page is about. */
       .copy { display: contents; }
       .brand, h1, .lede { order: -2; }
-      .stage { position: static; order: -1; margin-top: 28px; }
+      .stage { position: relative; top: auto; order: -1; margin-top: 28px; }
+      /* No sideways overhang on phones: it would make the page scroll. */
+      .stage::before { inset: -8% 0 -4%; }
       h1 { font-size: 32px; line-height: 36px; }
     }
   </style>
@@ -594,9 +673,9 @@
 
       <div class="actions" id="actions"></div>
 
-      <!-- Shown on the update screen only. Every release reaches the whole
-           install base, which makes this the one recurring launch surface the
-           project has. Local image: the extension makes no remote requests. -->
+      <!-- Shown on both screens. Every release reaches the whole install base,
+           which makes this the one recurring launch surface the project has.
+           Local images: the extension makes no remote requests. -->
       <div class="promo" id="promo">
         <span class="promo-eyebrow" id="promoEyebrow"></span>
         <div class="promo-list">
@@ -641,12 +720,12 @@
                 <span class="m-grok" data-grok><svg class="fill" viewBox="0 0 24 24"><path d="m9.27 15.28 7.98-5.92c.39-.29.95-.18 1.13.27a6.6 6.6 0 0 1-1.4 7.2 6.5 6.5 0 0 1-7.15 1.42L7.1 19.5a9 9 0 0 0 13.95-9.41h.01c-.98-4.25.24-5.95 2.75-9.42L24 .43l-3.3 3.32v-.01zm-1.65 1.44c-2.79-2.68-2.3-6.83.07-9.22a6.6 6.6 0 0 1 7.17-1.43l2.7-1.26a8.95 8.95 0 0 0-11.58.97 9.1 9.1 0 0 0-1.96 9.8c1.02 2.5-.65 4.27-2.34 6.06-.6.63-1.2 1.26-1.68 1.93z"/></svg></span>
                 <span class="m-more"><svg viewBox="0 0 24 24"><path d="M5 12h.01M12 12h.01M19 12h.01" stroke-width="3"/></svg></span>
               </div>
-              <div class="m-text"><i class="bar" style="width: 92%"></i><i class="bar" style="width: 64%"></i></div>
+              <div class="m-text"><i class="bar" style="width: 92%"></i><i class="bar" style="width: 64%"></i><i class="bar link" style="width: 34%"></i></div>
               <div class="m-media"></div>
               <div class="m-acts">
                 <span><svg viewBox="0 0 24 24"><path d="M4 5.5h16v11H10l-6 4z"/></svg>24</span>
                 <span><svg viewBox="0 0 24 24"><path d="M7 7.5h10.5V11M17 16.5H6.5V13M15 5l2.5 2.5L15 10M9 19l-2.5-2.5L9 14"/></svg>18</span>
-                <span><svg viewBox="0 0 24 24"><path d="M12 20s-7.5-4.6-7.5-10.2A4.2 4.2 0 0 1 12 7.3a4.2 4.2 0 0 1 7.5 2.5C19.5 15.4 12 20 12 20z"/></svg>312</span>
+                <span class="liked"><svg viewBox="0 0 24 24"><path d="M12 20s-7.5-4.6-7.5-10.2A4.2 4.2 0 0 1 12 7.3a4.2 4.2 0 0 1 7.5 2.5C19.5 15.4 12 20 12 20z"/></svg>312</span>
                 <span><svg viewBox="0 0 24 24"><path d="M6.5 3.5h11v17l-5.5-3.8-5.5 3.8z"/></svg></span>
               </div>
             </div>
@@ -655,6 +734,13 @@
             <i class="m-av a3"></i>
             <div class="m-body"><i class="bar" style="width: 46%; background: var(--fg); opacity: .8"></i><i class="bar" style="width: 30%"></i></div>
             <b class="m-btn" id="mockFollow"></b>
+          </div>
+          <div class="m-post p2">
+            <i class="m-av a4"></i>
+            <div class="m-body">
+              <div class="m-head"><i class="bar" style="width: 26%; background: var(--fg); opacity: .8"></i><i class="bar" style="width: 20%"></i></div>
+              <div class="m-text"><i class="bar" style="width: 96%"></i><i class="bar" style="width: 78%"></i></div>
+            </div>
           </div>
         </div>
         <div class="m-dock">

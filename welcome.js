@@ -75,6 +75,25 @@ function buttonTextColor(hex) {
   return 0.2126 * r + 0.7152 * g + 0.0722 * b > 0.4 ? "#0F1419" : "#FFFFFF";
 }
 
+// Fully saturated colour for a hue, and back: the slider's whole range.
+function hueToHex(h) {
+  const f = (n) => {
+    const k = (n + h / 30) % 12;
+    const c = 0.5 - 0.5 * Math.max(-1, Math.min(k - 3, 9 - k, 1));
+    return Math.round(c * 255).toString(16).padStart(2, "0");
+  };
+  return `#${f(0)}${f(8)}${f(4)}`;
+}
+
+function hexToHue(hex) {
+  const n = parseInt(hex.slice(1), 16);
+  const r = (n >> 16) / 255, g = ((n >> 8) & 255) / 255, b = (n & 255) / 255;
+  const max = Math.max(r, g, b), d = max - Math.min(r, g, b);
+  if (!d) return 0;
+  const h = max === r ? ((g - b) / d) % 6 : max === g ? (b - r) / d + 2 : (r - g) / d + 4;
+  return Math.round((h * 60 + 360) % 360);
+}
+
 function customHex(s) {
   return /^#[0-9a-f]{6}$/i.test(s.buttonHex || "") ? s.buttonHex : DEFAULT_BUTTON_HEX;
 }
@@ -91,6 +110,11 @@ const SVG_NS = "http://www.w3.org/2000/svg";
 function renderMock(s) {
   const { hue: h, sat } = hueSat(s);
   const bSat = Math.round(sat * 0.47);
+  // The page itself takes the theme too (tokens in welcome.html :root).
+  const root = document.documentElement.style;
+  root.setProperty("--h", String(h));
+  root.setProperty("--s", `${sat}%`);
+  root.setProperty("--brand", themeButtonColor(s) || "#1D9BF0");
   mock.style.setProperty("--m-bg", `hsl(${h}, ${sat}%, 13%)`);
   mock.style.setProperty("--m-line", `hsl(${h}, ${bSat}%, 26%)`);
   mock.style.setProperty("--m-fg2", `hsl(${h}, ${Math.round(sat * 0.32)}%, 60%)`);
@@ -160,12 +184,27 @@ function el(tag, cls) {
   return e;
 }
 
-function switchRow(key, label) {
+// A row's words: its name and, under it, one line on what it does (the same
+// sentences the Extras info tips use). Without the line the panel was three
+// bare names, which undersold what 2.0 adds.
+function rowText(label, desc, forId) {
+  const wrap = el("div", "row-text");
+  const name = el(forId ? "label" : "span", "row-label");
+  if (forId) name.htmlFor = forId;
+  name.textContent = label;
+  wrap.appendChild(name);
+  if (desc) {
+    const d = el("p", "row-desc");
+    d.textContent = desc;
+    wrap.appendChild(d);
+  }
+  return wrap;
+}
+
+function switchRow(key, label, desc) {
   const row = el("div", "row");
   const id = `sw-${key}`;
-  const text = el("label", "row-label");
-  text.htmlFor = id;
-  text.textContent = label;
+  const text = rowText(label, desc, id);
   const toggle = el("label", "toggle");
   const input = el("input");
   input.type = "checkbox";
@@ -182,10 +221,9 @@ function switchRow(key, label) {
 }
 
 // options: [{ value, title, color }]; color may be a function of state.
-function dotsRow(label, options, isActive, pick) {
+function dotsRow(label, options, isActive, pick, desc) {
   const row = el("div", "row");
-  const text = el("span", "row-label");
-  text.textContent = label;
+  const text = rowText(label, desc);
   const dots = el("div", "dots");
   dots.setAttribute("role", "group");
   dots.setAttribute("aria-label", label);
@@ -220,9 +258,9 @@ function buildInstallPanel() {
       state.theme = v;
       setSettings({ theme: v });
     }),
-    switchRow("birdLogo", msg("birdLogo")),
-    switchRow("tweetWording", msg("tweetWording")),
-    switchRow("hideGrok", msg("hideGrok")),
+    switchRow("birdLogo", msg("birdLogo"), msg("tipBird")),
+    switchRow("tweetWording", msg("tweetWording"), msg("tipWording")),
+    switchRow("hideGrok", msg("hideGrok"), msg("tipHideGrok")),
   );
 }
 
@@ -237,17 +275,36 @@ function buildUpdatePanel() {
     const write = { buttonColor: v };
     if (v === "custom" && !state.buttonHex) write.buttonHex = state.buttonHex = DEFAULT_BUTTON_HEX;
     setSettings(write);
+    hueRow.hidden = v !== "custom";
+  }, msg("tipButtonColor"));
+
+  // Any colour: a hue slider under the dots while Custom is picked. Dragging
+  // recolours the preview's buttons live. Ticks go to local only (sync has a
+  // write quota); the release commits to both, as the popup's slider does.
+  const hueRow = el("div", "row row-sub");
+  const hue = el("input", "hue-slider");
+  hue.type = "range";
+  hue.min = "0";
+  hue.max = "360";
+  hue.value = String(hexToHue(customHex(state)));
+  hue.setAttribute("aria-label", msg("buttonColorCustom"));
+  hue.addEventListener("input", () => {
+    state.buttonHex = hueToHex(+hue.value);
+    chrome.storage.local.set({ buttonColor: "custom", buttonHex: state.buttonHex });
+    colors.refresh();
+    renderMock(state);
   });
+  hue.addEventListener("change", () => setSettings({ buttonColor: "custom", buttonHex: state.buttonHex }));
+  hueRow.appendChild(hue);
+  hueRow.hidden = (state.buttonColor || "white") !== "custom";
   // Sidebar: X's own icons, tap one to hide it (same control as Extras).
   const side = el("div", "row row-stack");
-  const sideLabel = el("span", "row-label");
-  sideLabel.textContent = msg("sidebarItems");
-  side.append(sideLabel, buildNavPicker(state.hiddenNav, (list) => {
+  side.append(rowText(msg("sidebarItems"), msg("sidebarHint")), buildNavPicker(state.hiddenNav, (list) => {
     state.hiddenNav = list;
     setSettings({ hiddenNav: list });
     renderMock(state);
   }, msg));
-  panel.append(colors, switchRow("hideGrok", msg("hideGrok")), side);
+  panel.append(colors, hueRow, switchRow("hideGrok", msg("hideGrok"), msg("tipHideGrok")), side);
 
   // Also in this update: the fixes, short. updateFeatureN is rewritten for
   // each release that shows this screen.
@@ -327,11 +384,11 @@ if (isUpdate) {
   actions.appendChild(rateBtn);
 }
 
-// Cross-promo — update screen only. On install the page is already asking for
-// an email and a pin; adding a third thing there would cost more than it earns.
-// UTM tags so the click-through is measurable on the other side.
-if (isUpdate) {
-  const utm = "utm_source=xdimmode&utm_medium=update&utm_campaign=crosspromo";
+// Cross-promo, on both screens: Juan's other projects, as a quiet "same maker"
+// note at the very end, after the email box and the buttons. UTM tags (medium
+// says which screen) so the click-through is measurable on the other side.
+{
+  const utm = `utm_source=xdimmode&utm_medium=${isUpdate ? "update" : "install"}&utm_campaign=crosspromo`;
   document.getElementById("promoEyebrow").textContent = msg("promoEyebrow");
   document.getElementById("promoBackglow").href = `https://backglow.app/?${utm}`;
   document.getElementById("promoBackglowDesc").textContent = msg("promoBackglowDesc");

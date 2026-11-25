@@ -58,10 +58,10 @@
     "message": "暗蓝重新回到 X 自己的显示设置中"
   },
   "updateFeature2": {
-    "message": "用户名、时间和聊天气泡重新与你的主题一致"
+    "message": "开启暗蓝后，即使 X 处于浅色模式也会立即切换"
   },
   "updateFeature3": {
-    "message": "小鸟图标、“推文”说法和经典图片网格在新版 X 上可用"
+    "message": "颜色、聊天和经典功能在新版 X 上可用"
   },
   "tryNow": {
     "message": "立即体验"
