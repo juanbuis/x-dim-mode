@@ -264,6 +264,11 @@
 
     /* Pill buttons: X's primary is white on dark, secondary an outline */
     .actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 28px; }
+    .actions:empty { display: none; }
+    .stage-actions { display: flex; justify-content: center; margin-top: 20px; }
+    .stage-actions .btn-secondary { gap: 8px; }
+    .stage-actions svg { width: 16px; height: 16px; flex-shrink: 0; }
+    [dir="rtl"] .stage-actions svg { transform: scaleX(-1); }
     .btn-primary, .btn-secondary {
       display: inline-flex;
       align-items: center;
@@ -697,8 +702,8 @@
       </div>
     </section>
 
-    <div class="stage" aria-hidden="true">
-      <div class="mock" id="mock">
+    <div class="stage">
+      <div class="mock" id="mock" aria-hidden="true">
         <nav class="m-rail">
           <span class="m-logo" id="mockLogo"></span>
           <span class="m-ico on"><svg viewBox="0 0 24 24"><path d="M3.5 10.2 12 3.5l8.5 6.7V20a1 1 0 0 1-1 1H15v-6H9v6H4.5a1 1 0 0 1-1-1z"/></svg></span>
@@ -748,6 +753,9 @@
           <span class="m-bubble" data-nav="chatBubble" id="mockChatBubble"></span>
         </div>
       </div>
+      <!-- "Try it now" belongs to the preview: this is a drawing, x.com is
+           the real thing. It used to float alone under the email box. -->
+      <div class="stage-actions" id="stageActions"></div>
     </div>
   </main>
 

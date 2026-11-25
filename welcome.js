@@ -364,14 +364,30 @@ if (!isUpdate) {
 }
 
 // ── Actions ────────────────────────────────────────────────────────
-// Secondary, never primary: a primary "Try it now" here used to win the click,
-// send people to x.com, and they never came back to the email box.
+// "Try it now" sits under the preview, as its action: the drawing is a
+// preview, x.com is the real thing. Secondary, never primary: a primary one
+// used to win the click, send people to x.com, and they never came back to the
+// email box.
 const actions = document.getElementById("actions");
 const tryBtn = el("a", "btn-secondary");
 tryBtn.href = "https://x.com";
 tryBtn.target = "_blank";
-tryBtn.textContent = msg("tryNow");
-actions.appendChild(tryBtn);
+tryBtn.append(msg("tryNow"));
+{
+  const svg = document.createElementNS(SVG_NS, "svg");
+  svg.setAttribute("viewBox", "0 0 24 24");
+  svg.setAttribute("aria-hidden", "true");
+  const p = document.createElementNS(SVG_NS, "path");
+  p.setAttribute("d", "M5 12h14m-6-6 6 6-6 6");
+  p.setAttribute("fill", "none");
+  p.setAttribute("stroke", "currentColor");
+  p.setAttribute("stroke-width", "2");
+  p.setAttribute("stroke-linecap", "round");
+  p.setAttribute("stroke-linejoin", "round");
+  svg.appendChild(p);
+  tryBtn.appendChild(svg);
+}
+document.getElementById("stageActions").appendChild(tryBtn);
 
 // The update screen is the one surface the whole install base reliably sees,
 // which makes it the highest-reach place to ask. Update only: a fresh install
