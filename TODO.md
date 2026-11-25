@@ -57,10 +57,10 @@ five files for every store. They replace the four in `store/safari/screenshots/`
 and the three on AMO, which show the old X.
 
 1. `1-dim-is-back.png` — your profile on the redesigned X, in Dim
-2. `2-before-after.png` — X's Dark next to Dim, same page
-3. `3-in-x-settings.png` — X's Appearance panel with the Dim row
-4. `4-themes.png` — the six themes across one page, with the popup
-5. `5-extras.png` — the Extras and Sidebar pages
+2. `2-before-after.png` — the same page, X's Dark on the left, Dim on the right
+3. `3-in-x-settings.png` — the Background group of X's Appearance panel, Dim picked
+4. `4-themes.png` — the six themes as six columns of one page
+5. `5-extras.png` — the popup, Extras and Sidebar pages
 
 - [ ] Upload them to CWS, AMO and (when it ships) the Mac App Store; Edge when
       the account is verified

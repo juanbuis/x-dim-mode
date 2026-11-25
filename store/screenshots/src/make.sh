@@ -52,13 +52,12 @@ F -f lavfi -i color=c=0x16212c:s=1910x1352 -i cap/modal-a.png -i cap/modal-b.png
   -map "[o]" -frames:v 1 -pix_fmt rgb24 cap/modal-2x.png
 mkdir -p img out
 F -i cap/dim-2x.png   -vf "scale=1152:-1:flags=lanczos" -pix_fmt rgb24 img/s1-dim.png
-F -i cap/dim-2x.png   -vf "scale=1280:-1:flags=lanczos" -pix_fmt rgb24 img/s2-dim.png
-F -i cap/black-2x.png -vf "scale=1280:-1:flags=lanczos" -pix_fmt rgb24 img/s2-black.png
-F -i cap/modal-2x.png -vf "crop=1354:1352:556:0,scale=677:676:flags=lanczos" -pix_fmt rgb24 img/s3-pane.png
+F -i cap/black-2x.png -vf "scale=1152:-1:flags=lanczos" -pix_fmt rgb24 img/s1-black.png
+# Shot 3 is the dialog's Background group alone, shown at 1.5x.
+F -i cap/modal-2x.png -vf "crop=1350:608:560:744,scale=1012:456:flags=lanczos" -pix_fmt rgb24 img/s3-background.png
 for t in dim slate jade plum dusk ember; do
   F -i cap/full-$t.png -vf "scale=1152:-1:flags=lanczos" -pix_fmt rgb24 img/s4-$t.png
 done
-cp pages/icons/icon128.png img/icon.png
 cp "$SRC"/*.html "$SRC/shots.css" "$SRC/fit.js" .
 
 # ── Render ──
