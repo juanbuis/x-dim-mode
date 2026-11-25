@@ -187,6 +187,14 @@ function chatTokens(p) {
     --x-neutral-1100: ${p.n1100};
     --x-fg-secondary: var(--x-neutral-400);
     --x-fg-tertiary: var(--x-neutral-700);
+    /* Separators: X draws them in translucent white (column borders 15%,
+       post dividers and raised cards 20%), which is neutral grey on every
+       theme and, for the dividers, brighter than anything classic Dim had.
+       Classic Dim used one border colour for all of them. */
+    --x-border-normal: var(--xdm-border);
+    --x-border-divider: var(--xdm-border);
+    --x-border-elevated: var(--xdm-border);
+    --x-border-hover: color-mix(in srgb, #fff 10%, var(--xdm-border));
     /* Toasts: X's is translucent neutral grey (#2229). */
     --x-toast-bg: color-mix(in srgb, ${p.bgElevated} 92%, transparent);
     /* --x-bg-alpha-NN is the page colour at NN% (white on light, black on
