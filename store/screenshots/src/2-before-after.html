@@ -1,0 +1,21 @@
+<!doctype html><meta charset="utf-8"><link rel="stylesheet" href="shots.css">
+<style>
+  .half { position: absolute; top: 0; height: 800px; overflow: hidden; }
+  .fade { position: absolute; top: 672px; height: 128px; }
+  .line { position: absolute; left: 639px; top: 0; width: 2px; height: 800px; background: #fff; box-shadow: 0 0 24px rgba(0,0,0,.6); }
+  .knob { position: absolute; left: 616px; top: 246px; width: 48px; height: 48px; border-radius: 50%; background: #fff;
+    box-shadow: 0 6px 24px rgba(0,0,0,.5); display: grid; place-items: center; }
+  .label { position: absolute; bottom: 30px; }
+  .label small { display: block; font-size: 13px; font-weight: 600; letter-spacing: .09em; text-transform: uppercase; color: hsl(210, 16%, 66%); }
+  .label b { display: block; margin-top: 5px; font-size: 50px; font-weight: 800; letter-spacing: -0.045em; line-height: 1; }
+</style>
+<body style="background:#000">
+<img src="img/s2-dim.png" width="1280" style="position:absolute;left:0;top:0" alt="">
+<div class="half" style="left:0;width:640px"><img src="img/s2-black.png" width="1280" alt=""></div>
+<div class="fade" style="left:0;width:640px;background:linear-gradient(rgba(0,0,0,0), #000 44%)"></div>
+<div class="fade" style="left:640px;width:640px;background:linear-gradient(rgba(22,33,44,0), rgb(22,33,44) 44%)"></div>
+<div class="line"></div>
+<div class="knob"><svg width="26" height="14" viewBox="0 0 26 14" fill="none" stroke="#16212c" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 1 1 7l6 6M19 1l6 6-6 6"/></svg></div>
+<div class="label" style="right:676px;text-align:right"><small>X today</small><b>Dark</b></div>
+<div class="label" style="left:676px"><small>With Dim Mode</small><b>Dim</b></div>
+</body>

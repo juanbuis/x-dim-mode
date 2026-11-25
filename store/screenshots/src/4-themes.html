@@ -1,0 +1,36 @@
+<!doctype html><meta charset="utf-8"><link rel="stylesheet" href="shots.css">
+<style>
+  .band { position: absolute; inset: 0; }
+  .band img { position: absolute; left: 0; top: 0; }
+  .foot { position: absolute; left: 0; right: 0; bottom: 0; height: 210px; }
+  .name { position: absolute; bottom: 58px; width: 192px; text-align: center; font-size: 25px; font-weight: 700; letter-spacing: -0.03em; }
+</style>
+<body>
+<div class="glow"></div>
+<header style="position:absolute;left:72px;top:54px">
+  <h1 style="font-size:56px">Dim, or any shade you like.</h1>
+  <p class="sub">The original dark blue, five more themes, or a color of your own.</p>
+</header>
+<div class="win" id="win" style="left:64px;top:206px;width:1152px;height:620px"></div>
+<div class="card" style="right:64px;top:40px;width:288px"><iframe class="ext" style="width:240px;zoom:1.2" src="pages/popup.html"></iframe></div>
+<script>
+  // Each band is the same page captured in one theme; the foot fades into that
+  // theme's own background so its name sits on its color.
+  const T = [["dim", "Dim", 210, 34], ["slate", "Slate", 210, 8], ["jade", "Jade", 150, 34], ["plum", "Plum", 270, 34], ["dusk", "Dusk", 330, 34], ["ember", "Ember", 25, 34]];
+  const win = document.getElementById("win"), W = 1152, H = 620, VIS = 800 - 206, w = W / 6, d = 64;
+  const x = (i, y) => i * w + d / 2 - d * (y / H);          // band edge i at height y: leans left going down
+  T.forEach(([id, name, h, s], i) => {
+    const l0 = i ? x(i, 0) : 0, l1 = i ? x(i, H) : 0, r0 = i < 5 ? x(i + 1, 0) : W, r1 = i < 5 ? x(i + 1, H) : W;
+    const band = document.createElement("div"); band.className = "band";
+    band.style.clipPath = `polygon(${l0}px 0, ${r0}px 0, ${r1}px ${H}px, ${l1}px ${H}px)`;
+    const yName = VIS - 46, cx = (x(i, yName) + x(i + 1, yName)) / 2;
+    band.innerHTML = `<img src="img/s4-${id}.png" width="${W}" alt="">
+      <div class="foot" style="background:linear-gradient(hsla(${h}, ${s}%, 13%, 0), hsl(${h}, ${s}%, 13%) 52%)"></div>
+      <div class="name" style="left:${cx - 96}px">${name}</div>`;
+    win.appendChild(band);
+  });
+  win.insertAdjacentHTML("beforeend", `<svg style="position:absolute;inset:0" width="${W}" height="${H}">` + [1, 2, 3, 4, 5].map((i) =>
+    `<line x1="${x(i, 0)}" y1="0" x2="${x(i, H)}" y2="${H}" stroke="rgba(255,255,255,.24)" stroke-width="1"/>`).join("") + `</svg>`);
+</script>
+<script src="fit.js"></script>
+</body>

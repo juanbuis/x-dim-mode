@@ -1,0 +1,27 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400..800&display=block");
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body {
+  width: 1280px; height: 800px; overflow: hidden; position: relative;
+  background: hsl(210, 40%, 8%); color: #f7f9f9;
+  font-family: Inter, system-ui, sans-serif; -webkit-font-smoothing: antialiased;
+}
+/* One light source per image: X's blue, low and to the right, behind the subject. */
+.glow { position: absolute; inset: 0; pointer-events: none;
+  background:
+    radial-gradient(980px 560px at 82% 112%, hsla(204, 88%, 53%, .24), transparent 70%),
+    radial-gradient(760px 420px at -4% -8%, hsla(210, 60%, 46%, .14), transparent 70%); }
+h1 { margin: 0; font-weight: 800; font-size: 64px; line-height: 1.03; letter-spacing: -0.045em; }
+.sub { margin: 18px 0 0; font-size: 23px; line-height: 1.42; letter-spacing: -0.014em; font-weight: 450; color: hsl(210, 20%, 72%); }
+.brand { position: absolute; right: 72px; top: 62px; display: flex; align-items: center; gap: 12px;
+  font-weight: 700; font-size: 19px; letter-spacing: -0.02em; color: hsl(210, 20%, 82%); }
+.brand img { width: 40px; height: 40px; border-radius: 10px; }
+.win { position: absolute; overflow: hidden; border-radius: 16px 16px 0 0;
+  background: hsl(210, 34%, 13%);
+  box-shadow: 0 0 0 1px hsl(210, 18%, 30%), 0 40px 120px rgba(0, 0, 0, .6); }
+.win img { display: block; }
+.card { position: absolute; overflow: hidden; border-radius: 18px;
+  background: hsl(210, 34%, 13%);
+  box-shadow: 0 0 0 1px hsl(210, 18%, 30%), 0 34px 90px rgba(0, 0, 0, .55); }
+.card img { display: block; }
+iframe.ext { display: block; border: 0; }

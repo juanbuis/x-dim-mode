@@ -21,7 +21,7 @@ pending). 2.0.0 is prepared and **not submitted**.
 - [ ] Old X design: if X serves it, check the Extras and that switching Dim on
       from Light works (it reloads the tab once there)
 - [ ] Firefox: load the Firefox zip in about:debugging and repeat the first two
-- [ ] New screenshots (see below)
+- [x] New screenshots: `store/screenshots/` (see below)
 
 ## Chrome Web Store
 
@@ -52,16 +52,23 @@ pending). 2.0.0 is prepared and **not submitted**.
 
 ## Screenshots (1280×800 everywhere: CWS, AMO, Edge, Mac App Store)
 
-The four in `store/safari/screenshots/` and the three on AMO show the old X.
-New set, same files for every store:
+Done: the new set is in `store/screenshots/`, 24-bit PNG with no alpha, the same
+five files for every store. They replace the four in `store/safari/screenshots/`
+and the three on AMO, which show the old X.
 
-1. Dim is back — Home on the redesigned X, in Dim
-2. Before / after — X's black next to Dim
-3. In X's own settings — the Appearance panel with the Dim row
-4. Themes — the six themes and the custom color
-5. Extras — Button color, Hide Grok and the Sidebar page
+1. `1-dim-is-back.png` — your profile on the redesigned X, in Dim
+2. `2-before-after.png` — X's Dark next to Dim, same page
+3. `3-in-x-settings.png` — X's Appearance panel with the Dim row
+4. `4-themes.png` — the six themes across one page, with the popup
+5. `5-extras.png` — the Extras and Sidebar pages
 
-Also: `og-image.png` and the two `extras-demo` GIFs on xdim.app show the old X.
+- [ ] Upload them to CWS, AMO and (when it ships) the Mac App Store; Edge when
+      the account is verified
+- [ ] `og-image.png` and the two `extras-demo` GIFs on xdim.app still show the
+      old X
+
+`store/screenshots/src/make.sh` rebuilds them; its header says how the captures
+of x.com were taken (they are not in git).
 
 ## After release
 
