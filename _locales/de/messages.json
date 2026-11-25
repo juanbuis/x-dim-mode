@@ -13,8 +13,12 @@
     "message": "Gedimmt aktivieren"
   },
   "pausedLight": {
-    "message": "Pausiert, solange X im hellen Modus ist. Wähle „Gedimmt“ in den Einstellungen von X.",
-    "description": "Popup note under the toggle when Dim is on but X itself is set to Light, which pauses Dim. Clicking it opens X’s display settings."
+    "message": "X ist im hellen Modus.",
+    "description": "Popup note under the toggle when Dim is on but X itself is showing its light theme (Dim only recolours X's dark theme). Followed by the switchToDim button."
+  },
+  "switchToDim": {
+    "message": "Zu „Gedimmt“ wechseln",
+    "description": "Popup: text button after the pausedLight note. Puts X in dark mode so Dim shows. Use the same word for Dim as dimLabel."
   },
   "credit": {
     "message": "Folge @juanbuis",
@@ -276,14 +280,6 @@
   "extrasHint": {
     "message": "Du kannst das jederzeit unter Extras im Dim-Mode-Menü ändern.",
     "description": "Welcome screen: note under the switches"
-  },
-  "notDimHelp": {
-    "message": "X noch weiß? Dim greift erst, wenn X selbst dunkel eingestellt ist.",
-    "description": "Welcome (install): why X may still look white. Dim only applies when X's own theme is dark"
-  },
-  "notDimLink": {
-    "message": "Dim in den Anzeigeeinstellungen von X wählen",
-    "description": "Welcome (install): link to x.com/settings/display, where Dim Mode adds a Dim option"
   },
   "alsoNew": {
     "message": "Außerdem in diesem Update",

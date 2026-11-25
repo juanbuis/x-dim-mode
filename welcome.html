@@ -209,12 +209,6 @@
     }
     .also li svg { width: 18px; height: 18px; margin-top: 1px; flex-shrink: 0; color: var(--success); }
 
-    /* "X still white?": the most common reason people think Dim is broken
-       is X's own theme being Light, where Dim stands down on purpose. */
-    .help { margin-top: 14px; font-size: 13px; line-height: 18px; color: var(--fg-2); }
-    .help a { color: var(--brand); text-decoration: none; }
-    .help a:hover { text-decoration: underline; text-underline-offset: 2px; }
-
     /* Pill buttons: X's primary is white on dark, secondary an outline */
     .actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 28px; }
     .btn-primary, .btn-secondary {
@@ -599,7 +593,6 @@
       </div>
 
       <div class="actions" id="actions"></div>
-      <p class="help" id="notDim" hidden></p>
 
       <!-- Shown on the update screen only. Every release reaches the whole
            install base, which makes this the one recurring launch surface the

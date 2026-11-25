@@ -119,12 +119,29 @@ function setActiveTheme(themeName) {
 }
 
 // ── Paused by X's Light theme ──────────────────────────────────────
-// Dim only paints over X's dark theme, so with X on Light (or on "Use system
-// setting" with a light OS) Dim is on but nothing changes. Ask the active tab,
-// and if that's what's happening, say so and link to X's Appearance settings,
-// where the Dim option switches X to dark. No reply means it isn't an X tab.
+// Dim only recolours X's dark theme, so with X on Light (or on "Use system
+// setting" with a light OS) Dim is on but nothing changes. That is a choice
+// someone can make in X on purpose, so it is allowed, but never silent: ask
+// the active tab, and if that's what's happening, say so and offer the fix.
+// No reply means it isn't an X tab.
 const pausedNote = document.getElementById("pausedNote");
-pausedNote.textContent = chrome.i18n.getMessage("pausedLight");
+document.getElementById("pausedText").textContent = chrome.i18n.getMessage("pausedLight");
+const pausedBtn = document.getElementById("pausedBtn");
+pausedBtn.textContent = chrome.i18n.getMessage("switchToDim");
+
+// "Make X Dim now": content.js puts X in dark when it sees this (takePendingDark).
+// A timestamp, so every request is a change and fires onChanged. Local only:
+// it is an action on this device, not a setting.
+function requestDark() {
+  chrome.storage.local.set({ pendingDark: Date.now() });
+}
+
+pausedBtn.addEventListener("click", () => {
+  requestDark();
+  pausedNote.hidden = true;
+  // X needs a moment to re-theme; if it is still light after that, say so again.
+  setTimeout(() => checkPaused(toggle.checked), 2500);
+});
 
 function checkPaused(enabled) {
   pausedNote.hidden = true;
@@ -135,11 +152,6 @@ function checkPaused(enabled) {
     chrome.tabs.sendMessage(tab.id, { type: "xdm:status" }, (res) => {
       if (chrome.runtime.lastError || !res) return;
       pausedNote.hidden = !res.xLight;
-      pausedNote.onclick = (e) => {
-        e.preventDefault();
-        chrome.tabs.update(tab.id, { url: pausedNote.href });
-        window.close();
-      };
     });
   });
 }
@@ -162,8 +174,10 @@ toggle.addEventListener("change", () => {
   const enabled = toggle.checked;
   setSettings({ enabled });
   dot.classList.toggle("active", enabled);
-  // Give the tab a moment to receive the change before asking it.
-  setTimeout(() => checkPaused(enabled), 150);
+  // Switching Dim on means X looks Dim now, even if X was on Light.
+  if (enabled) requestDark();
+  // Give X a moment to re-theme before asking the tab whether it is still light.
+  setTimeout(() => checkPaused(enabled), enabled ? 2500 : 150);
 });
 
 // Preset theme clicks

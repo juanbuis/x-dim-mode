@@ -96,6 +96,12 @@ on a file is usually faster than re-deriving its history.
 **State**
 - Reads prefer `local` and fall back to `sync`. Sync-wins is what caused "dim
   won't turn off".
+- X's theme is X's setting; we keep no copy of it. Our storage holds one
+  boolean (`enabled` = paint X's dark as Dim). Light / dark / follow-system
+  lives in X's `night_mode` cookie and X's Appearance panel. `forceXDark()` is
+  the only writer, and only when the person asks for Dim (first run, popup
+  switch, "Switch to Dim"). A second copy of the theme is how "Dim is on but
+  not dim" happened.
 - `applyDim()` refuses to paint when disabled — one invariant, rather than a
   check at each call site.
 - `preload.css` runs at `document_start` gated on `html.x-dim-active`, applied

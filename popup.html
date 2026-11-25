@@ -115,17 +115,26 @@
     [dir="rtl"] .slider::before { left: auto; right: 2px; }
     [dir="rtl"] input:checked + .slider::before { transform: translateX(-14px); }
 
-    /* Dim on, but X itself set to Light: say why nothing is dim. */
+    /* Dim on, but X itself showing light: say so, and offer the fix. */
     .paused {
-      display: block;
-      margin: -6px 0 6px;
+      margin: -6px 0 8px;
       font-size: 13px;
-      line-height: 16px;
+      line-height: 18px;
       color: var(--fg-2);
-      text-decoration: none;
     }
     .paused[hidden] { display: none; }
-    .paused:hover { color: var(--fg); text-decoration: underline; text-underline-offset: 2px; }
+    .paused-btn {
+      display: inline;
+      padding: 0;
+      border: none;
+      background: none;
+      font: inherit;
+      color: var(--brand);
+      cursor: pointer;
+      -webkit-appearance: none;
+      appearance: none;
+    }
+    .paused-btn:hover { text-decoration: underline; text-underline-offset: 2px; }
 
     /* Theme dots: X's colour picker, white ring on the chosen one */
     .themes {
@@ -383,7 +392,7 @@
       <span class="slider"></span>
     </label>
   </div>
-  <a class="paused" id="pausedNote" href="https://x.com/settings/display" hidden></a>
+  <p class="paused" id="pausedNote" hidden><span id="pausedText"></span> <button class="paused-btn" id="pausedBtn" type="button"></button></p>
   <div class="themes">
     <button class="theme-dot" data-theme="dim" style="background: hsl(210, 34%, 28%)" title="Dim"></button>
     <button class="theme-dot" data-theme="slate" style="background: hsl(210, 8%, 33%)" title="Slate"></button>

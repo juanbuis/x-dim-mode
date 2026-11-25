@@ -450,12 +450,13 @@ ensureBaseCSS();
 
 // Optimistically apply dim before the async storage read, using localStorage as a
 // sync cache. First install: cache is null → default to dim. Disabled users: "0" → skip.
-// X usually hasn't set data-theme this early, so the system preference is the best
-// available guess; syncDimWithTheme corrects it the moment X commits a theme. If X
-// *has* already declared light, honour that instead of guessing.
+// X usually hasn't set data-theme this early, so predict it the way X will decide
+// it (its night_mode cookie, else the system preference; see xWouldBeLight);
+// syncDimWithTheme corrects it the moment X commits a theme. If X *has* already
+// declared light, honour that instead of guessing.
 if (localStorage.getItem("__xdm_enabled") !== "0" &&
     document.documentElement.getAttribute("data-theme") !== "light" &&
-    (!window.matchMedia || window.matchMedia("(prefers-color-scheme: dark)").matches)) {
+    !xWouldBeLight()) {
   document.documentElement.classList.add(DIM_CLASS);
 }
 
@@ -1227,6 +1228,67 @@ function removeDim() {
 let _bodyObserver;
 let _suspendedForLight = false;
 
+// X's theme is X's setting, and we keep no copy of it. X decides light or dark
+// before first paint from its night_mode cookie: "0" light, "1"/"2" dark,
+// absent = follow the system. The redesigned client also watches the cookie
+// and re-themes live. Our storage holds one boolean (enabled = "paint X's dark
+// as Dim"); light / dark / follow-system stays in X's Appearance settings.
+function xThemeCookie() {
+  try {
+    const m = document.cookie.match(/(?:^|; )night_mode=([^;]*)/);
+    return m ? decodeURIComponent(m[1]) : null;
+  } catch { return null; }
+}
+
+// What X is about to render, by X's own rule.
+function xWouldBeLight() {
+  const v = xThemeCookie();
+  if (v === "0") return true;
+  if (v === "1" || v === "2") return false;
+  return !!window.matchMedia && !window.matchMedia("(prefers-color-scheme: dark)").matches;
+}
+
+function hasDraft() {
+  for (const el of document.querySelectorAll('[contenteditable="true"], textarea')) {
+    if ((el.value ?? el.textContent ?? "").trim()) return true;
+  }
+  return false;
+}
+
+// "Turn Dim on" means X looks Dim now, so when X is (or is about to be) light
+// this puts X in dark, once, at the moment the person asked for Dim: first run
+// after install, the popup switch, the popup's "Switch to Dim". Never on a
+// plain page load: someone who picks Light or "Use system setting" in X
+// afterwards has made a choice, and Dim waits for X to go dark.
+let _forceTimer = 0;
+function forceXDark() {
+  if (!xWouldBeLight()) return;
+  // Appearance panel open: go through X's own radio so its UI stays in step.
+  activateLightsOut();
+  const host = location.hostname.split(".").slice(-2).join(".");
+  try {
+    document.cookie = `night_mode=2; path=/; domain=.${host}; max-age=31536000; secure`;
+  } catch { return; }
+  // The redesign picks the cookie up by itself. The older client reads it only
+  // at load, so if X is still light after a moment, reload once: a visible
+  // tab, nothing being written, and never twice in a session.
+  clearTimeout(_forceTimer);
+  _forceTimer = setTimeout(() => {
+    if (!_enabled || isXDark() !== false) return;
+    if (document.visibilityState !== "visible" || hasDraft()) return;
+    try {
+      if (sessionStorage.getItem("__xdm_forced")) return;
+      sessionStorage.setItem("__xdm_forced", "1");
+    } catch { return; }
+    location.reload();
+  }, 2000);
+}
+
+function takePendingDark() {
+  chrome.storage.local.remove("pendingDark");
+  if (_enabled) forceXDark();
+}
+
 // true = X is dark, false = X is light, null = X hasn't committed a theme yet.
 // The null case matters: at document_start we must not tear down the optimistic
 // dim (that would flash black), and we must not force it on either.
@@ -1452,17 +1514,22 @@ function setRadioChecked(radio, on) {
   radio.toggleAttribute("data-unchecked", !on);
 }
 
-// Dim's row is checked only while Dim is actually showing. X's own rows show
-// X's real state otherwise, so the panel never claims Dim while X is light.
-function syncDimRow(dimShowing) {
+// Dim's row stands in for X's Dark while Dim is on. Light and "Use system
+// setting" stay X's own rows, checked exactly as X has them: with Dim on,
+// "Use system setting" simply means light by day and Dim at night.
+function syncDimRow(enabled) {
   const row = document.getElementById(DIM_BTN_ID);
   if (!row || !row.hasAttribute("data-xdm-row")) return false;
   const group = row.closest('[role="radiogroup"]');
   if (!group) return true;
-  setRadioChecked(row.querySelector('[role="radio"]'), dimShowing);
-  for (const input of group.querySelectorAll('input[type="radio"]')) {
+  const inputs = [...group.querySelectorAll('input[type="radio"]')];
+  const picked = inputs.find((i) => i.checked);
+  const dimPicked = !!enabled && !!picked && picked.value === "dark";
+  setRadioChecked(row.querySelector('[role="radio"]'), dimPicked);
+  for (const input of inputs) {
     const r = rowIn(group, input);
-    setRadioChecked(r && r.querySelector('[role="radio"]'), !dimShowing && input.checked);
+    setRadioChecked(r && r.querySelector('[role="radio"]'),
+      input.checked && !(dimPicked && input.value === "dark"));
   }
   return true;
 }
@@ -1511,15 +1578,20 @@ function tryInjectDimRow() {
     if (e.key === " " || e.key === "Enter") { e.preventDefault(); row.click(); }
   });
 
-  // Picking any of X's own backgrounds is choosing not to have Dim, as it was
-  // with the old picker. Capture phase, so it runs before X re-renders.
+  // Only X's Dark row turns Dim off: it is the one choice that means "black,
+  // not Dim". Light and "Use system setting" leave Dim on, waiting for X to go
+  // dark. Capture phase, so it runs before X re-renders.
   group.addEventListener("click", (e) => {
     if (_switchingToDim || row.contains(e.target)) return;
     const own = rowIn(group, e.target);
-    if (!own || !own.querySelector('input[type="radio"]')) return;
-    setSettings({ enabled: false });
-    _enabled = false;
-    setTimeout(() => syncDimRow(false), 0);
+    const input = own && own.querySelector('input[type="radio"]');
+    if (!input) return;
+    if (input.value === "dark") {
+      setSettings({ enabled: false });
+      _enabled = false;
+    }
+    // X re-renders its radios after the click; re-assert ours after it.
+    for (const ms of [0, 50, 300]) setTimeout(() => syncDimRow(_enabled), ms);
   }, true);
 
   getSettings(({ enabled }) => syncSettingsButtons(!!enabled));
@@ -1577,14 +1649,14 @@ function tryInjectDimOption() {
     activateLightsOut();
   });
 
-  // When Default or Lights Out is clicked directly, disable Dim
-  for (const nativeBtn of [defaultBtn, lightsOutBtn]) {
-    nativeBtn.addEventListener("click", () => {
-      if (_switchingToDim) return; // Ignore clicks triggered by dim switch
-      setSettings({ enabled: false });
-      setUnselected(dimBtn);
-    });
-  }
+  // Lights Out is the one choice that means "black, not Dim", so only it
+  // turns Dim off. Default (light) leaves Dim on, waiting for X to go dark.
+  lightsOutBtn.addEventListener("click", () => {
+    if (_switchingToDim) return; // Ignore clicks triggered by dim switch
+    setSettings({ enabled: false });
+    setUnselected(dimBtn);
+  });
+  defaultBtn.addEventListener("click", () => setUnselected(dimBtn));
 }
 
 // ── Lights Out Helper ──────────────────────────────────────────────
@@ -1723,6 +1795,9 @@ getSettings(({ enabled, theme, customHue, birdLogo, oldFont, classicFavicon, twe
     const cached = (() => { try { return localStorage.getItem("__xdm_enabled"); } catch { return null; } })();
     _enabled = cached !== "0";
     setSettings({ enabled: _enabled });
+    // Just installed: X should come up Dim even if it was on Light, which is
+    // otherwise indistinguishable from the extension not working.
+    if (_enabled) forceXDark();
   } else {
     _enabled = !!enabled;
   }
@@ -1752,6 +1827,9 @@ getSettings(({ enabled, theme, customHue, birdLogo, oldFont, classicFavicon, twe
 
   startObserver();
   tryInjectDimOption();
+
+  // The popup asked for Dim while no X tab was listening.
+  chrome.storage.local.get(["pendingDark"], (d) => { if (d && d.pendingDark) takePendingDark(); });
 
   // Start body observer if body is already available
   if (_enabled && document.body) {
@@ -1815,20 +1893,21 @@ chrome.runtime?.onMessage?.addListener((msg, _sender, reply) => {
 function syncSettingsButtons(enabled) {
   const dimBtn = document.getElementById(DIM_BTN_ID);
   if (!dimBtn) return;
-  if (syncDimRow(!!enabled && isXDark() !== false)) return;
+  if (syncDimRow(!!enabled)) return;
   const radiogroup = dimBtn.closest('[role="radiogroup"]');
   if (!radiogroup) return;
   const allBtns = radiogroup.querySelectorAll(":scope > div");
   const lightsOutBtn = allBtns[allBtns.length - 1];
 
-  if (enabled) {
+  if (enabled && isXDark() !== false) {
     setSelected(dimBtn);
     for (const btn of allBtns) {
       if (btn !== dimBtn) setUnselected(btn);
     }
   } else {
     setUnselected(dimBtn);
-    if (lightsOutBtn) setSelected(lightsOutBtn);
+    const native = isXDark() === false ? allBtns[0] : lightsOutBtn;
+    if (native && native !== dimBtn) setSelected(native);
   }
 }
 
@@ -1863,9 +1942,10 @@ chrome.storage.onChanged.addListener((changes, area) => {
     if (_enabled) {
       _suspendedForLight = false;
       startBodyObserver();
-      // Switch X to its dark base first (only possible with Settings open), then
-      // let the theme check decide. On a light-mode X we stay off rather than
-      // tinting a light page — Dim is a dark theme.
+      // If X's settings are open, select its dark base there. Putting a light
+      // X in dark otherwise is forceXDark's job, and only when the person asked
+      // for Dim on this device (pendingDark); a change that merely synced in
+      // leaves X's theme alone and Dim waits for X to go dark.
       activateLightsOut();
       syncDimWithTheme();
     } else {
@@ -1874,6 +1954,8 @@ chrome.storage.onChanged.addListener((changes, area) => {
     }
     syncSettingsButtons(_enabled);
   }
+  // After the enabled block on purpose: one write may carry both.
+  if (area === "local" && changes.pendingDark && changes.pendingDark.newValue) takePendingDark();
   if (changes.theme || changes.customHue) {
     if (changes.theme) _theme = changes.theme.newValue ?? "dim";
     if (changes.customHue) _customHue = changes.customHue.newValue ?? 210;

@@ -13,8 +13,12 @@
     "message": "다크 블루 활성화"
   },
   "pausedLight": {
-    "message": "X가 라이트 모드라서 일시 중지되었습니다. X 설정에서 다크 블루를 선택하세요.",
-    "description": "Popup note under the toggle when Dim is on but X itself is set to Light, which pauses Dim. Clicking it opens X’s display settings."
+    "message": "X가 라이트 모드입니다.",
+    "description": "Popup note under the toggle when Dim is on but X itself is showing its light theme (Dim only recolours X's dark theme). Followed by the switchToDim button."
+  },
+  "switchToDim": {
+    "message": "다크 블루로 전환",
+    "description": "Popup: text button after the pausedLight note. Puts X in dark mode so Dim shows. Use the same word for Dim as dimLabel."
   },
   "credit": {
     "message": "@juanbuis 팔로우",
@@ -276,14 +280,6 @@
   "extrasHint": {
     "message": "Dim Mode 메뉴의 추가 기능에서 언제든 바꿀 수 있어요.",
     "description": "Welcome screen: note under the switches"
-  },
-  "notDimHelp": {
-    "message": "X가 아직 흰색인가요? Dim은 X 자체가 다크로 설정되어 있을 때 적용돼요.",
-    "description": "Welcome (install): why X may still look white. Dim only applies when X's own theme is dark"
-  },
-  "notDimLink": {
-    "message": "X 디스플레이 설정에서 Dim 선택하기",
-    "description": "Welcome (install): link to x.com/settings/display, where Dim Mode adds a Dim option"
   },
   "alsoNew": {
     "message": "이번 업데이트의 다른 변경 사항",

@@ -13,8 +13,12 @@
     "message": "Ativar Escurecido"
   },
   "pausedLight": {
-    "message": "Pausado enquanto o X está no modo claro. Escolha Escurecido nas configurações do X.",
-    "description": "Popup note under the toggle when Dim is on but X itself is set to Light, which pauses Dim. Clicking it opens X’s display settings."
+    "message": "O X está no modo claro.",
+    "description": "Popup note under the toggle when Dim is on but X itself is showing its light theme (Dim only recolours X's dark theme). Followed by the switchToDim button."
+  },
+  "switchToDim": {
+    "message": "Mudar para Escurecido",
+    "description": "Popup: text button after the pausedLight note. Puts X in dark mode so Dim shows. Use the same word for Dim as dimLabel."
   },
   "credit": {
     "message": "Siga @juanbuis",
@@ -276,14 +280,6 @@
   "extrasHint": {
     "message": "Dá para mudar quando quiser em Extras, no menu do Dim Mode.",
     "description": "Welcome screen: note under the switches"
-  },
-  "notDimHelp": {
-    "message": "O X continua branco? O Dim só entra quando o próprio X está no modo escuro.",
-    "description": "Welcome (install): why X may still look white. Dim only applies when X's own theme is dark"
-  },
-  "notDimLink": {
-    "message": "Escolha Dim nas configurações de exibição do X",
-    "description": "Welcome (install): link to x.com/settings/display, where Dim Mode adds a Dim option"
   },
   "alsoNew": {
     "message": "Também nesta atualização",

@@ -13,8 +13,12 @@
     "message": "Activer Sombre"
   },
   "pausedLight": {
-    "message": "En pause tant que X est en mode clair. Choisissez Sombre dans les paramètres de X.",
-    "description": "Popup note under the toggle when Dim is on but X itself is set to Light, which pauses Dim. Clicking it opens X’s display settings."
+    "message": "X est en mode clair.",
+    "description": "Popup note under the toggle when Dim is on but X itself is showing its light theme (Dim only recolours X's dark theme). Followed by the switchToDim button."
+  },
+  "switchToDim": {
+    "message": "Passer à Sombre",
+    "description": "Popup: text button after the pausedLight note. Puts X in dark mode so Dim shows. Use the same word for Dim as dimLabel."
   },
   "credit": {
     "message": "Suivez @juanbuis",
@@ -276,14 +280,6 @@
   "extrasHint": {
     "message": "Modifiable à tout moment dans Extras, depuis le menu Dim Mode.",
     "description": "Welcome screen: note under the switches"
-  },
-  "notDimHelp": {
-    "message": "X toujours en blanc ? Dim attend que X soit en thème sombre.",
-    "description": "Welcome (install): why X may still look white. Dim only applies when X's own theme is dark"
-  },
-  "notDimLink": {
-    "message": "Choisir Dim dans les réglages d'affichage de X",
-    "description": "Welcome (install): link to x.com/settings/display, where Dim Mode adds a Dim option"
   },
   "alsoNew": {
     "message": "Également dans cette mise à jour",
