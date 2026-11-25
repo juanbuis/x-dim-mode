@@ -296,5 +296,41 @@
   "mockFollow": {
     "message": "关注",
     "description": "X’s own label on its Follow button, shown in the preview of X"
+  },
+  "tipBird": {
+    "message": "用 Twitter 小鸟替换 X 标志。",
+    "description": "Extras: explanation shown when hovering the info icon next to \"Classic bird logo\". One short sentence."
+  },
+  "tipFont": {
+    "message": "改用 Twitter 多年使用的字体，而不是 X 现在的字体。",
+    "description": "Extras: explanation shown when hovering the info icon next to \"Classic font\". One short sentence."
+  },
+  "tipFavicon": {
+    "message": "在浏览器标签页显示蓝色小鸟，并把标签页名称改为 Twitter。",
+    "description": "Extras: explanation shown when hovering the info icon next to \"Classic favicon\". One short sentence."
+  },
+  "tipWording": {
+    "message": "把 Post 和 Repost 显示为 Tweet 和 Retweet（X 为英文时）。",
+    "description": "Extras: explanation shown when hovering the info icon next to \"Tweet, not Post\". One short sentence."
+  },
+  "tipButtonColor": {
+    "message": "为发帖、关注等按钮上色：白色、主题色或任意自选颜色。",
+    "description": "Extras: explanation shown when hovering the info icon next to \"Button color\". One short sentence."
+  },
+  "tipImageGrid": {
+    "message": "把帖子里的 2 到 4 张图片排成网格，而不是需要滑动的一排。",
+    "description": "Extras: explanation shown when hovering the info icon next to \"Classic image grid\". One short sentence."
+  },
+  "tipFollowing": {
+    "message": "打开主页时显示“正在关注”，而不是“为你推荐”。",
+    "description": "Extras: explanation shown when hovering the info icon next to \"Start on Following\". One short sentence."
+  },
+  "tipCopyLink": {
+    "message": "把「复制链接」放到帖子分享菜单的最上方。",
+    "description": "Extras: explanation shown when hovering the info icon next to \"Copy link first\". One short sentence."
+  },
+  "tipHideGrok": {
+    "message": "从侧边栏、帖子、个人资料和悬浮按钮中移除 Grok。",
+    "description": "Extras: explanation shown when hovering the info icon next to \"Hide Grok\". One short sentence."
   }
 }

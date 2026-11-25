@@ -296,5 +296,41 @@
   "mockFollow": {
     "message": "Folgen",
     "description": "X’s own label on its Follow button, shown in the preview of X"
+  },
+  "tipBird": {
+    "message": "Zeigt wieder den Twitter-Vogel statt des X-Logos.",
+    "description": "Extras: explanation shown when hovering the info icon next to \"Classic bird logo\". One short sentence."
+  },
+  "tipFont": {
+    "message": "Nutzt die Schrift, die Twitter jahrelang hatte, statt der aktuellen von X.",
+    "description": "Extras: explanation shown when hovering the info icon next to \"Classic font\". One short sentence."
+  },
+  "tipFavicon": {
+    "message": "Zeigt den blauen Vogel im Browser-Tab und nennt den Tab wieder Twitter.",
+    "description": "Extras: explanation shown when hovering the info icon next to \"Classic favicon\". One short sentence."
+  },
+  "tipWording": {
+    "message": "Schreibt Tweet und Retweet statt Post und Repost (wenn X auf Englisch ist).",
+    "description": "Extras: explanation shown when hovering the info icon next to \"Tweet, not Post\". One short sentence."
+  },
+  "tipButtonColor": {
+    "message": "Färbt Buttons wie Posten und Folgen: weiß, in deiner Theme-Farbe oder in einer eigenen Farbe.",
+    "description": "Extras: explanation shown when hovering the info icon next to \"Button color\". One short sentence."
+  },
+  "tipImageGrid": {
+    "message": "Zeigt 2 bis 4 Fotos eines Posts als Raster statt als Reihe zum Wischen.",
+    "description": "Extras: explanation shown when hovering the info icon next to \"Classic image grid\". One short sentence."
+  },
+  "tipFollowing": {
+    "message": "Öffnet die Startseite mit „Folge ich“ statt mit „Für dich“.",
+    "description": "Extras: explanation shown when hovering the info icon next to \"Start on Following\". One short sentence."
+  },
+  "tipCopyLink": {
+    "message": "Setzt „Link kopieren“ im Teilen-Menü eines Posts ganz nach oben.",
+    "description": "Extras: explanation shown when hovering the info icon next to \"Copy link first\". One short sentence."
+  },
+  "tipHideGrok": {
+    "message": "Entfernt Grok aus der Seitenleiste, aus Posts, Profilen und der schwebenden Taste.",
+    "description": "Extras: explanation shown when hovering the info icon next to \"Hide Grok\". One short sentence."
   }
 }

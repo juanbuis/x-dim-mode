@@ -296,5 +296,41 @@
   "mockFollow": {
     "message": "متابعة",
     "description": "X’s own label on its Follow button, shown in the preview of X"
+  },
+  "tipBird": {
+    "message": "يعيد طائر تويتر مكان شعار X.",
+    "description": "Extras: explanation shown when hovering the info icon next to \"Classic bird logo\". One short sentence."
+  },
+  "tipFont": {
+    "message": "يستخدم الخط الذي اعتمده تويتر لسنوات بدل خط X الحالي.",
+    "description": "Extras: explanation shown when hovering the info icon next to \"Classic font\". One short sentence."
+  },
+  "tipFavicon": {
+    "message": "يعرض الطائر الأزرق في تبويب المتصفح ويسمّي التبويب Twitter.",
+    "description": "Extras: explanation shown when hovering the info icon next to \"Classic favicon\". One short sentence."
+  },
+  "tipWording": {
+    "message": "يعرض Tweet و Retweet بدل Post و Repost (عندما يكون X بالإنجليزية).",
+    "description": "Extras: explanation shown when hovering the info icon next to \"Tweet, not Post\". One short sentence."
+  },
+  "tipButtonColor": {
+    "message": "يلوّن أزرارًا مثل النشر والمتابعة: أبيض، أو لون السمة، أو أي لون تختاره.",
+    "description": "Extras: explanation shown when hovering the info icon next to \"Button color\". One short sentence."
+  },
+  "tipImageGrid": {
+    "message": "يعرض من صورتين إلى 4 صور في المنشور كشبكة بدل صف يحتاج إلى السحب.",
+    "description": "Extras: explanation shown when hovering the info icon next to \"Classic image grid\". One short sentence."
+  },
+  "tipFollowing": {
+    "message": "يفتح الصفحة الرئيسية على «المتابَعون» بدل «لك».",
+    "description": "Extras: explanation shown when hovering the info icon next to \"Start on Following\". One short sentence."
+  },
+  "tipCopyLink": {
+    "message": "يضع «نسخ الرابط» في أعلى قائمة مشاركة المنشور.",
+    "description": "Extras: explanation shown when hovering the info icon next to \"Copy link first\". One short sentence."
+  },
+  "tipHideGrok": {
+    "message": "يزيل Grok من الشريط الجانبي والمنشورات والملفات الشخصية والزر العائم.",
+    "description": "Extras: explanation shown when hovering the info icon next to \"Hide Grok\". One short sentence."
   }
 }

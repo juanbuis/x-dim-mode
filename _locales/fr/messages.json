@@ -296,5 +296,41 @@
   "mockFollow": {
     "message": "Suivre",
     "description": "X’s own label on its Follow button, shown in the preview of X"
+  },
+  "tipBird": {
+    "message": "Remet l'oiseau de Twitter à la place du logo X.",
+    "description": "Extras: explanation shown when hovering the info icon next to \"Classic bird logo\". One short sentence."
+  },
+  "tipFont": {
+    "message": "Utilise la police que Twitter a eue pendant des années, au lieu de celle de X.",
+    "description": "Extras: explanation shown when hovering the info icon next to \"Classic font\". One short sentence."
+  },
+  "tipFavicon": {
+    "message": "Affiche l'oiseau bleu dans l'onglet du navigateur et le nomme Twitter.",
+    "description": "Extras: explanation shown when hovering the info icon next to \"Classic favicon\". One short sentence."
+  },
+  "tipWording": {
+    "message": "Affiche Tweet et Retweet au lieu de Post et Repost (si X est en anglais).",
+    "description": "Extras: explanation shown when hovering the info icon next to \"Tweet, not Post\". One short sentence."
+  },
+  "tipButtonColor": {
+    "message": "Colore les boutons comme Poster et Suivre : blanc, la couleur de votre thème ou celle de votre choix.",
+    "description": "Extras: explanation shown when hovering the info icon next to \"Button color\". One short sentence."
+  },
+  "tipImageGrid": {
+    "message": "Affiche les 2 à 4 photos d'un post en grille, pas en rangée à faire défiler.",
+    "description": "Extras: explanation shown when hovering the info icon next to \"Classic image grid\". One short sentence."
+  },
+  "tipFollowing": {
+    "message": "Ouvre l'accueil sur Abonnements au lieu de Pour vous.",
+    "description": "Extras: explanation shown when hovering the info icon next to \"Start on Following\". One short sentence."
+  },
+  "tipCopyLink": {
+    "message": "Place « Copier le lien » en haut du menu de partage d'un post.",
+    "description": "Extras: explanation shown when hovering the info icon next to \"Copy link first\". One short sentence."
+  },
+  "tipHideGrok": {
+    "message": "Retire Grok de la barre latérale, des posts, des profils et du bouton flottant.",
+    "description": "Extras: explanation shown when hovering the info icon next to \"Hide Grok\". One short sentence."
   }
 }

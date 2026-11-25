@@ -296,5 +296,41 @@
   "mockFollow": {
     "message": "팔로우",
     "description": "X’s own label on its Follow button, shown in the preview of X"
+  },
+  "tipBird": {
+    "message": "X 로고 대신 트위터 새를 다시 보여줍니다.",
+    "description": "Extras: explanation shown when hovering the info icon next to \"Classic bird logo\". One short sentence."
+  },
+  "tipFont": {
+    "message": "X의 현재 글꼴 대신 트위터가 오랫동안 쓰던 글꼴을 사용합니다.",
+    "description": "Extras: explanation shown when hovering the info icon next to \"Classic font\". One short sentence."
+  },
+  "tipFavicon": {
+    "message": "브라우저 탭에 파란 새를 표시하고 탭 이름을 Twitter로 바꿉니다.",
+    "description": "Extras: explanation shown when hovering the info icon next to \"Classic favicon\". One short sentence."
+  },
+  "tipWording": {
+    "message": "Post와 Repost 대신 Tweet과 Retweet으로 표시합니다(X가 영어일 때).",
+    "description": "Extras: explanation shown when hovering the info icon next to \"Tweet, not Post\". One short sentence."
+  },
+  "tipButtonColor": {
+    "message": "게시하기, 팔로우 같은 버튼 색을 흰색, 테마 색 또는 원하는 색으로 바꿉니다.",
+    "description": "Extras: explanation shown when hovering the info icon next to \"Button color\". One short sentence."
+  },
+  "tipImageGrid": {
+    "message": "게시물의 사진 2~4장을 옆으로 넘기는 대신 그리드로 보여줍니다.",
+    "description": "Extras: explanation shown when hovering the info icon next to \"Classic image grid\". One short sentence."
+  },
+  "tipFollowing": {
+    "message": "홈을 '추천' 대신 '팔로우 중'으로 엽니다.",
+    "description": "Extras: explanation shown when hovering the info icon next to \"Start on Following\". One short sentence."
+  },
+  "tipCopyLink": {
+    "message": "게시물 공유 메뉴에서 '링크 복사'를 맨 위에 둡니다.",
+    "description": "Extras: explanation shown when hovering the info icon next to \"Copy link first\". One short sentence."
+  },
+  "tipHideGrok": {
+    "message": "사이드바, 게시물, 프로필, 플로팅 버튼에서 Grok을 없앱니다.",
+    "description": "Extras: explanation shown when hovering the info icon next to \"Hide Grok\". One short sentence."
   }
 }

@@ -296,5 +296,41 @@
   "mockFollow": {
     "message": "フォローする",
     "description": "X’s own label on its Follow button, shown in the preview of X"
+  },
+  "tipBird": {
+    "message": "Xのロゴの代わりにTwitterの鳥を表示します。",
+    "description": "Extras: explanation shown when hovering the info icon next to \"Classic bird logo\". One short sentence."
+  },
+  "tipFont": {
+    "message": "Xの現在のフォントの代わりに、Twitterで長年使われていたフォントにします。",
+    "description": "Extras: explanation shown when hovering the info icon next to \"Classic font\". One short sentence."
+  },
+  "tipFavicon": {
+    "message": "ブラウザのタブに青い鳥を表示し、タブ名をTwitterにします。",
+    "description": "Extras: explanation shown when hovering the info icon next to \"Classic favicon\". One short sentence."
+  },
+  "tipWording": {
+    "message": "PostとRepostをTweetとRetweetと表示します（Xが英語のとき）。",
+    "description": "Extras: explanation shown when hovering the info icon next to \"Tweet, not Post\". One short sentence."
+  },
+  "tipButtonColor": {
+    "message": "ポストやフォローなどのボタンの色を、白・テーマの色・好きな色から選べます。",
+    "description": "Extras: explanation shown when hovering the info icon next to \"Button color\". One short sentence."
+  },
+  "tipImageGrid": {
+    "message": "ポストの2〜4枚の写真を、横スクロールではなくグリッドで表示します。",
+    "description": "Extras: explanation shown when hovering the info icon next to \"Classic image grid\". One short sentence."
+  },
+  "tipFollowing": {
+    "message": "ホームを「おすすめ」ではなく「フォロー中」で開きます。",
+    "description": "Extras: explanation shown when hovering the info icon next to \"Start on Following\". One short sentence."
+  },
+  "tipCopyLink": {
+    "message": "ポストの共有メニューで「リンクをコピー」を一番上にします。",
+    "description": "Extras: explanation shown when hovering the info icon next to \"Copy link first\". One short sentence."
+  },
+  "tipHideGrok": {
+    "message": "サイドバー、ポスト、プロフィール、フローティングボタンからGrokを消します。",
+    "description": "Extras: explanation shown when hovering the info icon next to \"Hide Grok\". One short sentence."
   }
 }

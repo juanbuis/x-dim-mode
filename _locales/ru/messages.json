@@ -296,5 +296,41 @@
   "mockFollow": {
     "message": "Читать",
     "description": "X’s own label on its Follow button, shown in the preview of X"
+  },
+  "tipBird": {
+    "message": "Возвращает птичку Twitter вместо логотипа X.",
+    "description": "Extras: explanation shown when hovering the info icon next to \"Classic bird logo\". One short sentence."
+  },
+  "tipFont": {
+    "message": "Использует шрифт, который был у Twitter много лет, вместо нынешнего шрифта X.",
+    "description": "Extras: explanation shown when hovering the info icon next to \"Classic font\". One short sentence."
+  },
+  "tipFavicon": {
+    "message": "Показывает синюю птичку на вкладке браузера и называет вкладку Twitter.",
+    "description": "Extras: explanation shown when hovering the info icon next to \"Classic favicon\". One short sentence."
+  },
+  "tipWording": {
+    "message": "Пишет Tweet и Retweet вместо Post и Repost (если X на английском).",
+    "description": "Extras: explanation shown when hovering the info icon next to \"Tweet, not Post\". One short sentence."
+  },
+  "tipButtonColor": {
+    "message": "Красит кнопки вроде «Опубликовать» и «Читать»: белый, цвет темы или любой свой.",
+    "description": "Extras: explanation shown when hovering the info icon next to \"Button color\". One short sentence."
+  },
+  "tipImageGrid": {
+    "message": "Показывает 2–4 фото в посте сеткой, а не лентой, которую нужно листать.",
+    "description": "Extras: explanation shown when hovering the info icon next to \"Classic image grid\". One short sentence."
+  },
+  "tipFollowing": {
+    "message": "Открывает главную на ленте подписок, а не на «Для вас».",
+    "description": "Extras: explanation shown when hovering the info icon next to \"Start on Following\". One short sentence."
+  },
+  "tipCopyLink": {
+    "message": "Ставит «Копировать ссылку» первым пунктом в меню «Поделиться».",
+    "description": "Extras: explanation shown when hovering the info icon next to \"Copy link first\". One short sentence."
+  },
+  "tipHideGrok": {
+    "message": "Убирает Grok из бокового меню, постов, профилей и плавающей кнопки.",
+    "description": "Extras: explanation shown when hovering the info icon next to \"Hide Grok\". One short sentence."
   }
 }

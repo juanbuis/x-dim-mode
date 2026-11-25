@@ -22,7 +22,7 @@
     * { margin: 0; padding: 0; box-sizing: border-box; }
     ::selection { background: rgba(29, 155, 240, 0.4); }
     body {
-      width: 240px;
+      width: 260px;
       padding: 10px 16px 12px;
       font: 15px/20px -apple-system, BlinkMacSystemFont, system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       -webkit-font-smoothing: antialiased;
@@ -77,7 +77,9 @@
       gap: 8px;
       min-height: 36px;
     }
-    /* X uses 15px; 14px is what keeps every locale on one line at 240px. */
+    /* X uses 15px; 14px is what keeps every locale on one line. This page is
+       260px wide, 20px more than the popup, which is what the info icon after
+       each label needs in the longest locales (fr, pt-BR, es, ru). */
     .label { font-size: 14px; line-height: 18px; color: var(--fg); }
     .toggle { position: relative; flex-shrink: 0; width: 34px; height: 20px; }
     .toggle input { position: absolute; opacity: 0; width: 0; height: 0; }
@@ -106,6 +108,45 @@
     input:focus-visible + .slider { outline: 2px solid var(--fg); outline-offset: 2px; }
     [dir="rtl"] .slider::before { left: auto; right: 2px; }
     [dir="rtl"] input:checked + .slider::before { transform: translateX(-14px); }
+
+    /* Info tips (tips.js): a quiet "i" after each label; the explanation
+       shows on hover, focus or tap. */
+    .label-wrap { display: flex; align-items: center; gap: 3px; min-width: 0; }
+    .label-wrap .label { white-space: nowrap; }
+    .tip {
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+      width: 18px;
+      height: 20px;
+      padding: 0;
+      border: none;
+      border-radius: 50%;
+      background: none;
+      color: var(--fg-3);
+      cursor: help;
+      transition: color 0.2s;
+      -webkit-appearance: none;
+      appearance: none;
+    }
+    .tip svg { width: 14px; height: 14px; }
+    .tip:hover, .tip:focus-visible { color: var(--fg); }
+    .tip-bubble {
+      position: absolute;
+      left: 16px;
+      right: 16px;
+      z-index: 5;
+      padding: 8px 10px;
+      border-radius: 10px;
+      border: 1px solid var(--line);
+      background: hsl(210, 26%, 20%);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+      font-size: 12px;
+      line-height: 16px;
+      color: var(--fg);
+      pointer-events: none;
+    }
+    .tip-bubble[hidden] { display: none; }
 
     /* Button color: X's colour picker dots */
     .swatches { display: flex; flex-shrink: 0; align-items: center; gap: 10px; }
@@ -230,35 +271,35 @@
        scrollbar, including with the custom colour controls open. -->
   <p class="group" id="groupLookLabel"></p>
   <div class="toggle-row">
-    <span class="label" id="birdLabel"></span>
+    <span class="label-wrap"><span class="label" id="birdLabel"></span><button class="tip" type="button" data-tip="tipBird"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 11v6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="7.6" r="1.3" fill="currentColor"/></svg></button></span>
     <label class="toggle">
       <input type="checkbox" id="birdToggle">
       <span class="slider"></span>
     </label>
   </div>
   <div class="toggle-row">
-    <span class="label" id="oldFontLabel"></span>
+    <span class="label-wrap"><span class="label" id="oldFontLabel"></span><button class="tip" type="button" data-tip="tipFont"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 11v6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="7.6" r="1.3" fill="currentColor"/></svg></button></span>
     <label class="toggle">
       <input type="checkbox" id="oldFontToggle">
       <span class="slider"></span>
     </label>
   </div>
   <div class="toggle-row">
-    <span class="label" id="faviconLabel"></span>
+    <span class="label-wrap"><span class="label" id="faviconLabel"></span><button class="tip" type="button" data-tip="tipFavicon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 11v6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="7.6" r="1.3" fill="currentColor"/></svg></button></span>
     <label class="toggle">
       <input type="checkbox" id="faviconToggle">
       <span class="slider"></span>
     </label>
   </div>
   <div class="toggle-row">
-    <span class="label" id="tweetWordingLabel"></span>
+    <span class="label-wrap"><span class="label" id="tweetWordingLabel"></span><button class="tip" type="button" data-tip="tipWording"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 11v6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="7.6" r="1.3" fill="currentColor"/></svg></button></span>
     <label class="toggle">
       <input type="checkbox" id="tweetWordingToggle">
       <span class="slider"></span>
     </label>
   </div>
   <div class="toggle-row">
-    <span class="label" id="buttonColorLabel"></span>
+    <span class="label-wrap"><span class="label" id="buttonColorLabel"></span><button class="tip" type="button" data-tip="tipButtonColor"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 11v6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="7.6" r="1.3" fill="currentColor"/></svg></button></span>
     <div class="swatches">
       <button class="swatch swatch-white" data-color="white" id="swatchWhite"></button>
       <button class="swatch swatch-theme" data-color="theme" id="swatchTheme"></button>
@@ -272,21 +313,21 @@
 
   <p class="group" id="groupTimelineLabel"></p>
   <div class="toggle-row">
-    <span class="label" id="imageGridLabel"></span>
+    <span class="label-wrap"><span class="label" id="imageGridLabel"></span><button class="tip" type="button" data-tip="tipImageGrid"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 11v6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="7.6" r="1.3" fill="currentColor"/></svg></button></span>
     <label class="toggle">
       <input type="checkbox" id="imageGridToggle">
       <span class="slider"></span>
     </label>
   </div>
   <div class="toggle-row">
-    <span class="label" id="followingTabLabel"></span>
+    <span class="label-wrap"><span class="label" id="followingTabLabel"></span><button class="tip" type="button" data-tip="tipFollowing"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 11v6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="7.6" r="1.3" fill="currentColor"/></svg></button></span>
     <label class="toggle">
       <input type="checkbox" id="followingTabToggle">
       <span class="slider"></span>
     </label>
   </div>
   <div class="toggle-row">
-    <span class="label" id="copyLinkFirstLabel"></span>
+    <span class="label-wrap"><span class="label" id="copyLinkFirstLabel"></span><button class="tip" type="button" data-tip="tipCopyLink"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 11v6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="7.6" r="1.3" fill="currentColor"/></svg></button></span>
     <label class="toggle">
       <input type="checkbox" id="copyLinkFirstToggle">
       <span class="slider"></span>
@@ -295,7 +336,7 @@
 
   <p class="group" id="groupDeclutterLabel"></p>
   <div class="toggle-row">
-    <span class="label" id="hideGrokLabel"></span>
+    <span class="label-wrap"><span class="label" id="hideGrokLabel"></span><button class="tip" type="button" data-tip="tipHideGrok"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 11v6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="7.6" r="1.3" fill="currentColor"/></svg></button></span>
     <label class="toggle">
       <input type="checkbox" id="hideGrokToggle">
       <span class="slider"></span>
@@ -312,5 +353,6 @@
   </div>
   <script src="rate.js"></script>
   <script src="extras.js"></script>
+  <script src="tips.js"></script>
 </body>
 </html>
